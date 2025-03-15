@@ -1,0 +1,2 @@
+C:/Users/DELL/OneDrive/Desktop/untitled9/android/app/.cxx/Debug/2j1f3n55/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/DELL/OneDrive/Desktop/untitled9/android/app/.cxx/Debug/2j1f3n55/arm64-v8a/CMakeFiles/rebuild_cache.dir
