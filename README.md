@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# foodtek_application
-=======
 
->>>>>>> 26cc1c2931574d05040776c4a56e37a6bf89f9d8
 
 A new Flutter project.
 
