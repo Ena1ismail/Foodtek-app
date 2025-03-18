@@ -92,6 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
             context: context,
           ),
           errorText: loginController.errors['password'],
+          obscureText: loginController.obscureText,
 
           suffixIcon: IconButton(
             onPressed: () {
