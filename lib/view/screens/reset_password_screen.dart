@@ -119,6 +119,7 @@ class ResetPasswordScreen extends StatelessWidget {
                         title: "New Password",
                         controller: loginController.passwordController,
                         hintText: "Enter your new password",
+                        obscureText: loginController.obscureText,
                         onChange:
                             (value) => loginController.validateField(
                               field: 'password',
@@ -126,6 +127,18 @@ class ResetPasswordScreen extends StatelessWidget {
                               context: context,
                             ),
                         errorText: loginController.errors['password'],
+                        suffixIcon: IconButton(
+                          onPressed:
+                              () => loginController.togglePasswordVisibility(),
+
+                          icon: Icon(
+                            loginController.obscureText
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            size: 20.sp,
+                            color: Colors.grey,
+                          ),
+                        ),
                       ),
                       SizedBox(height: 16.h),
                       PasswordFieldWidget(
@@ -133,6 +146,7 @@ class ResetPasswordScreen extends StatelessWidget {
                         title: "Confirm New Password",
                         controller: loginController.confirmPasswordController,
                         hintText: "Confirm your new password",
+                        obscureText: loginController.obscureText2,
                         onChange:
                             (value) => loginController.validateField(
                               context: context,
@@ -140,6 +154,19 @@ class ResetPasswordScreen extends StatelessWidget {
                               value: value,
                             ),
                         errorText: loginController.errors['confirmPassword'],
+                        suffixIcon: IconButton(
+                          onPressed:
+                              () =>
+                                  loginController
+                                      .toggleConfirmPasswordVisibility(),
+                          icon: Icon(
+                            loginController.obscureText2
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: Colors.grey,
+                            size: 20.sp,
+                          ),
+                        ),
                       ),
                       SizedBox(height: 24.h),
                       LoginButtonWidget(

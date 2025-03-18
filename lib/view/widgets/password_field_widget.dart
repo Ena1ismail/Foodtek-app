@@ -13,6 +13,7 @@ class PasswordFieldWidget extends StatelessWidget {
   Widget? suffixIcon;
   String? hintText;
   String? errorText;
+  bool? obscureText;
   Function(String)? onChange;
 
   PasswordFieldWidget({
@@ -24,13 +25,11 @@ class PasswordFieldWidget extends StatelessWidget {
     this.hintText,
     this.onChange,
     this.errorText,
+    this.obscureText
   });
 
   @override
   Widget build(BuildContext context) {
-    return Selector<LoginController, bool>(
-      selector: (context, loginProvider) => loginProvider.obscureText,
-      builder: (context, obscureText, _) {
         return Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +46,7 @@ class PasswordFieldWidget extends StatelessWidget {
               backgroundColor: Colors.white,
               borderColor: Color(0xFFEFF0F6),
               textEditingController: controller,
-              obscureText: obscureText,
+              obscureText: obscureText!,
               suffixIcon: suffixIcon,
               hintText: hintText,
               onChanged: onChange,
@@ -55,7 +54,6 @@ class PasswordFieldWidget extends StatelessWidget {
             ),
           ],
         );
-      },
-    );
+      }
   }
-}
+

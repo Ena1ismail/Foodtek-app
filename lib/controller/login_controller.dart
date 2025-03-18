@@ -198,20 +198,24 @@ class LoginController extends ChangeNotifier {
   }
 
   void _validateName(String? name) {
-    final newError =
-        name == null || name.isEmpty ? "Please enter your name." : null;
+    final newError = (name == null || name.isEmpty)
+        ? "Please enter your name."
+        : name.trim().split(' ').length < 2
+        ? "Please enter both first and last name."
+        : null;
+
     if (errors['name'] != newError) {
       errors['name'] = newError;
+      notifyListeners();
     }
   }
 
   void _validateBirth(String? birth) {
     final newError =
-        birth == null || birth.isEmpty
-            ? "Please enter your date of birth."
-            : null;
+    birth == null || birth.isEmpty ? "Please enter your date of birth." : null;
     if (errors['birth'] != newError) {
       errors['birth'] = newError;
+      notifyListeners();
     }
   }
 

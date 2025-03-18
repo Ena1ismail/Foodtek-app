@@ -98,6 +98,25 @@ class SignUpScreen extends StatelessWidget {
           title: "Set Password",
           hintText: "Enter your password",
           controller: loginController.passwordController,
+          onChange:
+              (value) => loginController.validateField(
+                field: 'password',
+                value: value,
+                context: context,
+              ),
+          errorText: loginController.errors['password'],
+          suffixIcon: IconButton(
+            onPressed: () {
+              loginController.togglePasswordVisibility();
+            },
+            icon: Icon(
+              loginController.obscureText
+                  ? Icons.visibility_off
+                  : Icons.visibility,
+              color: Colors.grey,
+              size: 20.sp,
+            ),
+          ),
         ),
         _buildSubmitButton(context, loginController),
       ],
@@ -228,6 +247,12 @@ class SignUpScreen extends StatelessWidget {
               keyboardType: TextInputType.none,
               hintText: "DD/MM/YYYY",
               readOnly: true,
+              onChanged:
+                  (value) => loginController.validateField(
+                field: 'birth',
+                value: value,
+                context: context,
+              ),
               suffixIcon: IconButton(
                 onPressed: () async {
                   DateTime? selectedDate = await showCupertinoModalPopup(
@@ -318,9 +343,13 @@ class SignUpScreen extends StatelessWidget {
                   );
 
                   if (selectedDate != null) {
-                    String formattedDate =
-                        "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}";
+                    String formattedDate = "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}";
                     loginController.birthController.text = formattedDate;
+                    loginController.validateField(
+                      field: 'birth',
+                      value: formattedDate,
+                      context: context,
+                    );
                   }
                 },
                 icon: Image.asset(
@@ -396,12 +425,12 @@ class SignUpScreen extends StatelessWidget {
               },
             ),
           ),
-          if (loginController.errors['phone'] != null &&
-              loginController.errors['phone']!.isNotEmpty)
-            Text(
-              loginController.errors['phone']!,
-              style: TextStyle(color: Colors.red, fontSize: 12.sp),
-            ),
+          // if (loginController.errors['phone'] != null &&
+          //     loginController.errors['phone']!.isNotEmpty)
+          //   Text(
+          //     loginController.errors['phone']!,
+          //     style: TextStyle(color: Colors.red, fontSize: 12.sp),
+          //   ),
         ],
       ),
     );
@@ -449,9 +478,7 @@ class SignUpScreen extends StatelessWidget {
                         ),
                       ),
                     );
-                  } else{
-                    
-                  }
+                  } else {}
                   loginController.setLoading(false);
                 },
               );

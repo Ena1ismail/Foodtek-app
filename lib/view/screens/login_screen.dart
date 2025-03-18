@@ -85,6 +85,27 @@ class _LoginScreenState extends State<LoginScreen> {
           title: "Password",
           hintText: "Enter your password",
           controller: loginController.passwordController,
+          onChange:
+              (value) => loginController.validateField(
+            field: 'password',
+            value: value,
+            context: context,
+          ),
+          errorText: loginController.errors['password'],
+
+          suffixIcon: IconButton(
+            onPressed: () {
+              loginController.togglePasswordVisibility();
+            },
+            icon: Icon(
+              loginController.obscureText
+                  ? Icons.visibility_off_outlined
+                  : Icons.visibility_outlined,
+              color: Colors.grey,
+              size: 20.sp,
+
+            ),
+          ),
         ),
         _rememberMeAndForgetPassword(),
         _buildSubmitButton(context, isLoginMode, loginController),
@@ -206,7 +227,10 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildForgotPasswordButton(BuildContext context, LoginController loginController) {
+  Widget _buildForgotPasswordButton(
+    BuildContext context,
+    LoginController loginController,
+  ) {
     return Padding(
       padding: EdgeInsets.only(top: 16.sp),
       child: TextButton(
@@ -363,6 +387,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ],
     );
   }
+
   Widget _buildOrDivider() {
     return Padding(
       padding: EdgeInsets.only(left: 24.sp, right: 24.sp),
