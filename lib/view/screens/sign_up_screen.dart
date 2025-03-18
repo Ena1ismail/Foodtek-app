@@ -202,6 +202,7 @@ class SignUpScreen extends StatelessWidget {
               ),
             ),
             InputWidget(
+              maxLines: 2,
               backgroundColor: Colors.white,
               borderColor: Color(0xFFEFF0F6),
               textEditingController: loginController.nameController,

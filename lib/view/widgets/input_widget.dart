@@ -23,6 +23,7 @@ class InputWidget extends StatelessWidget {
   final Color? hintColor;
   final bool? readOnly;
   final Widget? widget;
+  final int? maxLines;
 
   const InputWidget({
     super.key,
@@ -39,6 +40,7 @@ class InputWidget extends StatelessWidget {
     this.borderColor = Colors.transparent,
     this.labelColor = const Color(0xFFBBBFC5),
     this.width,
+    this.maxLines,
     this.height,
     this.fontSize,
     this.borderRadius,
@@ -69,7 +71,7 @@ class InputWidget extends StatelessWidget {
             textAlignVertical: TextAlignVertical.center,
             obscureText: obscureText,
             controller: textEditingController,
-            maxLines: 3,
+            maxLines: maxLines ?? 1,
             onChanged: onChanged,
             keyboardType: keyboardType,
             readOnly: readOnly!,
