@@ -69,7 +69,7 @@ class InputWidget extends StatelessWidget {
             textAlignVertical: TextAlignVertical.center,
             obscureText: obscureText,
             controller: textEditingController,
-            maxLines: 1,
+            maxLines: 3,
             onChanged: onChanged,
             keyboardType: keyboardType,
             readOnly: readOnly!,
