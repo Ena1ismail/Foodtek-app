@@ -105,6 +105,7 @@ class SignUpScreen extends StatelessWidget {
                 context: context,
               ),
           errorText: loginController.errors['password'],
+          obscureText: loginController.obscureText,
           suffixIcon: IconButton(
             onPressed: () {
               loginController.togglePasswordVisibility();
@@ -408,7 +409,7 @@ class SignUpScreen extends StatelessWidget {
                   borderSide: BorderSide(
                     color: Color(0xFFEFF0F6),
                     width: 1.w,
-                  ), // Color when not focused
+                  ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.sp),
