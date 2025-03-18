@@ -76,7 +76,6 @@ class SlideWidget extends StatelessWidget {
                   ),
                   SizedBox(height: 110.h),
                   widget
-
                 ],
               ),
             ),

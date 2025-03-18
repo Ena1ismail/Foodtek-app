@@ -27,7 +27,6 @@ class LocationScreen extends StatelessWidget {
               title: "Yes, Turn It On",
               onPressed: () async {
                 print("Button pressed");
-
                 await locationController.requestLocationPermission(context);
               },
 
@@ -40,7 +39,6 @@ class LocationScreen extends StatelessWidget {
               titleColor: AppConstants.primaryTextColor,
               colors: [Color(0xFFC2C2C2), Color(0xFFC2C2C2)],
               onPressed: () {
-                // Skip and go to the home screen
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => LoginScreen()),

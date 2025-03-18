@@ -46,7 +46,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 25.h),
                 Container(
                   width: 343.w,
-                  // height: 722.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.r),
                     color: Colors.white,
@@ -62,6 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                 ),
+                SizedBox(height: 24.h,)
               ],
             ),
           ),

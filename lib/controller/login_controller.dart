@@ -104,7 +104,7 @@ class LoginController extends ChangeNotifier {
         validatePassword(value);
         break;
       case 'confirmPassword':
-        _validateConfirmPassword(value, errors['password'], context);
+        validateConfirmPassword(value, errors['password'], context);
         break;
       case 'name':
         _validateName(value);
@@ -149,10 +149,13 @@ class LoginController extends ChangeNotifier {
 
     _validateEmail(email);
     validatePassword(password);
-    _validateConfirmPassword(confirmPassword, password, context);
+    validateConfirmPassword(confirmPassword, password, context);
     validatePhone(phone);
     _validateName(name);
     _validateBirth(birth);
+
+    print("Old Errors: $oldErrors");
+    print("New Errors: $errors");
 
     if (!_mapsEqual(oldErrors, errors)) {
       notifyListeners();
@@ -164,19 +167,21 @@ class LoginController extends ChangeNotifier {
   }
 
   void validatePassword(String? password) {
+    password = password?.trim();
     final newError =
-        password == null || password.isEmpty
-            ? "Password can't be empty."
-            : !_passwordRegExp.hasMatch(password)
-            ? "Please enter a strong password."
-            : null;
+    password == null || password.isEmpty
+        ? "Password can't be empty."
+        : !_passwordRegExp.hasMatch(password)
+        ? "Please enter a strong password."
+        : null;
     if (errors['password'] != newError) {
       errors['password'] = newError;
+      notifyListeners();
     }
   }
 
 
-  void _validateConfirmPassword(
+  void validateConfirmPassword(
       String? confirmPassword,
       String? password,
       BuildContext context,

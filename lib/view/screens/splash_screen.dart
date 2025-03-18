@@ -16,9 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Use const Duration for better performance
     Timer(const Duration(seconds: 5), () {
-      // Check if the widget is still mounted
       if (mounted) {
         Navigator.pushReplacement(
           context,

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,6 +24,7 @@ class ResetPasswordScreen extends StatelessWidget {
       context,
       listen: false,
     );
+
     return Scaffold(
       backgroundColor: AppConstants.buttonColor,
       body: Stack(
@@ -49,7 +52,6 @@ class ResetPasswordScreen extends StatelessWidget {
               ),
             ),
           ),
-
           Center(
             child: Container(
               width: 343.w,
@@ -99,15 +101,15 @@ class ResetPasswordScreen extends StatelessWidget {
                                 color: AppConstants.buttonColor,
                               ),
                               recognizer:
-                                  TapGestureRecognizer()
-                                    ..onTap = () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => LoginScreen(),
-                                        ),
-                                      );
-                                    },
+                              TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => LoginScreen(),
+                                    ),
+                                  );
+                                },
                             ),
                           ],
                         ),
@@ -122,7 +124,8 @@ class ResetPasswordScreen extends StatelessWidget {
                             hintText: "Enter your new password",
                             obscureText: loginController.obscureText,
                             onChange:
-                                (value) => loginController.validateField(
+                                (value) =>
+                                loginController.validateField(
                                   field: 'password',
                                   value: value,
                                   context: context,
@@ -131,8 +134,8 @@ class ResetPasswordScreen extends StatelessWidget {
                             suffixIcon: IconButton(
                               onPressed:
                                   () =>
-                                      loginController
-                                          .togglePasswordVisibility(),
+                                  loginController
+                                      .togglePasswordVisibility(),
                               icon: Icon(
                                 loginController.obscureText
                                     ? Icons.visibility_off
@@ -151,22 +154,23 @@ class ResetPasswordScreen extends StatelessWidget {
                             loginController: loginController,
                             title: "Confirm New Password",
                             controller:
-                                loginController.confirmPasswordController,
+                            loginController.confirmPasswordController,
                             hintText: "Confirm your new password",
                             obscureText: loginController.obscureText2,
                             onChange:
-                                (value) => loginController.validateField(
+                                (value) =>
+                                loginController.validateField(
                                   context: context,
                                   field: 'confirmPassword',
                                   value: value,
                                 ),
                             errorText:
-                                loginController.errors['confirmPassword'],
+                            loginController.errors['confirmPassword'],
                             suffixIcon: IconButton(
                               onPressed:
                                   () =>
-                                      loginController
-                                          .toggleConfirmPasswordVisibility(),
+                                  loginController
+                                      .toggleConfirmPasswordVisibility(),
                               icon: Icon(
                                 loginController.obscureText2
                                     ? Icons.visibility_off
@@ -185,12 +189,13 @@ class ResetPasswordScreen extends StatelessWidget {
                         onPressed: () async {
                           FocusScope.of(context).unfocus();
                           loginController.setLoading(true);
+                          loginController.clearErrors();
 
-                          loginController.validateForm(
-                            context: context,
-                            password: loginController.passwordController.text,
-                            confirmPassword: loginController.confirmPasswordController.text,
-                          );
+                          loginController.validatePassword(loginController
+                              .passwordController.text);
+                          loginController.validateConfirmPassword(
+                              loginController.confirmPasswordController.text,
+                              loginController.passwordController.text, context);
 
                           if (!loginController.isFormValid()) {
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -206,14 +211,18 @@ class ResetPasswordScreen extends StatelessWidget {
                               ),
                             );
                           } else {
-                            if (loginController.passwordController.text.trim() ==
-                                loginController.confirmPasswordController.text.trim()) {
+                            if (loginController.passwordController.text
+                                .trim() ==
+                                loginController.confirmPasswordController.text
+                                    .trim()) {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => SuccessResetPasswordScreen(),
+                                  builder: (context) =>
+                                      SuccessResetPasswordScreen(),
                                 ),
                               );
+                              _clearFields(loginController);
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -244,6 +253,7 @@ class ResetPasswordScreen extends StatelessWidget {
     );
   }
 
+  // Clear Fields Method
   void _clearFields(LoginController loginController) {
     loginController.passwordController.clear();
     loginController.confirmPasswordController.clear();

@@ -93,7 +93,7 @@ class SignUpScreen extends StatelessWidget {
         SizedBox(height: 16.h),
         _buildDateOfBirthInput(context, loginController),
         SizedBox(height: 16.h),
-        _buildPhoneNumberInput(context,loginController),
+        _buildPhoneNumberInput(context, loginController),
         PasswordFieldWidget(
           loginController: loginController,
           title: "Set Password",
@@ -252,10 +252,10 @@ class SignUpScreen extends StatelessWidget {
               readOnly: true,
               onChanged:
                   (value) => loginController.validateField(
-                field: 'birth',
-                value: value,
-                context: context,
-              ),
+                    field: 'birth',
+                    value: value,
+                    context: context,
+                  ),
               suffixIcon: IconButton(
                 onPressed: () async {
                   DateTime? selectedDate = await showCupertinoModalPopup(
@@ -281,6 +281,7 @@ class SignUpScreen extends StatelessWidget {
                                   tempSelectedDate = newDate;
                                 },
                                 mode: CupertinoDatePickerMode.date,
+                                maximumYear: DateTime.now().year,
                               ),
                             ),
                             SizedBox(height: 15.h),
@@ -346,7 +347,8 @@ class SignUpScreen extends StatelessWidget {
                   );
 
                   if (selectedDate != null) {
-                    String formattedDate = "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}";
+                    String formattedDate =
+                        "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}";
                     loginController.birthController.text = formattedDate;
                     loginController.validateField(
                       field: 'birth',
@@ -376,7 +378,10 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPhoneNumberInput(BuildContext context,LoginController loginController) {
+  Widget _buildPhoneNumberInput(
+    BuildContext context,
+    LoginController loginController,
+  ) {
     return Padding(
       padding: EdgeInsets.only(left: 24.sp, right: 24.sp),
       child: Column(
@@ -409,10 +414,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.sp),
-                  borderSide: BorderSide(
-                    color: Color(0xFFEFF0F6),
-                    width: 1.w,
-                  ),
+                  borderSide: BorderSide(color: Color(0xFFEFF0F6), width: 1.w),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.sp),
@@ -425,7 +427,8 @@ class SignUpScreen extends StatelessWidget {
               initialCountryCode: loginController.selectedCountryCode,
               onChanged: (phone) {
                 if (phone.number.isEmpty) {
-                  loginController.errors['phone'] = "Please enter a valid phone number.";
+                  loginController.errors['phone'] =
+                      "Please enter a valid phone number.";
                 } else {
                   loginController.errors['phone'] = null;
                 }
@@ -465,37 +468,36 @@ class SignUpScreen extends StatelessWidget {
               : LoginButtonWidget(
                 textColor: Colors.white,
                 buttonName: "Register",
-              onPressed: () async {
-                FocusScope.of(context).unfocus();
-                loginController.setLoading(true);
+                onPressed: () async {
+                  FocusScope.of(context).unfocus();
+                  loginController.setLoading(true);
 
-                loginController.validateForm(
-                  email: loginController.emailController.text,
-                  password: loginController.passwordController.text,
-                  name: loginController.nameController.text,
-                  phone: loginController.phoneNumberController.text,
-                  birth: loginController.birthController.text,
-                  context: context,
-                );
+                  loginController.validateForm(
+                    email: loginController.emailController.text,
+                    password: loginController.passwordController.text,
+                    name: loginController.nameController.text,
+                    phone: loginController.phoneNumberController.text,
+                    birth: loginController.birthController.text,
+                    context: context,
+                  );
 
-                if (!loginController.isFormValid()) {
-                  // Print errors for debugging
-                  print(loginController.errors);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: Colors.white,
-                      content: Text(
-                        "Please fix the errors in the form.",
-                        style: GoogleFonts.inter(
-                          color: const Color(0xFF170F4C),
-                          fontWeight: FontWeight.w500,
+                  if (!loginController.isFormValid()) {
+                    print(loginController.errors);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.white,
+                        content: Text(
+                          "Please fix the errors in the form.",
+                          style: GoogleFonts.inter(
+                            color: const Color(0xFF170F4C),
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                }
-                loginController.setLoading(false);
-              }
+                    );
+                  }
+                  loginController.setLoading(false);
+                },
               );
         },
       ),
