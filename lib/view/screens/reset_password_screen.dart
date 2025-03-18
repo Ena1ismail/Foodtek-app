@@ -52,7 +52,6 @@ class ResetPasswordScreen extends StatelessWidget {
 
           Center(
             child: Container(
-              height: 437.h,
               width: 343.w,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.r),
@@ -114,68 +113,84 @@ class ResetPasswordScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 24.h),
-                      PasswordFieldWidget(
-                        loginController: loginController,
-                        title: "New Password",
-                        controller: loginController.passwordController,
-                        hintText: "Enter your new password",
-                        obscureText: loginController.obscureText,
-                        onChange:
-                            (value) => loginController.validateField(
-                              field: 'password',
-                              value: value,
-                              context: context,
+                      Consumer<LoginController>(
+                        builder: (context, loginController, child) {
+                          return PasswordFieldWidget(
+                            loginController: loginController,
+                            title: "New Password",
+                            controller: loginController.passwordController,
+                            hintText: "Enter your new password",
+                            obscureText: loginController.obscureText,
+                            onChange:
+                                (value) => loginController.validateField(
+                                  field: 'password',
+                                  value: value,
+                                  context: context,
+                                ),
+                            errorText: loginController.errors['password'],
+                            suffixIcon: IconButton(
+                              onPressed:
+                                  () =>
+                                      loginController
+                                          .togglePasswordVisibility(),
+                              icon: Icon(
+                                loginController.obscureText
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                size: 20.sp,
+                                color: Colors.grey,
+                              ),
                             ),
-                        errorText: loginController.errors['password'],
-                        suffixIcon: IconButton(
-                          onPressed:
-                              () => loginController.togglePasswordVisibility(),
-
-                          icon: Icon(
-                            loginController.obscureText
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            size: 20.sp,
-                            color: Colors.grey,
-                          ),
-                        ),
+                          );
+                        },
                       ),
                       SizedBox(height: 16.h),
-                      PasswordFieldWidget(
-                        loginController: loginController,
-                        title: "Confirm New Password",
-                        controller: loginController.confirmPasswordController,
-                        hintText: "Confirm your new password",
-                        obscureText: loginController.obscureText2,
-                        onChange:
-                            (value) => loginController.validateField(
-                              context: context,
-                              field: 'confirmPassword',
-                              value: value,
+                      Consumer<LoginController>(
+                        builder: (context, loginController, child) {
+                          return PasswordFieldWidget(
+                            loginController: loginController,
+                            title: "Confirm New Password",
+                            controller:
+                                loginController.confirmPasswordController,
+                            hintText: "Confirm your new password",
+                            obscureText: loginController.obscureText2,
+                            onChange:
+                                (value) => loginController.validateField(
+                                  context: context,
+                                  field: 'confirmPassword',
+                                  value: value,
+                                ),
+                            errorText:
+                                loginController.errors['confirmPassword'],
+                            suffixIcon: IconButton(
+                              onPressed:
+                                  () =>
+                                      loginController
+                                          .toggleConfirmPasswordVisibility(),
+                              icon: Icon(
+                                loginController.obscureText2
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                size: 20.sp,
+                                color: Colors.grey,
+                              ),
                             ),
-                        errorText: loginController.errors['confirmPassword'],
-                        suffixIcon: IconButton(
-                          onPressed:
-                              () =>
-                                  loginController
-                                      .toggleConfirmPasswordVisibility(),
-                          icon: Icon(
-                            loginController.obscureText2
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            color: Colors.grey,
-                            size: 20.sp,
-                          ),
-                        ),
+                          );
+                        },
                       ),
                       SizedBox(height: 24.h),
                       LoginButtonWidget(
                         textColor: Colors.white,
-                        buttonName: "Register",
+                        buttonName: "Update Password",
                         onPressed: () async {
                           FocusScope.of(context).unfocus();
                           loginController.setLoading(true);
-                          loginController.clearErrors();
+
+                          loginController.validateForm(
+                            context: context,
+                            password: loginController.passwordController.text,
+                            confirmPassword: loginController.confirmPasswordController.text,
+                          );
 
                           if (!loginController.isFormValid()) {
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -191,16 +206,12 @@ class ResetPasswordScreen extends StatelessWidget {
                               ),
                             );
                           } else {
-                            // Check if passwords match using the LoginController
-                            if (loginController.passwordController.text ==
-                                loginController
-                                    .confirmPasswordController
-                                    .text) {
+                            if (loginController.passwordController.text.trim() ==
+                                loginController.confirmPasswordController.text.trim()) {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder:
-                                      (context) => SuccessResetPasswordScreen(),
+                                  builder: (context) => SuccessResetPasswordScreen(),
                                 ),
                               );
                             } else {
@@ -234,9 +245,7 @@ class ResetPasswordScreen extends StatelessWidget {
   }
 
   void _clearFields(LoginController loginController) {
-    loginController.emailController.clear();
     loginController.passwordController.clear();
-    loginController.nameController.clear();
-    loginController.birthController.clear();
+    loginController.confirmPasswordController.clear();
   }
 }

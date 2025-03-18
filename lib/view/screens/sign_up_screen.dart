@@ -41,7 +41,7 @@ class SignUpScreen extends StatelessWidget {
                 SizedBox(height: 25.h),
                 Container(
                   width: 343.w,
-                  height: 661.h,
+                  // height: 720.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.r),
                     color: Colors.white,
@@ -57,6 +57,7 @@ class SignUpScreen extends StatelessWidget {
                     },
                   ),
                 ),
+                SizedBox(height: 25.h),
               ],
             ),
           ),
@@ -390,8 +391,9 @@ class SignUpScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 60, // Adjusted height for better fit
+            height: 80.h,
             child: IntlPhoneField(
+              controller: loginController.phoneNumberController,
               dropdownIconPosition: IconPosition.leading,
               decoration: InputDecoration(
                 hintText: "Phone number",
@@ -416,11 +418,16 @@ class SignUpScreen extends StatelessWidget {
                   borderSide: BorderSide(
                     color: AppConstants.buttonColor,
                     width: 2.w,
-                  ), // Color when focused
+                  ),
                 ),
               ),
               initialCountryCode: loginController.selectedCountryCode,
               onChanged: (phone) {
+                if (phone.number.isEmpty) {
+                  loginController.errors['phone'] = "Please enter a valid phone number.";
+                } else {
+                  loginController.errors['phone'] = null;
+                }
                 loginController.phoneNumber = phone.completeNumber;
                 loginController.validateField(
                   field: 'phone',
@@ -457,35 +464,37 @@ class SignUpScreen extends StatelessWidget {
               : LoginButtonWidget(
                 textColor: Colors.white,
                 buttonName: "Register",
-                onPressed: () async {
-                  FocusScope.of(context).unfocus();
-                  loginController.setLoading(true);
+              onPressed: () async {
+                FocusScope.of(context).unfocus();
+                loginController.setLoading(true);
 
-                  loginController.validateForm(
-                    email: loginController.emailController.text,
-                    password: loginController.passwordController.text,
-                    name: loginController.nameController.text,
-                    phone: loginController.phoneNumberController.text,
-                    birth: loginController.birthController.text,
-                    context: context,
-                  );
+                loginController.validateForm(
+                  email: loginController.emailController.text,
+                  password: loginController.passwordController.text,
+                  name: loginController.nameController.text,
+                  phone: loginController.phoneNumberController.text,
+                  birth: loginController.birthController.text,
+                  context: context,
+                );
 
-                  if (!loginController.isFormValid()) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        backgroundColor: Colors.white,
-                        content: Text(
-                          "Please fix the errors in the form.",
-                          style: GoogleFonts.inter(
-                            color: const Color(0xFF170F4C),
-                            fontWeight: FontWeight.w500,
-                          ),
+                if (!loginController.isFormValid()) {
+                  // Print errors for debugging
+                  print(loginController.errors);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Colors.white,
+                      content: Text(
+                        "Please fix the errors in the form.",
+                        style: GoogleFonts.inter(
+                          color: const Color(0xFF170F4C),
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                    );
-                  } else {}
-                  loginController.setLoading(false);
-                },
+                    ),
+                  );
+                }
+                loginController.setLoading(false);
+              }
               );
         },
       ),
@@ -497,5 +506,7 @@ class SignUpScreen extends StatelessWidget {
     loginController.passwordController.clear();
     loginController.nameController.clear();
     loginController.birthController.clear();
+    loginController.phoneNumberController.clear();
+    loginController.clearErrors();
   }
 }

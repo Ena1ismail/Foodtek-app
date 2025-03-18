@@ -13,7 +13,7 @@ class PasswordFieldWidget extends StatelessWidget {
   Widget? suffixIcon;
   String? hintText;
   String? errorText;
-  bool? obscureText;
+  bool obscureText;
   Function(String)? onChange;
 
   PasswordFieldWidget({
@@ -25,7 +25,7 @@ class PasswordFieldWidget extends StatelessWidget {
     this.hintText,
     this.onChange,
     this.errorText,
-    this.obscureText
+    required this.obscureText
   });
 
   @override
@@ -46,7 +46,7 @@ class PasswordFieldWidget extends StatelessWidget {
               backgroundColor: Colors.white,
               borderColor: Color(0xFFEFF0F6),
               textEditingController: controller,
-              obscureText: obscureText!,
+              obscureText: obscureText,
               suffixIcon: suffixIcon,
               hintText: hintText,
               onChanged: onChange,

@@ -32,6 +32,12 @@ class LoginController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setRememberMe(bool value) {
+    isRememberMeChecked = value;
+    notifyListeners();
+  }
+
+
   void initializeCredentials(String? email, String? password) {
     emailController.text = email ?? '';
     passwordController.text = password ?? '';
@@ -46,11 +52,6 @@ class LoginController extends ChangeNotifier {
     confirmPasswordController.dispose();
     phoneNumberController.dispose();
     super.dispose();
-  }
-
-  void setRememberMe(bool value) {
-    isRememberMeChecked = value;
-    notifyListeners();
   }
 
   void setLoading(bool value) {
@@ -97,10 +98,10 @@ class LoginController extends ChangeNotifier {
         _validateEmail(value);
         break;
       case 'phone':
-        _validatePhone(value);
+        validatePhone(value);
         break;
       case 'password':
-        _validatePassword(value);
+        validatePassword(value);
         break;
       case 'confirmPassword':
         _validateConfirmPassword(value, errors['password'], context);
@@ -143,12 +144,13 @@ class LoginController extends ChangeNotifier {
     String? name,
     String? birth,
   }) {
+    clearErrors();
     final oldErrors = Map<String, String?>.from(errors);
 
     _validateEmail(email);
-    _validatePassword(password);
+    validatePassword(password);
     _validateConfirmPassword(confirmPassword, password, context);
-    _validatePhone(phone);
+    validatePhone(phone);
     _validateName(name);
     _validateBirth(birth);
 
@@ -161,7 +163,7 @@ class LoginController extends ChangeNotifier {
     return !errors.values.any((error) => error != null);
   }
 
-  void _validatePassword(String? password) {
+  void validatePassword(String? password) {
     final newError =
         password == null || password.isEmpty
             ? "Password can't be empty."
@@ -179,15 +181,19 @@ class LoginController extends ChangeNotifier {
       String? password,
       BuildContext context,
       ) {
+    confirmPassword = confirmPassword?.trim();
+    password = password?.trim();
+
     final newError = confirmPassword != password
         ? "Passwords do not match"
         : null;
     if (errors['confirmPassword'] != newError) {
       errors['confirmPassword'] = newError;
+      notifyListeners();
     }
   }
 
-  void _validatePhone(String? phoneNo) {
+  void validatePhone(String? phoneNo) {
     final newError = (phoneNo == null || phoneNo.isEmpty)
         ? "Please enter a valid phone number."
         : null;

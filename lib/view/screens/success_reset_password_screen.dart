@@ -125,6 +125,7 @@ class _SuccessResetPasswordScreenState
                         title: "New Password",
                         controller: loginController.passwordController,
                         hintText: "Enter your new password",
+                        obscureText: false,
                       ),
                       SizedBox(height: 16.h),
                       PasswordFieldWidget(
@@ -132,6 +133,7 @@ class _SuccessResetPasswordScreenState
                         title: "Confirm New Password",
                         controller: loginController.confirmPasswordController,
                         hintText: "Confirm your new password",
+                        obscureText: false,
                       ),
                       SizedBox(height: 24.h),
                       LoginButtonWidget(

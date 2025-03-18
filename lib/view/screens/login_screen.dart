@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 25.h),
                 Container(
                   width: 343.w,
-                  height: 661.h,
+                  // height: 722.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.r),
                     color: Colors.white,
@@ -113,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _buildOrDivider(),
         SizedBox(height: 24.h),
         _buildOtherLoginButtons(context),
+        SizedBox(height: 24.h,)
       ],
     );
   }
@@ -213,12 +214,30 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(width: 10.w),
               // Title text
-              Text(
-                "Remember me",
-                style: GoogleFonts.inter(
-                  color: const Color(0xFF6C7278),
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w700,
+              GestureDetector(
+                onTap: () {
+                  loginController.setRememberMe(!isRememberMeChecked);
+                  final secureStorageProvider =
+                  Provider.of<SecureStorageController>(
+                    context,
+                    listen: false,
+                  );
+                  if (!isRememberMeChecked) {
+                    secureStorageProvider.saveCredentials(
+                      loginController.emailController.text,
+                      loginController.passwordController.text,
+                    );
+                  } else {
+                    secureStorageProvider.clearCredentials();
+                  }
+                },
+                child: Text(
+                  "Remember me",
+                  style: GoogleFonts.inter(
+                    color: const Color(0xFF6C7278),
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
             ],
@@ -384,7 +403,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           onPressed: () {},
         ),
-        SizedBox(height: 45.h),
       ],
     );
   }

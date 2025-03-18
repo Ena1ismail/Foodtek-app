@@ -53,7 +53,7 @@ class InputWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: height ?? 46.h,
+          height: height ?? 60.h,
           width: width ?? 295.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(borderRadius ?? 10.sp),
