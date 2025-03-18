@@ -92,7 +92,7 @@ class SignUpScreen extends StatelessWidget {
         SizedBox(height: 16.h),
         _buildDateOfBirthInput(context, loginController),
         SizedBox(height: 16.h),
-        _buildPhoneNumberInput(loginController),
+        _buildPhoneNumberInput(context,loginController),
         PasswordFieldWidget(
           loginController: loginController,
           title: "Set Password",
@@ -374,7 +374,7 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPhoneNumberInput(LoginController loginController) {
+  Widget _buildPhoneNumberInput(BuildContext context,LoginController loginController) {
     return Padding(
       padding: EdgeInsets.only(left: 24.sp, right: 24.sp),
       child: Column(
@@ -420,18 +420,22 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               initialCountryCode: loginController.selectedCountryCode,
-              // Dynamic initial country code
               onChanged: (phone) {
                 loginController.phoneNumber = phone.completeNumber;
+                loginController.validateField(
+                  field: 'phone',
+                  value: phone.completeNumber,
+                  context: context,
+                );
               },
             ),
           ),
-          // if (loginController.errors['phone'] != null &&
-          //     loginController.errors['phone']!.isNotEmpty)
-          //   Text(
-          //     loginController.errors['phone']!,
-          //     style: TextStyle(color: Colors.red, fontSize: 12.sp),
-          //   ),
+          if (loginController.errors['phone'] != null &&
+              loginController.errors['phone']!.isNotEmpty)
+            Text(
+              loginController.errors['phone']!,
+              style: TextStyle(color: Colors.red, fontSize: 12.sp),
+            ),
         ],
       ),
     );

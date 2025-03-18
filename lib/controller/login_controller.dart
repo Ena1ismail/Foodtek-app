@@ -70,7 +70,7 @@ class LoginController extends ChangeNotifier {
   static final _emailRegExp = RegExp(
     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
   );
-  static final _phoneRegExp = RegExp(r'^(079|077|078)[0-9]{7}$');
+  // static final _phoneRegExp = RegExp(r'^(079|077|078)[0-9]{7}$');
   static final _passwordRegExp = RegExp(
     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$',
   );
@@ -188,12 +188,13 @@ class LoginController extends ChangeNotifier {
   }
 
   void _validatePhone(String? phoneNo) {
-    final newError =
-        phoneNo == null || phoneNo.isEmpty || !_phoneRegExp.hasMatch(phoneNo)
-            ? "Please enter a valid phone number."
-            : null;
+    final newError = (phoneNo == null || phoneNo.isEmpty)
+        ? "Please enter a valid phone number."
+        : null;
+
     if (errors['phone'] != newError) {
       errors['phone'] = newError;
+      notifyListeners();
     }
   }
 
