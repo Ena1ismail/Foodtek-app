@@ -15,7 +15,7 @@ class LoginController extends ChangeNotifier {
   final TextEditingController birthController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
 
-  String _selectedCountryCode = 'IN'; // Default to India
+  String _selectedCountryCode = 'JO';
   String get selectedCountryCode => _selectedCountryCode;
 
   set selectedCountryCode(String value) {
@@ -71,9 +71,8 @@ class LoginController extends ChangeNotifier {
   static final _emailRegExp = RegExp(
     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
   );
-  // static final _phoneRegExp = RegExp(r'^(079|077|078)[0-9]{7}$');
   static final _passwordRegExp = RegExp(
-    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$',
+    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{6,}$',
   );
 
   void togglePasswordVisibility() {

@@ -52,17 +52,14 @@ class SlidesController extends ChangeNotifier {
         curve: animationCurve,
       );
     } else {
-      // Check if location services are enabled
       bool isLocationEnabled = await Geolocator.isLocationServiceEnabled();
 
       if (isLocationEnabled) {
-        // If location is enabled, go to LoginScreen
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => LoginScreen()),
         );
       } else {
-        // If location is disabled, go to LocationScreen
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => LocationScreen()),

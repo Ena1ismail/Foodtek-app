@@ -29,7 +29,6 @@ class EmailFieldWidget extends StatelessWidget {
               ),
             ),
             InputWidget(
-              maxLines: 3,
               backgroundColor: Colors.white,
               borderColor: Color(0xFFEFF0F6),
               textEditingController: loginController.emailController,

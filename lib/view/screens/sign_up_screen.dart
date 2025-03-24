@@ -202,7 +202,6 @@ class SignUpScreen extends StatelessWidget {
               ),
             ),
             InputWidget(
-              maxLines: 2,
               backgroundColor: Colors.white,
               borderColor: Color(0xFFEFF0F6),
               textEditingController: loginController.nameController,
@@ -281,7 +280,7 @@ class SignUpScreen extends StatelessWidget {
                                   tempSelectedDate = newDate;
                                 },
                                 mode: CupertinoDatePickerMode.date,
-                                maximumYear: DateTime.now().year,
+                                maximumYear: DateTime.now().year - 16,
                               ),
                             ),
                             SizedBox(height: 15.h),
