@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../widgets/input_widget.dart';
-import 'package:foodtek/controller/home_page_controller.dart';
+import 'package:foodtek/view/widgets/input_widget.dart';
 import 'package:provider/provider.dart';
+import '../../controller/home_page_controller.dart';
 
 class SearchBarWidget extends StatelessWidget {
-  const SearchBarWidget({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final homePageController = Provider.of<HomePageController>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
         children: [
-          SizedBox(height: 20.h),
+          SizedBox(height: 20),
           InputWidget(
-            borderRadius: 40.r,
-            width: 370.w,
-            height: 55.h,
+            borderRadius: 40,
+            width: 370,
+            height: 55,
             borderColor: Color(0xFFD6D6D6),
             borderSide: BorderSide(color: Colors.transparent),
-            textEditingController: context.read<HomePageController>().searchTextEditingController,
+            textEditingController: homePageController.searchTextEditingController,
             obscureText: false,
             prefixIcon: Icon(Icons.search, color: Color(0xFF878787)),
             backgroundColor: Colors.white,
@@ -28,14 +26,10 @@ class SearchBarWidget extends StatelessWidget {
             hintColor: Color(0xFF878787),
             suffixIcon: IconButton(
               onPressed: () {},
-              icon: Image.asset(
-                "assets/images/filter.png",
-                height: 18.h,
-                width: 18.w,
-              ),
+              icon: Image.asset("assets/images/filter.png", height: 18, width: 18),
             ),
           ),
-          SizedBox(height: 30.h),
+          SizedBox(height: 30),
         ],
       ),
     );

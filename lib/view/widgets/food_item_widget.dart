@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
+import 'package:foodtek/controller/home_page_controller.dart';
+import 'package:foodtek/model/food_item.dart';
 import 'package:foodtek/view/widgets/custom_button_widget.dart';
+import 'package:foodtek/view/screens/product_details_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class FoodItemWidget extends StatelessWidget {
-  final String title;
-  final String description;
-  final String price;
-  final String imageUrl;
+  final FoodItem foodItem;
 
-  const FoodItemWidget({
-    Key? key,
-    required this.title,
-    required this.description,
-    required this.price,
-    required this.imageUrl,
-  }) : super(key: key);
+  const FoodItemWidget({Key? key, required this.foodItem});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +36,7 @@ class FoodItemWidget extends StatelessWidget {
                   Center(
                     child: Text(
                       textAlign: TextAlign.center,
-                      title,
+                      foodItem.name!,
                       style: GoogleFonts.sora(
                         color: Color(0xFF24262F),
                         fontSize: 14.sp,
@@ -65,7 +60,7 @@ class FoodItemWidget extends StatelessWidget {
                         SizedBox(width: 4.w),
                         Flexible(
                           child: Text(
-                            description,
+                            foodItem.description!,
                             style: GoogleFonts.sora(
                               fontSize: 10.sp,
                               color: Color(0xFF969AB0),
@@ -79,7 +74,7 @@ class FoodItemWidget extends StatelessWidget {
                   SizedBox(height: 12.h),
                   Center(
                     child: Text(
-                      price,
+                      "\$${foodItem.newPrice.toString()}",
                       style: GoogleFonts.sora(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
@@ -101,32 +96,49 @@ class FoodItemWidget extends StatelessWidget {
               width: 89.w,
               child: CircleAvatar(
                 backgroundColor: Color(0xFFE7E7E7),
-                child: Image.asset(imageUrl, height: 75.h, width: 75.w),
+                child: Image.asset(
+                  foodItem.imageUrl!,
+                  height: 75.h,
+                  width: 75.w,
+                ),
               ),
             ),
           ),
 
-          Positioned(
-            right: 0,
-            top: 20,
-            child: Container(
-              height: 36.h,
-              width: 36.w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(14.r),
-                color: Color(0xFFDBF4D1),
-              ),
-              child: Center(
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.favorite_border,
-                    color: Color(0xFF222628),
-                    size: 17.w,
+          Consumer<HomePageController>(
+            builder: (context, homePageController, child) {
+              return Positioned(
+                right: 0,
+                top: 20,
+                child: Container(
+                  height: 36.h,
+                  width: 36.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(14.r),
+                    color: Color(0xFFDBF4D1),
+                  ),
+                  child: Center(
+                    child: IconButton(
+                      onPressed: () {
+                        homePageController.toggleFavourite(context,foodItem);
+                      },
+                      icon:
+                          homePageController.isFavourite(foodItem)
+                              ? Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                                size: 17.w,
+                              )
+                              : Icon(
+                                Icons.favorite_border,
+                                color: Color(0xFF222628),
+                                size: 17.w,
+                              ),
+                    ),
                   ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
 
           Positioned(
@@ -144,6 +156,15 @@ class FoodItemWidget extends StatelessWidget {
                 fontSize: 10.sp,
                 fontWeight: FontWeight.w500,
               ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder:
+                        (context) => ProductDetailsWidget(foodItem: foodItem),
+                  ),
+                );
+              },
             ),
           ),
         ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/controller/home_page_controller.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class CategoryButtonsWidget extends StatelessWidget {
@@ -31,7 +33,7 @@ class CategoryButtonsWidget extends StatelessWidget {
           child: TextButton(
             onPressed: () {
               controller.updateSelectedIndex(index);
-              controller.updateSelectedCategory(label); // Update the selected category
+              controller.updateSelectedCategory(label);
             },
             style: TextButton.styleFrom(
               backgroundColor: isSelected ? Colors.green : Colors.white,
@@ -40,22 +42,19 @@ class CategoryButtonsWidget extends StatelessWidget {
                 side: BorderSide(color: Color(0xFF85DE9E)),
               ),
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
-              child: Row(
-                children: [
-                  if (label != 'All') Image.asset(image, height: 24, width: 24),
-                  if (label != 'All') SizedBox(width: 10),
-                  Text(
-                    label,
-                    style: TextStyle(
-                      color: isSelected ? Colors.white : Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
+            child: Row(
+              children: [
+                if (label != 'All') Image.asset(image, height: 24, width: 24),
+                if (label != 'All') SizedBox(width: 10),
+                Text(
+                  label,
+                  style: GoogleFonts.poppins(
+                    color: isSelected ? Colors.white : Colors.black,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );

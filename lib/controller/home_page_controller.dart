@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/app_constants.dart';
+import 'package:foodtek/model/food_item.dart';
+import 'package:foodtek/view/widgets/custom_button_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../model/notification_item.dart';
 import '../view/widgets/food_item_widget.dart';
 import '../view/widgets/recommend_item_widget.dart';
@@ -9,6 +14,30 @@ class HomePageController extends ChangeNotifier {
   int selectedIndex = 0;
   int selectedToggleIndex = 0;
   String selectedCategory = "All";
+  late FoodItem foodItem;
+  int itemAmount = 0;
+  double sliderValue = 4.0;
+  List<FoodItem> fav = [];
+
+  bool isFavourite(FoodItem foodItem) {
+    return fav.contains(foodItem);
+  }
+
+  void toggleFavourite(BuildContext context, FoodItem foodItem) {
+    if (fav.contains(foodItem)) {
+      _showConfirmationDialog(context, foodItem);
+    } else {
+      fav.add(foodItem);
+      notifyListeners();
+    }
+  }
+
+  void updateSliderValue(double newValue) {
+    if (sliderValue != newValue) {
+      sliderValue = newValue;
+      notifyListeners();
+    }
+  }
 
   void updateSelectedCategory(String category) {
     if (selectedCategory != category) {
@@ -17,7 +46,7 @@ class HomePageController extends ChangeNotifier {
     }
   }
 
-  List<Widget> getItemsForCategory() {
+  List<FoodItemWidget> getItemsForCategory() {
     switch (selectedCategory) {
       case "Pizza":
         return pizza;
@@ -32,131 +61,240 @@ class HomePageController extends ChangeNotifier {
 
   final List<TopRatedWidget> topRatedItems = [
     TopRatedWidget(
-      rating: "3.8",
-      image: "assets/images/top_rated1.png",
-      name: "Chicken burger",
-      ingredients: "100 gr chicken + tomato + cheese Lettuce",
-      price: "\$20.00",
+      foodItem: FoodItem(
+        id: 0,
+        name: "Chicken burger",
+        rating: 3.8,
+        imageUrl: "assets/images/top_rated1.png",
+        ingredients: "100 gr chicken + tomato + cheese Lettuce",
+        newPrice: 20.00,
+        oldPrice: 23.00,
+      ),
     ),
     TopRatedWidget(
-      rating: "4.5",
-      image: "assets/images/top_rated2.png",
-      ingredients: "100 gr meat + onion + tomato + Lettuce cheese",
-      name: "Cheese burger",
-      price: "\$15.00",
+      foodItem: FoodItem(
+        id: 1,
+        name: "Cheese burger",
+        rating: 4.5,
+        imageUrl: "assets/images/top_rated2.png",
+        ingredients: "100 gr meat + onion + tomato + Lettuce cheese",
+        newPrice: 15.00,
+        oldPrice: 18.00,
+      ),
     ),
     TopRatedWidget(
-      rating: "3.8",
-      image: "assets/images/top_rated1.png",
-      name: "Chicken burger",
-      ingredients: "100 gr chicken + tomato + cheese Lettuce",
-      price: "\$20.00",
+      foodItem: FoodItem(
+        id: 1,
+        name: "Chicken burger",
+        rating: 3.8,
+        imageUrl: "assets/images/top_rated1.png",
+        ingredients: "100 gr chicken + tomato + cheese Lettuce",
+        newPrice: 20.00,
+        oldPrice: 24.00,
+      ),
     ),
     TopRatedWidget(
-      rating: "4.5",
-      image: "assets/images/top_rated2.png",
-      ingredients: "100 gr meat + onion + tomato + Lettuce cheese",
-      name: "Cheese burger",
-      price: "\$15.00",
+      foodItem: FoodItem(
+        id: 1,
+        name: "Cheese burger",
+        rating: 4.5,
+        imageUrl: "assets/images/top_rated2.png",
+        ingredients: "100 gr meat + onion + tomato + Lettuce cheese",
+        newPrice: 15.00,
+        oldPrice: 17.00,
+      ),
     ),
     TopRatedWidget(
-      rating: "3.8",
-      image: "assets/images/top_rated1.png",
-      name: "Chicken burger",
-      ingredients: "100 gr chicken + tomato + cheese Lettuce",
-      price: "\$20.00",
+      foodItem: FoodItem(
+        id: 1,
+        name: "Chicken burger",
+        rating: 3.8,
+        imageUrl: "assets/images/top_rated1.png",
+        ingredients: "100 gr chicken + tomato + cheese Lettuce",
+        newPrice: 20.00,
+        oldPrice: 16.00,
+      ),
     ),
   ];
 
   final List<RecommendItemWidget> recommendedItems = [
-    RecommendItemWidget(image: "assets/images/recomended1.png", price: "103.0"),
-    RecommendItemWidget(image: "assets/images/recomended2.png", price: "50.0"),
-    RecommendItemWidget(image: "assets/images/recmended3.png", price: "12.99"),
-    RecommendItemWidget(image: "assets/images/recomended4.png", price: "8.20"),
+    RecommendItemWidget(
+      foodItem: FoodItem(
+        imageUrl: "assets/images/recomended1.png",
+        newPrice: 103.0,
+      ),
+    ),
+    RecommendItemWidget(
+      foodItem: FoodItem(
+        imageUrl: "assets/images/recomended2.png",
+        newPrice: 50.0,
+      ),
+    ),
+    RecommendItemWidget(
+      foodItem: FoodItem(
+        imageUrl: "assets/images/recmended3.png",
+        newPrice: 12.99,
+      ),
+    ),
+    RecommendItemWidget(
+      foodItem: FoodItem(
+        imageUrl: "assets/images/recomended4.png",
+        newPrice: 8.20,
+      ),
+    ),
   ];
 
   List<FoodItemWidget> pizza = [
     FoodItemWidget(
-      title: "Mexican Green Wave",
-      description: "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes",
-      price: "\$23",
-      imageUrl: "assets/images/pizza1.png",
+      foodItem: FoodItem(
+        name: "Mexican Green Wave",
+        description:
+            "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes",
+        newPrice: 23.00,
+        oldPrice: 30.00,
+        imageUrl: "assets/images/pizza1.png",
+        rating: 3.5,
+        reviews: 98,
+      ),
     ),
     FoodItemWidget(
-      title: "Peppy Paneer",
-      description: "Chunky paneer with crisp capsicum and spicy red pepper, and spicy red pepper",
-      price: "\$13",
-      imageUrl: "assets/images/pizza2.png",
+      foodItem: FoodItem(
+        name: "Peppy Paneer",
+        description:
+            "Chunky paneer with crisp capsicum and spicy red pepper, and spicy red pepper",
+        newPrice: 13.00,
+        oldPrice: 17.00,
+        imageUrl: "assets/images/pizza2.png",
+        rating: 4.5,
+        reviews: 39,
+      ),
     ),
     FoodItemWidget(
-      title: "Pepperoni pizza",
-      description: "Pepperoni pizza, Margarita Pizza Margherita Italian cuisine Tomato",
-      price: "\$29",
-      imageUrl: "assets/images/pizza3.png",
+      foodItem: FoodItem(
+        name: "Pepperoni pizza",
+        description:
+            "Pepperoni pizza, Margarita Pizza Margherita Italian cuisine Tomato",
+        newPrice: 29.00,
+        oldPrice: 35.00,
+        imageUrl: "assets/images/pizza3.png",
+        rating: 4,
+        reviews: 94,
+      ),
     ),
     FoodItemWidget(
-      title: "Pizza Cheese",
-      description: "Food pizza dish cuisine junk food, Fast Food, Flatbread, Ingredient",
-      price: "\$23",
-      imageUrl: "assets/images/pizza4.png",
+      foodItem: FoodItem(
+        name: "Pizza Cheese",
+        description:
+            "Food pizza dish cuisine junk food, Fast Food, Flatbread, Ingredient",
+        newPrice: 23,
+        oldPrice: 29.00,
+        imageUrl: "assets/images/pizza4.png",
+        rating: 5,
+        reviews: 22,
+      ),
     ),
-
   ];
 
   List<FoodItemWidget> burger = [
     FoodItemWidget(
-      title: "Cheeseburger",
-      description: "Juicy beef patty with cheddar, lettuce, tomato, pickles, and onion rings",
-      price: "\$20",
-      imageUrl: "assets/images/top_rated1.png",
+      foodItem: FoodItem(
+        name: "Cheese Burger",
+        description:
+            "Juicy beef patty with cheddar, lettuce, tomato, pickles, and onion rings",
+        newPrice: 20,
+        oldPrice: 27.00,
+        imageUrl: "assets/images/top_rated1.png",
+        rating: 3.5,
+        reviews: 67,
+      ),
     ),
     FoodItemWidget(
-      title: "BBQ Bacon Burger",
-      description: "Grilled beef patty topped with crispy bacon, BBQ sauce, and onion rings",
-      price: "\$15",
-      imageUrl: "assets/images/burger3.png",
+      foodItem: FoodItem(
+        name: "BBQ Bacon Burger",
+        description:
+            "Grilled beef patty topped with crispy bacon, BBQ sauce, and onion rings",
+        newPrice: 15,
+        oldPrice: 17.00,
+        imageUrl: "assets/images/burger3.png",
+        rating: 5,
+        reviews: 120,
+      ),
     ),
     FoodItemWidget(
-      title: "Veggie Burger",
-      description: "Black bean and quinoa patty with avocado and cilantro-lime mayo on",
-      price: "\$23",
-      imageUrl: "assets/images/veggie.png",
+      foodItem: FoodItem(
+        name: "Veggie Burger",
+        description:
+            "Black bean and quinoa patty with avocado and cilantro-lime mayo on",
+        newPrice: 23,
+        oldPrice: 27.00,
+        imageUrl: "assets/images/veggie.png",
+        rating: 5,
+        reviews: 32,
+      ),
     ),
     FoodItemWidget(
-      title: "Chicken Burger",
-      description: "Crispy fried chicken with buffalo sauce and blue cheese on a potato bun.",
-      price: "\$25",
-      imageUrl: "assets/images/top_rated2.png",
+      foodItem: FoodItem(
+        name: "Chicken Burger",
+        description:
+            "Crispy fried chicken with buffalo sauce and blue cheese on a potato bun.",
+        newPrice: 25,
+        oldPrice: 29.00,
+        imageUrl: "assets/images/top_rated2.png",
+        rating: 3.5,
+        reviews: 98,
+      ),
     ),
-
   ];
 
   List<FoodItemWidget> sandwich = [
     FoodItemWidget(
-      title: "Chicken Taco",
-      description: "Soft tortilla with grilled chicken, guacamole, cheese, and tomatoes.",
-      price: "\$20",
-      imageUrl: "assets/images/sandwich 3.png",
+      foodItem: FoodItem(
+        name: "Chicken Taco",
+        description:
+            "Soft tortilla with grilled chicken, guacamole, cheese, and tomatoes.",
+        newPrice: 20,
+        oldPrice: 24.00,
+        imageUrl: "assets/images/sandwich 3.png",
+        rating: 3.5,
+        reviews: 60,
+      ),
     ),
     FoodItemWidget(
-      title: "Hot Dog Trio",
-      description: "Three juicy grilled hot dogs topped with mustard, ketchup, onions, and relish",
-      price: "\$45",
-      imageUrl: "assets/images/sandwich 4.png",
+      foodItem: FoodItem(
+        name: "Hot Dog Trio",
+        description:
+            "Three juicy grilled hot dogs topped with mustard, ketchup, onions, and relish",
+        newPrice: 45,
+        oldPrice: 55.00,
+        imageUrl: "assets/images/sandwich 4.png",
+        rating: 4.5,
+        reviews: 70,
+      ),
     ),
     FoodItemWidget(
-      title: "Cheese Sandwich",
-      description: "A hearty sandwich featuring layers of savory ham, melted cheese, fresh lettuce.",
-      price: "\$23",
-      imageUrl: "assets/images/sandwich 1.png",
+      foodItem: FoodItem(
+        name: "Cheese Sandwich",
+        description:
+            "A hearty sandwich featuring layers of savory ham, melted cheese, fresh lettuce.",
+        newPrice: 23,
+        oldPrice: 28.00,
+        imageUrl: "assets/images/sandwich 1.png",
+        rating: 3,
+        reviews: 89,
+      ),
     ),
     FoodItemWidget(
-      title: "Croissant Sandwich",
-      description: "A flaky croissant filled with thinly sliced ham, creamy cheese, and fresh greens.",
-      price: "\$25",
-      imageUrl: "assets/images/sandwich 2.png",
+      foodItem: FoodItem(
+        name: "Croissant Sandwich",
+        description:
+            "A flaky croissant filled with thinly sliced ham, creamy cheese, and fresh greens.",
+        newPrice: 25,
+        oldPrice: 30.00,
+        imageUrl: "assets/images/sandwich 2.png",
+        rating: 4,
+        reviews: 98,
+      ),
     ),
-
   ];
 
   final List<NotificationItem> _notifications = [
@@ -197,8 +335,6 @@ class HomePageController extends ChangeNotifier {
     ),
   ];
 
-
-
   void updateSelectedToggleIndex(int index) {
     if (selectedToggleIndex != index) {
       selectedToggleIndex = index;
@@ -224,5 +360,48 @@ class HomePageController extends ChangeNotifier {
       selectedIndex = index;
       notifyListeners();
     }
+  }
+
+  void incrementItemAmount() {
+    itemAmount++;
+    notifyListeners();
+  }
+
+  void decrementItemAmount() {
+    if (itemAmount > 0) {
+      itemAmount--;
+      notifyListeners();
+    }
+  }
+
+  void _showConfirmationDialog(BuildContext context, FoodItem foodItem) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          content: Text(
+            textAlign: TextAlign.center,
+            "Are you sure you want to remove it from favorites?",
+            style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.black54, fontWeight: FontWeight.w400),
+          ),
+          actions: [
+            CustomButtonWidget(
+              title: "Yes",
+              colors: [AppConstants.buttonColor, AppConstants.buttonColor],
+              height: 60.h,
+              borderRadius: 12.r,
+              titleColor: Colors.white,
+              width: 300.w,
+              onPressed: () {
+                fav.remove(foodItem);
+                notifyListeners();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

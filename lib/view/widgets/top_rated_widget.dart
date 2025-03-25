@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
+import 'package:foodtek/model/food_item.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TopRatedWidget extends StatelessWidget {
-  final String rating;
-  final String image;
-  final String name;
-  final String ingredients;
-  final String price;
+  final FoodItem foodItem;
 
-  const TopRatedWidget({
-    super.key,
-    required this.rating,
-    required this.image,
-    required this.name,
-    required this.ingredients,
-    required this.price,
-  });
+  const TopRatedWidget({super.key, required this.foodItem});
 
   @override
   Widget build(BuildContext context) {
@@ -52,15 +42,12 @@ class TopRatedWidget extends StatelessWidget {
 
   Widget _buildRatingRow() {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Image.asset(
-          "assets/images/star.png",
-          height: 16.h,
-          width: 16.w,
-        ),
+        Image.asset("assets/images/star.png", height: 16.h, width: 16.w),
         SizedBox(width: 5.w),
         Text(
-          rating,
+          foodItem.rating.toString(),
           style: TextStyle(
             fontSize: 12.sp,
             fontWeight: FontWeight.w500,
@@ -73,28 +60,20 @@ class TopRatedWidget extends StatelessWidget {
 
   Widget _buildImage() {
     return Center(
-      child: Image.asset(
-        image,
-        height: 70.h,
-        width: 87.w,
-        fit: BoxFit.contain,
-      ),
+      child: Image.asset(foodItem.imageUrl!, height: 70.h, width: 87.w, fit: BoxFit.contain),
     );
   }
 
   Widget _buildName() {
     return Text(
-      name,
-      style: GoogleFonts.inter(
-        fontSize: 18.sp,
-        fontWeight: FontWeight.w600,
-      ),
+      foodItem.name!,
+      style: GoogleFonts.inter(fontSize: 18.sp, fontWeight: FontWeight.w600),
     );
   }
 
   Widget _buildIngredients() {
     return Text(
-      ingredients,
+      foodItem.ingredients!,
       style: GoogleFonts.inter(
         fontSize: 11.sp,
         fontWeight: FontWeight.w400,
@@ -106,10 +85,10 @@ class TopRatedWidget extends StatelessWidget {
   Widget _buildPriceAndButton() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          price,
+          "\$${foodItem.newPrice.toString()}",
           style: GoogleFonts.dmSans(
             color: AppConstants.buttonColor,
             fontSize: 14.sp,
@@ -123,14 +102,14 @@ class TopRatedWidget extends StatelessWidget {
 
   Widget _buildAddButton() {
     return SizedBox(
-      height: 34.h,
-      width: 34.w,
+      height: 40.h,
+      width: 40.w,
       child: IconButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(AppConstants.buttonColor),
         ),
         onPressed: () {},
-        icon: Icon(Icons.add, color: Colors.white, size: 18.r),
+        icon: Icon(Icons.add, color: Colors.white, size: 22.r),
       ),
     );
   }

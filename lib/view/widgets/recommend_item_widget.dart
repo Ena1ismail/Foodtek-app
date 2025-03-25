@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
+import 'package:foodtek/model/food_item.dart';
 
 class RecommendItemWidget extends StatelessWidget {
-  String image;
-  String price;
+  FoodItem foodItem;
 
-  RecommendItemWidget({super.key, required this.image, required this.price});
+  RecommendItemWidget({super.key, required this.foodItem});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset(image, fit: BoxFit.fill, height: 108.h, width: 72.w),
+        Image.asset(foodItem.imageUrl!, fit: BoxFit.fill, height: 108.h, width: 72.w),
         Positioned(
           right: 0,
           bottom: 20,
@@ -26,7 +26,7 @@ class RecommendItemWidget extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.only(left: 4.0, right: 4),
-              child: Text("\$${price}", style: TextStyle(color: Colors.white)),
+              child: Text("\$${foodItem.newPrice}", style: TextStyle(color: Colors.white)),
             ),
           ),
         ),
