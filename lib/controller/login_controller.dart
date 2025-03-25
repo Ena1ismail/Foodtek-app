@@ -94,7 +94,7 @@ class LoginController extends ChangeNotifier {
 
     switch (field) {
       case 'email':
-        _validateEmail(value);
+        validateEmail(value);
         break;
       case 'phone':
         validatePhone(value);
@@ -120,7 +120,7 @@ class LoginController extends ChangeNotifier {
     }
   }
 
-  void _validateEmail(String? email) {
+  void validateEmail(String? email) {
     final newError =
         email == null || email.isEmpty
             ? "Email can't be empty."
@@ -138,7 +138,6 @@ class LoginController extends ChangeNotifier {
     required BuildContext context,
     String? email,
     String? password,
-    String? confirmPassword,
     String? phone,
     String? name,
     String? birth,
@@ -146,9 +145,8 @@ class LoginController extends ChangeNotifier {
     clearErrors();
     final oldErrors = Map<String, String?>.from(errors);
 
-    _validateEmail(email);
+    validateEmail(email);
     validatePassword(password);
-    validateConfirmPassword(confirmPassword, password, context);
     validatePhone(phone);
     _validateName(name);
     _validateBirth(birth);
@@ -198,7 +196,9 @@ class LoginController extends ChangeNotifier {
   }
 
   void validatePhone(String? phoneNo) {
-    final newError = (phoneNo == null || phoneNo.isEmpty)
+    String? trimmedPhone = phoneNo?.replaceFirst(RegExp(r'^0+'), '');
+
+    final newError = (trimmedPhone == null || trimmedPhone.isEmpty)
         ? "Please enter a valid phone number."
         : null;
 
@@ -243,5 +243,18 @@ class LoginController extends ChangeNotifier {
       errors[key] = null;
     });
     notifyListeners();
+  }
+
+
+
+  DateTime getValidInitialDate() {
+    DateTime now = DateTime.now();
+    int maximumYear = now.year - 16;
+
+    if (now.year > maximumYear) {
+      return DateTime(maximumYear, now.month, now.day);
+    }
+
+    return now;
   }
 }

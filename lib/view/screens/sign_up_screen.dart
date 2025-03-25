@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/view/screens/home_screen.dart';
 import 'package:foodtek/view/screens/login_screen.dart';
 import 'package:foodtek/view/widgets/password_field_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -275,7 +276,8 @@ class SignUpScreen extends StatelessWidget {
                             Container(
                               height: 200.h,
                               child: CupertinoDatePicker(
-                                initialDateTime: tempSelectedDate,
+                                initialDateTime:
+                                    loginController.getValidInitialDate(),
                                 onDateTimeChanged: (DateTime newDate) {
                                   tempSelectedDate = newDate;
                                 },
@@ -299,9 +301,7 @@ class SignUpScreen extends StatelessWidget {
                                       backgroundColor: Color(0xFFC2C2C2),
                                     ),
                                     onPressed: () {
-                                      Navigator.of(
-                                        context,
-                                      ).pop(null); // Cancel selection
+                                      Navigator.of(context).pop(null);
                                     },
                                     child: Text(
                                       "Cancel",
@@ -324,9 +324,9 @@ class SignUpScreen extends StatelessWidget {
                                       backgroundColor: AppConstants.buttonColor,
                                     ),
                                     onPressed: () {
-                                      Navigator.of(context).pop(
-                                        tempSelectedDate,
-                                      ); // Confirm selection
+                                      Navigator.of(
+                                        context,
+                                      ).pop(tempSelectedDate);
                                     },
                                     child: Text(
                                       "Select Date",
@@ -493,6 +493,11 @@ class SignUpScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                    );
+                  } else {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignUpScreen()),
                     );
                   }
                   loginController.setLoading(false);

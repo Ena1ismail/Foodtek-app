@@ -10,6 +10,7 @@ import 'package:foodtek/view/screens/otp_screen.dart';
 import 'package:foodtek/view/screens/sign_up_screen.dart';
 import 'package:foodtek/view/screens/splash_screen.dart';
 import 'package:foodtek/view/screens/success_reset_password_screen.dart';
+import 'package:foodtek/view/screens/test_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'controller/onboarding_controller.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: MainScreen(),
+          home: SplashScreen(),
         ),
       ),
     );

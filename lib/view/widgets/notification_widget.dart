@@ -2,59 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
+import '../../controller/home_page_controller.dart';
 import '../../model/notification_item.dart';
 
-class NotificationWidget extends StatefulWidget {
+class NotificationWidget extends StatelessWidget {
   const NotificationWidget({super.key});
 
   @override
-  State<NotificationWidget> createState() => _NotificationWidgetState();
-}
-
-class _NotificationWidgetState extends State<NotificationWidget> {
-  List<bool> _selectedOptions = [true, false, false];
-
-  final List<NotificationItem> notifications = [
-    NotificationItem(
-      title: "Delayed Order",
-      message: "We're sorry! Your order is running late. New ETA: 10:30 PM.",
-      date: "Last Wednesday at 9:42 AM",
-      isError: true,
-      isRead: false,
-    ),
-    NotificationItem(
-      title: "Promotional Offer",
-      message: "Get 20% off on your next order. Code: YUMMY20.",
-      date: "Last Wednesday at 9:42 AM",
-      isError: false,
-      isRead: false,
-    ),
-    NotificationItem(
-      title: "Out for Delivery",
-      message: "Your order is on the way! Estimated arrival: 15 mins.",
-      date: "Last Wednesday at 9:42 AM",
-      isError: false,
-      isRead: true,
-    ),
-    NotificationItem(
-      title: "Order Confirmation",
-      message: "Your order has been placed! We're preparing it now.",
-      date: "Last Wednesday at 9:42 AM",
-      isError: false,
-      isRead: true,
-    ),
-    NotificationItem(
-      title: "Delivered",
-      message: "Enjoy your meal! Your order has been delivered.",
-      date: "Last Wednesday at 9:42 AM",
-      isError: false,
-      isRead: true,
-    ),
-  ];
-
-  @override
   Widget build(BuildContext context) {
+    final homePageController = Provider.of<HomePageController>(context);
+
     return Container(
       height: MediaQuery.of(context).size.height * 0.8,
       width: double.infinity,
@@ -67,12 +26,12 @@ class _NotificationWidgetState extends State<NotificationWidget> {
       ),
       child: Column(
         children: [
-          SizedBox(height: 20.h,),
-          _buildAppBar(),
-          _buildToggleButtons(),
+          SizedBox(height: 20.h),
+          _buildAppBar(context),
+          _buildToggleButtons(homePageController),
           Expanded(
             child: NotificationList(
-              notifications: _getFilteredNotifications(),
+              notifications: homePageController.getFilteredNotifications(),
             ),
           ),
         ],
@@ -80,7 +39,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
     );
   }
 
-  Widget _buildAppBar() {
+  Widget _buildAppBar(BuildContext context) {
     return AppBar(
       centerTitle: true,
       backgroundColor: Colors.white,
@@ -103,23 +62,22 @@ class _NotificationWidgetState extends State<NotificationWidget> {
     );
   }
 
-  Widget _buildToggleButtons() {
+  Widget _buildToggleButtons(HomePageController controller) {
     return ToggleButtons(
       borderRadius: BorderRadius.circular(8),
       borderWidth: 0,
       borderColor: Colors.transparent,
       selectedBorderColor: Colors.transparent,
-      fillColor:Colors.transparent,
+      fillColor: Colors.transparent,
       selectedColor: AppConstants.buttonColor,
-
       textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
-      isSelected: _selectedOptions,
+      isSelected: [
+        controller.selectedToggleIndex == 0,
+        controller.selectedToggleIndex == 1,
+        controller.selectedToggleIndex == 2,
+      ],
       onPressed: (int index) {
-        setState(() {
-          for (int i = 0; i < _selectedOptions.length; i++) {
-            _selectedOptions[i] = i == index;
-          }
-        });
+        controller.updateSelectedToggleIndex(index);
       },
       children: [
         Padding(
@@ -136,16 +94,6 @@ class _NotificationWidgetState extends State<NotificationWidget> {
         ),
       ],
     );
-  }
-
-  List<NotificationItem> _getFilteredNotifications() {
-    if (_selectedOptions[0]) {
-      return notifications;
-    } else if (_selectedOptions[1]) {
-      return notifications.where((n) => !n.isRead).toList();
-    } else {
-      return notifications.where((n) => n.isRead).toList();
-    }
   }
 }
 

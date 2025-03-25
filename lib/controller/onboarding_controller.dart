@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import '../view/screens/location_screen.dart';
 import '../view/screens/login_screen.dart';
-import '../view/widgets/continue_button_widget.dart';
+import '../view/widgets/custom_button_widget.dart';
 import '../view/widgets/slides_widget.dart';
 
 class SlidesController extends ChangeNotifier {
@@ -14,19 +14,19 @@ class SlidesController extends ChangeNotifier {
       imagePath: "assets/images/slide1.png",
       title: "Welcome To Sahlah",
       description: "Enjoy Fast And Fresh Food Delivery At Your Doorstep.",
-      widget: ContinueButtonWidget(title: "Continue"),
+      widget: CustomButtonWidget(title: "Continue"),
     ),
     SlideWidget(
       imagePath: "assets/images/slide2.png",
       title: "Get Delivery On Time",
       description: "Our riders ensure timely delivery to your door.",
-      widget: ContinueButtonWidget(title: "Continue"),
+      widget: CustomButtonWidget(title: "Continue"),
     ),
     SlideWidget(
       imagePath: "assets/images/slide2.png",
       title: "Choose Your Food",
       description: "Select from a wide range of delicious meals.",
-      widget: ContinueButtonWidget(title: "Continue"),
+      widget: CustomButtonWidget(title: "Continue"),
     ),
   ];
 

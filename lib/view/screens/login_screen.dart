@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/controller/login_controller.dart';
 import 'package:foodtek/view/screens/forget_password_screen.dart';
+import 'package:foodtek/view/screens/main_screen.dart';
 import 'package:foodtek/view/screens/sign_up_screen.dart';
 import 'package:foodtek/view/widgets/app_title_widget.dart';
 import 'package:foodtek/view/widgets/email_field_widget.dart';
@@ -13,6 +14,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../controller/secure_storage_controller.dart';
+import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -37,6 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           child: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -312,15 +315,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   FocusScope.of(context).unfocus();
                   loginController.setLoading(true);
                   try {
-                    loginController.validateForm(
-                      email: loginController.emailController.text,
-                      password: loginController.passwordController.text,
-                      name:
-                          isLoginMode
-                              ? null
-                              : loginController.nameController.text,
-                      context: context,
-                    );
+                    loginController.validateEmail(loginController.emailController.text);
+                    loginController.validatePassword(loginController.passwordController.text);
                     if (loginController.isFormValid()) {
                       final secureStorageProvider =
                           Provider.of<SecureStorageController>(
@@ -335,6 +331,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       } else {
                         await secureStorageProvider.clearCredentials();
                       }
+
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MainScreen(),
+                        ),
+                      );
                     }
                   } catch (e) {
                     if (context.mounted) {
