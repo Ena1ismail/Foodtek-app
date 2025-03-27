@@ -5,9 +5,9 @@ import 'package:foodtek/model/food_item.dart';
 import 'package:foodtek/view/widgets/custom_button_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../model/notification_item.dart';
-import '../view/widgets/food_item_widget.dart';
-import '../view/widgets/recommend_item_widget.dart';
-import '../view/widgets/top_rated_widget.dart';
+import '../view/widgets/home_widgets/food_item_widget.dart';
+import '../view/widgets/home_widgets/recommend_item_widget.dart';
+import '../view/widgets/home_widgets/top_rated_widget.dart';
 
 class HomePageController extends ChangeNotifier {
   TextEditingController searchTextEditingController = TextEditingController();
@@ -18,6 +18,8 @@ class HomePageController extends ChangeNotifier {
   int itemAmount = 0;
   double sliderValue = 4.0;
   List<FoodItem> fav = [];
+
+
 
   bool isFavourite(FoodItem foodItem) {
     return fav.contains(foodItem);
@@ -38,6 +40,7 @@ class HomePageController extends ChangeNotifier {
       notifyListeners();
     }
   }
+
 
   void updateSelectedCategory(String category) {
     if (selectedCategory != category) {
@@ -62,55 +65,55 @@ class HomePageController extends ChangeNotifier {
   final List<TopRatedWidget> topRatedItems = [
     TopRatedWidget(
       foodItem: FoodItem(
-        id: 0,
         name: "Chicken burger",
-        rating: 3.8,
+        rating: 5,
+        reviews: 78,
         imageUrl: "assets/images/top_rated1.png",
-        ingredients: "100 gr chicken + tomato + cheese Lettuce",
+        description: "100 gr chicken + tomato + cheese Lettuce",
         newPrice: 20.00,
         oldPrice: 23.00,
       ),
     ),
     TopRatedWidget(
       foodItem: FoodItem(
-        id: 1,
         name: "Cheese burger",
         rating: 4.5,
+        reviews: 35,
         imageUrl: "assets/images/top_rated2.png",
-        ingredients: "100 gr meat + onion + tomato + Lettuce cheese",
+        description: "100 gr meat + onion + tomato + Lettuce cheese",
         newPrice: 15.00,
         oldPrice: 18.00,
       ),
     ),
     TopRatedWidget(
       foodItem: FoodItem(
-        id: 1,
         name: "Chicken burger",
         rating: 3.8,
+        reviews: 76,
         imageUrl: "assets/images/top_rated1.png",
-        ingredients: "100 gr chicken + tomato + cheese Lettuce",
+        description: "100 gr chicken + tomato + cheese Lettuce",
         newPrice: 20.00,
         oldPrice: 24.00,
       ),
     ),
     TopRatedWidget(
       foodItem: FoodItem(
-        id: 1,
         name: "Cheese burger",
         rating: 4.5,
+        reviews: 67,
         imageUrl: "assets/images/top_rated2.png",
-        ingredients: "100 gr meat + onion + tomato + Lettuce cheese",
+        description: "100 gr meat + onion + tomato + Lettuce cheese",
         newPrice: 15.00,
         oldPrice: 17.00,
       ),
     ),
     TopRatedWidget(
       foodItem: FoodItem(
-        id: 1,
         name: "Chicken burger",
         rating: 3.8,
+        reviews: 66,
         imageUrl: "assets/images/top_rated1.png",
-        ingredients: "100 gr chicken + tomato + cheese Lettuce",
+        description: "100 gr chicken + tomato + cheese Lettuce",
         newPrice: 20.00,
         oldPrice: 16.00,
       ),
@@ -120,25 +123,27 @@ class HomePageController extends ChangeNotifier {
   final List<RecommendItemWidget> recommendedItems = [
     RecommendItemWidget(
       foodItem: FoodItem(
-        imageUrl: "assets/images/recomended1.png",
+        imageUrl: "assets/images/recommend1.png",
         newPrice: 103.0,
+        oldPrice: 120.0,
+
       ),
     ),
     RecommendItemWidget(
       foodItem: FoodItem(
-        imageUrl: "assets/images/recomended2.png",
+        imageUrl: "assets/images/recommend2.png",
         newPrice: 50.0,
       ),
     ),
     RecommendItemWidget(
       foodItem: FoodItem(
-        imageUrl: "assets/images/recmended3.png",
+        imageUrl: "assets/images/recommend3.png",
         newPrice: 12.99,
       ),
     ),
     RecommendItemWidget(
       foodItem: FoodItem(
-        imageUrl: "assets/images/recomended4.png",
+        imageUrl: "assets/images/recommend4.png",
         newPrice: 8.20,
       ),
     ),

@@ -5,13 +5,14 @@ import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/controller/home_page_controller.dart';
 import 'package:foodtek/model/food_item.dart';
 import 'package:foodtek/view/widgets/custom_button_widget.dart';
-import 'package:foodtek/view/widgets/search_bar_widget.dart';
+import 'package:foodtek/view/widgets/home_widgets/search_bar_widget.dart';
+import 'package:foodtek/view/widgets/registration_widgets/login_button_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
-import '../widgets/counter_buttons_widget.dart';
-import '../widgets/main_app_bar_widget.dart';
-import '../widgets/main_bottom_navigation_bar.dart';
+import '../widgets/home_widgets/counter_buttons_widget.dart';
+import '../widgets/main_widgets/main_app_bar_widget.dart';
+import '../widgets/main_widgets/main_bottom_navigation_bar.dart';
 
 class ProductDetailsWidget extends StatelessWidget {
   final FoodItem foodItem;
@@ -45,6 +46,7 @@ class ProductDetailsWidget extends StatelessWidget {
                   _buildCustomizationOptions(context),
                   SizedBox(height: 24.h),
                   _buildAddToCartButton(),
+                  SizedBox(height: 24.h),
                 ],
               ),
             ),
@@ -74,7 +76,7 @@ class ProductDetailsWidget extends StatelessWidget {
       ),
       child: Center(
         child: Image.asset(
-          foodItem.imageUrl!,
+          foodItem.imageUrl ?? "assets/images/apple.png",
           height: 150.h,
           width: 200.w,
         ),
@@ -84,7 +86,7 @@ class ProductDetailsWidget extends StatelessWidget {
 
   Widget _buildFoodName() {
     return Text(
-      foodItem.name!,
+      foodItem.name ?? "name",
       style: GoogleFonts.inter(
         fontSize: 20.sp,
         fontWeight: FontWeight.w600,
@@ -163,11 +165,8 @@ class ProductDetailsWidget extends StatelessWidget {
 
   Widget _buildDescription() {
     return Text(
-      "${foodItem.description!} ${foodItem.description!}",
-      style: GoogleFonts.inter(
-        fontSize: 12.sp,
-        color: Color(0xFF838383),
-      ),
+      "${foodItem.description ?? "des"} ${foodItem.description ?? "des"}",
+      style: GoogleFonts.inter(fontSize: 12.sp, color: Color(0xFF838383)),
     );
   }
 
@@ -176,10 +175,7 @@ class ProductDetailsWidget extends StatelessWidget {
       height: 110.h,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _buildSpicyLevel(context),
-          _buildQuantitySelector(context),
-        ],
+        children: [_buildSpicyLevel(context), _buildQuantitySelector(context)],
       ),
     );
   }
@@ -190,10 +186,7 @@ class ProductDetailsWidget extends StatelessWidget {
       children: [
         Text(
           "Spicy",
-          style: GoogleFonts.inter(
-            fontSize: 12.sp,
-            color: Color(0xFF838383),
-          ),
+          style: GoogleFonts.inter(fontSize: 12.sp, color: Color(0xFF838383)),
         ),
         SizedBox(height: 15.h),
         SizedBox(
@@ -205,7 +198,10 @@ class ProductDetailsWidget extends StatelessWidget {
                 max: 10.0,
                 value: homePageController.sliderValue,
                 showLabels: true,
-                labelFormatterCallback: (dynamic actualValue, String formattedText) {
+                labelFormatterCallback: (
+                  dynamic actualValue,
+                  String formattedText,
+                ) {
                   return actualValue <= 5 ? 'Mild' : 'Hot';
                 },
                 inactiveColor: Color(0xFFF3F4F6),
@@ -227,10 +223,7 @@ class ProductDetailsWidget extends StatelessWidget {
       children: [
         Text(
           "Quantity",
-          style: GoogleFonts.inter(
-            fontSize: 12.sp,
-            color: Color(0xFF838383),
-          ),
+          style: GoogleFonts.inter(fontSize: 12.sp, color: Color(0xFF838383)),
         ),
         SizedBox(height: 15.h),
         SizedBox(
@@ -261,6 +254,8 @@ class ProductDetailsWidget extends StatelessWidget {
       ),
     );
   }
+
+
 
   FloatingActionButton _buildFloatingActionButton() {
     return FloatingActionButton(

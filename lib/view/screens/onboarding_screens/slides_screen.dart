@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../app_constants.dart';
-import '../../controller/onboarding_controller.dart';
+import '../../../app_constants.dart';
+import '../../../controller/onboarding_controller.dart';
 
 class SlidesScreen extends StatelessWidget {
   const SlidesScreen({super.key});

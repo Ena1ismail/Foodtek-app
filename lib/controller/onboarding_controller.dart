@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import '../view/screens/location_screen.dart';
-import '../view/screens/login_screen.dart';
+import '../view/screens/onboarding_screens/location_screen.dart';
+import '../view/screens/registration_screens/login_screen.dart';
 import '../view/widgets/custom_button_widget.dart';
-import '../view/widgets/slides_widget.dart';
+import '../view/widgets/onboarding_widgets/slides_widget.dart';
 
 class SlidesController extends ChangeNotifier {
   final PageController pageController = PageController();

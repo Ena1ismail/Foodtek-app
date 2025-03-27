@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:foodtek/view/widgets/top_rated_widget.dart';
 import 'package:provider/provider.dart';
-import '../../controller/home_page_controller.dart';
+import '../../../controller/home_page_controller.dart';
 
 class TopRatedSectionWidget extends StatelessWidget {
   @override

@@ -4,8 +4,8 @@ import 'package:foodtek/app_constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/home_page_controller.dart';
-import '../../model/notification_item.dart';
+import '../../../controller/home_page_controller.dart';
+import '../../../model/notification_item.dart';
 
 class NotificationWidget extends StatelessWidget {
   const NotificationWidget({super.key});

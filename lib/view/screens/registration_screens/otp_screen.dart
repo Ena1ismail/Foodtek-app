@@ -3,14 +3,14 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodtek/view/screens/reset_password_screen.dart';
-import 'package:foodtek/view/widgets/login_button_widget.dart';
+import 'package:foodtek/view/screens/registration_screens/reset_password_screen.dart';
+import 'package:foodtek/view/widgets/registration_widgets/login_button_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 
-import '../../app_constants.dart';
-import '../../controller/login_controller.dart';
-import '../widgets/app_title_widget.dart';
+import '../../../app_constants.dart';
+import '../../../controller/login_controller.dart';
+import '../../widgets/onboarding_widgets/app_title_widget.dart';
 
 class OTPScreen extends StatelessWidget {
   const OTPScreen({super.key});

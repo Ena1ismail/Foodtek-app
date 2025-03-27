@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/controller/filter_controller.dart';
 import 'package:foodtek/controller/home_page_controller.dart';
 import 'package:foodtek/controller/location_controller.dart';
 import 'package:foodtek/controller/login_controller.dart';
 import 'package:foodtek/controller/secure_storage_controller.dart';
+import 'package:foodtek/view/screens/filter_search_screen.dart';
 import 'package:foodtek/view/screens/main_screen.dart';
-import 'package:foodtek/view/screens/splash_screen.dart';
+import 'package:foodtek/view/screens/onboarding_screens/splash_screen.dart';
 import 'package:provider/provider.dart';
-
 import 'controller/onboarding_controller.dart';
 
 void main() {
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatelessWidget {
@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => LocationController()),
           ChangeNotifierProvider(create: (context) => SecureStorageController()),
           ChangeNotifierProvider(create: (context) => HomePageController()),
+          ChangeNotifierProvider(create: (context) => FilterController()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

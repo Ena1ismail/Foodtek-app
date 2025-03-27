@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/controller/home_page_controller.dart';
 import 'package:provider/provider.dart';
-import '../widgets/category_grid_view_widget.dart';
-import '../widgets/food_item_widget.dart';
-import '../widgets/search_bar_widget.dart';
+import '../widgets/home_widgets/category_grid_view_widget.dart';
+import '../widgets/home_widgets/food_item_widget.dart';
+import '../widgets/home_widgets/search_bar_widget.dart';
 
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({super.key});

@@ -9,6 +9,8 @@ class LoginButtonWidget extends StatelessWidget {
   Function() onPressed;
   Widget widget;
   Color? textColor;
+  double? height;
+  double? width;
 
   LoginButtonWidget({
     super.key,
@@ -22,8 +24,8 @@ class LoginButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 48.h,
-      width: 295.w,
+      height: height ?? 48.h,
+      width: width ?? 295.w,
       decoration: BoxDecoration(
         border: Border.all(color: Color(0xFFEFF0F6), width: 1.w),
         borderRadius: BorderRadius.circular(10.r),

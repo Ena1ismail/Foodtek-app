@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../../controller/home_page_controller.dart';
-import '../widgets/category_buttons_widget.dart';
-import '../widgets/category_grid_view_widget.dart';
-import '../widgets/recommended_section_widget.dart';
-import '../widgets/search_bar_widget.dart';
-import '../widgets/swiper_widget.dart';
-import '../widgets/top_rated_section_widget.dart';
+import '../widgets/home_widgets/category_buttons_widget.dart';
+import '../widgets/home_widgets/category_grid_view_widget.dart';
+import '../widgets/home_widgets/recommended_section_widget.dart';
+import '../widgets/home_widgets/search_bar_widget.dart';
+import '../widgets/home_widgets/swiper_widget.dart';
+import '../widgets/home_widgets/top_rated_section_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   @override

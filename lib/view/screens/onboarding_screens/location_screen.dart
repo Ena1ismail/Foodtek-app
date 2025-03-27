@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/controller/location_controller.dart';
-import 'package:foodtek/view/screens/login_screen.dart';
-import 'package:foodtek/view/widgets/slides_widget.dart';
+import 'package:foodtek/view/screens/registration_screens/login_screen.dart';
+import 'package:foodtek/view/widgets/onboarding_widgets/slides_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/custom_button_widget.dart';
+import '../../widgets/custom_button_widget.dart';
 
 class LocationScreen extends StatelessWidget {
   const LocationScreen({super.key});

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
-import 'package:foodtek/view/widgets/app_title_widget.dart';
-import 'package:foodtek/view/widgets/back_arrow_widget.dart';
-import 'package:foodtek/view/widgets/email_field_widget.dart';
-import 'package:foodtek/view/widgets/login_button_widget.dart';
+import 'package:foodtek/view/widgets/onboarding_widgets/app_title_widget.dart';
+import 'package:foodtek/view/widgets/onboarding_widgets/back_arrow_widget.dart';
+import 'package:foodtek/view/widgets/registration_widgets/email_field_widget.dart';
+import 'package:foodtek/view/widgets/registration_widgets/login_button_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/login_controller.dart';
+import '../../../controller/login_controller.dart';
 import 'otp_screen.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {

@@ -42,7 +42,7 @@ class CustomButtonWidget extends StatelessWidget {
         ),
       ),
       child: TextButton(
-        onPressed: () {
+        onPressed: onPressed ?? () {
           print("Button '${title}' clicked");
           if (onPressed != null) {
             onPressed!();

@@ -2,18 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/view/screens/home_screen.dart';
-import 'package:foodtek/view/screens/login_screen.dart';
-import 'package:foodtek/view/widgets/password_field_widget.dart';
+import 'package:foodtek/view/screens/registration_screens/login_screen.dart';
+import 'package:foodtek/view/widgets/registration_widgets/password_field_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
-import '../../app_constants.dart';
-import '../../controller/login_controller.dart';
-import '../widgets/app_title_widget.dart';
-import '../widgets/back_arrow_widget.dart';
-import '../widgets/email_field_widget.dart';
-import '../widgets/input_widget.dart';
-import '../widgets/login_button_widget.dart';
+import '../../../app_constants.dart';
+import '../../../controller/login_controller.dart';
+import '../../widgets/onboarding_widgets/app_title_widget.dart';
+import '../../widgets/onboarding_widgets/back_arrow_widget.dart';
+import '../../widgets/registration_widgets/email_field_widget.dart';
+import '../../widgets/input_widget.dart';
+import '../../widgets/registration_widgets/login_button_widget.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});

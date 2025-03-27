@@ -4,8 +4,8 @@ import 'package:foodtek/view/screens/history_screen.dart';
 import 'package:foodtek/view/screens/home_screen.dart';
 import 'package:foodtek/view/screens/profile_screen.dart';
 import '../../app_constants.dart';
-import '../widgets/main_app_bar_widget.dart';
-import '../widgets/main_bottom_navigation_bar.dart';
+import '../widgets/main_widgets/main_app_bar_widget.dart';
+import '../widgets/main_widgets/main_bottom_navigation_bar.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

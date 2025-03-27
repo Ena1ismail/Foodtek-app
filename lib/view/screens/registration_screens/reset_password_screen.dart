@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/controller/login_controller.dart';
-import 'package:foodtek/view/screens/login_screen.dart';
-import 'package:foodtek/view/screens/success_reset_password_screen.dart';
-import 'package:foodtek/view/widgets/back_arrow_widget.dart';
+import 'package:foodtek/view/screens/registration_screens/login_screen.dart';
+import 'package:foodtek/view/screens/registration_screens/success_reset_password_screen.dart';
+import 'package:foodtek/view/widgets/onboarding_widgets/back_arrow_widget.dart';
 import 'package:foodtek/view/widgets/input_widget.dart';
-import 'package:foodtek/view/widgets/login_button_widget.dart';
-import 'package:foodtek/view/widgets/password_field_widget.dart';
+import 'package:foodtek/view/widgets/registration_widgets/login_button_widget.dart';
+import 'package:foodtek/view/widgets/registration_widgets/password_field_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import '../widgets/app_title_widget.dart';
+import '../../widgets/onboarding_widgets/app_title_widget.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({super.key});

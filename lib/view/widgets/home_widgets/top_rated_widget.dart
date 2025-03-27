@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/model/food_item.dart';
+import 'package:foodtek/view/screens/product_details_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TopRatedWidget extends StatelessWidget {
@@ -31,9 +32,9 @@ class TopRatedWidget extends StatelessWidget {
             SizedBox(height: 8.h),
             _buildName(),
             SizedBox(height: 4.h),
-            _buildIngredients(),
+            _buildDescription(),
             Spacer(),
-            _buildPriceAndButton(),
+            _buildPriceAndButton(context),
           ],
         ),
       ),
@@ -60,7 +61,12 @@ class TopRatedWidget extends StatelessWidget {
 
   Widget _buildImage() {
     return Center(
-      child: Image.asset(foodItem.imageUrl!, height: 70.h, width: 87.w, fit: BoxFit.contain),
+      child: Image.asset(
+        foodItem.imageUrl!,
+        height: 70.h,
+        width: 87.w,
+        fit: BoxFit.contain,
+      ),
     );
   }
 
@@ -71,9 +77,9 @@ class TopRatedWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildIngredients() {
+  Widget _buildDescription() {
     return Text(
-      foodItem.ingredients!,
+      foodItem.description!,
       style: GoogleFonts.inter(
         fontSize: 11.sp,
         fontWeight: FontWeight.w400,
@@ -82,7 +88,7 @@ class TopRatedWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildPriceAndButton() {
+  Widget _buildPriceAndButton(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -95,12 +101,12 @@ class TopRatedWidget extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        _buildAddButton(),
+        _buildAddButton(context),
       ],
     );
   }
 
-  Widget _buildAddButton() {
+  Widget _buildAddButton(BuildContext context) {
     return SizedBox(
       height: 40.h,
       width: 40.w,
@@ -108,7 +114,14 @@ class TopRatedWidget extends StatelessWidget {
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(AppConstants.buttonColor),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductDetailsWidget(foodItem: foodItem),
+            ),
+          );
+        },
         icon: Icon(Icons.add, color: Colors.white, size: 22.r),
       ),
     );

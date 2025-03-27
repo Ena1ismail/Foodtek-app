@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/controller/login_controller.dart';
-import 'package:foodtek/view/screens/forget_password_screen.dart';
+import 'package:foodtek/view/screens/registration_screens/forget_password_screen.dart';
 import 'package:foodtek/view/screens/main_screen.dart';
-import 'package:foodtek/view/screens/sign_up_screen.dart';
-import 'package:foodtek/view/widgets/app_title_widget.dart';
-import 'package:foodtek/view/widgets/email_field_widget.dart';
-import 'package:foodtek/view/widgets/login_button_widget.dart';
-import 'package:foodtek/view/widgets/password_field_widget.dart';
+import 'package:foodtek/view/screens/registration_screens/sign_up_screen.dart';
+import 'package:foodtek/view/widgets/onboarding_widgets/app_title_widget.dart';
+import 'package:foodtek/view/widgets/registration_widgets/email_field_widget.dart';
+import 'package:foodtek/view/widgets/registration_widgets/login_button_widget.dart';
+import 'package:foodtek/view/widgets/registration_widgets/password_field_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/secure_storage_controller.dart';
-import 'home_screen.dart';
+import '../../../controller/secure_storage_controller.dart';
+import '../home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

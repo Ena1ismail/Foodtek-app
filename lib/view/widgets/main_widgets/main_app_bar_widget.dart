@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodtek/view/widgets/choose_location_widget.dart';
-import 'package:foodtek/view/widgets/notification_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'notification_widget.dart';
 
 class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -38,13 +37,13 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget _buildLocationTitle(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          builder: (BuildContext context) {
-            return ChooseLocationWidget();
-          },
-        );
+        // showModalBottomSheet(
+        //   context: context,
+        //   isScrollControlled: true,
+        //   builder: (BuildContext context) {
+        //     return ChooseLocationWidget();
+        //   },
+        // );
       },
       child: Text(
         "Current location",

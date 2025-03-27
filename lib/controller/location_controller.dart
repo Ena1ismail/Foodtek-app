@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
-import '../view/screens/login_screen.dart';
+import '../view/screens/registration_screens/login_screen.dart';
 
 class LocationController extends ChangeNotifier {
   bool _isLocationGranted = false;

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodtek/view/screens/slides_screen.dart';
+import 'package:foodtek/view/screens/onboarding_screens/slides_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
