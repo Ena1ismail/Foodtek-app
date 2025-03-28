@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import '../../../controller/home_page_controller.dart';
 import 'notification_widget.dart';
 
 class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  final TabBar? tabBar;
+
+  const MainAppBarWidget({super.key, this.tabBar});
 
   @override
   Widget build(BuildContext context) {
@@ -15,22 +18,40 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         title: _buildLocationTitle(context),
         subtitle: _buildLocationSubtitle(),
       ),
+      bottom: tabBar,
       actions: [_buildNotificationButton(context)],
     );
   }
 
   Widget _buildLocationButton() {
-    return Container(
-      height: 40,
-      width: 40,
-      decoration: BoxDecoration(
-        color: Color(0xFFEDF7EF),
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: IconButton(
-        onPressed: () {},
-        icon: Image.asset("assets/images/location.png", height: 22, width: 22),
-      ),
+    return Consumer<HomePageController>(
+      builder: (context, homePageController, child) {
+        if (homePageController.isProductDetailsSelected) {
+          return IconButton(
+            onPressed: () {
+              homePageController.toggleProductDetails();
+            },
+            icon: Icon(Icons.arrow_back),
+          );
+        } else {
+          return Container(
+            height: 40,
+            width: 40,
+            decoration: BoxDecoration(
+              color: Color(0xFFEDF7EF),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: IconButton(
+              onPressed: () {},
+              icon: Image.asset(
+                "assets/images/location.png",
+                height: 22,
+                width: 22,
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 
@@ -88,9 +109,20 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
               },
             );
           },
-          icon: Image.asset("assets/images/notification.png", height: 22, width: 22),
+          icon: Image.asset(
+            "assets/images/notification.png",
+            height: 22,
+            width: 22,
+          ),
         ),
       ),
     );
+  }
+
+  @override
+  Size get preferredSize {
+    return tabBar == null
+        ? Size.fromHeight(kToolbarHeight)
+        : Size.fromHeight(kToolbarHeight * 2);
   }
 }

@@ -120,7 +120,7 @@ class FoodItemWidget extends StatelessWidget {
                   child: Center(
                     child: IconButton(
                       onPressed: () {
-                        homePageController.toggleFavourite(context,foodItem);
+                        homePageController.toggleFavourite(context, foodItem);
                       },
                       icon:
                           homePageController.isFavourite(foodItem)
@@ -141,31 +141,30 @@ class FoodItemWidget extends StatelessWidget {
             },
           ),
 
-          Positioned(
-            bottom: 25,
-            left: 40,
-            right: 40,
-            child: CustomButtonWidget(
-              width: 95.w,
-              height: 35.h,
-              title: "Order now",
-              colors: [AppConstants.buttonColor, AppConstants.buttonColor],
-              borderRadius: 25.r,
-              style: GoogleFonts.sora(
-                color: Colors.white,
-                fontSize: 10.sp,
-                fontWeight: FontWeight.w500,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder:
-                        (context) => ProductDetailsWidget(foodItem: foodItem),
+          Consumer<HomePageController>(
+            builder: (context, homePageController, child) {
+              return Positioned(
+                bottom: 25,
+                left: 40,
+                right: 40,
+                child: CustomButtonWidget(
+                  width: 95.w,
+                  height: 35.h,
+                  title: "Order now",
+                  colors: [AppConstants.buttonColor, AppConstants.buttonColor],
+                  borderRadius: 25.r,
+                  style: GoogleFonts.sora(
+                    color: Colors.white,
+                    fontSize: 10.sp,
+                    fontWeight: FontWeight.w500,
                   ),
-                );
-              },
-            ),
+                  onPressed: () {
+                    homePageController.toggleProductDetails();
+                    homePageController.selectedFoodItem(foodItem);
+                  },
+                ),
+              );
+            },
           ),
         ],
       ),

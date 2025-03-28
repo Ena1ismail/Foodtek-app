@@ -5,14 +5,10 @@ import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/controller/home_page_controller.dart';
 import 'package:foodtek/model/food_item.dart';
 import 'package:foodtek/view/widgets/custom_button_widget.dart';
-import 'package:foodtek/view/widgets/home_widgets/search_bar_widget.dart';
-import 'package:foodtek/view/widgets/registration_widgets/login_button_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import '../widgets/home_widgets/counter_buttons_widget.dart';
-import '../widgets/main_widgets/main_app_bar_widget.dart';
-import '../widgets/main_widgets/main_bottom_navigation_bar.dart';
 
 class ProductDetailsWidget extends StatelessWidget {
   final FoodItem foodItem;
@@ -23,16 +19,15 @@ class ProductDetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MainAppBarWidget(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SearchBarWidget(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 16.h),
                   _buildHeaderImage(),
                   SizedBox(height: 24.h),
                   _buildFoodName(),
@@ -44,7 +39,7 @@ class ProductDetailsWidget extends StatelessWidget {
                   _buildDescription(),
                   SizedBox(height: 24.h),
                   _buildCustomizationOptions(context),
-                  SizedBox(height: 24.h),
+                  SizedBox(height: 32.h),
                   _buildAddToCartButton(),
                   SizedBox(height: 24.h),
                 ],
@@ -53,13 +48,6 @@ class ProductDetailsWidget extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: MainBottomNavigationBar(
-        activeIndex: 0,
-        onTabTapped: (index) {},
-      ),
-      floatingActionButton: _buildFloatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      resizeToAvoidBottomInset: false,
     );
   }
 
@@ -243,27 +231,20 @@ class ProductDetailsWidget extends StatelessWidget {
   }
 
   Widget _buildAddToCartButton() {
-    return Center(
-      child: CustomButtonWidget(
-        title: "Add To Cart",
-        colors: [AppConstants.buttonColor, AppConstants.buttonColor],
-        borderRadius: 12.r,
-        titleColor: Colors.white,
-        height: 50.h,
-        width: 330.w,
-      ),
-    );
-  }
-
-
-
-  FloatingActionButton _buildFloatingActionButton() {
-    return FloatingActionButton(
-      onPressed: () {},
-      backgroundColor: AppConstants.buttonColor,
-      elevation: 0,
-      shape: const CircleBorder(),
-      child: Icon(Icons.shopping_cart_outlined, color: Colors.white),
+    return Consumer<HomePageController>(
+      builder: (context, homePageController, child) {
+        return Center(
+          child: CustomButtonWidget(
+            title: "Add To Cart",
+            colors: [AppConstants.buttonColor, AppConstants.buttonColor],
+            borderRadius: 12.r,
+            titleColor: Colors.white,
+            height: 50.h,
+            width: 330.w,
+            onPressed: () {},
+          ),
+        );
+      },
     );
   }
 }

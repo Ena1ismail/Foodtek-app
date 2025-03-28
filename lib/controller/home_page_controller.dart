@@ -19,7 +19,18 @@ class HomePageController extends ChangeNotifier {
   double sliderValue = 4.0;
   List<FoodItem> fav = [];
 
+  bool isProductDetailsSelected = false;
 
+
+  toggleProductDetails(){
+    isProductDetailsSelected = !isProductDetailsSelected;
+    notifyListeners();
+  }
+
+  selectedFoodItem(FoodItem item){
+    foodItem = item;
+    notifyListeners();
+  }
 
   bool isFavourite(FoodItem foodItem) {
     return fav.contains(foodItem);

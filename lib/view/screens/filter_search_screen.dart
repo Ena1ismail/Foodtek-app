@@ -7,15 +7,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import '../../controller/filter_controller.dart';
-import '../../controller/home_page_controller.dart';
 
 class FilterSearchScreen extends StatelessWidget {
   const FilterSearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: MainAppBarWidget(),
@@ -25,241 +22,40 @@ class FilterSearchScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Filter",
-                style: GoogleFonts.inter(
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
-              SizedBox(height: 8.h),
-              Text(
-                "Price range",
-                style: GoogleFonts.inter(
-                  fontSize: 14.sp,
-                  color: Color(0xFF98A0B4),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(height: 24.h),
-              Consumer<FilterController>(
-                builder: (context, filterController, child) {
-                  return Row(
-                    children: [
-                      InputWidget(
-                        textEditingController: filterController.minPriceController,
-                        obscureText: false,
-                        borderRadius: 5.r,
-                        width: 180.w,
-                        keyboardType: TextInputType.number,
-                        borderColor: Color(0xFFEAFAEB),
-                        backgroundColor: Colors.white,
-                        label: "Min",
-                      ),
-                      SizedBox(width: 16.w),
-                      InputWidget(
-                        textEditingController: filterController.maxPriceController,
-                        obscureText: false,
-                        borderRadius: 5.r,
-                        width: 180.w,
-                        keyboardType: TextInputType.number,
-                        borderColor: Color(0xFFEAFAEB),
-                        backgroundColor: Colors.white,
-                        label: "Max",
-                      ),
-                    ],
-                  );
-                },
-              ),
-              SizedBox(height: 20.h),
-              Consumer<FilterController>(
-                builder: (context, filterController, child) {
-                  final minValue =
-                  filterController.minPriceController.text.isEmpty
-                      ? 0
-                      : int.tryParse(filterController.minPriceController.text) ?? 0;
-                  final maxValue =
-                  filterController.maxPriceController.text.isEmpty
-                      ? 10
-                      : int.tryParse(filterController.maxPriceController.text) ?? 10;
-
-                  if (minValue > maxValue) {
-                    filterController.minPriceController.text = "0";
-                    // maxController.text = minValue.toString();
-                  }
-
-                  return SfSlider(
-                    min: minValue.toDouble(),
-                    max: maxValue.toDouble(),
-                    value: filterController.sliderPriceValue,
-                    showLabels: true,
-                    labelFormatterCallback: (
-                        dynamic actualValue,
-                        String formattedText,
-                        ) {
-                      final formattedMinValue =
-                      filterController.minPriceController.text.isEmpty
-                          ? '\$0'
-                          : "\$${filterController.minPriceController.text}";
-                      final formattedMaxValue =
-                      filterController.maxPriceController.text.isEmpty
-                          ? '\$10'
-                          : "\$${filterController.maxPriceController.text}";
-
-                      return actualValue <= 5
-                          ? formattedMinValue
-                          : formattedMaxValue;
-                    },
-                    inactiveColor: Color(0xFFF3F4F6),
-                    activeColor: AppConstants.buttonColor,
-                    onChanged: (dynamic newValue) {
-                      filterController.updateSliderPriceValue(newValue);
-                    },
-                  );
-                },
-              ),
-              SizedBox(height: 30.h),
-              Text(
-                "Discount",
-                style: GoogleFonts.inter(
-                  fontSize: 14.sp,
-                  color: Color(0xFF98A0B4),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(height: 24.h),
-              Consumer<FilterController>(
-                builder: (context, filterController, child) {
-                  return Row(
-                    children: [
-                      InputWidget(
-                        textEditingController: filterController.minDiscountController,
-                        obscureText: false,
-                        borderRadius: 5.r,
-                        width: 180.w,
-                        keyboardType: TextInputType.number,
-                        borderColor: Color(0xFFEAFAEB),
-                        backgroundColor: Colors.white,
-                        label: "Min",
-                      ),
-                      SizedBox(width: 16.w),
-                      InputWidget(
-                        textEditingController: filterController.maxDiscountController,
-                        obscureText: false,
-                        borderRadius: 5.r,
-                        width: 180.w,
-                        keyboardType: TextInputType.number,
-                        borderColor: Color(0xFFEAFAEB),
-                        backgroundColor: Colors.white,
-                        label: "Max",
-                      ),
-                    ],
-                  );
-                },
-              ),
-              SizedBox(height: 20.h),
-              Consumer<FilterController>(
-                builder: (context, filterController, child) {
-                  final minValue =
-                  filterController.minDiscountController.text.isEmpty
-                      ? 0
-                      : int.tryParse(filterController.minDiscountController.text) ?? 0;
-                  final maxValue =
-                  filterController.maxDiscountController.text.isEmpty
-                      ? 10
-                      : int.tryParse(filterController.maxDiscountController.text) ?? 50;
-
-                  if (minValue > maxValue) {
-                    filterController.minDiscountController.text = "0";
-                  }
-
-                  return SfSlider(
-                    min: minValue.toDouble(),
-                    max: maxValue.toDouble(),
-                    value: filterController.sliderDiscountValue,
-                    showLabels: true,
-                    labelFormatterCallback: (
-                        dynamic actualValue,
-                        String formattedText,
-                        ) {
-                      final formattedMinValue =
-                      filterController.minDiscountController.text.isEmpty
-                          ? '\$0'
-                          : "\$${filterController.minDiscountController.text}";
-                      final formattedMaxValue =
-                      filterController.maxDiscountController.text.isEmpty
-                          ? '\$10'
-                          : "\$${filterController.maxDiscountController.text}";
-
-                      return actualValue <= 5
-                          ? formattedMinValue
-                          : formattedMaxValue;
-                    },
-                    inactiveColor: Color(0xFFF3F4F6),
-                    activeColor: AppConstants.buttonColor,
-                    onChanged: (dynamic newValue) {
-                      filterController.updateSliderDiscountValue(newValue);
-                    },
-                  );
-                },
-              ),
-              SizedBox(height: 24.h),
-              Text(
-                "Category",
-                style: GoogleFonts.inter(
-                  fontSize: 14.sp,
-                  color: Color(0xFF98A0B4),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(height: 24.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  _buildButton('Fast Food', 0, 'dish'),
-                  _buildButton('Sea Food', 1, 'dish'),
-                  _buildButton('Desert', 2, 'dish'),
-                ],
-              ),
-              SizedBox(height: 24.h),
-              Text(
-                "Location",
-                style: GoogleFonts.inter(
-                  fontSize: 14.sp,
-                  color: Color(0xFF98A0B4),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(height: 24.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  _buildButton('1 KM', 0, 'location'),
-                  _buildButton('5 KM', 1, 'location'),
-                  _buildButton('10 KM', 2, 'location'),
-                ],
-              ),
-              SizedBox(height: 24.h),
-              Text(
-                "Dish",
-                style: GoogleFonts.inter(
-                  fontSize: 14.sp,
-                  color: Color(0xFF98A0B4),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(height: 24.h),
-              Wrap(
-                children: [
-                  _buildButton('Tuna Tartare', 0, "category"),
-                  _buildButton('Spicy Crab Cakes', 1, "category"),
-                  _buildButton('Seafood Paella', 2, "category"),
-                  _buildButton('Clam Chowder', 3, "category"),
-                  _buildButton('Miso-Glazed Cod', 4, "category"),
-                  _buildButton('Lobster Thermidor', 5, "category"),
-                ],
-              ),
+              _buildHeader("Filter"),
+              _buildSectionTitle("Price range"),
+              SizedBox(height: 24.h,),
+              _buildPriceInputs(context),
+              _buildSlider(context, "price"),
+              _buildSectionTitle("Discount"),
+              SizedBox(height: 24.h,),
+              _buildDiscountInputs(context),
+              _buildSlider(context, "discount"),
+              SizedBox(height: 24.h,),
+              _buildSectionTitle("Category"),
+              SizedBox(height: 14.h,),
+              _buildButtonRow([
+                "Fast Food",
+                "Sea Food",
+                "Desert",
+              ], "category"),
+              _buildSectionTitle("Location"),
+              SizedBox(height: 14.h,),
+              _buildButtonRow([
+                "1 KM",
+                "5 KM",
+                "10 KM",
+              ], "location"),
+              _buildSectionTitle("Dish"),
+              SizedBox(height: 14.h,),
+              _buildButtonWrap([
+                "Tuna Tartare",
+                "Spicy Crab Cakes",
+                "Seafood Paella",
+                "Clam Chowder",
+                "Miso-Glazed Cod",
+                "Lobster Thermidor",
+              ], "dish"),
             ],
           ),
         ),
@@ -267,35 +63,186 @@ class FilterSearchScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildHeader(String title) {
+    return Text(
+      title,
+      style: GoogleFonts.inter(
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w600,
+        color: Colors.black,
+      ),
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+      padding: EdgeInsets.only(top: 12.h),
+      child: Text(
+        title,
+        style: GoogleFonts.inter(
+          fontSize: 14.sp,
+          color: Color(0xFF98A0B4),
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPriceInputs(BuildContext context) {
+    return Consumer<FilterController>(
+      builder: (context, filterController, child) {
+        return Row(
+          children: [
+            InputWidget(
+              textEditingController: filterController.minPriceController,
+              obscureText: false,
+              borderRadius: 5.r,
+              width: 180.w,
+              keyboardType: TextInputType.number,
+              borderColor: Color(0xFFEAFAEB),
+              backgroundColor: Colors.white,
+              label: "Min",
+            ),
+            SizedBox(width: 16.w),
+            InputWidget(
+              textEditingController: filterController.maxPriceController,
+              obscureText: false,
+              borderRadius: 5.r,
+              width: 180.w,
+              keyboardType: TextInputType.number,
+              borderColor: Color(0xFFEAFAEB),
+              backgroundColor: Colors.white,
+              label: "Max",
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildDiscountInputs(BuildContext context) {
+    return Consumer<FilterController>(
+      builder: (context, filterController, child) {
+        return Row(
+          children: [
+            InputWidget(
+              textEditingController: filterController.minDiscountController,
+              obscureText: false,
+              borderRadius: 5.r,
+              width: 180.w,
+              keyboardType: TextInputType.number,
+              borderColor: Color(0xFFEAFAEB),
+              backgroundColor: Colors.white,
+              label: "Min",
+            ),
+            SizedBox(width: 16.w),
+            InputWidget(
+              textEditingController: filterController.maxDiscountController,
+              obscureText: false,
+              borderRadius: 5.r,
+              width: 180.w,
+              keyboardType: TextInputType.number,
+              borderColor: Color(0xFFEAFAEB),
+              backgroundColor: Colors.white,
+              label: "Max",
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildSlider(BuildContext context, String type) {
+    return Consumer<FilterController>(
+      builder: (context, filterController, child) {
+        final minValue = type == "price"
+            ? int.tryParse(filterController.minPriceController.text) ?? 0
+            : int.tryParse(filterController.minDiscountController.text) ?? 0;
+        final maxValue = type == "price"
+            ? int.tryParse(filterController.maxPriceController.text) ?? 10
+            : int.tryParse(filterController.maxDiscountController.text) ?? 50;
+
+        if (minValue > maxValue) {
+          if (type == "price") {
+            filterController.minPriceController.text = "0";
+          } else {
+            filterController.minDiscountController.text = "0";
+          }
+        }
+
+        return SfSlider(
+          min: minValue.toDouble(),
+          max: maxValue.toDouble(),
+          value: type == "price"
+              ? filterController.sliderPriceValue
+              : filterController.sliderDiscountValue,
+          showLabels: true,
+          labelFormatterCallback: (
+              dynamic actualValue,
+              String formattedText,
+              ) {
+            final formattedMinValue = type == "price"
+                ? "\$${filterController.minPriceController.text}"
+                : "\$${filterController.minDiscountController.text}";
+            final formattedMaxValue = type == "price"
+                ? "\$${filterController.maxPriceController.text}"
+                : "\$${filterController.maxDiscountController.text}";
+
+            return actualValue <= 5 ? formattedMinValue : formattedMaxValue;
+          },
+          inactiveColor: Color(0xFFF3F4F6),
+          activeColor: AppConstants.buttonColor,
+          onChanged: (dynamic newValue) {
+            if (type == "price") {
+              filterController.updateSlider("price", newValue);
+            } else {
+              filterController.updateSlider("discount", newValue);
+            }
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildButtonRow(List<String> labels, String type) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: labels.map((label) {
+          final index = labels.indexOf(label);
+          return _buildButton(label, index, type);
+        }).toList(),
+      ),
+    );
+  }
+
+  // Button Wrap Widget
+  Widget _buildButtonWrap(List<String> labels, String type) {
+    return Wrap(
+      spacing: 16.w,
+      runSpacing: 8.h,
+      children: labels.map((label) {
+        final index = labels.indexOf(label);
+        return _buildButton(label, index, type);
+      }).toList(),
+    );
+  }
+
   Widget _buildButton(String label, int index, String type) {
     return Consumer<FilterController>(
       builder: (context, controller, child) {
-        bool isSelected = false;
-
-        // Determine selection based on type
-        if (type == 'category') {
-          isSelected = controller.selectedCategoryIndex == index;
-        } else if (type == 'location') {
-          isSelected = controller.selectedLocationIndex == index;
-        } else if (type == 'dish') {
-          isSelected = controller.selectedDishIndex == index;
-        }
+        final isSelected = type == "category"
+            ? controller.selectedCategoryIndex == index
+            : type == "location"
+            ? controller.selectedLocationIndex == index
+            : controller.selectedDishIndex == index;
 
         return Container(
           margin: EdgeInsets.only(right: 16.0),
           child: TextButton(
             onPressed: () {
-              // Update selection based on type
-              if (type == 'category') {
-                controller.updateSelectedCategory(label);
-                controller.updateSelectedCategoryIndex(index);
-              } else if (type == 'location') {
-                controller.updateSelectedLocation(label);
-                controller.updateSelectedLocationIndex(index);
-              } else if (type == 'dish') {
-                controller.updateSelectedDish(label);
-                controller.updateSelectedDishIndex(index);
-              }
+              controller.updateSelected(type, label, index);
             },
             style: TextButton.styleFrom(
               backgroundColor: isSelected ? Colors.green : Color(0xFFF2F4F7),
@@ -315,4 +262,5 @@ class FilterSearchScreen extends StatelessWidget {
         );
       },
     );
-  }}
+  }
+}

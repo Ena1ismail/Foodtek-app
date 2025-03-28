@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
+import 'package:foodtek/controller/home_page_controller.dart';
 import 'package:foodtek/model/food_item.dart';
 import 'package:foodtek/view/screens/product_details_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class TopRatedWidget extends StatelessWidget {
   final FoodItem foodItem;
@@ -28,7 +30,7 @@ class TopRatedWidget extends StatelessWidget {
           children: [
             _buildRatingRow(),
             SizedBox(height: 8.h),
-            _buildImage(),
+            _buildImage(context),
             SizedBox(height: 8.h),
             _buildName(),
             SizedBox(height: 4.h),
@@ -59,13 +61,23 @@ class TopRatedWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildImage() {
-    return Center(
-      child: Image.asset(
-        foodItem.imageUrl!,
-        height: 70.h,
-        width: 87.w,
-        fit: BoxFit.contain,
+  Widget _buildImage(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsWidget(foodItem: foodItem),
+          ),
+        );
+      },
+      child: Center(
+        child: Image.asset(
+          foodItem.imageUrl!,
+          height: 70.h,
+          width: 87.w,
+          fit: BoxFit.contain,
+        ),
       ),
     );
   }
@@ -107,23 +119,27 @@ class TopRatedWidget extends StatelessWidget {
   }
 
   Widget _buildAddButton(BuildContext context) {
-    return SizedBox(
-      height: 40.h,
-      width: 40.w,
-      child: IconButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(AppConstants.buttonColor),
+    return Consumer<HomePageController>(builder: (context, homePageController, child) {
+      return SizedBox(
+        height: 40.h,
+        width: 40.w,
+        child: IconButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(AppConstants.buttonColor),
+          ),
+          onPressed: () {
+            homePageController.toggleProductDetails();
+            homePageController.selectedFoodItem(foodItem);
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => ProductDetailsWidget(foodItem: foodItem),
+            //   ),
+            // );
+          },
+          icon: Icon(Icons.add, color: Colors.white, size: 22.r),
         ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ProductDetailsWidget(foodItem: foodItem),
-            ),
-          );
-        },
-        icon: Icon(Icons.add, color: Colors.white, size: 22.r),
-      ),
-    );
+      );
+    },);
   }
 }
