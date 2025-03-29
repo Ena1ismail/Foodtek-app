@@ -45,8 +45,7 @@ class _MainScreenState extends State<MainScreen> {
 
   FloatingActionButton _buildFloatingActionButton() {
     return FloatingActionButton(
-      onPressed: () {
-      },
+      onPressed: () {},
       backgroundColor: AppConstants.buttonColor,
       elevation: 0,
       shape: const CircleBorder(),

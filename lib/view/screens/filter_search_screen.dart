@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/view/widgets/input_widget.dart';
-import 'package:foodtek/view/widgets/main_widgets/main_app_bar_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -15,7 +14,9 @@ class FilterSearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MainAppBarWidget(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(22),
         child: SingleChildScrollView(
@@ -177,19 +178,6 @@ class FilterSearchScreen extends StatelessWidget {
               ? filterController.sliderPriceValue
               : filterController.sliderDiscountValue,
           showLabels: true,
-          labelFormatterCallback: (
-              dynamic actualValue,
-              String formattedText,
-              ) {
-            final formattedMinValue = type == "price"
-                ? "\$${filterController.minPriceController.text}"
-                : "\$${filterController.minDiscountController.text}";
-            final formattedMaxValue = type == "price"
-                ? "\$${filterController.maxPriceController.text}"
-                : "\$${filterController.maxDiscountController.text}";
-
-            return actualValue <= 5 ? formattedMinValue : formattedMaxValue;
-          },
           inactiveColor: Color(0xFFF3F4F6),
           activeColor: AppConstants.buttonColor,
           onChanged: (dynamic newValue) {

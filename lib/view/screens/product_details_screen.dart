@@ -5,6 +5,7 @@ import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/controller/home_page_controller.dart';
 import 'package:foodtek/model/food_item.dart';
 import 'package:foodtek/view/widgets/custom_button_widget.dart';
+import 'package:foodtek/view/widgets/home_widgets/search_bar_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -22,12 +23,12 @@ class ProductDetailsWidget extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SearchBarWidget(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 16.h),
                   _buildHeaderImage(),
                   SizedBox(height: 24.h),
                   _buildFoodName(),

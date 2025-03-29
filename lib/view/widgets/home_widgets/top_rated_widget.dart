@@ -62,23 +62,23 @@ class TopRatedWidget extends StatelessWidget {
   }
 
   Widget _buildImage(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ProductDetailsWidget(foodItem: foodItem),
+    return Consumer<HomePageController>(
+      builder: (context, homePageController, child) {
+        return GestureDetector(
+          onTap: () {
+            homePageController.toggleProductDetails();
+            homePageController.selectedFoodItem(foodItem);
+          },
+          child: Center(
+            child: Image.asset(
+              foodItem.imageUrl!,
+              height: 70.h,
+              width: 87.w,
+              fit: BoxFit.contain,
+            ),
           ),
         );
       },
-      child: Center(
-        child: Image.asset(
-          foodItem.imageUrl!,
-          height: 70.h,
-          width: 87.w,
-          fit: BoxFit.contain,
-        ),
-      ),
     );
   }
 
@@ -119,27 +119,16 @@ class TopRatedWidget extends StatelessWidget {
   }
 
   Widget _buildAddButton(BuildContext context) {
-    return Consumer<HomePageController>(builder: (context, homePageController, child) {
-      return SizedBox(
-        height: 40.h,
-        width: 40.w,
-        child: IconButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(AppConstants.buttonColor),
-          ),
-          onPressed: () {
-            homePageController.toggleProductDetails();
-            homePageController.selectedFoodItem(foodItem);
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => ProductDetailsWidget(foodItem: foodItem),
-            //   ),
-            // );
-          },
-          icon: Icon(Icons.add, color: Colors.white, size: 22.r),
+    return SizedBox(
+      height: 40.h,
+      width: 40.w,
+      child: IconButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(AppConstants.buttonColor),
         ),
-      );
-    },);
+        onPressed: () {},
+        icon: Icon(Icons.add, color: Colors.white, size: 22.r),
+      ),
+    );
   }
 }
