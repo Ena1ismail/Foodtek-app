@@ -9,6 +9,7 @@ class FoodItem {
   final double? rating;
   final String? ingredients;
   final int? reviews;
+  int? quantity = 0;
 
   FoodItem({
     this.id,
@@ -17,10 +18,11 @@ class FoodItem {
     this.newPrice,
     this.oldPrice,
     this.imageUrl,
-    this.category,
+    this.category = "cate",
     this.rating,
     this.ingredients,
-    this.reviews
+    this.reviews,
+    this.quantity
   });
 
 }

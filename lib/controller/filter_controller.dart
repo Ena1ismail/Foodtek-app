@@ -16,6 +16,8 @@ class FilterController extends ChangeNotifier {
   String selectedLocation = "1 KM";
   String selectedDish = "Tuna Tartare";
 
+
+
   void updateSelected(String type, String value, int index) {
     if (type == "category" && selectedCategory != value) {
       selectedCategory = value;

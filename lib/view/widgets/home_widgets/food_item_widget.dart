@@ -91,18 +91,26 @@ class FoodItemWidget extends StatelessWidget {
 
           Positioned(
             top: 0,
-            child: SizedBox(
-              height: 89.h,
-              width: 89.w,
-              child: CircleAvatar(
-                backgroundColor: Color(0xFFE7E7E7),
-                child: Image.asset(
-                  foodItem.imageUrl!,
-                  height: 75.h,
-                  width: 75.w,
+            child: Consumer<HomePageController>(builder: (context, homePageController, child) {
+              return GestureDetector(
+                onTap: () {
+                  homePageController.toggleProductDetails();
+                  homePageController.selectedFoodItem(foodItem);
+                },
+                child: SizedBox(
+                  height: 89.h,
+                  width: 89.w,
+                  child: CircleAvatar(
+                    backgroundColor: Color(0xFFE7E7E7),
+                    child: Image.asset(
+                      foodItem.imageUrl!,
+                      height: 75.h,
+                      width: 75.w,
+                    ),
+                  ),
                 ),
-              ),
-            ),
+              );
+            },),
           ),
 
           Consumer<HomePageController>(

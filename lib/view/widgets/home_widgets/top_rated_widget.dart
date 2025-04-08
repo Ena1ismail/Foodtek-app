@@ -7,6 +7,8 @@ import 'package:foodtek/view/screens/product_details_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../../controller/cart_controller.dart';
+
 class TopRatedWidget extends StatelessWidget {
   final FoodItem foodItem;
 
@@ -119,6 +121,8 @@ class TopRatedWidget extends StatelessWidget {
   }
 
   Widget _buildAddButton(BuildContext context) {
+    final cartController = Provider.of<CartController>(context, listen: false);
+
     return SizedBox(
       height: 40.h,
       width: 40.w,
@@ -126,7 +130,10 @@ class TopRatedWidget extends StatelessWidget {
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(AppConstants.buttonColor),
         ),
-        onPressed: () {},
+        onPressed: () {
+          // Add the item to the cart
+          cartController.addItem(foodItem);
+        },
         icon: Icon(Icons.add, color: Colors.white, size: 22.r),
       ),
     );

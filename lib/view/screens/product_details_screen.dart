@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
+import 'package:foodtek/controller/cart_controller.dart';
 import 'package:foodtek/controller/home_page_controller.dart';
 import 'package:foodtek/model/food_item.dart';
 import 'package:foodtek/view/widgets/custom_button_widget.dart';
@@ -217,12 +218,15 @@ class ProductDetailsWidget extends StatelessWidget {
         SizedBox(height: 15.h),
         SizedBox(
           width: 150.w,
-          child: Consumer<HomePageController>(
-            builder: (context, homePageController, child) {
-              return IncrementalButton(
-                value: homePageController.itemAmount,
-                onIncrement: () => homePageController.incrementItemAmount(),
-                onDecrement: () => homePageController.decrementItemAmount(),
+          child: Consumer<CartController>(
+            builder: (context, cartController, child) {
+              return CounterButtonsWidget(
+                value: foodItem.quantity ?? 1,
+                onIncrement:
+                    () => cartController.incrementItem(foodItem),
+                onDecrement:
+                    () =>
+                        cartController.decrementItem(foodItem, context),
               );
             },
           ),
@@ -232,8 +236,8 @@ class ProductDetailsWidget extends StatelessWidget {
   }
 
   Widget _buildAddToCartButton() {
-    return Consumer<HomePageController>(
-      builder: (context, homePageController, child) {
+    return Consumer<CartController>(
+      builder: (context, cartController, child) {
         return Center(
           child: CustomButtonWidget(
             title: "Add To Cart",
@@ -242,7 +246,9 @@ class ProductDetailsWidget extends StatelessWidget {
             titleColor: Colors.white,
             height: 50.h,
             width: 330.w,
-            onPressed: () {},
+            onPressed: () {
+              cartController.addItem(foodItem);
+            },
           ),
         );
       },

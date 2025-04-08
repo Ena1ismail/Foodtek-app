@@ -15,19 +15,18 @@ class HomePageController extends ChangeNotifier {
   int selectedToggleIndex = 0;
   String selectedCategory = "All";
   late FoodItem foodItem;
-  int itemAmount = 0;
+  int itemAmount = 1;
   double sliderValue = 4.0;
   List<FoodItem> fav = [];
 
   bool isProductDetailsSelected = false;
 
-
-  toggleProductDetails(){
+  toggleProductDetails() {
     isProductDetailsSelected = !isProductDetailsSelected;
     notifyListeners();
   }
 
-  selectedFoodItem(FoodItem item){
+  selectedFoodItem(FoodItem item) {
     foodItem = item;
     notifyListeners();
   }
@@ -51,7 +50,6 @@ class HomePageController extends ChangeNotifier {
       notifyListeners();
     }
   }
-
 
   void updateSelectedCategory(String category) {
     if (selectedCategory != category) {
@@ -83,6 +81,10 @@ class HomePageController extends ChangeNotifier {
         description: "100 gr chicken + tomato + cheese Lettuce",
         newPrice: 20.00,
         oldPrice: 23.00,
+        quantity: 1,
+        category: "cate",
+        id: 1,
+        ingredients: "ing",
       ),
     ),
     TopRatedWidget(
@@ -94,6 +96,10 @@ class HomePageController extends ChangeNotifier {
         description: "100 gr meat + onion + tomato + Lettuce cheese",
         newPrice: 15.00,
         oldPrice: 18.00,
+        quantity: 1,
+        category: "cate",
+        id: 2,
+        ingredients: "ing",
       ),
     ),
     TopRatedWidget(
@@ -105,6 +111,10 @@ class HomePageController extends ChangeNotifier {
         description: "100 gr chicken + tomato + cheese Lettuce",
         newPrice: 20.00,
         oldPrice: 24.00,
+        quantity: 1,
+        category: "cate",
+        id: 3,
+        ingredients: "ing",
       ),
     ),
     TopRatedWidget(
@@ -116,6 +126,10 @@ class HomePageController extends ChangeNotifier {
         description: "100 gr meat + onion + tomato + Lettuce cheese",
         newPrice: 15.00,
         oldPrice: 17.00,
+        quantity: 1,
+        category: "cate",
+        id: 4,
+        ingredients: "ing",
       ),
     ),
     TopRatedWidget(
@@ -127,6 +141,10 @@ class HomePageController extends ChangeNotifier {
         description: "100 gr chicken + tomato + cheese Lettuce",
         newPrice: 20.00,
         oldPrice: 16.00,
+        quantity: 1,
+        category: "cate",
+        id: 5,
+        ingredients: "ing",
       ),
     ),
   ];
@@ -137,25 +155,59 @@ class HomePageController extends ChangeNotifier {
         imageUrl: "assets/images/recommend1.png",
         newPrice: 103.0,
         oldPrice: 120.0,
-
+        name: "Chicken burger",
+        rating: 3.8,
+        reviews: 66,
+        quantity: 1,
+        category: "cate",
+        id: 1,
+        ingredients: "ing",
+        description: "100 gr chicken + tomato + cheese Lettuce",
       ),
     ),
     RecommendItemWidget(
       foodItem: FoodItem(
         imageUrl: "assets/images/recommend2.png",
         newPrice: 50.0,
+        oldPrice: 40.0,
+        name: "Chicken burger",
+        rating: 3.8,
+        reviews: 66,
+        quantity: 1,
+        category: "cate",
+        id: 1,
+        ingredients: "ing",
+        description: "100 gr chicken + tomato + cheese Lettuce",
       ),
     ),
     RecommendItemWidget(
       foodItem: FoodItem(
         imageUrl: "assets/images/recommend3.png",
         newPrice: 12.99,
+        oldPrice: 10.00,
+        name: "Chicken burger",
+        rating: 3.8,
+        reviews: 66,
+        quantity: 1,
+        category: "cate",
+        id: 1,
+        ingredients: "ing",
+        description: "100 gr chicken + tomato + cheese Lettuce",
       ),
     ),
     RecommendItemWidget(
       foodItem: FoodItem(
         imageUrl: "assets/images/recommend4.png",
         newPrice: 8.20,
+        oldPrice: 5.0,
+        name: "Chicken burger",
+        rating: 3.8,
+        reviews: 66,
+        quantity: 1,
+        category: "cate",
+        id: 1,
+        ingredients: "ing",
+        description: "100 gr chicken + tomato + cheese Lettuce",
       ),
     ),
   ];
@@ -171,6 +223,10 @@ class HomePageController extends ChangeNotifier {
         imageUrl: "assets/images/pizza1.png",
         rating: 3.5,
         reviews: 98,
+        ingredients: "ing",
+        id: 6,
+        category: "cate",
+        quantity: 1,
       ),
     ),
     FoodItemWidget(
@@ -183,6 +239,10 @@ class HomePageController extends ChangeNotifier {
         imageUrl: "assets/images/pizza2.png",
         rating: 4.5,
         reviews: 39,
+        ingredients: "ing",
+        id: 7,
+        category: "cate",
+        quantity: 1,
       ),
     ),
     FoodItemWidget(
@@ -195,6 +255,10 @@ class HomePageController extends ChangeNotifier {
         imageUrl: "assets/images/pizza3.png",
         rating: 4,
         reviews: 94,
+        ingredients: "ing",
+        id: 8,
+        category: "cate",
+        quantity: 1,
       ),
     ),
     FoodItemWidget(
@@ -207,6 +271,10 @@ class HomePageController extends ChangeNotifier {
         imageUrl: "assets/images/pizza4.png",
         rating: 5,
         reviews: 22,
+        ingredients: "ing",
+        id: 9,
+        category: "cate",
+        quantity: 1,
       ),
     ),
   ];
@@ -222,6 +290,10 @@ class HomePageController extends ChangeNotifier {
         imageUrl: "assets/images/top_rated1.png",
         rating: 3.5,
         reviews: 67,
+        ingredients: "ing",
+        id: 10,
+        category: "cate",
+        quantity: 1,
       ),
     ),
     FoodItemWidget(
@@ -234,6 +306,10 @@ class HomePageController extends ChangeNotifier {
         imageUrl: "assets/images/burger3.png",
         rating: 5,
         reviews: 120,
+        ingredients: "ing",
+        id: 11,
+        category: "cate",
+        quantity: 1,
       ),
     ),
     FoodItemWidget(
@@ -246,6 +322,10 @@ class HomePageController extends ChangeNotifier {
         imageUrl: "assets/images/veggie.png",
         rating: 5,
         reviews: 32,
+        ingredients: "ing",
+        id: 12,
+        category: "cate",
+        quantity: 1,
       ),
     ),
     FoodItemWidget(
@@ -258,6 +338,10 @@ class HomePageController extends ChangeNotifier {
         imageUrl: "assets/images/top_rated2.png",
         rating: 3.5,
         reviews: 98,
+        ingredients: "ing",
+        id: 13,
+        category: "cate",
+        quantity: 1,
       ),
     ),
   ];
@@ -273,6 +357,10 @@ class HomePageController extends ChangeNotifier {
         imageUrl: "assets/images/sandwich 3.png",
         rating: 3.5,
         reviews: 60,
+        ingredients: "ing",
+        id: 14,
+        category: "cate",
+        quantity: 1,
       ),
     ),
     FoodItemWidget(
@@ -285,6 +373,10 @@ class HomePageController extends ChangeNotifier {
         imageUrl: "assets/images/sandwich 4.png",
         rating: 4.5,
         reviews: 70,
+        ingredients: "ing",
+        id: 15,
+        category: "cate",
+        quantity: 1,
       ),
     ),
     FoodItemWidget(
@@ -297,6 +389,10 @@ class HomePageController extends ChangeNotifier {
         imageUrl: "assets/images/sandwich 1.png",
         rating: 3,
         reviews: 89,
+        ingredients: "ing",
+        id: 16,
+        category: "cate",
+        quantity: 1,
       ),
     ),
     FoodItemWidget(
@@ -309,6 +405,10 @@ class HomePageController extends ChangeNotifier {
         imageUrl: "assets/images/sandwich 2.png",
         rating: 4,
         reviews: 98,
+        ingredients: "ing",
+        id: 17,
+        category: "cate",
+        quantity: 1,
       ),
     ),
   ];
@@ -384,7 +484,7 @@ class HomePageController extends ChangeNotifier {
   }
 
   void decrementItemAmount() {
-    if (itemAmount > 0) {
+    if (itemAmount > 1) {
       itemAmount--;
       notifyListeners();
     }
@@ -399,7 +499,11 @@ class HomePageController extends ChangeNotifier {
           content: Text(
             textAlign: TextAlign.center,
             "Are you sure you want to remove it from favorites?",
-            style: GoogleFonts.inter(fontSize: 14.sp, color: Colors.black54, fontWeight: FontWeight.w400),
+            style: GoogleFonts.inter(
+              fontSize: 14.sp,
+              color: Colors.black54,
+              fontWeight: FontWeight.w400,
+            ),
           ),
           actions: [
             CustomButtonWidget(

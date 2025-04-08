@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/controller/cart_controller.dart';
 import 'package:foodtek/controller/filter_controller.dart';
 import 'package:foodtek/controller/home_page_controller.dart';
 import 'package:foodtek/controller/location_controller.dart';
@@ -31,10 +32,11 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => SecureStorageController()),
           ChangeNotifierProvider(create: (context) => HomePageController()),
           ChangeNotifierProvider(create: (context) => FilterController()),
+          ChangeNotifierProvider(create: (context) => CartController()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SplashScreen(),
+          home: MainScreen(),
         ),
       ),
     );

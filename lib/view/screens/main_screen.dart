@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/controller/cart_controller.dart';
+import 'package:foodtek/view/screens/cart_main_screen.dart';
 import 'package:foodtek/view/screens/favourite_screen.dart';
 import 'package:foodtek/view/screens/history_screen.dart';
 import 'package:foodtek/view/screens/home_screen.dart';
 import 'package:foodtek/view/screens/profile_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import '../../app_constants.dart';
 import '../widgets/main_widgets/main_app_bar_widget.dart';
 import '../widgets/main_widgets/main_bottom_navigation_bar.dart';
@@ -22,6 +27,7 @@ class _MainScreenState extends State<MainScreen> {
     FavouriteScreen(),
     HistoryScreen(),
     ProfileScreen(),
+    CartMainScreen(),
   ];
 
   @override
@@ -45,11 +51,17 @@ class _MainScreenState extends State<MainScreen> {
 
   FloatingActionButton _buildFloatingActionButton() {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {
+        setState(() {
+          activeIndex = 4;
+        });
+      },
       backgroundColor: AppConstants.buttonColor,
       elevation: 0,
       shape: const CircleBorder(),
-      child: Icon(Icons.shopping_cart_outlined, color: Colors.white),
+      child: Center(
+        child: Icon(Icons.shopping_cart_outlined, color: Colors.white),
+      ),
     );
   }
 }
