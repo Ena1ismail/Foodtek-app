@@ -38,6 +38,8 @@ class CartController extends ChangeNotifier {
     ),
   ];
 
+
+
   removeFromHistory(FoodItem foodItem){
     historyOrders.remove(foodItem);
     notifyListeners();

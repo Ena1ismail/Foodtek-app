@@ -59,8 +59,39 @@ class _MainScreenState extends State<MainScreen> {
       backgroundColor: AppConstants.buttonColor,
       elevation: 0,
       shape: const CircleBorder(),
-      child: Center(
-        child: Icon(Icons.shopping_cart_outlined, color: Colors.white),
+      child: Stack(
+        children: [
+          Center(
+            child: Icon(Icons.shopping_cart_outlined, color: Colors.white),
+          ),
+          Align(
+            alignment: Alignment.topRight,
+            child: SizedBox(
+              height: 20.h,
+              width: 20.w,
+              child: Consumer<CartController>(
+                builder: (context, cartController, _) {
+                  final itemCount = cartController.cartItems.length;
+                  if(cartController.cartItems.isEmpty){
+                    return SizedBox.shrink();
+                  } else {
+                    return CircleAvatar(
+                      backgroundColor: const Color(0xFFDBF4D1),
+                      child: Text(
+                        "$itemCount",
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.bold,
+                          color: AppConstants.buttonColor,
+                        ),
+                      ),
+                    );
+                  }
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

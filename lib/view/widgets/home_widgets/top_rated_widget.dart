@@ -131,7 +131,6 @@ class TopRatedWidget extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all(AppConstants.buttonColor),
         ),
         onPressed: () {
-          // Add the item to the cart
           cartController.addItem(foodItem);
         },
         icon: Icon(Icons.add, color: Colors.white, size: 22.r),

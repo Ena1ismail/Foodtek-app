@@ -20,9 +20,7 @@ class HistoryWidget extends StatelessWidget {
       builder: (context, cartController, child) {
         return CartItemWidget(
           foodItem: foodItem,
-          onDismissed: (_) {
-            cartController.removeFromHistory(foodItem);
-          },
+          isDismissible: false,
           widget: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,

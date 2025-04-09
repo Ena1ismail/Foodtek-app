@@ -26,14 +26,15 @@ class CartScreen extends StatelessWidget {
                   if (cartItems.isEmpty) {
                     return EmptyWidget(
                       title: "Cart Empty",
-                      subTitle: "You don’t have add any foods in cart at this time ",
+                      subTitle: "You don’t have added any foods in the cart at this time.",
                     );
                   } else {
-                    return Column(
+                    return ListView(
                       children: [
                         SizedBox(
-                          height: 420.h,
+                          height: MediaQuery.of(context).size.height * 0.45,
                           child: ListView.builder(
+                            physics: const ClampingScrollPhysics(),
                             itemCount: cartItems.length,
                             itemBuilder: (context, index) {
                               final foodItem = cartItems[index];
@@ -41,7 +42,7 @@ class CartScreen extends StatelessWidget {
                             },
                           ),
                         ),
-                        CheckOutWidget()
+                        CheckOutWidget(),
                       ],
                     );
                   }

@@ -9,30 +9,37 @@ import 'package:provider/provider.dart';
 
 class CartItemWidget extends StatelessWidget {
   final FoodItem foodItem;
-  Widget? widget;
-  DismissDirectionCallback? onDismissed;
+  final Widget? widget;
+  final DismissDirectionCallback? onDismissed;
+  final bool isDismissible;
 
-  CartItemWidget({
+  const CartItemWidget({
     super.key,
     required this.foodItem,
     this.widget,
     this.onDismissed,
+    this.isDismissible = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return Consumer<CartController>(
       builder: (context, cartController, _) {
+        Widget child = _buildCartItem(context, cartController);
+
+        if (isDismissible) {
+          child = Dismissible(
+            key: Key(foodItem.id.toString()),
+            direction: DismissDirection.endToStart,
+            onDismissed: onDismissed ?? (_) => cartController.removeItem(foodItem),
+            background: _buildSwipeBackground(),
+            child: child,
+          );
+        }
+
         return Column(
           children: [
-            Dismissible(
-              key: Key(foodItem.id.toString()),
-              direction: DismissDirection.endToStart,
-              onDismissed:
-                  onDismissed ?? (_) => cartController.removeItem(foodItem),
-              background: _buildSwipeBackground(),
-              child: _buildCartItem(context, cartController),
-            ),
+            child,
             SizedBox(height: 20.h),
           ],
         );
@@ -121,8 +128,7 @@ class CartItemWidget extends StatelessWidget {
                   value: foodItem.quantity ?? 0,
                   color: const Color(0xFFEAF7ED),
                   onIncrement: () => cartController.incrementItem(foodItem),
-                  onDecrement:
-                      () => cartController.decrementItem(foodItem, context),
+                  onDecrement: () => cartController.decrementItem(foodItem, context),
                 ),
               ),
 

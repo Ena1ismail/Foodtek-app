@@ -222,11 +222,9 @@ class ProductDetailsWidget extends StatelessWidget {
             builder: (context, cartController, child) {
               return CounterButtonsWidget(
                 value: foodItem.quantity ?? 1,
-                onIncrement:
-                    () => cartController.incrementItem(foodItem),
+                onIncrement: () => cartController.incrementItem(foodItem),
                 onDecrement:
-                    () =>
-                        cartController.decrementItem(foodItem, context),
+                    () => cartController.decrementItem(foodItem, context),
               );
             },
           ),
@@ -238,18 +236,24 @@ class ProductDetailsWidget extends StatelessWidget {
   Widget _buildAddToCartButton() {
     return Consumer<CartController>(
       builder: (context, cartController, child) {
-        return Center(
-          child: CustomButtonWidget(
-            title: "Add To Cart",
-            colors: [AppConstants.buttonColor, AppConstants.buttonColor],
-            borderRadius: 12.r,
-            titleColor: Colors.white,
-            height: 50.h,
-            width: 330.w,
-            onPressed: () {
-              cartController.addItem(foodItem);
-            },
-          ),
+        return Consumer<HomePageController>(
+          builder: (context, homePageController, child) {
+            return Center(
+              child: CustomButtonWidget(
+                title: "Add To Cart",
+                colors: [AppConstants.buttonColor, AppConstants.buttonColor],
+                borderRadius: 12.r,
+                titleColor: Colors.white,
+                height: 50.h,
+                width: 330.w,
+                onPressed: () {
+                  cartController.addItem(foodItem);
+                  homePageController.toggleProductDetails();
+                  homePageController.selectedFoodItem(foodItem);
+                },
+              ),
+            );
+          },
         );
       },
     );
