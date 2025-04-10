@@ -12,10 +12,23 @@ import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import '../widgets/home_widgets/counter_buttons_widget.dart';
 
-class ProductDetailsWidget extends StatelessWidget {
+class ProductDetailsWidget extends StatefulWidget {
   final FoodItem foodItem;
 
   const ProductDetailsWidget({super.key, required this.foodItem});
+
+  @override
+  _ProductDetailsWidgetState createState() => _ProductDetailsWidgetState();
+}
+
+class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
+  late FoodItem _foodItem;
+
+  @override
+  void initState() {
+    super.initState();
+    _foodItem = widget.foodItem.copyWith(quantity: 1);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +79,7 @@ class ProductDetailsWidget extends StatelessWidget {
       ),
       child: Center(
         child: Image.asset(
-          foodItem.imageUrl ?? "assets/images/apple.png",
+          _foodItem.imageUrl ?? "assets/images/apple.png",
           height: 150.h,
           width: 200.w,
         ),
@@ -76,7 +89,7 @@ class ProductDetailsWidget extends StatelessWidget {
 
   Widget _buildFoodName() {
     return Text(
-      foodItem.name ?? "name",
+      _foodItem.name ?? "name",
       style: GoogleFonts.inter(
         fontSize: 20.sp,
         fontWeight: FontWeight.w600,
@@ -91,7 +104,7 @@ class ProductDetailsWidget extends StatelessWidget {
       children: [
         RatingBar(
           itemSize: 20,
-          initialRating: foodItem.rating ?? 1,
+          initialRating: _foodItem.rating ?? 1,
           minRating: 0,
           maxRating: 5,
           direction: Axis.horizontal,
@@ -108,7 +121,7 @@ class ProductDetailsWidget extends StatelessWidget {
           onRatingUpdate: (rating) {},
         ),
         Text(
-          " ${foodItem.rating.toString()}",
+          " ${_foodItem.rating.toString()}",
           style: GoogleFonts.inter(
             color: Color(0xFF838383),
             fontSize: 12.sp,
@@ -116,7 +129,7 @@ class ProductDetailsWidget extends StatelessWidget {
           ),
         ),
         Text(
-          " (${foodItem.reviews.toString()} reviews)",
+          " (${_foodItem.reviews.toString()} reviews)",
           style: GoogleFonts.inter(
             fontSize: 12.sp,
             fontWeight: FontWeight.w400,
@@ -132,7 +145,7 @@ class ProductDetailsWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          "\$${foodItem.newPrice.toString()}",
+          "\$${_foodItem.newPrice.toString()}",
           style: GoogleFonts.inter(
             color: AppConstants.buttonColor,
             fontSize: 20.sp,
@@ -141,7 +154,7 @@ class ProductDetailsWidget extends StatelessWidget {
         ),
         SizedBox(width: 8.w),
         Text(
-          "\$${foodItem.oldPrice.toString()}",
+          "\$${_foodItem.oldPrice.toString()}",
           style: GoogleFonts.inter(
             color: Color(0xFF838383),
             fontSize: 16.sp,
@@ -155,7 +168,7 @@ class ProductDetailsWidget extends StatelessWidget {
 
   Widget _buildDescription() {
     return Text(
-      "${foodItem.description ?? "des"} ${foodItem.description ?? "des"}",
+      "${_foodItem.description ?? "des"} ${_foodItem.description ?? "des"}",
       style: GoogleFonts.inter(fontSize: 12.sp, color: Color(0xFF838383)),
     );
   }
@@ -189,9 +202,9 @@ class ProductDetailsWidget extends StatelessWidget {
                 value: homePageController.sliderValue,
                 showLabels: true,
                 labelFormatterCallback: (
-                  dynamic actualValue,
-                  String formattedText,
-                ) {
+                    dynamic actualValue,
+                    String formattedText,
+                    ) {
                   return actualValue <= 5 ? 'Mild' : 'Hot';
                 },
                 inactiveColor: Color(0xFFF3F4F6),
@@ -221,10 +234,10 @@ class ProductDetailsWidget extends StatelessWidget {
           child: Consumer<CartController>(
             builder: (context, cartController, child) {
               return CounterButtonsWidget(
-                value: foodItem.quantity ?? 1,
-                onIncrement: () => cartController.incrementItem(foodItem),
+                value: _foodItem.quantity ?? 1,
+                onIncrement: () => cartController.incrementItem(_foodItem),
                 onDecrement:
-                    () => cartController.decrementItem(foodItem, context),
+                    () => cartController.decrementItem(_foodItem, context),
               );
             },
           ),
@@ -236,6 +249,7 @@ class ProductDetailsWidget extends StatelessWidget {
   Widget _buildAddToCartButton() {
     return Consumer<CartController>(
       builder: (context, cartController, child) {
+        bool isInCart = cartController.cartItems.contains(_foodItem);
         return Consumer<HomePageController>(
           builder: (context, homePageController, child) {
             return Center(
@@ -247,9 +261,9 @@ class ProductDetailsWidget extends StatelessWidget {
                 height: 50.h,
                 width: 330.w,
                 onPressed: () {
-                  cartController.addItem(foodItem);
+                  cartController.addItem(_foodItem);
                   homePageController.toggleProductDetails();
-                  homePageController.selectedFoodItem(foodItem);
+                  homePageController.selectedFoodItem(_foodItem);
                 },
               ),
             );
