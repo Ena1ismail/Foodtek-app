@@ -17,7 +17,7 @@ class InputWidget extends StatelessWidget {
   final Color borderColor;
   final double? width;
   final double? fontSize;
-  final double? borderRadius;
+  final BorderRadius? borderRadius;
   final double? height;
   final Color? hintColor;
   final bool? readOnly;
@@ -55,7 +55,7 @@ class InputWidget extends StatelessWidget {
             height: height ?? 60.h,
             width: width ?? 295.w,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(borderRadius ?? 10.sp),
+              borderRadius: borderRadius ?? BorderRadius.circular(10.r),
               color: backgroundColor,
               border: Border.all(
                 color: borderColor,

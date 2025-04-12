@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/controller/cart_controller.dart';
-import 'package:foodtek/view/screens/cart_main_screen.dart';
+import 'package:foodtek/view/screens/cart_screens/cart_main_screen.dart';
 import 'package:foodtek/view/screens/favourite_screen.dart';
 import 'package:foodtek/view/screens/history_screen.dart';
 import 'package:foodtek/view/screens/home_screen.dart';

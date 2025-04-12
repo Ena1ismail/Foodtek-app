@@ -111,21 +111,24 @@ class CartItemWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Image
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(7.r),
-              child: Image.asset(
-                foodItem.imageUrl ?? "assets/images/default.png",
-                height: 65.h,
-                width: 65.w,
-                fit: BoxFit.contain,
+          Flexible(
+            flex: 1,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(7.r),
+                child: Image.asset(
+                  foodItem.imageUrl ?? "assets/images/default.png",
+                  height: 65.h,
+                  width: 65.w,
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
           ),
 
           Expanded(
+            flex: 3,
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 8.h),
               child: Column(
@@ -160,25 +163,24 @@ class CartItemWidget extends StatelessWidget {
               ),
             ),
           ),
-          widget ??
-              SizedBox(
-                width: 120.w,
-                child: Consumer<CartController>(
+          Flexible(
+            flex: 2,
+            child: widget ??
+                Consumer<CartController>(
                   builder: (context, cartController, child) {
                     return CounterButtonsWidget(
                       value: foodItem.quantity ?? 0,
                       color: const Color(0xFFEAF7ED),
                       onIncrement: () => cartController.incrementItem(foodItem),
-                      onDecrement:
-                          () => cartController.decrementItem(foodItem, context),
+                      onDecrement: () => cartController.decrementItem(foodItem, context),
                     );
                   },
                 ),
-              ),
+          ),
 
           SizedBox(width: 8.w),
         ],
-      ),
+      )
     );
   }
 }

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/model/food_item.dart';
+import 'package:foodtek/view/screens/cart_screens/check_out_screen.dart';
 import 'package:foodtek/view/widgets/cart_widgets/check_out_widget.dart';
 import 'package:provider/provider.dart';
-import '../../controller/cart_controller.dart';
-import '../../view/widgets/cart_widgets/cart_item_widget.dart';
-import '../../view/widgets/cart_widgets/empty_widget.dart';
+import '../../../controller/cart_controller.dart';
+import '../../../controller/location_controller.dart';
+import '../../widgets/cart_widgets/cart_item_widget.dart';
+import '../../widgets/cart_widgets/empty_widget.dart';
+import '../set_location_screen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -26,7 +29,8 @@ class CartScreen extends StatelessWidget {
                   if (cartItems.isEmpty) {
                     return EmptyWidget(
                       title: "Cart Empty",
-                      subTitle: "You don’t have added any foods in the cart at this time.",
+                      subTitle:
+                          "You don’t have added any foods in the cart at this time.",
                     );
                   } else {
                     return ListView(
@@ -42,7 +46,27 @@ class CartScreen extends StatelessWidget {
                             },
                           ),
                         ),
-                        CheckOutWidget(),
+                        CheckOutWidget(
+                          onPressed: () {
+                            final locationController = Provider.of<LocationController>(context, listen: false);
+
+                            if (locationController.hasSavedAddresses()) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CheckOutScreen(),
+                                ),
+                              );
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SetLocationScreen(),
+                                ),
+                              );
+                            }
+                          },
+                        ),
                       ],
                     );
                   }

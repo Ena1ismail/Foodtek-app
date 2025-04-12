@@ -8,7 +8,6 @@ import '../view/widgets/custom_button_widget.dart';
 
 class CartController extends ChangeNotifier {
   final List<FoodItem> cartItems = [];
-
   final List<FoodItem> historyOrders = [
     FoodItem(
       imageUrl: "assets/images/recommend1.png",
@@ -37,6 +36,11 @@ class CartController extends ChangeNotifier {
       description: "100 gr chicken + tomato + cheese Lettuce",
     ),
   ];
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController cardNumberController = TextEditingController();
+  TextEditingController expiryController = TextEditingController();
+  TextEditingController cvcController = TextEditingController();
 
 
 
@@ -120,4 +124,7 @@ class CartController extends ChangeNotifier {
       },
     );
   }
+
+
+
 }

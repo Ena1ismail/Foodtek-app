@@ -7,7 +7,8 @@ import '../../../controller/cart_controller.dart';
 import '../custom_button_widget.dart';
 
 class CheckOutWidget extends StatelessWidget {
-  const CheckOutWidget({super.key});
+  VoidCallback? onPressed;
+  CheckOutWidget({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,7 @@ class CheckOutWidget extends StatelessWidget {
                   height: 60.h,
                   titleColor: AppConstants.buttonColor,
                   colors: [Colors.white, Colors.white],
-                  onPressed: () {},
+                  onPressed: onPressed,
                 ),
               ],
             ),

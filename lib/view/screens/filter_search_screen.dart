@@ -97,7 +97,7 @@ class FilterSearchScreen extends StatelessWidget {
             InputWidget(
               textEditingController: filterController.minPriceController,
               obscureText: false,
-              borderRadius: 5.r,
+              borderRadius: BorderRadius.circular(5.r),
               width: 180.w,
               keyboardType: TextInputType.number,
               borderColor: Color(0xFFEAFAEB),
@@ -108,7 +108,7 @@ class FilterSearchScreen extends StatelessWidget {
             InputWidget(
               textEditingController: filterController.maxPriceController,
               obscureText: false,
-              borderRadius: 5.r,
+              borderRadius: BorderRadius.circular(5.r),
               width: 180.w,
               keyboardType: TextInputType.number,
               borderColor: Color(0xFFEAFAEB),
@@ -129,7 +129,7 @@ class FilterSearchScreen extends StatelessWidget {
             InputWidget(
               textEditingController: filterController.minDiscountController,
               obscureText: false,
-              borderRadius: 5.r,
+              borderRadius: BorderRadius.circular(5.r),
               width: 180.w,
               keyboardType: TextInputType.number,
               borderColor: Color(0xFFEAFAEB),
@@ -140,7 +140,7 @@ class FilterSearchScreen extends StatelessWidget {
             InputWidget(
               textEditingController: filterController.maxDiscountController,
               obscureText: false,
-              borderRadius: 5.r,
+              borderRadius: BorderRadius.circular(5.r),
               width: 180.w,
               keyboardType: TextInputType.number,
               borderColor: Color(0xFFEAFAEB),

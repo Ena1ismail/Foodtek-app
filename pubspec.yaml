@@ -47,6 +47,8 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   syncfusion_flutter_sliders: ^29.1.33
   flutter_slidable: ^4.0.0
+  google_maps_flutter: ^2.12.1
+  geocoding: ^3.0.0
 
 
 dev_dependencies:

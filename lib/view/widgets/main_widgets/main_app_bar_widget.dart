@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:foodtek/view/widgets/main_widgets/notification_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../../controller/home_page_controller.dart';
-import 'notification_widget.dart';
 
 class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final TabBar? tabBar;
@@ -19,7 +19,7 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         subtitle: _buildLocationSubtitle(),
       ),
       bottom: tabBar,
-      actions: [_buildNotificationButton(context)],
+      actions: [NotificationButton()],
     );
   }
 
@@ -57,15 +57,7 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
   Widget _buildLocationTitle(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // showModalBottomSheet(
-        //   context: context,
-        //   isScrollControlled: true,
-        //   builder: (BuildContext context) {
-        //     return ChooseLocationWidget();
-        //   },
-        // );
-      },
+      onTap: () {},
       child: Text(
         "Current location",
         style: GoogleFonts.inter(
@@ -86,36 +78,6 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         color: Color(0xFF101010),
       ),
       overflow: TextOverflow.ellipsis,
-    );
-  }
-
-  Widget _buildNotificationButton(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Container(
-        height: 40,
-        width: 40,
-        decoration: BoxDecoration(
-          color: Color(0xFFF5F5F5),
-          borderRadius: BorderRadius.circular(4),
-        ),
-        child: IconButton(
-          onPressed: () {
-            showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (BuildContext context) {
-                return NotificationWidget();
-              },
-            );
-          },
-          icon: Image.asset(
-            "assets/images/notification.png",
-            height: 22,
-            width: 22,
-          ),
-        ),
-      ),
     );
   }
 

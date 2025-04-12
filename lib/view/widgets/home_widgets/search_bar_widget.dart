@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/view/screens/filter_search_screen.dart';
 import 'package:foodtek/view/widgets/input_widget.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,7 @@ class SearchBarWidget extends StatelessWidget {
         children: [
           SizedBox(height: 20),
           InputWidget(
-            borderRadius: 40,
+            borderRadius: BorderRadius.circular(40.r),
             width: 370,
             height: 55,
             borderColor: Color(0xFFD6D6D6),
