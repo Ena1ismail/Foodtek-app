@@ -101,7 +101,7 @@ class _LocationWidgetState extends State<LocationWidget> {
                 child: ListTile(
                   leading: Icon(Icons.location_pin, color: Colors.grey),
                   title: Text("Area"),
-                  subtitle: Text("area name"), // Replace with actual area name
+                  subtitle: Text("area name"), 
                   trailing: TextButton(
                     onPressed: () {
                       Navigator.pop(context);
