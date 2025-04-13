@@ -156,13 +156,12 @@ class LocationController extends ChangeNotifier {
         additionalDirections: additionalController.text,
         location: location,
       );
-      clearControllers(); // Clear fields after saving
+      clearControllers();
     } else {
       throw Exception("All fields must be filled before saving an address.");
     }
   }
 
-  // Clear All Controllers
   void clearControllers() {
     buildingController.clear();
     apartmentNumController.clear();
@@ -170,4 +169,6 @@ class LocationController extends ChangeNotifier {
     streetController.clear();
     additionalController.clear();
   }
+
+
 }

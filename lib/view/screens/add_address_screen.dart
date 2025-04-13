@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
-import 'package:foodtek/view/screens/cart_screens/check_out_screen.dart';
 import 'package:foodtek/view/widgets/custom_button_widget.dart';
 import 'package:foodtek/view/widgets/input_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:foodtek/controller/location_controller.dart';
+import 'package:geocoding/geocoding.dart';
+
+import 'cart_screens/check_out_screen.dart';
 
 class LocationWidget extends StatefulWidget {
   const LocationWidget({super.key});
@@ -17,8 +19,9 @@ class LocationWidget extends StatefulWidget {
 }
 
 class _LocationWidgetState extends State<LocationWidget> {
-  late GoogleMapController _mapController;
   Set<Marker> markers = {};
+  String _areaName = "Unknown Area";
+  LatLng? _selectedLocation;
 
   @override
   void initState() {
@@ -32,6 +35,7 @@ class _LocationWidgetState extends State<LocationWidget> {
 
     if (savedLocation != null) {
       setState(() {
+        _selectedLocation = savedLocation;
         markers.add(
           Marker(
             markerId: MarkerId('saved_location'),
@@ -41,9 +45,7 @@ class _LocationWidgetState extends State<LocationWidget> {
         );
       });
 
-      _moveCameraToPosition(savedLocation);
-    } else {
-      print("No saved location found.");
+      _fetchAreaName(savedLocation.latitude, savedLocation.longitude);
     }
   }
 
@@ -80,12 +82,13 @@ class _LocationWidgetState extends State<LocationWidget> {
                     zoom: 14,
                   ),
                   onMapCreated: (GoogleMapController controller) {
-                    _mapController = controller;
                     final savedLocation =
                         Provider.of<LocationController>(context, listen: false).selectedLocation;
                     if (savedLocation != null) {
-                      _moveCameraToPosition(savedLocation);
                     }
+                  },
+                  onCameraIdle: () {
+                    _fetchAreaNameFromMap();
                   },
                 ),
               ),
@@ -101,7 +104,7 @@ class _LocationWidgetState extends State<LocationWidget> {
                 child: ListTile(
                   leading: Icon(Icons.location_pin, color: Colors.grey),
                   title: Text("Area"),
-                  subtitle: Text("area name"), 
+                  subtitle: Text(_areaName),
                   trailing: TextButton(
                     onPressed: () {
                       Navigator.pop(context);
@@ -137,6 +140,7 @@ class _LocationWidgetState extends State<LocationWidget> {
                     hintText: "Apt. number",
                     label: "Apt. number",
                     width: 180.w,
+                    keyboardType: TextInputType.number,
                   ),
                   SizedBox(width: 20.w),
                   InputWidget(
@@ -147,6 +151,7 @@ class _LocationWidgetState extends State<LocationWidget> {
                     hintText: "Floor",
                     label: "Floor",
                     width: 180.w,
+                    keyboardType: TextInputType.number,
                   ),
                 ],
               ),
@@ -190,7 +195,7 @@ class _LocationWidgetState extends State<LocationWidget> {
                           backgroundColor: Colors.white,
                           content: Text(
                             textAlign: TextAlign.center,
-                            "Please fill in all the required fields",
+                            "Please fill in all the fields",
                             style: GoogleFonts.inter(
                               fontSize: 14.sp,
                               color: Colors.black54,
@@ -217,57 +222,19 @@ class _LocationWidgetState extends State<LocationWidget> {
                       },
                     );
                   } else {
-                    final selectedLocation =
-                        Provider.of<LocationController>(context, listen: false).selectedLocation;
-
-                    if (selectedLocation == null) {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            backgroundColor: Colors.white,
-                            content: Text(
-                              "Please select a location on the map.",
-                              style: GoogleFonts.inter(
-                                fontSize: 14.sp,
-                                color: Colors.black54,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            actions: [
-                              CustomButtonWidget(
-                                title: "Ok",
-                                colors: [
-                                  AppConstants.buttonColor,
-                                  AppConstants.buttonColor,
-                                ],
-                                height: 60.h,
-                                borderRadius: 12.r,
-                                titleColor: Colors.white,
-                                width: 300.w,
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    } else {
-                      locationController.addAddress(
-                        areaName: "areaName",
-                        buildingName: locationController.buildingController.text,
-                        apartmentNumber: locationController.apartmentNumController.text,
-                        floor: locationController.floorController.text,
-                        street: locationController.streetController.text,
-                        additionalDirections: locationController.additionalController.text,
-                        location: selectedLocation,
-                      );
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => CheckOutScreen()),
-                      );
-                    }
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => CheckOutScreen()),
+                    );
+                    locationController.addAddress(
+                      areaName: _areaName,
+                      buildingName: locationController.buildingController.text,
+                      apartmentNumber: locationController.apartmentNumController.text,
+                      floor: locationController.floorController.text,
+                      street: locationController.streetController.text,
+                      additionalDirections: locationController.additionalController.text,
+                      location: _selectedLocation ?? LatLng(0, 0),
+                    );
                   }
                 },
               ),
@@ -278,9 +245,30 @@ class _LocationWidgetState extends State<LocationWidget> {
     );
   }
 
-  Future<void> _moveCameraToPosition(LatLng position) async {
-    await _mapController.animateCamera(
-      CameraUpdate.newLatLngZoom(position, 14),
-    );
+  // Fetch the area name using reverse geocoding
+  Future<void> _fetchAreaName(double latitude, double longitude) async {
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
+      if (placemarks.isNotEmpty) {
+        final placemark = placemarks.first;
+        setState(() {
+          _areaName = "${placemark.locality ?? ''}, ${placemark.administrativeArea ?? ''}";
+        });
+      } else {
+        setState(() {
+          _areaName = "Unknown Area";
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _areaName = "Error fetching area";
+      });
+    }
+  }
+
+  // Fetch the area name from the map's visible region
+  void _fetchAreaNameFromMap() {
+    final visibleRegionCenter = _selectedLocation ?? LatLng(31.985934703432616, 35.900362288558114);
+    _fetchAreaName(visibleRegionCenter.latitude, visibleRegionCenter.longitude);
   }
 }

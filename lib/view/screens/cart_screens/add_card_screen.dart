@@ -146,9 +146,9 @@ class AddCardScreen extends StatelessWidget {
           backgroundColor: Colors.white,
           borderColor: const Color(0xFFEDF1F3),
           borderRadius: BorderRadius.circular(10.r),
-          hintText: "00/00",
+          hintText: "MM/YY",
           width: 175.w,
-          keyboardType: TextInputType.number,
+          keyboardType: TextInputType.text,
         ),
       ],
     );
@@ -197,51 +197,114 @@ class AddCardScreen extends StatelessWidget {
 
   Widget _buildPayButton(BuildContext context) {
     return Center(
-      child: Consumer<CartController>(builder: (context, cartController, child) {
-        return CustomButtonWidget(
-          title: "Pay for the order",
-          colors: [AppConstants.buttonColor, AppConstants.buttonColor],
-          titleColor: Colors.white,
-          borderRadius: 16.r,
-          width: 330.w,
-          height: 60.h,
-          onPressed: () {
-            if(cartController.nameController.text.isEmpty || cartController.cardNumberController.text.isEmpty || cartController.cvcController.text.isEmpty || cartController.expiryController.text.isEmpty){
-              showDialog(context: context, builder: (context) {
-                return AlertDialog(
-                  backgroundColor: Colors.white,
-                  content: Text(
-                    "Please fill in all the fields",
-                    style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      color: Colors.black54,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  actions: [
-                    CustomButtonWidget(
-                      title: "Ok",
-                      colors: [
-                        AppConstants.buttonColor,
-                        AppConstants.buttonColor,
-                      ],
-                      height: 60.h,
-                      borderRadius: 12.r,
-                      titleColor: Colors.white,
-                      width: 300.w,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ],
-                );
-              },);
-            }else {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => CheckOutSuccessfullyScreen(),));
-            }
-          },
+      child: Consumer<CartController>(
+        builder: (context, cartController, child) {
+          return CustomButtonWidget(
+            title: "Pay for the order",
+            colors: [AppConstants.buttonColor, AppConstants.buttonColor],
+            titleColor: Colors.white,
+            borderRadius: 16.r,
+            width: 330.w,
+            height: 60.h,
+            onPressed: () {
+              final cardNumber = cartController.cardNumberController.text.trim();
+              final expiryDate = cartController.expiryController.text.trim();
+              final cvc = cartController.cvcController.text.trim();
+
+              if (cartController.nameController.text.isEmpty ||
+                  cardNumber.isEmpty ||
+                  expiryDate.isEmpty ||
+                  cvc.isEmpty) {
+                _showErrorDialog(context, "Please fill in all the fields");
+                return;
+              }
+
+              if (!_isValidCardNumber(cardNumber)) {
+                _showErrorDialog(context, "Invalid card number");
+                return;
+              }
+
+              if (!_isValidExpiryDate(expiryDate)) {
+                _showErrorDialog(context, "Invalid expiry date");
+                return;
+              }
+
+              if (!_isValidCvc(cvc)) {
+                _showErrorDialog(context, "Invalid CVC");
+                return;
+              }
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CheckOutSuccessfullyScreen(),
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+
+  bool _isValidCardNumber(String cardNumber) {
+    final regex = RegExp(r'^\d{16}$');
+    return regex.hasMatch(cardNumber);
+  }
+
+  bool _isValidExpiryDate(String expiryDate) {
+    final regex = RegExp(r'^(0[1-9]|1[0-2])\/([0-9]{2})$');
+    if (!regex.hasMatch(expiryDate)) {
+      return false;
+    }
+
+    final parts = expiryDate.split('/');
+    final month = int.parse(parts[0]);
+    final year = int.parse('20${parts[1]}');
+
+    final now = DateTime.now();
+    final expiry = DateTime(year, month);
+
+    return expiry.isAfter(now);
+  }
+
+  bool _isValidCvc(String cvc) {
+    final regex = RegExp(r'^\d{3,4}$');
+    return regex.hasMatch(cvc);
+  }
+
+  void _showErrorDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          content: Text(
+            message,
+            style: GoogleFonts.inter(
+              fontSize: 14.sp,
+              color: Colors.black54,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          actions: [
+            CustomButtonWidget(
+              title: "Ok",
+              colors: [
+                AppConstants.buttonColor,
+                AppConstants.buttonColor,
+              ],
+              height: 60.h,
+              borderRadius: 12.r,
+              titleColor: Colors.white,
+              width: 300.w,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
         );
-      },)
+      },
     );
   }
 }

@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/controller/location_controller.dart';
-import 'package:foodtek/view/screens/cart_screens/add_card_screen.dart';
-import 'package:foodtek/view/screens/cart_screens/check_out_successfully_screen.dart';
 import 'package:foodtek/view/widgets/cart_widgets/check_out_widget.dart';
 import 'package:foodtek/view/widgets/input_widget.dart';
 import 'package:foodtek/view/widgets/main_widgets/notification_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import '../../../controller/check_out_controller.dart';
 
 class CheckOutScreen extends StatefulWidget {
   const CheckOutScreen({super.key});
@@ -19,11 +18,17 @@ class CheckOutScreen extends StatefulWidget {
 
 class _CheckOutScreenState extends State<CheckOutScreen> {
   final TextEditingController _promoController = TextEditingController();
-  String _selectedPaymentMethod = 'Card';
-  String _selectedCardMethod = 'Visa';
+
+  @override
+  void dispose() {
+    _promoController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final checkOutController = Provider.of<CheckOutController>(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -43,7 +48,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               SizedBox(height: 12.h),
               Consumer<LocationController>(
                 builder: (context, locationController, child) {
-                  // Get the last two saved addresses
                   final savedAddresses = locationController.savedAddresses;
                   final lastTwoAddresses =
                   savedAddresses.length > 2 ? savedAddresses.sublist(savedAddresses.length - 2) : savedAddresses;
@@ -54,31 +58,22 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                         for (int i = 0; i < lastTwoAddresses.length; i++)
                           Column(
                             children: [
-                              _buildLocationTile(
+                              _buildLocationTileWithConditionalChangeButton(
                                 leadingIcon: i == 0 ? "assets/images/maps_a.png" : "assets/images/maps_b.png",
                                 title: lastTwoAddresses[i].street,
-                                subtitle: "${lastTwoAddresses[i].buildingName}, ${lastTwoAddresses[i].apartmentNumber}",
+                                subtitle:
+                                "${lastTwoAddresses[i].buildingName}, ${lastTwoAddresses[i].apartmentNumber}",
+                                onChangePressed: () {
+                                  print("Change button pressed for address: ${lastTwoAddresses[i].street}");
+                                },
+                                showChangeButton: lastTwoAddresses.length == 1
+                                    ? i == 0
+                                    : i == 1,
                               ),
                               SizedBox(height: 8.h),
                             ],
                           ),
-                      if (lastTwoAddresses.isEmpty)
-                        _buildText("No saved locations found.", 14, FontWeight.w500, Colors.red),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            onPressed: () {},
-                            child: _buildText(
-                              "Change",
-                              14,
-                              FontWeight.w600,
-                              AppConstants.buttonColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                      ],
                   );
                 },
               ),
@@ -118,7 +113,9 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                         ),
                       ),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          checkOutController.setPromoCode(_promoController.text);
+                        },
                         child: _buildText(
                           "Add",
                           12,
@@ -136,16 +133,16 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               Row(
                 children: [
                   _buildRadioButton(
-                    value: 'Card',
-                    groupValue: _selectedPaymentMethod,
-                    onChanged: (value) => setState(() => _selectedPaymentMethod = value ?? 'Card'),
+                    value: 'card',
+                    groupValue: checkOutController.selectedPaymentMethod,
+                    onChanged: (value) => checkOutController.setSelectedPaymentMethod(value ?? 'Card'),
                     label: "Card",
                   ),
                   SizedBox(width: 20.w),
                   _buildRadioButton(
-                    value: 'Cash',
-                    groupValue: _selectedPaymentMethod,
-                    onChanged: (value) => setState(() => _selectedPaymentMethod = value ?? 'Cash'),
+                    value: 'cash',
+                    groupValue: checkOutController.selectedPaymentMethod,
+                    onChanged: (value) => checkOutController.setSelectedPaymentMethod(value ?? 'Cash'),
                     label: "Cash",
                   ),
                 ],
@@ -157,8 +154,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 children: [
                   _buildRadioButton(
                     value: 'Visa',
-                    groupValue: _selectedCardMethod,
-                    onChanged: (value) => setState(() => _selectedCardMethod = value ?? 'Visa'),
+                    groupValue: checkOutController.selectedCardType,
+                    onChanged: (value) => checkOutController.setSelectedCardType(value ?? 'Visa'),
                     icon: Image.asset(
                       "assets/images/Visa.png",
                       height: 17.h,
@@ -168,8 +165,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   SizedBox(width: 20.w),
                   _buildRadioButton(
                     value: 'Master',
-                    groupValue: _selectedCardMethod,
-                    onChanged: (value) => setState(() => _selectedCardMethod = value ?? 'Master'),
+                    groupValue: checkOutController.selectedCardType,
+                    onChanged: (value) => checkOutController.setSelectedCardType(value ?? 'Master'),
                     icon: Image.asset(
                       "assets/images/Mastercard.png",
                       height: 17.h,
@@ -181,12 +178,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               SizedBox(height: 10.h),
               CheckOutWidget(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AddCardScreen(),
-                    ),
-                  );
+                  checkOutController.navigateToNextScreen(context);
                 },
               ),
             ],
@@ -234,10 +226,12 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     );
   }
 
-  Widget _buildLocationTile({
+  Widget _buildLocationTileWithConditionalChangeButton({
     required String leadingIcon,
     required String title,
     required String subtitle,
+    required VoidCallback onChangePressed,
+    required bool showChangeButton,
   }) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
@@ -249,6 +243,17 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
         FontWeight.w600,
         const Color(0xFFBBBBBB),
       ),
+      trailing: showChangeButton
+          ? TextButton(
+        onPressed: onChangePressed,
+        child: _buildText(
+          "Change",
+          14,
+          FontWeight.w600,
+          AppConstants.buttonColor,
+        ),
+      )
+          : null,
     );
   }
 }

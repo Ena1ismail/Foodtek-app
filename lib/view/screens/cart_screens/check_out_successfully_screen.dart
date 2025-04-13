@@ -68,7 +68,11 @@ class CheckOutSuccessfullyScreen extends StatelessWidget {
                 colors: [AppConstants.buttonColor, AppConstants.buttonColor],
                 titleColor: Colors.white,
                 onPressed: () {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainScreen(),));
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainScreen()),
+                        (route) => false,
+                  );
                 },
                 borderRadius: 16.r,
                 height: 60.h,
