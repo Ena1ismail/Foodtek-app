@@ -95,11 +95,6 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
-  /// No description provided for @welcome.
-  ///
-  /// In en, this message translates to:
-  /// **'welcome'**
-  String get welcome;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
