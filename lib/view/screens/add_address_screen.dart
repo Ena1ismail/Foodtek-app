@@ -31,7 +31,10 @@ class _LocationWidgetState extends State<LocationWidget> {
 
   void _loadSavedLocation() {
     final savedLocation =
-        Provider.of<LocationController>(context, listen: false).selectedLocation;
+        Provider.of<LocationController>(
+          context,
+          listen: false,
+        ).selectedLocation;
 
     if (savedLocation != null) {
       setState(() {
@@ -83,9 +86,11 @@ class _LocationWidgetState extends State<LocationWidget> {
                   ),
                   onMapCreated: (GoogleMapController controller) {
                     final savedLocation =
-                        Provider.of<LocationController>(context, listen: false).selectedLocation;
-                    if (savedLocation != null) {
-                    }
+                        Provider.of<LocationController>(
+                          context,
+                          listen: false,
+                        ).selectedLocation;
+                    if (savedLocation != null) {}
                   },
                   onCameraIdle: () {
                     _fetchAreaNameFromMap();
@@ -130,30 +135,34 @@ class _LocationWidgetState extends State<LocationWidget> {
                 width: double.infinity,
               ),
               SizedBox(height: 20.h),
-              Row(
-                children: [
-                  InputWidget(
-                    textEditingController: locationController.apartmentNumController,
-                    obscureText: false,
-                    backgroundColor: Colors.white,
-                    borderColor: Colors.black12,
-                    hintText: "Apt. number",
-                    label: "Apt. number",
-                    width: 180.w,
-                    keyboardType: TextInputType.number,
-                  ),
-                  SizedBox(width: 20.w),
-                  InputWidget(
-                    textEditingController: locationController.floorController,
-                    obscureText: false,
-                    backgroundColor: Colors.white,
-                    borderColor: Colors.black12,
-                    hintText: "Floor",
-                    label: "Floor",
-                    width: 180.w,
-                    keyboardType: TextInputType.number,
-                  ),
-                ],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    InputWidget(
+                      textEditingController:
+                          locationController.apartmentNumController,
+                      obscureText: false,
+                      backgroundColor: Colors.white,
+                      borderColor: Colors.black12,
+                      hintText: "Apt. number",
+                      label: "Apt. number",
+                      width: 180.w,
+                      keyboardType: TextInputType.number,
+                    ),
+                    SizedBox(width: 20.w),
+                    InputWidget(
+                      textEditingController: locationController.floorController,
+                      obscureText: false,
+                      backgroundColor: Colors.white,
+                      borderColor: Colors.black12,
+                      hintText: "Floor",
+                      label: "Floor",
+                      width: 180.w,
+                      keyboardType: TextInputType.number,
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 20.h),
               InputWidget(
@@ -229,10 +238,12 @@ class _LocationWidgetState extends State<LocationWidget> {
                     locationController.addAddress(
                       areaName: _areaName,
                       buildingName: locationController.buildingController.text,
-                      apartmentNumber: locationController.apartmentNumController.text,
+                      apartmentNumber:
+                          locationController.apartmentNumController.text,
                       floor: locationController.floorController.text,
                       street: locationController.streetController.text,
-                      additionalDirections: locationController.additionalController.text,
+                      additionalDirections:
+                          locationController.additionalController.text,
                       location: _selectedLocation ?? LatLng(0, 0),
                     );
                   }
@@ -245,14 +256,17 @@ class _LocationWidgetState extends State<LocationWidget> {
     );
   }
 
-  // Fetch the area name using reverse geocoding
   Future<void> _fetchAreaName(double latitude, double longitude) async {
     try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        latitude,
+        longitude,
+      );
       if (placemarks.isNotEmpty) {
         final placemark = placemarks.first;
         setState(() {
-          _areaName = "${placemark.locality ?? ''}, ${placemark.administrativeArea ?? ''}";
+          _areaName =
+              "${placemark.locality ?? ''}, ${placemark.administrativeArea ?? ''}";
         });
       } else {
         setState(() {
@@ -266,9 +280,9 @@ class _LocationWidgetState extends State<LocationWidget> {
     }
   }
 
-  // Fetch the area name from the map's visible region
   void _fetchAreaNameFromMap() {
-    final visibleRegionCenter = _selectedLocation ?? LatLng(31.985934703432616, 35.900362288558114);
+    final visibleRegionCenter =
+        _selectedLocation ?? LatLng(31.985934703432616, 35.900362288558114);
     _fetchAreaName(visibleRegionCenter.latitude, visibleRegionCenter.longitude);
   }
 }

@@ -49,6 +49,8 @@ dependencies:
   flutter_slidable: ^4.0.0
   google_maps_flutter: ^2.12.1
   geocoding: ^3.0.0
+  flutter_polyline_points: ^2.0.0
+
 
 
 dev_dependencies:

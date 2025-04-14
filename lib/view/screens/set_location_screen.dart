@@ -30,7 +30,10 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
         _selectedLocation = LatLng(position.latitude, position.longitude);
       });
       _moveCameraToPosition(LatLng(position.latitude, position.longitude));
-      _fetchLocationName(position.latitude, position.longitude); // Fetch location name
+      _fetchLocationName(
+        position.latitude,
+        position.longitude,
+      ); // Fetch location name
     });
   }
 
@@ -39,6 +42,7 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
     return Scaffold(
       body: Stack(
         children: [
+
           GoogleMap(
             myLocationButtonEnabled: true,
             myLocationEnabled: true,
@@ -53,7 +57,10 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
               setState(() {
                 _selectedLocation = position.target;
               });
-              _fetchLocationName(position.target.latitude, position.target.longitude); // Update location name
+              _fetchLocationName(
+                position.target.latitude,
+                position.target.longitude,
+              ); // Update location name
             },
           ),
 
@@ -123,21 +130,22 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
                         height: 60.h,
                         width: 300.w,
                         child: ElevatedButton(
-                          onPressed: _selectedLocation == null
-                              ? null
-                              : () {
-                            Provider.of<LocationController>(
-                              context,
-                              listen: false,
-                            ).setSelectedLocation(_selectedLocation!);
+                          onPressed:
+                              _selectedLocation == null
+                                  ? null
+                                  : () {
+                                    Provider.of<LocationController>(
+                                      context,
+                                      listen: false,
+                                    ).setSelectedLocation(_selectedLocation!);
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LocationWidget(),
-                              ),
-                            );
-                          },
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => LocationWidget(),
+                                      ),
+                                    );
+                                  },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppConstants.buttonColor,
                             shape: RoundedRectangleBorder(
@@ -158,6 +166,16 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
                   ],
                 ),
               ),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: IconButton(onPressed: () {
+                Navigator.pop(context);
+              }, icon: Icon(Icons.arrow_back)),
             ),
           ),
         ],
@@ -199,12 +217,15 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
 
   Future<void> _fetchLocationName(double latitude, double longitude) async {
     try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        latitude,
+        longitude,
+      );
       if (placemarks.isNotEmpty) {
         final placemark = placemarks.first;
         setState(() {
           _locationName =
-          "${placemark.name ?? ''}, ${placemark.locality ?? ''}, ${placemark.administrativeArea ?? ''}";
+              "${placemark.name ?? ''}, ${placemark.locality ?? ''}, ${placemark.administrativeArea ?? ''}";
         });
       } else {
         setState(() {

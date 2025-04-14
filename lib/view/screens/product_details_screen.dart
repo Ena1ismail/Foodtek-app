@@ -202,9 +202,9 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                 value: homePageController.sliderValue,
                 showLabels: true,
                 labelFormatterCallback: (
-                    dynamic actualValue,
-                    String formattedText,
-                    ) {
+                  dynamic actualValue,
+                  String formattedText,
+                ) {
                   return actualValue <= 5 ? 'Mild' : 'Hot';
                 },
                 inactiveColor: Color(0xFFF3F4F6),
@@ -249,19 +249,31 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
   Widget _buildAddToCartButton() {
     return Consumer<CartController>(
       builder: (context, cartController, child) {
-        bool isInCart = cartController.cartItems.contains(_foodItem);
+        bool isInCart = cartController.cartItems.any(
+          (item) => item.id == _foodItem.id,
+        );
         return Consumer<HomePageController>(
           builder: (context, homePageController, child) {
             return Center(
               child: CustomButtonWidget(
-                title: "Add To Cart",
+                title: isInCart ? "Update Cart" : "Add To Cart",
                 colors: [AppConstants.buttonColor, AppConstants.buttonColor],
                 borderRadius: 12.r,
                 titleColor: Colors.white,
                 height: 50.h,
                 width: 330.w,
                 onPressed: () {
-                  cartController.addItem(_foodItem);
+                  if (isInCart) {
+                    final existingItem = cartController.cartItems.firstWhere(
+                      (item) => item.id == _foodItem.id,
+                    );
+                    existingItem.quantity =
+                        (existingItem.quantity ?? 0) +
+                        (_foodItem.quantity ?? 1);
+                    cartController.notifyListeners();
+                  } else {
+                    cartController.addItem(_foodItem);
+                  }
                   homePageController.toggleProductDetails();
                   homePageController.selectedFoodItem(_foodItem);
                 },
