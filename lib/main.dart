@@ -11,8 +11,9 @@ import 'package:foodtek/view/screens/onboarding_screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'controller/lang_controller.dart';
 import 'controller/onboarding_controller.dart';
-import 'l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'l10n/app_localizations.dart';
 
 
 void main() {
