@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => FilterController()),
           ChangeNotifierProvider(create: (context) => CartController()),
           ChangeNotifierProvider(create: (context) => CheckOutController()),
+          ChangeNotifierProvider(create: (context) => LangController()),
         ],
         child: Consumer<LangController>(
           builder: (context, langController, child) {
