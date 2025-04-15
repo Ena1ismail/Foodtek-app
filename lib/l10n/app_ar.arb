@@ -82,8 +82,11 @@
   "load_more": "تحميل المزيد..",
   "reorder": "أعد الطلب",
 
-
-
+  "Change": "تغيير",
+  "add": "اضافه",
+  "aleksandr_v": "الكسندر في",
+"loc": "\"123 شارع المدينة، العبدلي، عمان، الأردن\"",
+  "enter_your_promo": "أدخل العرض الترويجي الخاص بك",
   "your_location": "موقعك",
   "set_location": "تعيين الموقع",
   "checkout": "الدفع",
@@ -103,9 +106,12 @@
   "you_will_get_your_order_within_12min": "ستتلقى طلبك خلال 12 دقيقة",
   "thanks_for_using_our_services": "شكراً لاستخدام خدماتنا",
   "track_your_order": "تتبع طلبك",
-
-
-
+"ahmad_daboor": "احمد الدبور",
+  "no_points_found_in_polyline_result": "لم يتم العثور على نقاط في نتيجة الخطوط المتعددة",
+  "location_services_are_disabled": " تم تعطيل خدمات الموقع.",
+  "location_permissions_are_denied": "تم رفض أذونات الموقع",
+ " location_permissions": "تم رفض أذونات الموقع بشكل دائم، ولا يمكننا طلب الأذونات.",
+  "order_id": "رقم الطلب",
   "chat": "الدردشة",
   "write_your_message": "اكتب رسالتك",
   "your_delivery_hero": "رجل التوصيل الخاص بك",

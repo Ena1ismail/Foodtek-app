@@ -31,7 +31,7 @@ class _AlexanderState extends State<Alexander> {
           subtitle: Row(
             children: [
               Text(
-                'Aleksandr V.',
+                AppLocalizations.of(context)!.aleksandr_v,
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
@@ -111,7 +111,7 @@ class _AlexanderState extends State<Alexander> {
               children: [
                 Icon(Icons.location_on_outlined, color: Color(0xff4CAF50)),
                 Text(
-                  "123 Al-Madina Street, Abdali, Amman, Jordan",
+                  AppLocalizations.of(context)!. loc,
                   style: TextStyle(
                     fontSize: 12,
                     color: Color(0xff6C7278),

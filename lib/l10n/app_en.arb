@@ -81,9 +81,10 @@
   "history_empty_prompt": "You don’t have order any foods before",
   "load_more": "Load More..",
   "reorder": "Reorder",
-
-
-
+"add": "Add",
+  "aleksandr_v": "Aleksandr V.",
+"change": "Change",
+  "enter_your_promo": "Enter Your Promo",
   "your_location": "your location",
   "set_location": "Set Location",
   "checkout": "Checkout",
@@ -104,10 +105,15 @@
   "thanks_for_using_our_services": "thanks for using our services",
   "track_your_order": "track Your Order",
   "password": "Password",
+  "loc":"123 Al-Madina Street, Abdali, Amman, Jordan",
+  "order_id":" Order ID",
+  "ahmad_daboor":"Ahmad Daboor",
+  "no_points_found_in_polyline_result": "No points found in polyline result",
+  "location_services_are_disabled":"Location services are disabled.",
+  "location_permissions_are_denied":"Location permissions are denied",
+  "location_permissions": "Location permissions are permanently denied, we cannot request permissions.",
 
-
-
-  "chat": "Chat",
+  "chat":"Chat",
   "write_your_message": "Write your message",
   "your_delivery_hero": "Your Delivery Hero",
   "order_details": "order Details",

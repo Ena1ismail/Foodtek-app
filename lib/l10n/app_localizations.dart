@@ -383,6 +383,18 @@ abstract class AppLocalizations {
   /// **'Price Range'**
   String get price_range;
   String get  password;
+  String get  enter_your_promo;
+  String get change;
+  String get add;
+  String get  aleksandr_v;
+  String get loc;
+  String get order_id;
+  String get ahmad_daboor;
+  String get no_points_found_in_polyline_result;
+  String get location_services_are_disabled;
+  String get location_permissions_are_denied;
+  String get location_permissions;
+
 
   /// No description provided for @min.
   ///

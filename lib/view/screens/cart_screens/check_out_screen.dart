@@ -45,7 +45,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               _buildText(AppLocalizations.of(context)!.checkout, 20, FontWeight.w600, Colors.black),
               SizedBox(height: 18.h),
 
-              _buildText("Location", 18, FontWeight.w600, Colors.black),
+              _buildText(AppLocalizations.of(context)!.location, 18, FontWeight.w600, Colors.black),
               SizedBox(height: 12.h),
               Consumer<LocationController>(
                 builder: (context, locationController, child) {
@@ -89,7 +89,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     child: InputWidget(
                       textEditingController: _promoController,
                       obscureText: false,
-                      hintText: "Enter Your Promo",
+                      hintText:AppLocalizations.of(context)!. enter_your_promo,
                       hintColor: const Color(0xFF878787),
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10.r),
@@ -118,7 +118,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                           checkOutController.setPromoCode(_promoController.text);
                         },
                         child: _buildText(
-                          "Add",
+                          AppLocalizations.of(context)!.add,
                           12,
                           FontWeight.w500,
                           Colors.white,
@@ -248,7 +248,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           ? TextButton(
         onPressed: onChangePressed,
         child: _buildText(
-          "Change",
+          AppLocalizations.of(context)!.change,
           14,
           FontWeight.w600,
           AppConstants.buttonColor,

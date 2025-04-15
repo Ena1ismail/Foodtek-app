@@ -197,20 +197,20 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
+      return Future.error(AppLocalizations.of(context)!.location_services_are_disabled);
     }
 
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
+        return Future.error(AppLocalizations.of(context)!.location_permissions_are_denied);
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
       return Future.error(
-        'Location permissions are permanently denied, we cannot request permissions.',
+        AppLocalizations.of(context)!. location_permissions,
       );
     }
 

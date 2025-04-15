@@ -86,6 +86,45 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get password=>'Password';
 
+
+  @override
+  String get  enter_your_promo=>'Enter Your Promo';
+
+
+  @override
+  String get  change=>'Change' ;
+
+  @override
+  String get  aleksandr_v=>'"Aleksandr V."';
+
+  @override
+  String get loc =>'123 Al-Madina Street, Abdali, Amman, Jordan';
+
+  @override
+  String get  order_id=>'Order ID';
+
+
+  @override
+  String get ahmad_daboor=> 'Ahmad Daboor';
+
+
+  @override
+  String get location_permissions=>'Location permissions are permanently denied, we cannot request permissions.';
+
+
+  @override
+  String get  location_permissions_are_denied=>'Location permissions are denied';
+
+  @override
+  String get location_services_are_disabled =>'Location services are disabled.';
+
+
+  @override
+  String get no_points_found_in_polyline_result=> 'No points found in polyline result';
+
+  @override
+  String get add=>'Add';
+
   @override
   String get confirm_password => 'Confirm New Password';
 

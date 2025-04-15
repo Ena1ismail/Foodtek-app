@@ -46,7 +46,7 @@ class _ProfState extends State<Prof> {
                   ),
                   SizedBox(height: 7.h),
                   Text(
-                    'Ahmad Daboor',
+                    AppLocalizations.of(context)!.ahmad_daboor,
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

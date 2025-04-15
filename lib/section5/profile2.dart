@@ -45,7 +45,7 @@ class _ProfileState extends State<Profile> {
               ),
               SizedBox(height: 8.h),
               Text(
-                'Ahmad Daboor',
+                  AppLocalizations.of(context)!.ahmad_daboor,
                 style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
               ),
               Text('ahmad1709@gmail.com', style: TextStyle(color: Colors.grey)),

@@ -15,11 +15,47 @@ class AppLocalizationsAr extends AppLocalizations {
   String get onboarding_subtitle1 => 'استمتع بتوصيل طعام سريع وسلس إلى باب منزلك';
 
   @override
+  String get  change=>'تغيير' ;
+
+
+  @override
+  String get  aleksandr_v=>'الكسندر في';
+
+  @override
+  String get loc=> "123 شارع المدينة، العبدلي، عمان، الأردن";
+
+
+  @override
+  String get  order_id=>'رقم الطلب';
+
+
+  @override
+  String get location_permissions=>'تم رفض أذونات الموقع بشكل دائم، ولا يمكننا طلب الأذونات.';
+
+
+  @override
+  String get  location_permissions_are_denied=> 'تم رفض أذونات الموقع';
+
+  @override
+  String get location_services_are_disabled =>' تم تعطيل خدمات الموقع.';
+
+  @override
+  String get no_points_found_in_polyline_result=>'لم يتم العثور على نقاط في نتيجة الخطوط المتعددة';
+
+  @override
+  String get ahmad_daboor=>'احمد الدبور';
+
+  @override
+  String get add=>'اضافه';
+
+  @override
   String get onboarding_title2 => 'احصل على التوصيل في الوقت المحدد';
 
   @override
   String get onboarding_subtitle2 => 'اطلب طعامك المفضل في راحة يدك ومنطقة راحتك';
 
+  @override
+  String get  enter_your_promo=>'أدخل العرض الترويجي الخاص بك';
 
   @override
   String get password=>'كلمة مرور';

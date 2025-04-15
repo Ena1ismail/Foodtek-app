@@ -42,7 +42,7 @@ class _TrackPageState extends State<TrackPage> {
         );
       }
     } else {
-      print('No points found in polyline result');
+      print(AppLocalizations.of(context)!.no_points_found_in_polyline_result);
     }
     setState(() {});
   }
@@ -62,7 +62,7 @@ class _TrackPageState extends State<TrackPage> {
         polyLineCoordinatesToHome.add(LatLng(point.latitude, point.longitude));
       }
     } else {
-      print('No points found in polyline result');
+      print(AppLocalizations.of(context)!.no_points_found_in_polyline_result);
     }
     setState(() {});
   }
