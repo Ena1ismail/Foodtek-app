@@ -8,6 +8,8 @@ import 'package:foodtek/view/screens/product_details_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../../l10n/app_localizations.dart';
+
 class FoodItemWidget extends StatelessWidget {
   final FoodItem foodItem;
 
@@ -158,7 +160,7 @@ class FoodItemWidget extends StatelessWidget {
                 child: CustomButtonWidget(
                   width: 95.w,
                   height: 35.h,
-                  title: "Order now",
+                  title: AppLocalizations.of(context)!.order_now,
                   colors: [AppConstants.buttonColor, AppConstants.buttonColor],
                   borderRadius: 25.r,
                   style: GoogleFonts.sora(

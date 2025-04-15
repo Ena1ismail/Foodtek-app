@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/controller/cart_controller.dart';
+import 'package:foodtek/l10n/app_localizations.dart';
 import 'package:foodtek/model/food_item.dart';
 import 'package:foodtek/view/widgets/home_widgets/counter_buttons_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -52,7 +53,7 @@ class CartItemWidget extends StatelessWidget {
                         backgroundColor: Colors.white,
                         content: Text(
                           textAlign: TextAlign.center,
-                          "Are you sure you want to remove it from Carts?",
+                          AppLocalizations.of(context)!.remove_from_cart,
                           style: GoogleFonts.inter(
                             fontSize: 14.sp,
                             color: Colors.black54,
@@ -61,7 +62,7 @@ class CartItemWidget extends StatelessWidget {
                         ),
                         actions: [
                           CustomButtonWidget(
-                            title: "Yes",
+                            title: AppLocalizations.of(context)!.yes,
                             colors: [
                               AppConstants.buttonColor,
                               AppConstants.buttonColor,

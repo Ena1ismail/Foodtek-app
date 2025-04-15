@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:foodtek/l10n/app_localizations.dart';
 
 import '../view/screens/cart_screens/add_card_screen.dart';
 import '../view/screens/cart_screens/check_out_successfully_screen.dart';
 
 class CheckOutController with ChangeNotifier {
-  String selectedPaymentMethod = "card";
+  String? selectedPaymentMethod;
+  String? selectedCardType;
+
+  String promoCode = "";
+
+  String getSelectedPaymentMethod(BuildContext context) {
+    return selectedPaymentMethod ?? AppLocalizations.of(context)!.card;
+  }
+
+  String getSelectedCardType(BuildContext context) {
+    return selectedCardType ?? AppLocalizations.of(context)!.visa;
+  }
 
   void setSelectedPaymentMethod(String method) {
     selectedPaymentMethod = method;
     notifyListeners();
   }
 
-  String selectedCardType = "Visa";
-
   void setSelectedCardType(String type) {
     selectedCardType = type;
     notifyListeners();
   }
-
-  String promoCode = "";
 
   void setPromoCode(String code) {
     promoCode = code;
@@ -26,7 +34,7 @@ class CheckOutController with ChangeNotifier {
   }
 
   void navigateToNextScreen(BuildContext context) {
-    if (selectedPaymentMethod == "cash") {
+    if (selectedPaymentMethod == AppLocalizations.of(context)!.cash) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => CheckOutSuccessfullyScreen()),

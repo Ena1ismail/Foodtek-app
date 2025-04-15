@@ -103,7 +103,7 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 23.0, top: 24),
+                      padding: const EdgeInsets.only(left: 23.0, top: 24, right: 23),
                       child: Text(
                         AppLocalizations.of(context)!.your_location,
                         style: GoogleFonts.inter(

@@ -167,11 +167,47 @@ abstract class AppLocalizations {
   /// **'cancel'**
   String get cancel;
 
+  /// No description provided for @continue_with_google.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get continue_with_google;
+
+  /// No description provided for @continue_with_facebook.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Facebook'**
+  String get continue_with_facebook;
+
+  /// No description provided for @continue_with_apple.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Apple'**
+  String get continue_with_apple;
+
+  /// No description provided for @remove_from_favorites_confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to remove it from favorites?'**
+  String get remove_from_favorites_confirmation;
+
+  /// No description provided for @forget_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget Password ?'**
+  String get forget_password;
+
   /// No description provided for @signup_title.
   ///
   /// In en, this message translates to:
   /// **'Sign up'**
   String get signup_title;
+
+  /// No description provided for @login_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login_title;
 
   /// No description provided for @signup_subtitle.
   ///
@@ -179,11 +215,23 @@ abstract class AppLocalizations {
   /// **'Already have an account?'**
   String get signup_subtitle;
 
+  /// No description provided for @login_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Don’t have an account?'**
+  String get login_subtitle;
+
   /// No description provided for @full_name.
   ///
   /// In en, this message translates to:
   /// **'Full Name'**
   String get full_name;
+
+  /// No description provided for @full_name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your full name'**
+  String get full_name_hint;
 
   /// No description provided for @date_of_birth.
   ///
@@ -191,11 +239,23 @@ abstract class AppLocalizations {
   /// **'Birth of date'**
   String get date_of_birth;
 
+  /// No description provided for @select_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Date'**
+  String get select_date;
+
   /// No description provided for @phone_number.
   ///
   /// In en, this message translates to:
   /// **'Phone Number'**
   String get phone_number;
+
+  /// No description provided for @phone_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid phone number.'**
+  String get phone_error;
 
   /// No description provided for @self_password.
   ///
@@ -208,6 +268,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Register'**
   String get register_button;
+
+  /// No description provided for @remember_me.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember me'**
+  String get remember_me;
 
   /// No description provided for @reset_password_title.
   ///
@@ -239,6 +305,12 @@ abstract class AppLocalizations {
   /// **'Verify'**
   String get verify_button;
 
+  /// No description provided for @otp_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the full OTP code.'**
+  String get otp_error;
+
   /// No description provided for @new_password.
   ///
   /// In en, this message translates to:
@@ -250,6 +322,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Confirm New Password'**
   String get confirm_password;
+
+  /// No description provided for @confirm_password_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your new password'**
+  String get confirm_password_hint;
 
   /// No description provided for @update_password_button.
   ///
@@ -266,8 +344,62 @@ abstract class AppLocalizations {
   /// No description provided for @password_reset_success.
   ///
   /// In en, this message translates to:
-  /// **'password reset succesfuly'**
+  /// **'password reset successfully'**
   String get password_reset_success;
+
+  /// No description provided for @error_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fix the errors before proceeding.'**
+  String get error_message;
+
+  /// No description provided for @password_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get password_hint;
+
+  /// No description provided for @new_password_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your new password'**
+  String get new_password_hint;
+
+  /// No description provided for @something_went_wrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Something Went wrong'**
+  String get something_went_wrong;
+
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'Or'**
+  String get or;
+
+  /// No description provided for @current_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Want to try with your current password? '**
+  String get current_password;
+
+  /// No description provided for @passwords_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match.'**
+  String get passwords_error;
+
+  /// No description provided for @update_cart.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Cart'**
+  String get update_cart;
+
+  /// No description provided for @remove_from_cart.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to remove it from Carts?'**
+  String get remove_from_cart;
 
   /// No description provided for @current_location.
   ///
@@ -280,6 +412,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search menu, restaurant or etc'**
   String get search_hint;
+
+  /// No description provided for @no_notification.
+  ///
+  /// In en, this message translates to:
+  /// **'No notifications to display.'**
+  String get no_notification;
+
+  /// No description provided for @remove_item.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to remove it from Carts?'**
+  String get remove_item;
 
   /// No description provided for @all_category.
   ///
@@ -365,6 +509,12 @@ abstract class AppLocalizations {
   /// **'favorites'**
   String get favorites;
 
+  /// No description provided for @no_favorites.
+  ///
+  /// In en, this message translates to:
+  /// **'No favorites yet!'**
+  String get no_favorites;
+
   /// No description provided for @are_you_sure_remove_from_favorites.
   ///
   /// In en, this message translates to:
@@ -382,19 +532,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Price Range'**
   String get price_range;
-  String get  password;
-  String get  enter_your_promo;
-  String get change;
-  String get add;
-  String get  aleksandr_v;
-  String get loc;
-  String get order_id;
-  String get ahmad_daboor;
-  String get no_points_found_in_polyline_result;
-  String get location_services_are_disabled;
-  String get location_permissions_are_denied;
-  String get location_permissions;
-
 
   /// No description provided for @min.
   ///
@@ -468,6 +605,12 @@ abstract class AppLocalizations {
   /// **'reviews'**
   String get reviews;
 
+  /// No description provided for @filter.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter'**
+  String get filter;
+
   /// No description provided for @cart.
   ///
   /// In en, this message translates to:
@@ -540,6 +683,30 @@ abstract class AppLocalizations {
   /// **'Reorder'**
   String get reorder;
 
+  /// No description provided for @add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get add;
+
+  /// No description provided for @aleksandr_v.
+  ///
+  /// In en, this message translates to:
+  /// **'Aleksandr V.'**
+  String get aleksandr_v;
+
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
+
+  /// No description provided for @enter_your_promo.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Your Promo'**
+  String get enter_your_promo;
+
   /// No description provided for @your_location.
   ///
   /// In en, this message translates to:
@@ -563,6 +730,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Pay With:'**
   String get pay_with;
+
+  /// No description provided for @pay_for_order.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay for the order'**
+  String get pay_for_order;
 
   /// No description provided for @promo_code.
   ///
@@ -618,6 +791,12 @@ abstract class AppLocalizations {
   /// **'Card Number'**
   String get card_number;
 
+  /// No description provided for @enter_card_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Card Number'**
+  String get enter_card_number;
+
   /// No description provided for @expiry_date.
   ///
   /// In en, this message translates to:
@@ -653,6 +832,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'track Your Order'**
   String get track_your_order;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @loc.
+  ///
+  /// In en, this message translates to:
+  /// **'123 Al-Madina Street, Abdali, Amman, Jordan'**
+  String get loc;
+
+  /// No description provided for @order_id.
+  ///
+  /// In en, this message translates to:
+  /// **' Order ID'**
+  String get order_id;
+
+  /// No description provided for @ahmad_daboor.
+  ///
+  /// In en, this message translates to:
+  /// **'Ahmad Daboor'**
+  String get ahmad_daboor;
+
+  /// No description provided for @no_points_found_in_polyline_result.
+  ///
+  /// In en, this message translates to:
+  /// **'No points found in polyline result'**
+  String get no_points_found_in_polyline_result;
+
+  /// No description provided for @location_services_are_disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Location services are disabled.'**
+  String get location_services_are_disabled;
+
+  /// No description provided for @location_permissions_are_denied.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permissions are denied'**
+  String get location_permissions_are_denied;
+
+  /// No description provided for @location_permissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permissions are permanently denied, we cannot request permissions.'**
+  String get location_permissions;
+
+  /// No description provided for @successful_payment.
+  ///
+  /// In en, this message translates to:
+  /// **'We will send you an order details to your email after the successful payment'**
+  String get successful_payment;
+
+  /// No description provided for @empty_fields.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fill in all the fields'**
+  String get empty_fields;
+
+  /// No description provided for @invalid_card_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid card number'**
+  String get invalid_card_number;
+
+  /// No description provided for @invalid_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid expiry date'**
+  String get invalid_date;
+
+  /// No description provided for @invalid_cvc.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid CVC'**
+  String get invalid_cvc;
+
+  /// No description provided for @new_address.
+  ///
+  /// In en, this message translates to:
+  /// **'New Address'**
+  String get new_address;
 
   /// No description provided for @chat.
   ///
@@ -827,6 +1090,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Update'**
   String get update;
+
+  /// No description provided for @enter_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter name'**
+  String get enter_name;
+
+  /// No description provided for @area.
+  ///
+  /// In en, this message translates to:
+  /// **'Area'**
+  String get area;
+
+  /// No description provided for @building_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Building name'**
+  String get building_name;
+
+  /// No description provided for @apt_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Apt. number'**
+  String get apt_number;
+
+  /// No description provided for @floor.
+  ///
+  /// In en, this message translates to:
+  /// **'Floor'**
+  String get floor;
+
+  /// No description provided for @street.
+  ///
+  /// In en, this message translates to:
+  /// **'Street'**
+  String get street;
+
+  /// No description provided for @additional_directions.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional directions (optional)'**
+  String get additional_directions;
+
+  /// No description provided for @save_address.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Address'**
+  String get save_address;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'Ok'**
+  String get ok;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

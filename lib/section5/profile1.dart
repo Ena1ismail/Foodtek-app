@@ -113,7 +113,6 @@ class _ProfState extends State<Prof> {
                           onTap: () {
                             final langController = Provider.of<LangController>(context, listen: false);
 
-                            // Toggle بين العربية والإنجليزية
                             final newLang = langController.currentLangCode == 'ar' ? 'en' : 'ar';
                             langController.changeLang(langCode: newLang);
                           },

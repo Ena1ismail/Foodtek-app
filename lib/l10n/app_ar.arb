@@ -12,32 +12,57 @@
   "yes_turn_it_on": "نعم، فعّله",
   "cancel": "إلغاء",
   "password": "كلمة مرور",
+  "remove_from_favorites_confirmation": "هل أنت متأكد أنك تريد إزالته من المفضلة؟",
 
 
 
+
+  "forget_password": "نسيت كلمة المرور ؟",
   "signup_title": "إنشاء حساب",
   "login_title": "تسجيل الدخول",
   "signup_subtitle": "لديك حساب بالفعل؟",
+  "login_subtitle": "ليس لديك حساب؟",
   "full_name": "الاسم الكامل",
+  "full_name_hint": "أدخل اسمك الكامل",
   "date_of_birth": "تاريخ الميلاد",
+  "select_date": "اختر تاريخ",
   "phone_number": "رقم الهاتف",
+  "phone_error": "الرجاء إدخال رقم هاتف صحيح.",
   "self_password": "أنشئ كلمة المرور",
   "register_button": "تسجيل",
+  "remember_me": "تذكرني",
   "reset_password_title": "إعادة تعيين كلمة المرور",
   "reset_password_instruction": "أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة تعيين.",
   "send_button": "إرسال",
   "verification_code_instruction": "تم إرسال رمز مكون من 6 أرقام إلى بريدك الإلكتروني. يرجى إدخاله للتحقق.",
   "verify_button": "تحقق",
+  "otp_error": "الرجاء إدخال رمز OTP الكامل.",
   "new_password": "كلمة المرور الجديدة",
   "confirm_password": "تأكيد كلمة المرور الجديدة",
+  "confirm_password_hint" : "تأكيد كلمة المرور الجديدة",
   "update_password_button": "تحديث كلمة المرور",
   "congratulations": "تهانينا!",
   "password_reset_success": "تمت إعادة تعيين كلمة المرور بنجاح",
+  "error_message": "يرجى تصحيح الأخطاء قبل المتابعة.",
+  "password_hint": "أدخل كلمة المرور الخاصة بك",
+  "new_password_hint": "أدخل كلمة المرور الجديدة الخاصة بك",
+  "something_went_wrong": "حدث خطأ ما",
+  "continue_with_google": "متابعة مع Google",
+  "continue_with_facebook": "متابعة مع Facebook",
+  "continue_with_apple": "متابعة مع Apple",
+  "or": "أو",
+  "current_password": "هل تريد المحاولة باستخدام كلمة المرور الحالية لديك؟ ",
+  "passwords_error": "كلمات المرور غير متطابقة.",
+  "update_cart": "تحديث السلة",
+  "remove_from_cart": "هل أنت متأكد أنك تريد إزالته من السلة؟",
+
 
 
 
   "current_location": "الموقع الحالي",
   "search_hint": "ابحث في القائمة أو المطعم أو غير ذلك",
+  "no_notification": "لا توجد إشعارات لعرضها.",
+  "remove_item": "هل أنت متأكد أنك تريد إزالته من السلة؟",
   "all_category": "الكل",
   "burger_category": "برغر",
   "pizza_category": "بيتزا",
@@ -52,6 +77,7 @@
   "unread_tab": "غير مقروء",
   "read_tab": "مقروء",
   "favorites": "المفضلة",
+  "no_favorites": "لا يوجد مفضلة حتى الآن!",
   "are_you_sure_remove_from_favorites": "هل أنت متأكد من رغبتك في حذفه من المفضلة؟",
   "yes": "نعم",
   "price_range": "نطاق السعر",
@@ -67,6 +93,7 @@
   "hot": "ساخن",
   "quantity": "الكمية",
   "reviews": "التقييمات",
+  "filter":"فلتر",
 
 
 
@@ -87,11 +114,12 @@
   "add": "اضافه",
   "aleksandr_v": "الكسندر في",
 "loc": "\"123 شارع المدينة، العبدلي، عمان، الأردن\"",
-  "enter_your_promo": "أدخل العرض الترويجي الخاص بك",
+  "enter_your_promo": "أدخل كود الخصم الخاص بك",
   "your_location": "موقعك",
   "set_location": "تعيين الموقع",
   "checkout": "الدفع",
   "pay_with": "طريقة الدفع:",
+  "pay_for_order": "ادفع ثمن الطلب",
   "promo_code": "كود خصم؟",
   "add_card": "إضافة بطاقة",
   "card": "بطاقة",
@@ -101,6 +129,7 @@
   "mastercard": "ماستر كارد",
   "name": "الاسم",
   "card_number": "رقم البطاقة",
+  "enter_card_number": "أدخل رقم البطاقة",
   "expiry_date": "تاريخ الانتهاء",
   "cvc": "CVC",
   "order_done_successfully": "تم إكمال الطلب بنجاح",
@@ -112,6 +141,17 @@
   "location_services_are_disabled": " تم تعطيل خدمات الموقع.",
   "location_permissions_are_denied": "تم رفض أذونات الموقع",
  " location_permissions": "تم رفض أذونات الموقع بشكل دائم، ولا يمكننا طلب الأذونات.",
+  "successful_payment": "سوف نرسل لك تفاصيل الطلب إلى بريدك الإلكتروني بعد الدفع الناجح",
+  "empty_fields": "الرجاء ملء جميع الحقول",
+  "invalid_card_number": "رقم البطاقة غير صحيح",
+  "invalid_date": "تاريخ انتهاء الصلاحية غير صحيح",
+  "invalid_cvc": "رمز التحقق من البطاقة (CVC) غير صحيح",
+  "new_address": "عنوان جديد",
+
+
+
+
+
   "order_id": "رقم الطلب",
   "chat": "الدردشة",
   "write_your_message": "اكتب رسالتك",
@@ -141,5 +181,22 @@
   "username": "اسم المستخدم",
   "email": "البريد الإلكتروني",
   "address": "العنوان",
-  "update": "تحديث"
+  "update": "تحديث",
+
+
+
+  "enter_name": "أدخل الاسم",
+  "area": "المنطقة",
+  "building_name": "اسم المبنى",
+  "apt_number": "رقم الشقة",
+  "floor": "الطابق",
+  "street":"الشارع",
+  "additional_directions": "الاتجاهات الإضافية (اختياري)",
+  "save_address": "حفظ العنوان",
+  "ok": "حسنا"
+
+
+
+
+
 }

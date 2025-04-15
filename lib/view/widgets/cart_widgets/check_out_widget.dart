@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../../app_constants.dart';
@@ -33,16 +34,16 @@ class CheckOutWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
             child: Column(
               children: [
-                _buildRow("Sub-Total", "\$$subTotal", 14.sp, FontWeight.w500),
+                _buildRow(AppLocalizations.of(context)!.subtotal, "\$$subTotal", 14.sp, FontWeight.w500),
                 SizedBox(height: 6.h),
-                _buildRow("Delivery Charge", "\$$deliveryCharge", 14.sp, FontWeight.w500),
+                _buildRow(AppLocalizations.of(context)!.delivery_charge, "\$$deliveryCharge", 14.sp, FontWeight.w500),
                 SizedBox(height: 6.h),
-                _buildRow("Discount", "-\$$discount", 14.sp, FontWeight.w500),
+                _buildRow(AppLocalizations.of(context)!.discount, "-\$$discount", 14.sp, FontWeight.w500),
                 SizedBox(height: 6.h),
-                _buildRow("Total:", "\$$total", 18.sp, FontWeight.w700),
+                _buildRow(AppLocalizations.of(context)!.total, "\$$total", 18.sp, FontWeight.w700),
                 SizedBox(height: 28.h),
                 CustomButtonWidget(
-                  title: "Place My Order",
+                  title: AppLocalizations.of(context)!.place_my_order,
                   borderRadius: 7.r,
                   width: double.infinity,
                   height: 60.h,

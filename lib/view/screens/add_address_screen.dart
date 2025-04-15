@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
+import 'package:foodtek/l10n/app_localizations.dart';
 import 'package:foodtek/view/widgets/custom_button_widget.dart';
 import 'package:foodtek/view/widgets/input_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -60,7 +61,7 @@ class _LocationWidgetState extends State<LocationWidget> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          "New Address",
+          AppLocalizations.of(context)!.new_address,
           style: GoogleFonts.inter(
             fontSize: 20.sp,
             fontWeight: FontWeight.w600,
@@ -108,14 +109,14 @@ class _LocationWidgetState extends State<LocationWidget> {
                 ),
                 child: ListTile(
                   leading: Icon(Icons.location_pin, color: Colors.grey),
-                  title: Text("Area"),
+                  title: Text(AppLocalizations.of(context)!.area),
                   subtitle: Text(_areaName),
                   trailing: TextButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
                     child: Text(
-                      "Change",
+                      AppLocalizations.of(context)!.change,
                       style: GoogleFonts.inter(
                         color: AppConstants.buttonColor,
                         fontWeight: FontWeight.w600,
@@ -130,8 +131,8 @@ class _LocationWidgetState extends State<LocationWidget> {
                 obscureText: false,
                 backgroundColor: Colors.white,
                 borderColor: Colors.black12,
-                hintText: "Building name",
-                label: "Building name",
+                hintText: AppLocalizations.of(context)!.building_name,
+                label: AppLocalizations.of(context)!.building_name,
                 width: double.infinity,
               ),
               SizedBox(height: 20.h),
@@ -145,8 +146,8 @@ class _LocationWidgetState extends State<LocationWidget> {
                       obscureText: false,
                       backgroundColor: Colors.white,
                       borderColor: Colors.black12,
-                      hintText: "Apt. number",
-                      label: "Apt. number",
+                      hintText: AppLocalizations.of(context)!.apt_number,
+                      label: AppLocalizations.of(context)!.apt_number,
                       width: 180.w,
                       keyboardType: TextInputType.number,
                     ),
@@ -156,8 +157,8 @@ class _LocationWidgetState extends State<LocationWidget> {
                       obscureText: false,
                       backgroundColor: Colors.white,
                       borderColor: Colors.black12,
-                      hintText: "Floor",
-                      label: "Floor",
+                      hintText: AppLocalizations.of(context)!.floor,
+                      label: AppLocalizations.of(context)!.floor,
                       width: 180.w,
                       keyboardType: TextInputType.number,
                     ),
@@ -170,8 +171,8 @@ class _LocationWidgetState extends State<LocationWidget> {
                 obscureText: false,
                 backgroundColor: Colors.white,
                 borderColor: Colors.black12,
-                hintText: "Street",
-                label: "Street",
+                hintText: AppLocalizations.of(context)!.street,
+                label: AppLocalizations.of(context)!.street,
                 width: double.infinity,
               ),
               SizedBox(height: 20.h),
@@ -180,13 +181,13 @@ class _LocationWidgetState extends State<LocationWidget> {
                 obscureText: false,
                 backgroundColor: Colors.white,
                 borderColor: Colors.black12,
-                hintText: "Additional directions (optional)",
-                label: "Additional directions (optional)",
+                hintText: AppLocalizations.of(context)!.additional_directions,
+                label: AppLocalizations.of(context)!.additional_directions,
                 width: double.infinity,
               ),
               SizedBox(height: 20.h),
               CustomButtonWidget(
-                title: "Save Address",
+                title: AppLocalizations.of(context)!.save_address,
                 colors: [AppConstants.buttonColor, AppConstants.buttonColor],
                 titleColor: Colors.white,
                 width: double.infinity,
@@ -204,7 +205,7 @@ class _LocationWidgetState extends State<LocationWidget> {
                           backgroundColor: Colors.white,
                           content: Text(
                             textAlign: TextAlign.center,
-                            "Please fill in all the fields",
+                            AppLocalizations.of(context)!.empty_fields,
                             style: GoogleFonts.inter(
                               fontSize: 14.sp,
                               color: Colors.black54,
@@ -213,7 +214,7 @@ class _LocationWidgetState extends State<LocationWidget> {
                           ),
                           actions: [
                             CustomButtonWidget(
-                              title: "Ok",
+                              title: AppLocalizations.of(context)!.ok,
                               colors: [
                                 AppConstants.buttonColor,
                                 AppConstants.buttonColor,

@@ -42,16 +42,28 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildText(AppLocalizations.of(context)!.checkout, 20, FontWeight.w600, Colors.black),
+              _buildText(
+                AppLocalizations.of(context)!.checkout,
+                20,
+                FontWeight.w600,
+                Colors.black,
+              ),
               SizedBox(height: 18.h),
 
-              _buildText(AppLocalizations.of(context)!.location, 18, FontWeight.w600, Colors.black),
+              _buildText(
+                AppLocalizations.of(context)!.location,
+                18,
+                FontWeight.w600,
+                Colors.black,
+              ),
               SizedBox(height: 12.h),
               Consumer<LocationController>(
                 builder: (context, locationController, child) {
                   final savedAddresses = locationController.savedAddresses;
                   final lastTwoAddresses =
-                  savedAddresses.length > 2 ? savedAddresses.sublist(savedAddresses.length - 2) : savedAddresses;
+                      savedAddresses.length > 2
+                          ? savedAddresses.sublist(savedAddresses.length - 2)
+                          : savedAddresses;
 
                   return Column(
                     children: [
@@ -60,27 +72,38 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                           Column(
                             children: [
                               _buildLocationTileWithConditionalChangeButton(
-                                leadingIcon: i == 0 ? "assets/images/maps_a.png" : "assets/images/maps_b.png",
+                                leadingIcon:
+                                    i == 0
+                                        ? "assets/images/maps_a.png"
+                                        : "assets/images/maps_b.png",
                                 title: lastTwoAddresses[i].street,
                                 subtitle:
-                                "${lastTwoAddresses[i].buildingName}, ${lastTwoAddresses[i].apartmentNumber}",
+                                    "${lastTwoAddresses[i].buildingName}, ${lastTwoAddresses[i].apartmentNumber}",
                                 onChangePressed: () {
-                                  print("Change button pressed for address: ${lastTwoAddresses[i].street}");
+                                  print(
+                                    "Change button pressed for address: ${lastTwoAddresses[i].street}",
+                                  );
                                 },
-                                showChangeButton: lastTwoAddresses.length == 1
-                                    ? i == 0
-                                    : i == 1,
+                                showChangeButton:
+                                    lastTwoAddresses.length == 1
+                                        ? i == 0
+                                        : i == 1,
                               ),
                               SizedBox(height: 8.h),
                             ],
                           ),
-                      ],
+                    ],
                   );
                 },
               ),
 
               SizedBox(height: 12.h),
-              _buildText(AppLocalizations.of(context)!.promo_code, 16, FontWeight.w600, Colors.black),
+              _buildText(
+                AppLocalizations.of(context)!.promo_code,
+                16,
+                FontWeight.w600,
+                Colors.black,
+              ),
               SizedBox(height: 16.h),
               Row(
                 children: [
@@ -89,11 +112,11 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     child: InputWidget(
                       textEditingController: _promoController,
                       obscureText: false,
-                      hintText:AppLocalizations.of(context)!. enter_your_promo,
+                      hintText: AppLocalizations.of(context)!.enter_your_promo,
                       hintColor: const Color(0xFF878787),
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10.r),
-                        bottomLeft: Radius.circular(10.r),
+                      borderRadius: _getBorderRadiusBasedOnLanguage(
+                        context,
+                        false,
                       ),
                       backgroundColor: Colors.white,
                       borderColor: const Color(0xFFD6D6D6),
@@ -108,14 +131,16 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: AppConstants.buttonColor,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(10.r),
-                          bottomRight: Radius.circular(10.r),
+                        borderRadius: _getBorderRadiusBasedOnLanguage(
+                          context,
+                          true,
                         ),
                       ),
                       child: TextButton(
                         onPressed: () {
-                          checkOutController.setPromoCode(_promoController.text);
+                          checkOutController.setPromoCode(
+                            _promoController.text,
+                          );
                         },
                         child: _buildText(
                           AppLocalizations.of(context)!.add,
@@ -130,33 +155,52 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               ),
 
               SizedBox(height: 27.h),
-              _buildText(AppLocalizations.of(context)!.pay_with, 18, FontWeight.w600, Colors.black),
+              _buildText(
+                AppLocalizations.of(context)!.pay_with,
+                18,
+                FontWeight.w600,
+                Colors.black,
+              ),
               Row(
                 children: [
                   _buildRadioButton(
-                    value:AppLocalizations.of(context)!. card,
-                    groupValue: checkOutController.selectedPaymentMethod,
-                    onChanged: (value) => checkOutController.setSelectedPaymentMethod(value ?? AppLocalizations.of(context)!. card),
-                    label: "Card",
+                    value: AppLocalizations.of(context)!.card,
+                    groupValue: checkOutController.selectedPaymentMethod!,
+                    onChanged:
+                        (value) => checkOutController.setSelectedPaymentMethod(
+                          value ?? AppLocalizations.of(context)!.card,
+                        ),
+                    label: AppLocalizations.of(context)!.card,
                   ),
                   SizedBox(width: 20.w),
                   _buildRadioButton(
                     value: AppLocalizations.of(context)!.cash,
-                    groupValue: checkOutController.selectedPaymentMethod,
-                    onChanged: (value) => checkOutController.setSelectedPaymentMethod(value ?? AppLocalizations.of(context)!.cash),
-                    label: "Cash",
+                    groupValue: checkOutController.selectedPaymentMethod!,
+                    onChanged:
+                        (value) => checkOutController.setSelectedPaymentMethod(
+                          value ?? AppLocalizations.of(context)!.cash,
+                        ),
+                    label: AppLocalizations.of(context)!.cash,
                   ),
                 ],
               ),
 
               SizedBox(height: 27.h),
-              _buildText(AppLocalizations.of(context)!.card_type, 18, FontWeight.w600, Colors.black),
+              _buildText(
+                AppLocalizations.of(context)!.card_type,
+                18,
+                FontWeight.w600,
+                Colors.black,
+              ),
               Row(
                 children: [
                   _buildRadioButton(
-                    value:AppLocalizations.of(context)!. visa,
-                    groupValue: checkOutController.selectedCardType,
-                    onChanged: (value) => checkOutController.setSelectedCardType(value ?? AppLocalizations.of(context)!. visa),
+                    value: AppLocalizations.of(context)!.visa,
+                    groupValue: checkOutController.selectedCardType!,
+                    onChanged:
+                        (value) => checkOutController.setSelectedCardType(
+                          value ?? AppLocalizations.of(context)!.visa,
+                        ),
                     icon: Image.asset(
                       "assets/images/Visa.png",
                       height: 17.h,
@@ -166,8 +210,11 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   SizedBox(width: 20.w),
                   _buildRadioButton(
                     value: AppLocalizations.of(context)!.mastercard,
-                    groupValue: checkOutController.selectedCardType,
-                    onChanged: (value) => checkOutController.setSelectedCardType(value ?? AppLocalizations.of(context)!.mastercard),
+                    groupValue: checkOutController.selectedCardType!,
+                    onChanged:
+                        (value) => checkOutController.setSelectedCardType(
+                          value ?? AppLocalizations.of(context)!.mastercard,
+                        ),
                     icon: Image.asset(
                       "assets/images/Mastercard.png",
                       height: 17.h,
@@ -190,11 +237,11 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   }
 
   Widget _buildText(
-      String text,
-      double fontSize,
-      FontWeight fontWeight,
-      Color color,
-      ) {
+    String text,
+    double fontSize,
+    FontWeight fontWeight,
+    Color color,
+  ) {
     return Text(
       text,
       style: GoogleFonts.inter(
@@ -244,17 +291,41 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
         FontWeight.w600,
         const Color(0xFFBBBBBB),
       ),
-      trailing: showChangeButton
-          ? TextButton(
-        onPressed: onChangePressed,
-        child: _buildText(
-          AppLocalizations.of(context)!.change,
-          14,
-          FontWeight.w600,
-          AppConstants.buttonColor,
-        ),
-      )
-          : null,
+      trailing:
+          showChangeButton
+              ? TextButton(
+                onPressed: onChangePressed,
+                child: _buildText(
+                  AppLocalizations.of(context)!.change,
+                  14,
+                  FontWeight.w600,
+                  AppConstants.buttonColor,
+                ),
+              )
+              : null,
     );
+  }
+
+  BorderRadius _getBorderRadiusBasedOnLanguage(
+      BuildContext context,
+      bool isButton,
+      ) {
+    final isArabic = Localizations.localeOf(context).languageCode == 'ar';
+
+    final rtlBorderRadius = BorderRadius.only(
+      topRight: Radius.circular(10.r),
+      bottomRight: Radius.circular(10.r),
+    );
+
+    final ltrBorderRadius = BorderRadius.only(
+      topLeft: Radius.circular(10.r),
+      bottomLeft: Radius.circular(10.r),
+    );
+
+    if (isArabic) {
+      return isButton ? ltrBorderRadius : rtlBorderRadius;
+    } else {
+      return isButton ? rtlBorderRadius : ltrBorderRadius;
+    }
   }
 }

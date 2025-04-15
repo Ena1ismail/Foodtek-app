@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controller/home_page_controller.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../model/notification_item.dart';
 
 class NotificationWidget extends StatelessWidget {
@@ -28,7 +29,7 @@ class NotificationWidget extends StatelessWidget {
         children: [
           SizedBox(height: 20.h),
           _buildAppBar(context),
-          _buildToggleButtons(homePageController),
+          _buildToggleButtons(homePageController, context),
           Expanded(
             child: NotificationList(
               notifications: homePageController.getFilteredNotifications(),
@@ -53,7 +54,7 @@ class NotificationWidget extends StatelessWidget {
         IconButton(onPressed: () {}, icon: Icon(Icons.menu_outlined)),
       ],
       title: Text(
-        "Notifications",
+        AppLocalizations.of(context)!.notifications,
         style: GoogleFonts.inter(
           fontWeight: FontWeight.w600,
           fontSize: 24.sp,
@@ -62,7 +63,7 @@ class NotificationWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildToggleButtons(HomePageController controller) {
+  Widget _buildToggleButtons(HomePageController controller, BuildContext context) {
     return ToggleButtons(
       borderRadius: BorderRadius.circular(8),
       borderWidth: 0,
@@ -82,15 +83,15 @@ class NotificationWidget extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: Text("All"),
+          child: Text(AppLocalizations.of(context)!.all_tab),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: Text("Unread"),
+          child: Text(AppLocalizations.of(context)!.unread_tab),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: Text("Read"),
+          child: Text(AppLocalizations.of(context)!.read_tab),
         ),
       ],
     );
@@ -107,7 +108,7 @@ class NotificationList extends StatelessWidget {
     if (notifications.isEmpty) {
       return Center(
         child: Text(
-          "No notifications to display.",
+          AppLocalizations.of(context)!.no_notification,
           style: TextStyle(fontSize: 16.sp, color: Colors.grey),
         ),
       );

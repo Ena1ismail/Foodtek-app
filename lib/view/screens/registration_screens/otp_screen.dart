@@ -1,15 +1,12 @@
 import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/l10n/app_localizations.dart';
 import 'package:foodtek/view/screens/registration_screens/reset_password_screen.dart';
 import 'package:foodtek/view/widgets/registration_widgets/login_button_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
-
 import '../../../app_constants.dart';
-import '../../../controller/login_controller.dart';
 import '../../widgets/onboarding_widgets/app_title_widget.dart';
 
 class OTPScreen extends StatelessWidget {
@@ -97,7 +94,7 @@ class OTPScreen extends StatelessWidget {
                       padding: EdgeInsets.only(left: 40.0.sp, right: 40.sp),
                       child: Text(
                         textAlign: TextAlign.center,
-                        "A 4-digit code has been sent to your email. Please enter it to verify.",
+                        AppLocalizations.of(context)!.verification_code_instruction,
                         style: GoogleFonts.inter(
                           color: Color(0xFF6C7278),
                           fontWeight: FontWeight.w600,
@@ -117,7 +114,7 @@ class OTPScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 24.h),
                     LoginButtonWidget(
-                      buttonName: "Verify",
+                      buttonName: AppLocalizations.of(context)!.verify_button,
                       onPressed: () {
                         final otp = pinController.text;
                         if (otp.isNotEmpty && otp.length == 4) {
@@ -132,7 +129,7 @@ class OTPScreen extends StatelessWidget {
                             SnackBar(
                               backgroundColor: Colors.white,
                               content: Text(
-                                'Please enter the full OTP code.',
+                                AppLocalizations.of(context)!.otp_error,
                                 style: TextStyle(color: Colors.black),
                               ),
                               duration: Duration(seconds: 2),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,7 @@ class EmailFieldWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Email",
+              AppLocalizations.of(context)!.email,
               style: GoogleFonts.plusJakartaSans(
                 color: Color(0xFF6C7278),
                 fontSize: 12.sp,

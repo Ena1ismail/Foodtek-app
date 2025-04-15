@@ -45,25 +45,58 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cancel => 'cancel';
 
   @override
+  String get continue_with_google => 'Continue with Google';
+
+  @override
+  String get continue_with_facebook => 'Continue with Facebook';
+
+  @override
+  String get continue_with_apple => 'Continue with Apple';
+
+  @override
+  String get remove_from_favorites_confirmation => 'Are you sure you want to remove it from favorites?';
+
+  @override
+  String get forget_password => 'Forget Password ?';
+
+  @override
   String get signup_title => 'Sign up';
+
+  @override
+  String get login_title => 'Login';
 
   @override
   String get signup_subtitle => 'Already have an account?';
 
   @override
+  String get login_subtitle => 'Don’t have an account?';
+
+  @override
   String get full_name => 'Full Name';
+
+  @override
+  String get full_name_hint => 'Enter your full name';
 
   @override
   String get date_of_birth => 'Birth of date';
 
   @override
+  String get select_date => 'Select Date';
+
+  @override
   String get phone_number => 'Phone Number';
+
+  @override
+  String get phone_error => 'Please enter a valid phone number.';
 
   @override
   String get self_password => 'Set Password';
 
   @override
   String get register_button => 'Register';
+
+  @override
+  String get remember_me => 'Remember me';
 
   @override
   String get reset_password_title => 'Rest Password';
@@ -81,52 +114,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get verify_button => 'Verify';
 
   @override
+  String get otp_error => 'Please enter the full OTP code.';
+
+  @override
   String get new_password => 'New Password';
 
   @override
-  String get password=>'Password';
-
-
-  @override
-  String get  enter_your_promo=>'Enter Your Promo';
-
-
-  @override
-  String get  change=>'Change' ;
-
-  @override
-  String get  aleksandr_v=>'"Aleksandr V."';
-
-  @override
-  String get loc =>'123 Al-Madina Street, Abdali, Amman, Jordan';
-
-  @override
-  String get  order_id=>'Order ID';
-
-
-  @override
-  String get ahmad_daboor=> 'Ahmad Daboor';
-
-
-  @override
-  String get location_permissions=>'Location permissions are permanently denied, we cannot request permissions.';
-
-
-  @override
-  String get  location_permissions_are_denied=>'Location permissions are denied';
-
-  @override
-  String get location_services_are_disabled =>'Location services are disabled.';
-
-
-  @override
-  String get no_points_found_in_polyline_result=> 'No points found in polyline result';
-
-  @override
-  String get add=>'Add';
-
-  @override
   String get confirm_password => 'Confirm New Password';
+
+  @override
+  String get confirm_password_hint => 'Confirm your new password';
 
   @override
   String get update_password_button => 'Update Password';
@@ -135,13 +132,46 @@ class AppLocalizationsEn extends AppLocalizations {
   String get congratulations => 'Congratulations!';
 
   @override
-  String get password_reset_success => 'password reset succesfuly';
+  String get password_reset_success => 'password reset successfully';
+
+  @override
+  String get error_message => 'Please fix the errors before proceeding.';
+
+  @override
+  String get password_hint => 'Enter your password';
+
+  @override
+  String get new_password_hint => 'Enter your new password';
+
+  @override
+  String get something_went_wrong => 'Something Went wrong';
+
+  @override
+  String get or => 'Or';
+
+  @override
+  String get current_password => 'Want to try with your current password? ';
+
+  @override
+  String get passwords_error => 'Passwords do not match.';
+
+  @override
+  String get update_cart => 'Update Cart';
+
+  @override
+  String get remove_from_cart => 'Are you sure you want to remove it from Carts?';
 
   @override
   String get current_location => 'Current location';
 
   @override
   String get search_hint => 'Search menu, restaurant or etc';
+
+  @override
+  String get no_notification => 'No notifications to display.';
+
+  @override
+  String get remove_item => 'Are you sure you want to remove it from Carts?';
 
   @override
   String get all_category => 'All';
@@ -184,6 +214,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get favorites => 'favorites';
+
+  @override
+  String get no_favorites => 'No favorites yet!';
 
   @override
   String get are_you_sure_remove_from_favorites => 'Are you sure you want to remove it from favorites?';
@@ -231,6 +264,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reviews => 'reviews';
 
   @override
+  String get filter => 'Filter';
+
+  @override
   String get cart => 'Cart';
 
   @override
@@ -267,6 +303,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reorder => 'Reorder';
 
   @override
+  String get add => 'Add';
+
+  @override
+  String get aleksandr_v => 'Aleksandr V.';
+
+  @override
+  String get change => 'Change';
+
+  @override
+  String get enter_your_promo => 'Enter Your Promo';
+
+  @override
   String get your_location => 'your location';
 
   @override
@@ -277,6 +325,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pay_with => 'Pay With:';
+
+  @override
+  String get pay_for_order => 'Pay for the order';
 
   @override
   String get promo_code => 'Promo Code?';
@@ -306,6 +357,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get card_number => 'Card Number';
 
   @override
+  String get enter_card_number => 'Enter Card Number';
+
+  @override
   String get expiry_date => 'Expiry';
 
   @override
@@ -322,6 +376,48 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get track_your_order => 'track Your Order';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get loc => '123 Al-Madina Street, Abdali, Amman, Jordan';
+
+  @override
+  String get order_id => ' Order ID';
+
+  @override
+  String get ahmad_daboor => 'Ahmad Daboor';
+
+  @override
+  String get no_points_found_in_polyline_result => 'No points found in polyline result';
+
+  @override
+  String get location_services_are_disabled => 'Location services are disabled.';
+
+  @override
+  String get location_permissions_are_denied => 'Location permissions are denied';
+
+  @override
+  String get location_permissions => 'Location permissions are permanently denied, we cannot request permissions.';
+
+  @override
+  String get successful_payment => 'We will send you an order details to your email after the successful payment';
+
+  @override
+  String get empty_fields => 'Please fill in all the fields';
+
+  @override
+  String get invalid_card_number => 'Invalid card number';
+
+  @override
+  String get invalid_date => 'Invalid expiry date';
+
+  @override
+  String get invalid_cvc => 'Invalid CVC';
+
+  @override
+  String get new_address => 'New Address';
 
   @override
   String get chat => 'Chat';
@@ -409,4 +505,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get update => 'Update';
+
+  @override
+  String get enter_name => 'Enter name';
+
+  @override
+  String get area => 'Area';
+
+  @override
+  String get building_name => 'Building name';
+
+  @override
+  String get apt_number => 'Apt. number';
+
+  @override
+  String get floor => 'Floor';
+
+  @override
+  String get street => 'Street';
+
+  @override
+  String get additional_directions => 'Additional directions (optional)';
+
+  @override
+  String get save_address => 'Save Address';
+
+  @override
+  String get ok => 'Ok';
 }

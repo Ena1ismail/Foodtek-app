@@ -37,7 +37,7 @@ class AddCardScreen extends StatelessWidget {
                 builder: (context, cartController, child) {
                   return _buildInputField(
                     label: AppLocalizations.of(context)!.name,
-                    hintText: "Enter Name",
+                    hintText: AppLocalizations.of(context)!.enter_name,
                     controller: cartController.nameController,
                   );
                 },
@@ -47,7 +47,7 @@ class AddCardScreen extends StatelessWidget {
                 builder: (context, cartController, child) {
                   return _buildInputField(
                     label: AppLocalizations.of(context)!.card_number,
-                    hintText: "Enter Card Number",
+                    hintText: AppLocalizations.of(context)!.enter_card_number,
                     controller: cartController.cardNumberController,
                     suffixIcon: Image.asset(
                       "assets/images/cards.png",
@@ -71,7 +71,7 @@ class AddCardScreen extends StatelessWidget {
                 },
               ),
               SizedBox(height: 21.h),
-              _buildOrderDetailsText(),
+              _buildOrderDetailsText(context),
               SizedBox(height: 20.h),
               _buildPayButton(context),
             ],
@@ -182,11 +182,11 @@ class AddCardScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildOrderDetailsText() {
+  Widget _buildOrderDetailsText(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40.0),
       child: Text(
-        "We will send you an order details to your email after the successful payment",
+        AppLocalizations.of(context)!.successful_payment,
         textAlign: TextAlign.center,
         style: GoogleFonts.inter(
           color: const Color(0xFF929DA9),
@@ -202,7 +202,7 @@ class AddCardScreen extends StatelessWidget {
       child: Consumer<CartController>(
         builder: (context, cartController, child) {
           return CustomButtonWidget(
-            title: "Pay for the order",
+            title: AppLocalizations.of(context)!.pay_for_order,
             colors: [AppConstants.buttonColor, AppConstants.buttonColor],
             titleColor: Colors.white,
             borderRadius: 16.r,
@@ -217,22 +217,22 @@ class AddCardScreen extends StatelessWidget {
                   cardNumber.isEmpty ||
                   expiryDate.isEmpty ||
                   cvc.isEmpty) {
-                _showErrorDialog(context, "Please fill in all the fields");
+                _showErrorDialog(context, AppLocalizations.of(context)!.empty_fields);
                 return;
               }
 
               if (!_isValidCardNumber(cardNumber)) {
-                _showErrorDialog(context, "Invalid card number");
+                _showErrorDialog(context, AppLocalizations.of(context)!.invalid_card_number);
                 return;
               }
 
               if (!_isValidExpiryDate(expiryDate)) {
-                _showErrorDialog(context, "Invalid expiry date");
+                _showErrorDialog(context, AppLocalizations.of(context)!.invalid_date);
                 return;
               }
 
               if (!_isValidCvc(cvc)) {
-                _showErrorDialog(context, "Invalid CVC");
+                _showErrorDialog(context, AppLocalizations.of(context)!.invalid_cvc);
                 return;
               }
 
@@ -291,7 +291,7 @@ class AddCardScreen extends StatelessWidget {
           ),
           actions: [
             CustomButtonWidget(
-              title: "Ok",
+              title:AppLocalizations.of(context)!.ok,
               colors: [
                 AppConstants.buttonColor,
                 AppConstants.buttonColor,

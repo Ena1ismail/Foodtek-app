@@ -14,18 +14,19 @@ class SlidesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final onboardingController = Provider.of<SlidesController>(context);
 
+    final slides = onboardingController.slidesList(context);
 
     return Scaffold(
       body: Stack(
         children: [
           PageView.builder(
             controller: onboardingController.pageController,
-            itemCount: onboardingController.slides.length,
+            itemCount: slides.length,
             onPageChanged: (index) {
               onboardingController.currentPage = index;
             },
             itemBuilder: (context, index) {
-              return onboardingController.slides[index];
+              return slides[index];
             },
           ),
           Align(
@@ -34,6 +35,7 @@ class SlidesScreen extends StatelessWidget {
               height: 90.h,
               width: 321.w,
               color: Colors.white,
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -44,7 +46,7 @@ class SlidesScreen extends StatelessWidget {
                     child: Text(
                       AppLocalizations.of(context)!.skip,
                       style: GoogleFonts.poppins(
-                        color:  AppConstants.primaryTextColor,
+                        color: AppConstants.primaryTextColor,
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w400,
                       ),
@@ -52,7 +54,7 @@ class SlidesScreen extends StatelessWidget {
                   ),
                   SmoothPageIndicator(
                     controller: onboardingController.pageController,
-                    count: onboardingController.slides.length,
+                    count: slides.length,
                     axisDirection: Axis.horizontal,
                     effect: JumpingDotEffect(
                       spacing: 8.0,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/controller/login_controller.dart';
+import 'package:foodtek/l10n/app_localizations.dart';
 import 'package:foodtek/view/screens/registration_screens/login_screen.dart';
 import 'package:foodtek/view/widgets/onboarding_widgets/back_arrow_widget.dart';
 import 'package:foodtek/view/widgets/registration_widgets/login_button_widget.dart';
@@ -90,7 +91,7 @@ class _SuccessResetPasswordScreenState
                       ),
                       SizedBox(height: 24.h),
                       Text(
-                        "Reset Password",
+                        AppLocalizations.of(context)!.reset_password_title,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.inter(
                           color: const Color(0xFF111827),
@@ -101,7 +102,7 @@ class _SuccessResetPasswordScreenState
                       SizedBox(height: 12.h),
                       Text.rich(
                         TextSpan(
-                          text: "Want to try with your current password? ",
+                          text: AppLocalizations.of(context)!.current_password,
                           style: GoogleFonts.inter(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w600,
@@ -109,7 +110,7 @@ class _SuccessResetPasswordScreenState
                           ),
                           children: [
                             TextSpan(
-                              text: "Login",
+                              text: AppLocalizations.of(context)!.login_title,
                               style: GoogleFonts.inter(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w700,
@@ -122,23 +123,23 @@ class _SuccessResetPasswordScreenState
                       SizedBox(height: 24.h),
                       PasswordFieldWidget(
                         loginController: loginController,
-                        title: "New Password",
+                        title: AppLocalizations.of(context)!.new_password,
                         controller: loginController.passwordController,
-                        hintText: "Enter your new password",
+                        hintText: AppLocalizations.of(context)!.new_password_hint,
                         obscureText: false,
                       ),
                       SizedBox(height: 16.h),
                       PasswordFieldWidget(
                         loginController: loginController,
-                        title: "Confirm New Password",
+                        title: AppLocalizations.of(context)!.confirm_password,
                         controller: loginController.confirmPasswordController,
-                        hintText: "Confirm your new password",
+                        hintText: AppLocalizations.of(context)!.confirm_password_hint,
                         obscureText: false,
                       ),
                       SizedBox(height: 24.h),
                       LoginButtonWidget(
                         textColor: Colors.white,
-                        buttonName: "Register",
+                        buttonName: AppLocalizations.of(context)!.register_button,
                         onPressed: () {},
                       ),
                       SizedBox(height: 24.h),
@@ -173,7 +174,7 @@ class _SuccessResetPasswordScreenState
                 ),
 
                 Text(
-                  "Congratulations",
+                  AppLocalizations.of(context)!.congratulations,
                   style: GoogleFonts.inter(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
@@ -181,7 +182,7 @@ class _SuccessResetPasswordScreenState
                   ),
                 ),
                 Text(
-                  "password reset succesfuly",
+                  AppLocalizations.of(context)!.password_reset_success,
                   style: GoogleFonts.inter(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,

@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app_constants.dart';
+import '../../../l10n/app_localizations.dart';
 import 'cart_item_widget.dart';
 
 class HistoryWidget extends StatelessWidget {
@@ -49,7 +50,7 @@ class HistoryWidget extends StatelessWidget {
                           cartController.addItem(foodItem);
                         },
                         child: Text(
-                          "Reorder",
+                          AppLocalizations.of(context)!.reorder,
                           style: GoogleFonts.inter(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w700,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/l10n/app_localizations.dart';
 import 'package:foodtek/view/widgets/cart_widgets/cart_item_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../app_constants.dart';
@@ -98,7 +99,7 @@ class CartController extends ChangeNotifier {
           backgroundColor: Colors.white,
           content: Text(
             textAlign: TextAlign.center,
-            "Are you sure you want to remove it from Carts?",
+            AppLocalizations.of(context)!.remove_item,
             style: GoogleFonts.inter(
               fontSize: 14.sp,
               color: Colors.black54,
@@ -107,7 +108,7 @@ class CartController extends ChangeNotifier {
           ),
           actions: [
             CustomButtonWidget(
-              title: "Yes",
+              title: AppLocalizations.of(context)!.yes,
               colors: [AppConstants.buttonColor, AppConstants.buttonColor],
               height: 60.h,
               borderRadius: 12.r,

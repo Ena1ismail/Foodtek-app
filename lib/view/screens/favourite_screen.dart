@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/controller/home_page_controller.dart';
 import 'package:provider/provider.dart';
+import '../../l10n/app_localizations.dart';
 import '../widgets/home_widgets/category_grid_view_widget.dart';
 import '../widgets/home_widgets/food_item_widget.dart';
 import '../widgets/home_widgets/search_bar_widget.dart';
@@ -19,9 +20,9 @@ class FavouriteScreen extends StatelessWidget {
           children: [
             SearchBarWidget(),
             Padding(
-              padding: const EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30, right: 30),
               child: Text(
-                "Favorites",
+                AppLocalizations.of(context)!.favorites,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20.sp),
               ),
             ),
@@ -30,7 +31,7 @@ class FavouriteScreen extends StatelessWidget {
                 if (homePageController.fav.isEmpty) {
                   return Center(
                     child: Text(
-                      "No favorites yet!",
+                      AppLocalizations.of(context)!.no_favorites,
                       style: TextStyle(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w600,

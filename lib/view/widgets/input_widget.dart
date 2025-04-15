@@ -64,7 +64,6 @@ class InputWidget extends StatelessWidget {
 
             ),
             child: TextField(
-              textAlign: TextAlign.left,
               textAlignVertical: TextAlignVertical.center,
               obscureText: obscureText,
               controller: textEditingController,

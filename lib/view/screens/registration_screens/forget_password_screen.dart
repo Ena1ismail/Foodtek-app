@@ -72,8 +72,8 @@ class ForgetPasswordScreen extends StatelessWidget {
             return Column(
               children: [
                 _backIconButton(context, loginController),
-                _buildTitle(),
-                _buildSubTitle(),
+                _buildTitle(context),
+                _buildSubTitle(context),
                 SizedBox(height: 24.h),
                 EmailFieldWidget(loginController: loginController),
                 SizedBox(height: 24.h),
@@ -94,7 +94,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            "Please fix the errors before proceeding.",
+                            AppLocalizations.of(context)!.error_message,
                             style: TextStyle(color: Colors.black),
                           ),
                           backgroundColor: Colors.white,
@@ -166,11 +166,11 @@ class ForgetPasswordScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTitle() {
+  Widget _buildTitle(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 24.sp, left: 60.sp, right: 60.sp),
       child: Text(
-        "Reset Password",
+        AppLocalizations.of(context)!.reset_password_title,
         textAlign: TextAlign.center,
         style: GoogleFonts.inter(
           color: const Color(0xFF111827),
@@ -181,11 +181,11 @@ class ForgetPasswordScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSubTitle() {
+  Widget _buildSubTitle(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 12.sp, left: 45.sp, right: 45.sp),
       child: Text(
-        "Enter your E-mail or phone and we'll send you a link to get back into your account",
+        AppLocalizations.of(context)!.reset_password_instruction,
         textAlign: TextAlign.center,
         style: GoogleFonts.inter(
           color: Color(0xFF6C7278),

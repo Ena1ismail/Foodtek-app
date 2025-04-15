@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/l10n/app_localizations.dart';
 import 'package:foodtek/view/screens/home_screen.dart';
 import 'package:foodtek/view/screens/registration_screens/login_screen.dart';
 import 'package:foodtek/view/widgets/registration_widgets/password_field_widget.dart';
@@ -97,8 +98,8 @@ class SignUpScreen extends StatelessWidget {
         _buildPhoneNumberInput(context, loginController),
         PasswordFieldWidget(
           loginController: loginController,
-          title: "Set Password",
-          hintText: "Enter your password",
+          title: AppLocalizations.of(context)!.self_password,
+          hintText: AppLocalizations.of(context)!.password_hint,
           controller: loginController.passwordController,
           onChange:
               (value) => loginController.validateField(
@@ -132,7 +133,7 @@ class SignUpScreen extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(
-          "Sign up",
+          AppLocalizations.of(context)!.signup_title,
           style: GoogleFonts.inter(
             color: const Color(0xFF111827),
             fontWeight: FontWeight.w700,
@@ -153,7 +154,7 @@ class SignUpScreen extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 24.sp),
           child: Text(
-            "Already have an account?",
+            AppLocalizations.of(context)!.signup_subtitle,
             style: GoogleFonts.inter(
               color: Color(0xFF6C7278),
               fontSize: 12.sp,
@@ -171,7 +172,7 @@ class SignUpScreen extends StatelessWidget {
             );
           },
           child: Text(
-            "Login",
+            AppLocalizations.of(context)!.login_title,
             style: GoogleFonts.inter(
               color: AppConstants.buttonColor,
               fontSize: 12.sp,
@@ -195,7 +196,7 @@ class SignUpScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Full Name",
+            AppLocalizations.of(context)!.full_name,
               style: GoogleFonts.plusJakartaSans(
                 color: Color(0xFF6C7278),
                 fontSize: 12.sp,
@@ -208,7 +209,7 @@ class SignUpScreen extends StatelessWidget {
               textEditingController: loginController.nameController,
               obscureText: false,
               keyboardType: TextInputType.name,
-              hintText: "Enter your full name",
+              hintText: AppLocalizations.of(context)!.full_name_hint,
               onChanged:
                   (value) => loginController.validateField(
                     field: 'name',
@@ -235,7 +236,7 @@ class SignUpScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Date of Birth",
+              AppLocalizations.of(context)!.date_of_birth,
               style: GoogleFonts.plusJakartaSans(
                 color: Color(0xFF6C7278),
                 fontSize: 12.sp,
@@ -304,7 +305,7 @@ class SignUpScreen extends StatelessWidget {
                                       Navigator.of(context).pop(null);
                                     },
                                     child: Text(
-                                      "Cancel",
+                                      AppLocalizations.of(context)!.cancel,
                                       style: GoogleFonts.inter(
                                         color: AppConstants.primaryTextColor,
                                         fontWeight: FontWeight.w600,
@@ -329,7 +330,7 @@ class SignUpScreen extends StatelessWidget {
                                       ).pop(tempSelectedDate);
                                     },
                                     child: Text(
-                                      "Select Date",
+                                      AppLocalizations.of(context)!.select_date,
                                       style: GoogleFonts.inter(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w600,
@@ -388,7 +389,7 @@ class SignUpScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Phone Number",
+            AppLocalizations.of(context)!.phone_number,
             style: GoogleFonts.plusJakartaSans(
               color: Color(0xFF6C7278),
               fontSize: 12.sp,
@@ -401,7 +402,7 @@ class SignUpScreen extends StatelessWidget {
               controller: loginController.phoneNumberController,
               dropdownIconPosition: IconPosition.leading,
               decoration: InputDecoration(
-                hintText: "Phone number",
+                hintText: AppLocalizations.of(context)!.phone_number,
                 hintStyle: TextStyle(
                   fontSize: 14.sp,
                   color: Color(0xFFBBBFC5),
@@ -427,7 +428,7 @@ class SignUpScreen extends StatelessWidget {
               onChanged: (phone) {
                 if (phone.number.isEmpty) {
                   loginController.errors['phone'] =
-                      "Please enter a valid phone number.";
+                      AppLocalizations.of(context)!.phone_error;
                 } else {
                   loginController.errors['phone'] = null;
                 }
@@ -466,7 +467,7 @@ class SignUpScreen extends StatelessWidget {
               )
               : LoginButtonWidget(
                 textColor: Colors.white,
-                buttonName: "Register",
+                buttonName: AppLocalizations.of(context)!.register_button,
                 onPressed: () async {
                   FocusScope.of(context).unfocus();
                   loginController.setLoading(true);
@@ -486,7 +487,7 @@ class SignUpScreen extends StatelessWidget {
                       SnackBar(
                         backgroundColor: Colors.white,
                         content: Text(
-                          "Please fix the errors in the form.",
+                          AppLocalizations.of(context)!.error_message,
                           style: GoogleFonts.inter(
                             color: const Color(0xFF170F4C),
                             fontWeight: FontWeight.w500,

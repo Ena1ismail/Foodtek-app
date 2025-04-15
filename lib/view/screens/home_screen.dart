@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/l10n/app_localizations.dart';
 import 'package:foodtek/view/screens/product_details_screen.dart';
 import 'package:provider/provider.dart';
 import '../../controller/home_page_controller.dart';
@@ -28,8 +29,14 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   SearchBarWidget(),
                   CategoryButtonsWidget(),
-                  if (["Pizza", "Burger", "Sandwich"].contains(homePageController.selectedCategory))
-                    CategoryGridViewWidget(items: homePageController.getItemsForCategory())
+                  if ([
+                    AppLocalizations.of(context)!.pizza_category,
+                    AppLocalizations.of(context)!.burger_category,
+                    AppLocalizations.of(context)!.sandwich_category,
+                  ].contains(homePageController.selectedCategory))
+                    CategoryGridViewWidget(
+                      items: homePageController.getItemsForCategory(context),
+                    )
                   else
                     Column(
                       children: [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
+import 'package:foodtek/l10n/app_localizations.dart';
 import 'package:foodtek/view/widgets/input_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -23,31 +24,31 @@ class FilterSearchScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildHeader("Filter"),
-              _buildSectionTitle("Price range"),
+              _buildHeader(AppLocalizations.of(context)!.filter),
+              _buildSectionTitle(AppLocalizations.of(context)!.price_range),
               SizedBox(height: 24.h,),
               _buildPriceInputs(context),
-              _buildSlider(context, "price"),
-              _buildSectionTitle("Discount"),
+              _buildSlider(context, AppLocalizations.of(context)!.price),
+              _buildSectionTitle(AppLocalizations.of(context)!.discount),
               SizedBox(height: 24.h,),
               _buildDiscountInputs(context),
-              _buildSlider(context, "discount"),
+              _buildSlider(context, AppLocalizations.of(context)!.discount),
               SizedBox(height: 24.h,),
-              _buildSectionTitle("Category"),
+              _buildSectionTitle(AppLocalizations.of(context)!.category),
               SizedBox(height: 14.h,),
               _buildButtonRow([
                 "Fast Food",
                 "Sea Food",
                 "Desert",
               ], "category"),
-              _buildSectionTitle("Location"),
+              _buildSectionTitle(AppLocalizations.of(context)!.location),
               SizedBox(height: 14.h,),
               _buildButtonRow([
                 "1 KM",
                 "5 KM",
                 "10 KM",
               ], "location"),
-              _buildSectionTitle("Dish"),
+              _buildSectionTitle(AppLocalizations.of(context)!.dish),
               SizedBox(height: 14.h,),
               _buildButtonWrap([
                 "Tuna Tartare",
@@ -102,7 +103,7 @@ class FilterSearchScreen extends StatelessWidget {
               keyboardType: TextInputType.number,
               borderColor: Color(0xFFEAFAEB),
               backgroundColor: Colors.white,
-              label: "Min",
+              label: AppLocalizations.of(context)!.min,
             ),
             SizedBox(width: 16.w),
             InputWidget(
@@ -113,7 +114,7 @@ class FilterSearchScreen extends StatelessWidget {
               keyboardType: TextInputType.number,
               borderColor: Color(0xFFEAFAEB),
               backgroundColor: Colors.white,
-              label: "Max",
+              label: AppLocalizations.of(context)!.max,
             ),
           ],
         );
@@ -134,7 +135,7 @@ class FilterSearchScreen extends StatelessWidget {
               keyboardType: TextInputType.number,
               borderColor: Color(0xFFEAFAEB),
               backgroundColor: Colors.white,
-              label: "Min",
+              label: AppLocalizations.of(context)!.min,
             ),
             SizedBox(width: 16.w),
             InputWidget(
@@ -145,7 +146,7 @@ class FilterSearchScreen extends StatelessWidget {
               keyboardType: TextInputType.number,
               borderColor: Color(0xFFEAFAEB),
               backgroundColor: Colors.white,
-              label: "Max",
+              label: AppLocalizations.of(context)!.max,
             ),
           ],
         );
@@ -156,15 +157,15 @@ class FilterSearchScreen extends StatelessWidget {
   Widget _buildSlider(BuildContext context, String type) {
     return Consumer<FilterController>(
       builder: (context, filterController, child) {
-        final minValue = type == "price"
+        final minValue = type == AppLocalizations.of(context)!.price
             ? int.tryParse(filterController.minPriceController.text) ?? 0
             : int.tryParse(filterController.minDiscountController.text) ?? 0;
-        final maxValue = type == "price"
+        final maxValue = type == AppLocalizations.of(context)!.price
             ? int.tryParse(filterController.maxPriceController.text) ?? 10
             : int.tryParse(filterController.maxDiscountController.text) ?? 50;
 
         if (minValue > maxValue) {
-          if (type == "price") {
+          if (type == AppLocalizations.of(context)!.price) {
             filterController.minPriceController.text = "0";
           } else {
             filterController.minDiscountController.text = "0";
@@ -174,17 +175,17 @@ class FilterSearchScreen extends StatelessWidget {
         return SfSlider(
           min: minValue.toDouble(),
           max: maxValue.toDouble(),
-          value: type == "price"
+          value: type == AppLocalizations.of(context)!.price
               ? filterController.sliderPriceValue
               : filterController.sliderDiscountValue,
           showLabels: true,
           inactiveColor: Color(0xFFF3F4F6),
           activeColor: AppConstants.buttonColor,
           onChanged: (dynamic newValue) {
-            if (type == "price") {
-              filterController.updateSlider("price", newValue);
+            if (type == AppLocalizations.of(context)!.price) {
+              filterController.updateSlider(AppLocalizations.of(context)!.price, newValue);
             } else {
-              filterController.updateSlider("discount", newValue);
+              filterController.updateSlider(AppLocalizations.of(context)!.discount, newValue);
             }
           },
         );
@@ -220,9 +221,9 @@ class FilterSearchScreen extends StatelessWidget {
   Widget _buildButton(String label, int index, String type) {
     return Consumer<FilterController>(
       builder: (context, controller, child) {
-        final isSelected = type == "category"
+        final isSelected = type == AppLocalizations.of(context)!.category
             ? controller.selectedCategoryIndex == index
-            : type == "location"
+            : type == AppLocalizations.of(context)!.location
             ? controller.selectedLocationIndex == index
             : controller.selectedDishIndex == index;
 

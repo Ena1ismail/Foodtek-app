@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                 ),
-                SizedBox(height: 24.h,)
+                SizedBox(height: 24.h),
               ],
             ),
           ),
@@ -87,14 +87,14 @@ class _LoginScreenState extends State<LoginScreen> {
         PasswordFieldWidget(
           loginController: loginController,
           title: AppLocalizations.of(context)!.self_password,
-          hintText: "Enter your password",
+          hintText: AppLocalizations.of(context)!.password_hint,
           controller: loginController.passwordController,
           onChange:
               (value) => loginController.validateField(
-            field: 'password',
-            value: value,
-            context: context,
-          ),
+                field: 'password',
+                value: value,
+                context: context,
+              ),
           errorText: loginController.errors['password'],
           obscureText: loginController.obscureText,
 
@@ -108,7 +108,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   : Icons.visibility_outlined,
               color: Colors.grey,
               size: 20.sp,
-
             ),
           ),
         ),
@@ -117,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _buildOrDivider(),
         SizedBox(height: 24.h),
         _buildOtherLoginButtons(context),
-        SizedBox(height: 24.h,)
+        SizedBox(height: 24.h),
       ],
     );
   }
@@ -128,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Align(
         alignment: Alignment.center,
         child: Text(
-          "Login",
+          AppLocalizations.of(context)!.login_title,
           style: GoogleFonts.inter(
             color: const Color(0xFF111827),
             fontWeight: FontWeight.w700,
@@ -150,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Padding(
           padding: EdgeInsets.only(left: 24.sp),
           child: Text(
-            "Don’t have an account?",
+            AppLocalizations.of(context)!.login_subtitle,
             style: GoogleFonts.inter(
               color: Color(0xFF6C7278),
               fontSize: 12.sp,
@@ -168,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
             );
           },
           child: Text(
-            "Sign Up",
+            AppLocalizations.of(context)!.signup_title,
             style: GoogleFonts.inter(
               color: AppConstants.buttonColor,
               fontSize: 12.sp,
@@ -222,10 +221,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 onTap: () {
                   loginController.setRememberMe(!isRememberMeChecked);
                   final secureStorageProvider =
-                  Provider.of<SecureStorageController>(
-                    context,
-                    listen: false,
-                  );
+                      Provider.of<SecureStorageController>(
+                        context,
+                        listen: false,
+                      );
                   if (!isRememberMeChecked) {
                     secureStorageProvider.saveCredentials(
                       loginController.emailController.text,
@@ -236,7 +235,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                 },
                 child: Text(
-                  "Remember me",
+                  AppLocalizations.of(context)!.remember_me,
                   style: GoogleFonts.inter(
                     color: const Color(0xFF6C7278),
                     fontSize: 12.sp,
@@ -267,7 +266,7 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         },
         child: Text(
-          "Forget Password ?",
+          AppLocalizations.of(context)!.forget_password,
           style: GoogleFonts.inter(
             color: AppConstants.buttonColor,
             fontSize: 12.sp,
@@ -311,13 +310,20 @@ class _LoginScreenState extends State<LoginScreen> {
               )
               : LoginButtonWidget(
                 textColor: Colors.white,
-                buttonName: isLoginMode ? "Log In" : "Register",
+                buttonName:
+                    isLoginMode
+                        ? AppLocalizations.of(context)!.login_title
+                        : AppLocalizations.of(context)!.register_button,
                 onPressed: () async {
                   FocusScope.of(context).unfocus();
                   loginController.setLoading(true);
                   try {
-                    loginController.validateEmail(loginController.emailController.text);
-                    loginController.validatePassword(loginController.passwordController.text);
+                    loginController.validateEmail(
+                      loginController.emailController.text,
+                    );
+                    loginController.validatePassword(
+                      loginController.passwordController.text,
+                    );
                     if (loginController.isFormValid()) {
                       final secureStorageProvider =
                           Provider.of<SecureStorageController>(
@@ -335,9 +341,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => MainScreen(),
-                        ),
+                        MaterialPageRoute(builder: (context) => MainScreen()),
                       );
                     }
                   } catch (e) {
@@ -346,7 +350,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         SnackBar(
                           backgroundColor: const Color(0xFFE7F4FF),
                           content: Text(
-                            "Something Went wrong",
+                            AppLocalizations.of(context)!.something_went_wrong,
                             style: GoogleFonts.inter(
                               color: const Color(0xFF170F4C),
                               fontWeight: FontWeight.w500,
@@ -370,7 +374,7 @@ class _LoginScreenState extends State<LoginScreen> {
       children: [
         // Google Sign-In Button
         LoginButtonWidget(
-          buttonName: "Continue with Google",
+          buttonName: AppLocalizations.of(context)!.continue_with_google,
           buttonColor: Colors.white,
           textColor: Color(0xFF1A1C1E),
           widget: Image(
@@ -383,7 +387,7 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(height: 15.h),
 
         LoginButtonWidget(
-          buttonName: "Continue with Facebook",
+          buttonName: AppLocalizations.of(context)!.continue_with_facebook,
           buttonColor: Colors.white,
           textColor: Color(0xFF1A1C1E),
           widget: Image(
@@ -397,7 +401,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
         // Apple Sign-In Button
         LoginButtonWidget(
-          buttonName: "Continue with Apple",
+          buttonName: AppLocalizations.of(context)!.continue_with_apple,
           buttonColor: Colors.white,
           textColor: Color(0xFF1A1C1E),
           widget: Image(
@@ -420,7 +424,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
-              'Or',
+              AppLocalizations.of(context)!.or,
               style: GoogleFonts.inter(
                 color: Color(0xFF6C7278),
                 fontWeight: FontWeight.w700,

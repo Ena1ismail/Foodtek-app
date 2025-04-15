@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../../controller/home_page_controller.dart';
+import '../../../l10n/app_localizations.dart';
 import 'recommend_item_widget.dart';
 
 class RecommendedSectionWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class RecommendedSectionWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Recommend",
+                AppLocalizations.of(context)!.recommend,
                 style: GoogleFonts.inter(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w600,
@@ -27,7 +28,7 @@ class RecommendedSectionWidget extends StatelessWidget {
               TextButton(
                 onPressed: () {},
                 child: Text(
-                  "View All >",
+                  AppLocalizations.of(context)!.view_all,
                   style: GoogleFonts.inter(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w500,

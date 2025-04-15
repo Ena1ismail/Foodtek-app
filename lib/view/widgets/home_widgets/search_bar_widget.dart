@@ -4,6 +4,7 @@ import 'package:foodtek/view/screens/filter_search_screen.dart';
 import 'package:foodtek/view/widgets/input_widget.dart';
 import 'package:provider/provider.dart';
 import '../../../controller/home_page_controller.dart';
+import '../../../l10n/app_localizations.dart';
 
 class SearchBarWidget extends StatelessWidget {
   @override
@@ -28,7 +29,7 @@ class SearchBarWidget extends StatelessWidget {
             obscureText: false,
             prefixIcon: Icon(Icons.search, color: Color(0xFF878787)),
             backgroundColor: Colors.white,
-            hintText: "Search menu, restaurant or etc",
+            hintText: AppLocalizations.of(context)!.search_hint,
             hintColor: Color(0xFF878787),
             suffixIcon: IconButton(
               onPressed: () {

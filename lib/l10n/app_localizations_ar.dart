@@ -15,50 +15,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get onboarding_subtitle1 => 'استمتع بتوصيل طعام سريع وسلس إلى باب منزلك';
 
   @override
-  String get  change=>'تغيير' ;
-
-
-  @override
-  String get  aleksandr_v=>'الكسندر في';
-
-  @override
-  String get loc=> "123 شارع المدينة، العبدلي، عمان، الأردن";
-
-
-  @override
-  String get  order_id=>'رقم الطلب';
-
-
-  @override
-  String get location_permissions=>'تم رفض أذونات الموقع بشكل دائم، ولا يمكننا طلب الأذونات.';
-
-
-  @override
-  String get  location_permissions_are_denied=> 'تم رفض أذونات الموقع';
-
-  @override
-  String get location_services_are_disabled =>' تم تعطيل خدمات الموقع.';
-
-  @override
-  String get no_points_found_in_polyline_result=>'لم يتم العثور على نقاط في نتيجة الخطوط المتعددة';
-
-  @override
-  String get ahmad_daboor=>'احمد الدبور';
-
-  @override
-  String get add=>'اضافه';
-
-  @override
   String get onboarding_title2 => 'احصل على التوصيل في الوقت المحدد';
 
   @override
   String get onboarding_subtitle2 => 'اطلب طعامك المفضل في راحة يدك ومنطقة راحتك';
-
-  @override
-  String get  enter_your_promo=>'أدخل العرض الترويجي الخاص بك';
-
-  @override
-  String get password=>'كلمة مرور';
 
   @override
   String get onboarding_title3 => 'اختر طعامك';
@@ -85,25 +45,58 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cancel => 'إلغاء';
 
   @override
+  String get continue_with_google => 'متابعة مع Google';
+
+  @override
+  String get continue_with_facebook => 'متابعة مع Facebook';
+
+  @override
+  String get continue_with_apple => 'متابعة مع Apple';
+
+  @override
+  String get remove_from_favorites_confirmation => 'هل أنت متأكد أنك تريد إزالته من المفضلة؟';
+
+  @override
+  String get forget_password => 'نسيت كلمة المرور ؟';
+
+  @override
   String get signup_title => 'إنشاء حساب';
 
   @override
-  String get signup_subtitle => 'لديك حساب بالفعل؟ تسجيل الدخول';
+  String get login_title => 'تسجيل الدخول';
+
+  @override
+  String get signup_subtitle => 'لديك حساب بالفعل؟';
+
+  @override
+  String get login_subtitle => 'ليس لديك حساب؟';
 
   @override
   String get full_name => 'الاسم الكامل';
 
   @override
+  String get full_name_hint => 'أدخل اسمك الكامل';
+
+  @override
   String get date_of_birth => 'تاريخ الميلاد';
 
   @override
+  String get select_date => 'اختر تاريخ';
+
+  @override
   String get phone_number => 'رقم الهاتف';
+
+  @override
+  String get phone_error => 'الرجاء إدخال رقم هاتف صحيح.';
 
   @override
   String get self_password => 'أنشئ كلمة المرور';
 
   @override
   String get register_button => 'تسجيل';
+
+  @override
+  String get remember_me => 'تذكرني';
 
   @override
   String get reset_password_title => 'إعادة تعيين كلمة المرور';
@@ -121,10 +114,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get verify_button => 'تحقق';
 
   @override
+  String get otp_error => 'الرجاء إدخال رمز OTP الكامل.';
+
+  @override
   String get new_password => 'كلمة المرور الجديدة';
 
   @override
   String get confirm_password => 'تأكيد كلمة المرور الجديدة';
+
+  @override
+  String get confirm_password_hint => 'تأكيد كلمة المرور الجديدة';
 
   @override
   String get update_password_button => 'تحديث كلمة المرور';
@@ -136,10 +135,43 @@ class AppLocalizationsAr extends AppLocalizations {
   String get password_reset_success => 'تمت إعادة تعيين كلمة المرور بنجاح';
 
   @override
+  String get error_message => 'يرجى تصحيح الأخطاء قبل المتابعة.';
+
+  @override
+  String get password_hint => 'أدخل كلمة المرور الخاصة بك';
+
+  @override
+  String get new_password_hint => 'أدخل كلمة المرور الجديدة الخاصة بك';
+
+  @override
+  String get something_went_wrong => 'حدث خطأ ما';
+
+  @override
+  String get or => 'أو';
+
+  @override
+  String get current_password => 'هل تريد المحاولة باستخدام كلمة المرور الحالية لديك؟ ';
+
+  @override
+  String get passwords_error => 'كلمات المرور غير متطابقة.';
+
+  @override
+  String get update_cart => 'تحديث السلة';
+
+  @override
+  String get remove_from_cart => 'هل أنت متأكد أنك تريد إزالته من السلة؟';
+
+  @override
   String get current_location => 'الموقع الحالي';
 
   @override
   String get search_hint => 'ابحث في القائمة أو المطعم أو غير ذلك';
+
+  @override
+  String get no_notification => 'لا توجد إشعارات لعرضها.';
+
+  @override
+  String get remove_item => 'هل أنت متأكد أنك تريد إزالته من السلة؟';
 
   @override
   String get all_category => 'الكل';
@@ -182,6 +214,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get favorites => 'المفضلة';
+
+  @override
+  String get no_favorites => 'لا يوجد مفضلة حتى الآن!';
 
   @override
   String get are_you_sure_remove_from_favorites => 'هل أنت متأكد من رغبتك في حذفه من المفضلة؟';
@@ -229,6 +264,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get reviews => 'التقييمات';
 
   @override
+  String get filter => 'فلتر';
+
+  @override
   String get cart => 'السلة';
 
   @override
@@ -265,6 +303,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get reorder => 'أعد الطلب';
 
   @override
+  String get add => 'اضافه';
+
+  @override
+  String get aleksandr_v => 'الكسندر في';
+
+  @override
+  String get change => 'Change';
+
+  @override
+  String get enter_your_promo => 'أدخل كود الخصم الخاص بك';
+
+  @override
   String get your_location => 'موقعك';
 
   @override
@@ -275,6 +325,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pay_with => 'طريقة الدفع:';
+
+  @override
+  String get pay_for_order => 'ادفع ثمن الطلب';
 
   @override
   String get promo_code => 'كود خصم؟';
@@ -304,6 +357,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get card_number => 'رقم البطاقة';
 
   @override
+  String get enter_card_number => 'أدخل رقم البطاقة';
+
+  @override
   String get expiry_date => 'تاريخ الانتهاء';
 
   @override
@@ -320,6 +376,48 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get track_your_order => 'تتبع طلبك';
+
+  @override
+  String get password => 'كلمة مرور';
+
+  @override
+  String get loc => '\"123 شارع المدينة، العبدلي، عمان، الأردن\"';
+
+  @override
+  String get order_id => 'رقم الطلب';
+
+  @override
+  String get ahmad_daboor => 'احمد الدبور';
+
+  @override
+  String get no_points_found_in_polyline_result => 'لم يتم العثور على نقاط في نتيجة الخطوط المتعددة';
+
+  @override
+  String get location_services_are_disabled => ' تم تعطيل خدمات الموقع.';
+
+  @override
+  String get location_permissions_are_denied => 'تم رفض أذونات الموقع';
+
+  @override
+  String get location_permissions => 'Location permissions are permanently denied, we cannot request permissions.';
+
+  @override
+  String get successful_payment => 'سوف نرسل لك تفاصيل الطلب إلى بريدك الإلكتروني بعد الدفع الناجح';
+
+  @override
+  String get empty_fields => 'الرجاء ملء جميع الحقول';
+
+  @override
+  String get invalid_card_number => 'رقم البطاقة غير صحيح';
+
+  @override
+  String get invalid_date => 'تاريخ انتهاء الصلاحية غير صحيح';
+
+  @override
+  String get invalid_cvc => 'رمز التحقق من البطاقة (CVC) غير صحيح';
+
+  @override
+  String get new_address => 'عنوان جديد';
 
   @override
   String get chat => 'الدردشة';
@@ -407,4 +505,31 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get update => 'تحديث';
+
+  @override
+  String get enter_name => 'أدخل الاسم';
+
+  @override
+  String get area => 'المنطقة';
+
+  @override
+  String get building_name => 'اسم المبنى';
+
+  @override
+  String get apt_number => 'رقم الشقة';
+
+  @override
+  String get floor => 'الطابق';
+
+  @override
+  String get street => 'الشارع';
+
+  @override
+  String get additional_directions => 'الاتجاهات الإضافية (اختياري)';
+
+  @override
+  String get save_address => 'حفظ العنوان';
+
+  @override
+  String get ok => 'حسنا';
 }

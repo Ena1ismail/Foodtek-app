@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/controller/cart_controller.dart';
 import 'package:foodtek/controller/home_page_controller.dart';
+import 'package:foodtek/l10n/app_localizations.dart';
 import 'package:foodtek/model/food_item.dart';
 import 'package:foodtek/view/widgets/custom_button_widget.dart';
 import 'package:foodtek/view/widgets/home_widgets/search_bar_widget.dart';
@@ -129,7 +130,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
           ),
         ),
         Text(
-          " (${_foodItem.reviews.toString()} reviews)",
+          " (${_foodItem.reviews.toString()} ${AppLocalizations.of(context)!.reviews})",
           style: GoogleFonts.inter(
             fontSize: 12.sp,
             fontWeight: FontWeight.w400,
@@ -188,7 +189,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Spicy",
+          AppLocalizations.of(context)!.spicy,
           style: GoogleFonts.inter(fontSize: 12.sp, color: Color(0xFF838383)),
         ),
         SizedBox(height: 15.h),
@@ -205,7 +206,9 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                   dynamic actualValue,
                   String formattedText,
                 ) {
-                  return actualValue <= 5 ? 'Mild' : 'Hot';
+                  return actualValue <= 5
+                      ? AppLocalizations.of(context)!.mild
+                      : AppLocalizations.of(context)!.hot;
                 },
                 inactiveColor: Color(0xFFF3F4F6),
                 activeColor: Color(0xFFEF2A39),
@@ -225,7 +228,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Quantity",
+          AppLocalizations.of(context)!.quantity,
           style: GoogleFonts.inter(fontSize: 12.sp, color: Color(0xFF838383)),
         ),
         SizedBox(height: 15.h),
@@ -256,7 +259,10 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
           builder: (context, homePageController, child) {
             return Center(
               child: CustomButtonWidget(
-                title: isInCart ? "Update Cart" : "Add To Cart",
+                title:
+                    isInCart
+                        ? AppLocalizations.of(context)!.update_cart
+                        : AppLocalizations.of(context)!.add_to_cart,
                 colors: [AppConstants.buttonColor, AppConstants.buttonColor],
                 borderRadius: 12.r,
                 titleColor: Colors.white,

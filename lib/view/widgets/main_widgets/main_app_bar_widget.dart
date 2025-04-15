@@ -3,6 +3,7 @@ import 'package:foodtek/view/widgets/main_widgets/notification_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../../controller/home_page_controller.dart';
+import '../../../l10n/app_localizations.dart';
 
 class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final TabBar? tabBar;
@@ -59,7 +60,7 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     return GestureDetector(
       onTap: () {},
       child: Text(
-        "Current location",
+        AppLocalizations.of(context)!.current_location,
         style: GoogleFonts.inter(
           fontSize: 12,
           color: Color(0xFF606060),

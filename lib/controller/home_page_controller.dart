@@ -1,32 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/model/food_item.dart';
 import 'package:foodtek/view/widgets/custom_button_widget.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../model/notification_item.dart';
-import '../view/widgets/home_widgets/food_item_widget.dart';
-import '../view/widgets/home_widgets/recommend_item_widget.dart';
-import '../view/widgets/home_widgets/top_rated_widget.dart';
+import 'package:foodtek/view/widgets/home_widgets/food_item_widget.dart';
+import 'package:foodtek/view/widgets/home_widgets/recommend_item_widget.dart';
+import 'package:foodtek/view/widgets/home_widgets/top_rated_widget.dart';
+import 'package:foodtek/l10n/app_localizations.dart';
+
+import '../model/notification_item.dart';
 
 class HomePageController extends ChangeNotifier {
-  TextEditingController searchTextEditingController = TextEditingController();
+  final TextEditingController searchTextEditingController = TextEditingController();
+
   int selectedIndex = 0;
   int selectedToggleIndex = 0;
-  String selectedCategory = "All";
+
+  String? selectedCategory;
+
   late FoodItem foodItem;
+
   int itemAmount = 1;
   double sliderValue = 4.0;
-  List<FoodItem> fav = [];
+
+  final List<FoodItem> fav = [];
 
   bool isProductDetailsSelected = false;
 
-  toggleProductDetails() {
+  void initializeSelectedCategory(BuildContext context) {
+    selectedCategory = AppLocalizations.of(context)!.all_category;
+    notifyListeners();
+  }
+
+  void toggleProductDetails() {
     isProductDetailsSelected = !isProductDetailsSelected;
     notifyListeners();
   }
 
-  selectedFoodItem(FoodItem item) {
+  void selectedFoodItem(FoodItem item) {
     foodItem = item;
     notifyListeners();
   }
@@ -58,16 +68,20 @@ class HomePageController extends ChangeNotifier {
     }
   }
 
-  List<FoodItemWidget> getItemsForCategory() {
-    switch (selectedCategory) {
-      case "Pizza":
-        return pizza;
-      case "Burger":
-        return burger;
-      case "Sandwich":
-        return sandwich;
-      default:
-        return [];
+  List<FoodItemWidget> getItemsForCategory(BuildContext context) {
+    final localizations = AppLocalizations.of(context);
+    if (localizations == null) {
+      throw Exception("Localization not available in the current context.");
+    }
+
+    if (selectedCategory == localizations.pizza_category) {
+      return pizza;
+    } else if (selectedCategory == localizations.burger_category) {
+      return burger;
+    } else if (selectedCategory == localizations.sandwich_category) {
+      return sandwich;
+    } else {
+      return [];
     }
   }
 
@@ -212,12 +226,12 @@ class HomePageController extends ChangeNotifier {
     ),
   ];
 
-  List<FoodItemWidget> pizza = [
+  final List<FoodItemWidget> pizza = [
     FoodItemWidget(
       foodItem: FoodItem(
         name: "Mexican Green Wave",
         description:
-            "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes",
+        "A pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes",
         newPrice: 23.00,
         oldPrice: 30.00,
         imageUrl: "assets/images/pizza1.png",
@@ -233,7 +247,7 @@ class HomePageController extends ChangeNotifier {
       foodItem: FoodItem(
         name: "Peppy Paneer",
         description:
-            "Chunky paneer with crisp capsicum and spicy red pepper, and spicy red pepper",
+        "Chunky paneer with crisp capsicum and spicy red pepper, and spicy red pepper",
         newPrice: 13.00,
         oldPrice: 17.00,
         imageUrl: "assets/images/pizza2.png",
@@ -249,7 +263,7 @@ class HomePageController extends ChangeNotifier {
       foodItem: FoodItem(
         name: "Pepperoni pizza",
         description:
-            "Pepperoni pizza, Margarita Pizza Margherita Italian cuisine Tomato",
+        "Pepperoni pizza, Margarita Pizza Margherita Italian cuisine Tomato",
         newPrice: 29.00,
         oldPrice: 35.00,
         imageUrl: "assets/images/pizza3.png",
@@ -265,7 +279,7 @@ class HomePageController extends ChangeNotifier {
       foodItem: FoodItem(
         name: "Pizza Cheese",
         description:
-            "Food pizza dish cuisine junk food, Fast Food, Flatbread, Ingredient",
+        "Food pizza dish cuisine junk food, Fast Food, Flatbread, Ingredient",
         newPrice: 23,
         oldPrice: 29.00,
         imageUrl: "assets/images/pizza4.png",
@@ -279,12 +293,12 @@ class HomePageController extends ChangeNotifier {
     ),
   ];
 
-  List<FoodItemWidget> burger = [
+  final List<FoodItemWidget> burger = [
     FoodItemWidget(
       foodItem: FoodItem(
         name: "Cheese Burger",
         description:
-            "Juicy beef patty with cheddar, lettuce, tomato, pickles, and onion rings",
+        "Juicy beef patty with cheddar, lettuce, tomato, pickles, and onion rings",
         newPrice: 20,
         oldPrice: 27.00,
         imageUrl: "assets/images/top_rated1.png",
@@ -300,7 +314,7 @@ class HomePageController extends ChangeNotifier {
       foodItem: FoodItem(
         name: "BBQ Bacon Burger",
         description:
-            "Grilled beef patty topped with crispy bacon, BBQ sauce, and onion rings",
+        "Grilled beef patty topped with crispy bacon, BBQ sauce, and onion rings",
         newPrice: 15,
         oldPrice: 17.00,
         imageUrl: "assets/images/burger3.png",
@@ -316,7 +330,7 @@ class HomePageController extends ChangeNotifier {
       foodItem: FoodItem(
         name: "Veggie Burger",
         description:
-            "Black bean and quinoa patty with avocado and cilantro-lime mayo on",
+        "Black bean and quinoa patty with avocado and cilantro-lime mayo on",
         newPrice: 23,
         oldPrice: 27.00,
         imageUrl: "assets/images/veggie.png",
@@ -332,7 +346,7 @@ class HomePageController extends ChangeNotifier {
       foodItem: FoodItem(
         name: "Chicken Burger",
         description:
-            "Crispy fried chicken with buffalo sauce and blue cheese on a potato bun.",
+        "Crispy fried chicken with buffalo sauce and blue cheese on a potato bun.",
         newPrice: 25,
         oldPrice: 29.00,
         imageUrl: "assets/images/top_rated2.png",
@@ -346,12 +360,12 @@ class HomePageController extends ChangeNotifier {
     ),
   ];
 
-  List<FoodItemWidget> sandwich = [
+  final List<FoodItemWidget> sandwich = [
     FoodItemWidget(
       foodItem: FoodItem(
         name: "Chicken Taco",
         description:
-            "Soft tortilla with grilled chicken, guacamole, cheese, and tomatoes.",
+        "Soft tortilla with grilled chicken, guacamole, cheese, and tomatoes.",
         newPrice: 20,
         oldPrice: 24.00,
         imageUrl: "assets/images/sandwich 3.png",
@@ -367,7 +381,7 @@ class HomePageController extends ChangeNotifier {
       foodItem: FoodItem(
         name: "Hot Dog Trio",
         description:
-            "Three juicy grilled hot dogs topped with mustard, ketchup, onions, and relish",
+        "Three juicy grilled hot dogs topped with mustard, ketchup, onions, and relish",
         newPrice: 45,
         oldPrice: 55.00,
         imageUrl: "assets/images/sandwich 4.png",
@@ -383,7 +397,7 @@ class HomePageController extends ChangeNotifier {
       foodItem: FoodItem(
         name: "Cheese Sandwich",
         description:
-            "A hearty sandwich featuring layers of savory ham, melted cheese, fresh lettuce.",
+        "A hearty sandwich featuring layers of savory ham, melted cheese, fresh lettuce.",
         newPrice: 23,
         oldPrice: 28.00,
         imageUrl: "assets/images/sandwich 1.png",
@@ -399,7 +413,7 @@ class HomePageController extends ChangeNotifier {
       foodItem: FoodItem(
         name: "Croissant Sandwich",
         description:
-            "A flaky croissant filled with thinly sliced ham, creamy cheese, and fresh greens.",
+        "A flaky croissant filled with thinly sliced ham, creamy cheese, and fresh greens.",
         newPrice: 25,
         oldPrice: 30.00,
         imageUrl: "assets/images/sandwich 2.png",
@@ -497,22 +511,22 @@ class HomePageController extends ChangeNotifier {
         return AlertDialog(
           backgroundColor: Colors.white,
           content: Text(
+            AppLocalizations.of(context)!.remove_from_favorites_confirmation,
             textAlign: TextAlign.center,
-            "Are you sure you want to remove it from favorites?",
-            style: GoogleFonts.inter(
-              fontSize: 14.sp,
+            style: TextStyle(
+              fontSize: 14,
               color: Colors.black54,
               fontWeight: FontWeight.w400,
             ),
           ),
           actions: [
             CustomButtonWidget(
-              title: "Yes",
+              title: AppLocalizations.of(context)!.yes,
               colors: [AppConstants.buttonColor, AppConstants.buttonColor],
-              height: 60.h,
-              borderRadius: 12.r,
+              height: 60,
+              borderRadius: 12,
               titleColor: Colors.white,
-              width: 300.w,
+              width: 300,
               onPressed: () {
                 fav.remove(foodItem);
                 notifyListeners();

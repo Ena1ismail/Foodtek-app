@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/controller/home_page_controller.dart';
+import 'package:foodtek/l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -10,14 +11,14 @@ class CategoryButtonsWidget extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: const EdgeInsets.only(left: 30),
+        padding: const EdgeInsets.only(left: 30, right: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            _buildButton('All', 0, "assets/images/burger.png"),
-            _buildButton('Burger', 1, "assets/images/burger.png"),
-            _buildButton('Pizza', 2, "assets/images/pizza.png"),
-            _buildButton('Sandwich', 3, "assets/images/sandwich.png"),
+            _buildButton(AppLocalizations.of(context)!.all_tab, 0, "assets/images/burger.png"),
+            _buildButton(AppLocalizations.of(context)!.burger_category, 1, "assets/images/burger.png"),
+            _buildButton(AppLocalizations.of(context)!.pizza_category, 2, "assets/images/pizza.png"),
+            _buildButton(AppLocalizations.of(context)!.sandwich_category, 3, "assets/images/sandwich.png"),
           ],
         ),
       ),
@@ -44,8 +45,8 @@ class CategoryButtonsWidget extends StatelessWidget {
             ),
             child: Row(
               children: [
-                if (label != 'All') Image.asset(image, height: 24, width: 24),
-                if (label != 'All') SizedBox(width: 10),
+                if (label != AppLocalizations.of(context)!.all_category) Image.asset(image, height: 24, width: 24),
+                if (label != AppLocalizations.of(context)!.all_category) SizedBox(width: 10),
                 Text(
                   label,
                   style: GoogleFonts.poppins(

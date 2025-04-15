@@ -11,33 +11,57 @@
   "skip": "Skip",
   "yes_turn_it_on": "yes, turn it on",
   "cancel": "cancel",
+  "continue_with_google": "Continue with Google",
+  "continue_with_facebook": "Continue with Facebook",
+  "continue_with_apple": "Continue with Apple",
+  "remove_from_favorites_confirmation": "Are you sure you want to remove it from favorites?",
 
 
 
-
+  "forget_password": "Forget Password ?",
   "signup_title": "Sign up",
-  "login_title": "login",
+  "login_title": "Login",
   "signup_subtitle": "Already have an account?",
+  "login_subtitle": "Don’t have an account?",
   "full_name": "Full Name",
+  "full_name_hint": "Enter your full name",
   "date_of_birth": "Birth of date",
+  "select_date": "Select Date",
   "phone_number": "Phone Number",
+  "phone_error": "Please enter a valid phone number.",
   "self_password": "Set Password",
   "register_button": "Register",
+  "remember_me": "Remember me",
   "reset_password_title": "Rest Password",
   "reset_password_instruction": "Enter your E-mail or phone and we'll \nsend you a link to get back into\nyour account  ",
   "send_button": "Send",
   "verification_code_instruction": "A 4-digit code has been sent to your email. Please enter it to verify.",
   "verify_button": "Verify",
+  "otp_error": "Please enter the full OTP code.",
   "new_password": "New Password",
   "confirm_password": "Confirm New Password",
+  "confirm_password_hint" : "Confirm your new password",
   "update_password_button": "Update Password",
   "congratulations": "Congratulations!",
   "password_reset_success": "password reset successfully",
+  "error_message": "Please fix the errors before proceeding.",
+  "password_hint": "Enter your password",
+  "new_password_hint": "Enter your new password",
+  "something_went_wrong": "Something Went wrong",
+  "or": "Or",
+  "current_password": "Want to try with your current password? ",
+  "passwords_error": "Passwords do not match.",
+  "update_cart": "Update Cart",
+  "remove_from_cart": "Are you sure you want to remove it from Carts?",
+
+
 
 
 
   "current_location": "Current location",
   "search_hint": "Search menu, restaurant or etc",
+  "no_notification": "No notifications to display.",
+  "remove_item": "Are you sure you want to remove it from Carts?",
   "all_category": "All",
   "burger_category": "Burger",
   "pizza_category": "Pizza",
@@ -52,6 +76,7 @@
   "unread_tab": "Unread",
   "read_tab": "Read",
   "favorites": "favorites",
+  "no_favorites": "No favorites yet!",
   "are_you_sure_remove_from_favorites": "Are you sure you want to remove it from favorites?",
   "yes": "Yes",
   "price_range": "Price Range",
@@ -67,6 +92,8 @@
   "hot": "Hot",
   "quantity": "Quantity",
   "reviews": "reviews",
+  "filter": "Filter",
+
 
 
 
@@ -82,14 +109,15 @@
   "history_empty_prompt": "You don’t have order any foods before",
   "load_more": "Load More..",
   "reorder": "Reorder",
-"add": "Add",
+  "add": "Add",
   "aleksandr_v": "Aleksandr V.",
-"change": "Change",
+  "change": "Change",
   "enter_your_promo": "Enter Your Promo",
   "your_location": "your location",
   "set_location": "Set Location",
   "checkout": "Checkout",
   "pay_with": "Pay With:",
+  "pay_for_order":"Pay for the order",
   "promo_code": "Promo Code?",
   "add_card": "Add Card",
   "card": "Card",
@@ -99,6 +127,7 @@
   "mastercard": "Master Card",
   "name": "Name",
   "card_number": "Card Number",
+  "enter_card_number": "Enter Card Number",
   "expiry_date": "Expiry",
   "cvc": "CVC",
   "order_done_successfully": "Your Order Done Successfully",
@@ -113,6 +142,14 @@
   "location_services_are_disabled":"Location services are disabled.",
   "location_permissions_are_denied":"Location permissions are denied",
   "location_permissions": "Location permissions are permanently denied, we cannot request permissions.",
+  "successful_payment": "We will send you an order details to your email after the successful payment",
+  "empty_fields": "Please fill in all the fields",
+  "invalid_card_number": "Invalid card number",
+  "invalid_date": "Invalid expiry date",
+  "invalid_cvc": "Invalid CVC",
+  "new_address": "New Address",
+
+
 
   "chat":"Chat",
   "write_your_message": "Write your message",
@@ -142,5 +179,18 @@
   "username": "Username",
   "email": "Email",
   "address": "Address",
-  "update": "Update"
+  "update": "Update",
+
+
+  "enter_name": "Enter name",
+  "area": "Area",
+  "building_name": "Building name",
+  "apt_number": "Apt. number",
+  "floor": "Floor",
+  "street":"Street",
+  "additional_directions": "Additional directions (optional)",
+  "save_address": "Save Address",
+  "ok": "Ok"
+
+
 }
