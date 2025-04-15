@@ -16,6 +16,7 @@
 
 
   "signup_title": "Sign up",
+  "login_title": "login",
   "signup_subtitle": "Already have an account?",
   "full_name": "Full Name",
   "date_of_birth": "Birth of date",
@@ -31,7 +32,7 @@
   "confirm_password": "Confirm New Password",
   "update_password_button": "Update Password",
   "congratulations": "Congratulations!",
-  "password_reset_success": "password reset succesfuly",
+  "password_reset_success": "password reset successfully",
 
 
 

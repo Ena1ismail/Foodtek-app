@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controller/login_controller.dart';
+import '../../../l10n/app_localizations.dart';
 import 'otp_screen.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
@@ -77,7 +78,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 EmailFieldWidget(loginController: loginController),
                 SizedBox(height: 24.h),
                 LoginButtonWidget(
-                  buttonName: "Send",
+                  buttonName: AppLocalizations.of(context)!.send_button,
                   onPressed: () {
                     loginController.validateField(
                       context: context,

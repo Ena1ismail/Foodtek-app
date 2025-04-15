@@ -14,6 +14,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controller/secure_storage_controller.dart';
+import '../../../l10n/app_localizations.dart';
 import '../home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -85,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(height: 16.h),
         PasswordFieldWidget(
           loginController: loginController,
-          title: "Password",
+          title: AppLocalizations.of(context)!.self_password,
           hintText: "Enter your password",
           controller: loginController.passwordController,
           onChange:

@@ -16,7 +16,8 @@
 
 
   "signup_title": "إنشاء حساب",
-  "signup_subtitle": "لديك حساب بالفعل؟ تسجيل الدخول",
+  "login_title": "تسجيل الدخول",
+  "signup_subtitle": "لديك حساب بالفعل؟",
   "full_name": "الاسم الكامل",
   "date_of_birth": "تاريخ الميلاد",
   "phone_number": "رقم الهاتف",
