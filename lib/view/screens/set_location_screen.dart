@@ -10,6 +10,8 @@ import 'package:foodtek/controller/location_controller.dart';
 import 'package:foodtek/view/screens/add_address_screen.dart';
 import 'package:geocoding/geocoding.dart';
 
+import '../../l10n/app_localizations.dart';
+
 class SetLocationScreen extends StatefulWidget {
   const SetLocationScreen({super.key});
 
@@ -78,7 +80,7 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
                 backgroundColor: Colors.white,
                 borderRadius: BorderRadius.circular(40.r),
                 borderColor: Colors.black12,
-                hintText: "Find your location",
+                hintText: AppLocalizations.of(context)!.find_your_location,
                 prefixIcon: Icon(Icons.search, color: AppConstants.buttonColor),
                 width: 340.w,
               ),
@@ -103,7 +105,7 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
                     Padding(
                       padding: const EdgeInsets.only(left: 23.0, top: 24),
                       child: Text(
-                        "your location",
+                        AppLocalizations.of(context)!.your_location,
                         style: GoogleFonts.inter(
                           fontSize: 12.sp,
                           color: Color(0xFF878787),
@@ -153,7 +155,7 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
                             ),
                           ),
                           child: Text(
-                            "Set Location",
+                            AppLocalizations.of(context)!.set_location,
                             style: TextStyle(
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold,

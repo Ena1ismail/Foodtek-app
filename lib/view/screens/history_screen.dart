@@ -4,6 +4,8 @@ import 'package:foodtek/view/widgets/cart_widgets/empty_widget.dart';
 import 'package:foodtek/view/widgets/cart_widgets/history_widget.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
+
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
 
@@ -18,8 +20,8 @@ class HistoryScreen extends StatelessWidget {
 
             if (historyOrders.isEmpty) {
               return EmptyWidget(
-                title: "History Empty",
-                subTitle: "You haven’t ordered any foods before.",
+                title: AppLocalizations.of(context)!.history_empty,
+                subTitle:AppLocalizations.of(context)!. history_empty_prompt,
               );
             }
 

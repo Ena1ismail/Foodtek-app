@@ -6,6 +6,7 @@ import 'package:foodtek/view/widgets/cart_widgets/check_out_widget.dart';
 import 'package:provider/provider.dart';
 import '../../../controller/cart_controller.dart';
 import '../../../controller/location_controller.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../widgets/cart_widgets/cart_item_widget.dart';
 import '../../widgets/cart_widgets/empty_widget.dart';
 import '../set_location_screen.dart';
@@ -28,9 +29,9 @@ class CartScreen extends StatelessWidget {
 
                   if (cartItems.isEmpty) {
                     return EmptyWidget(
-                      title: "Cart Empty",
+                      title: AppLocalizations.of(context)!.cart_empty,
                       subTitle:
-                          "You don’t have added any foods in the cart at this time.",
+                      AppLocalizations.of(context)!.cart_empty_prompt,
                     );
                   } else {
                     return ListView(

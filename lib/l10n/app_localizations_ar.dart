@@ -20,6 +20,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get onboarding_subtitle2 => 'اطلب طعامك المفضل في راحة يدك ومنطقة راحتك';
 
+
+  @override
+  String get password=>'كلمة مرور';
+
   @override
   String get onboarding_title3 => 'اختر طعامك';
 

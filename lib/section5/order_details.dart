@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../l10n/app_localizations.dart';
 import 'alexander.dart';
 import 'track.dart';
 import 'statuss.dart';
@@ -10,15 +11,7 @@ class OrderDetailsScreen extends StatefulWidget {
   @override
   State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
 }
-
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
-  final List<String> statuses = [
-    "Order received",
-    "Cooking your order",
-    "Courier is picking up order",
-    "Order delivered",
-  ];
-
   final List<IconData> icons = [
     Icons.check,
     Icons.call_to_action_outlined,
@@ -30,6 +23,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> statuses = [
+      AppLocalizations.of(context)!.order_received,
+      AppLocalizations.of(context)!.cooking_your_order,
+      AppLocalizations.of(context)!.courier_is_picking_up_order,
+      AppLocalizations.of(context)!.order_delivered,
+    ];
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -43,7 +43,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Order Details",
+                AppLocalizations.of(context)!.order_details,
                 style: TextStyle(
                   fontSize: 20.sp,
                   color: Color(0xff391713),
@@ -110,7 +110,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       ),
                     ),
                     child: Text(
-                      "Live Track",
+                      AppLocalizations.of(context)!.live_track,
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.white,

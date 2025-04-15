@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../l10n/app_localizations.dart';
 import 'chat_widget.dart';
 
 class ChatPage extends StatefulWidget {
@@ -31,7 +32,7 @@ class _ChatPageState extends State<ChatPage> {
                       },
                     ),
                     Text(
-                      "Chat",
+                      AppLocalizations.of(context)!.chat,
                       style: TextStyle(
                         fontSize: 20.sp,
                         color: Color(0xff391713),
@@ -84,7 +85,7 @@ class _ChatPageState extends State<ChatPage> {
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        hintText: "Write your message",
+                        hintText: AppLocalizations.of(context)!.write_your_message,
                         hintStyle: TextStyle(color: Color(0xffA1A1A1)),
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.symmetric(

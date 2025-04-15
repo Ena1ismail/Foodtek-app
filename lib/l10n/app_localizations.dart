@@ -382,6 +382,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Price Range'**
   String get price_range;
+  String get  password;
 
   /// No description provided for @min.
   ///

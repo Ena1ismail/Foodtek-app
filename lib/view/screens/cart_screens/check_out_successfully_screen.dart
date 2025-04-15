@@ -7,6 +7,7 @@ import 'package:foodtek/view/widgets/custom_button_widget.dart';
 import 'package:foodtek/view/widgets/main_widgets/notification_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../widgets/main_widgets/notification_widget.dart';
 
 class CheckOutSuccessfullyScreen extends StatelessWidget {
@@ -27,7 +28,7 @@ class CheckOutSuccessfullyScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Checkout",
+              AppLocalizations.of(context)!.checkout,
               style: GoogleFonts.inter(
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w600,
@@ -41,7 +42,7 @@ class CheckOutSuccessfullyScreen extends StatelessWidget {
             Center(
               child: Text(
                 textAlign: TextAlign.center,
-                "Your Order Done Successfully",
+                AppLocalizations.of(context)!.order_done_successfully,
                 style: GoogleFonts.inter(
                   fontSize: 24.sp,
                   color: Colors.black,
@@ -53,7 +54,7 @@ class CheckOutSuccessfullyScreen extends StatelessWidget {
             Center(
               child: Text(
                 textAlign: TextAlign.center,
-                "you will get your order within 12min. thanks for using our services",
+                AppLocalizations.of(context)!.you_will_get_your_order_within_12min,
                 style: GoogleFonts.inter(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w500,
@@ -64,7 +65,7 @@ class CheckOutSuccessfullyScreen extends StatelessWidget {
             SizedBox(height: 45.h),
             Center(
               child: CustomButtonWidget(
-                title: "track Your Order",
+                title:  AppLocalizations.of(context)!.track_your_order,
                 colors: [AppConstants.buttonColor, AppConstants.buttonColor],
                 titleColor: Colors.white,
                 onPressed: () {

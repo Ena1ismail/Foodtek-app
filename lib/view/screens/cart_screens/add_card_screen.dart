@@ -9,6 +9,8 @@ import 'package:foodtek/view/widgets/main_widgets/notification_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../../l10n/app_localizations.dart';
+
 class AddCardScreen extends StatelessWidget {
   const AddCardScreen({super.key});
 
@@ -27,14 +29,14 @@ class AddCardScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildTitle(),
+              _buildTitle(context),
               SizedBox(height: 20.h),
               _buildCardImage(),
               SizedBox(height: 8.h),
               Consumer<CartController>(
                 builder: (context, cartController, child) {
                   return _buildInputField(
-                    label: "Name",
+                    label: AppLocalizations.of(context)!.name,
                     hintText: "Enter Name",
                     controller: cartController.nameController,
                   );
@@ -44,7 +46,7 @@ class AddCardScreen extends StatelessWidget {
               Consumer<CartController>(
                 builder: (context, cartController, child) {
                   return _buildInputField(
-                    label: "Card Number",
+                    label: AppLocalizations.of(context)!.card_number,
                     hintText: "Enter Card Number",
                     controller: cartController.cardNumberController,
                     suffixIcon: Image.asset(
@@ -62,8 +64,8 @@ class AddCardScreen extends StatelessWidget {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildExpiryField(cartController.expiryController),
-                      _buildCvcField(cartController.cvcController),
+                      _buildExpiryField(context, cartController.expiryController),
+                      _buildCvcField(context, cartController.cvcController),
                     ],
                   );
                 },
@@ -79,9 +81,9 @@ class AddCardScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTitle() {
+  Widget _buildTitle(BuildContext context) {
     return Text(
-      "Add Card",
+      AppLocalizations.of(context)!.add_card,
       style: GoogleFonts.inter(
         fontSize: 20.sp,
         fontWeight: FontWeight.w600,
@@ -128,12 +130,12 @@ class AddCardScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildExpiryField(TextEditingController controller) {
+  Widget _buildExpiryField(BuildContext context, TextEditingController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Expiry",
+          AppLocalizations.of(context)!.expiry_date,
           style: GoogleFonts.plusJakartaSans(
             fontSize: 12.sp,
             color: const Color(0xFF6C7278),
@@ -154,12 +156,12 @@ class AddCardScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCvcField(TextEditingController controller) {
+  Widget _buildCvcField(BuildContext context, TextEditingController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "CVC",
+          AppLocalizations.of(context)!.cvc,
           style: GoogleFonts.plusJakartaSans(
             fontSize: 12.sp,
             color: const Color(0xFF6C7278),
@@ -248,12 +250,12 @@ class AddCardScreen extends StatelessWidget {
   }
 
   bool _isValidCardNumber(String cardNumber) {
-    final regex = RegExp(r'^\d{16}$');
+    final regex = RegExp(r'^\d{16}\$');
     return regex.hasMatch(cardNumber);
   }
 
   bool _isValidExpiryDate(String expiryDate) {
-    final regex = RegExp(r'^(0[1-9]|1[0-2])\/([0-9]{2})$');
+    final regex = RegExp(r'^(0[1-9]|1[0-2])\/([0-9]{2})\$');
     if (!regex.hasMatch(expiryDate)) {
       return false;
     }
@@ -269,7 +271,7 @@ class AddCardScreen extends StatelessWidget {
   }
 
   bool _isValidCvc(String cvc) {
-    final regex = RegExp(r'^\d{3,4}$');
+    final regex = RegExp(r'^\d{3,4}\$');
     return regex.hasMatch(cvc);
   }
 

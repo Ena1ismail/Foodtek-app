@@ -3,6 +3,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/section5/search.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../l10n/app_localizations.dart';
 import 'order_details.dart';
 import 'profile1.dart';
 import 'OrderTrack_widget.dart';
@@ -161,7 +162,7 @@ class _TrackPageState extends State<TrackPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "On The way",
+                          AppLocalizations.of(context)!.on_the_way,
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
@@ -181,7 +182,7 @@ class _TrackPageState extends State<TrackPage> {
                             );
                           },
                           child: Text(
-                            "All Details",
+                            AppLocalizations.of(context)!.all_details,
                             style: TextStyle(fontSize: 16),
                           ),
                         ),
@@ -194,16 +195,16 @@ class _TrackPageState extends State<TrackPage> {
                       children: [
                         Expanded(
                           child: OrderTrackStatusWidget(
-                            title: "order Placed",
+                            title: AppLocalizations.of(context)!.order_placed,
                             value: 1,
                           ),
                         ),
                         Expanded(
-                          child: OrderTrackStatusWidget(title: "On the way"),
+                          child: OrderTrackStatusWidget(title: AppLocalizations.of(context)!.on_the_way),
                         ),
                         Expanded(
                           child: OrderTrackStatusWidget(
-                            title: "Deliverd",
+                            title: AppLocalizations.of(context)!.delivered,
                             value: 0,
                           ),
                         ),

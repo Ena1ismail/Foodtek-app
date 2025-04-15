@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/view/screens/history_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../l10n/app_localizations.dart';
 import 'cart_screen.dart';
 
 class CartMainScreen extends StatelessWidget {
@@ -17,7 +18,7 @@ class CartMainScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: TabBar(
-            tabs: [Tab(text: "Cart"), Tab(text: "History")],
+            tabs: [Tab(text: AppLocalizations.of(context)!.cart), Tab(text:AppLocalizations.of(context)!. history)],
             labelColor: AppConstants.buttonColor,
             unselectedLabelColor: Color(0xFF98A0B4),
             indicatorColor: AppConstants.buttonColor,

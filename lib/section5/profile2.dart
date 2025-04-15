@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../l10n/app_localizations.dart';
+
 class Profile extends StatefulWidget {
   const Profile({super.key});
 
@@ -31,7 +33,7 @@ class _ProfileState extends State<Profile> {
                     },
                   ),
                   Text(
-                    " profile",
+                    AppLocalizations.of(context)!.profile,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                   ),
                 ],
@@ -70,7 +72,7 @@ class _ProfileState extends State<Profile> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Username ",
+                      AppLocalizations.of(context)!.username,
                       style: TextStyle(
                         color: Color(0xff6C7278),
                         fontWeight: FontWeight.w500,
@@ -116,7 +118,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     SizedBox(height: 10.h),
                     Text(
-                      "Email ",
+                      AppLocalizations.of(context)!.email,
                       style: TextStyle(
                         color: Color(0xff6C7278),
                         fontWeight: FontWeight.w500,
@@ -156,7 +158,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     SizedBox(height: 10.h),
                     Text(
-                      "Phone Number",
+                      AppLocalizations.of(context)!.phone_number,
                       style: TextStyle(
                         color: Color(0xff6C7278),
                         fontWeight: FontWeight.w500,
@@ -196,7 +198,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     SizedBox(height: 10.h),
                     Text(
-                      "Passwoed",
+                      AppLocalizations.of(context)!.password,
                       style: TextStyle(
                         color: Color(0xff6C7278),
                         fontWeight: FontWeight.w500,
@@ -236,7 +238,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     SizedBox(height: 10.h),
                     Text(
-                      "Address ",
+                      AppLocalizations.of(context)!.address,
                       style: TextStyle(
                         color: Color(0xff6C7278),
                         fontWeight: FontWeight.w500,
@@ -296,8 +298,8 @@ class _ProfileState extends State<Profile> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          'Update',
+                        Text(
+                          AppLocalizations.of(context)!.update,
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.white,

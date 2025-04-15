@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/section5/profile2.dart';
+import 'package:provider/provider.dart';
+
+import '../controller/lang_controller.dart';
+import '../l10n/app_localizations.dart';
 
 class Prof extends StatefulWidget {
   const Prof({super.key});
@@ -23,7 +27,7 @@ class _ProfState extends State<Prof> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Text(
-                  "profile",
+                  AppLocalizations.of(context)!.profile,
                   style: TextStyle(
                     fontSize: 20.sp,
                     color: Color(0xff391713),
@@ -73,7 +77,7 @@ class _ProfState extends State<Prof> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "My Account",
+                          AppLocalizations.of(context)!.my_account,
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
@@ -94,7 +98,7 @@ class _ProfState extends State<Prof> {
                               Icon(Icons.person_add_alt_1_sharp, size: 20),
                               SizedBox(width: 10.w),
                               Text(
-                                "Personal information",
+                                AppLocalizations.of(context)!.personal_information,
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -104,23 +108,40 @@ class _ProfState extends State<Prof> {
                           ),
                         ),
                         SizedBox(height: 10.h),
+
                         GestureDetector(
-                          onTap: () {},
-                          child: Row(children: [
+                          onTap: () {
+                            final langController = Provider.of<LangController>(context, listen: false);
+
+                            // Toggle بين العربية والإنجليزية
+                            final newLang = langController.currentLangCode == 'ar' ? 'en' : 'ar';
+                            langController.changeLang(langCode: newLang);
+                          },
+                          child: Row(
+                            children: [
                               Icon(Icons.language, size: 20),
                               SizedBox(width: 10.w),
                               Text(
-                                "Language",
+                                AppLocalizations.of(context)!.language,
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
                               Spacer(),
-                              Text("عربية",style: TextStyle(color: Color(0xFF838383))),
+                              Consumer<LangController>(
+                                builder: (context, langController, child) {
+                                  return Text(
+                                    langController.currentLangCode == 'ar' ? "عربية" : "English",
+                                    style: TextStyle(color: Color(0xFF838383)),
+                                  );
+                                },
+                              ),
                             ],
                           ),
                         ),
+
+
                         SizedBox(height: 11.h),
                         GestureDetector(
                           onTap: () {},
@@ -129,7 +150,7 @@ class _ProfState extends State<Prof> {
                               Icon(Icons.privacy_tip, size: 20),
                               SizedBox(width: 10.w),
                               Text(
-                                "Privacy Policy",
+                                AppLocalizations.of(context)!.privacy_policy,
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -146,7 +167,7 @@ class _ProfState extends State<Prof> {
                               Icon(Icons.settings, size: 20),
                               SizedBox(width: 10.w),
                               Text(
-                                "Setting",
+                                AppLocalizations.of(context)!.settings,
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -179,7 +200,7 @@ class _ProfState extends State<Prof> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Notifications",
+                          AppLocalizations.of(context)!.notifications,
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
@@ -190,9 +211,9 @@ class _ProfState extends State<Prof> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            buildRow("Push Notifications", true, context),
+                            buildRow(AppLocalizations.of(context)!.push_notifications, true, context),
                             buildRow(
-                              "Promotional Notifications",
+                              AppLocalizations.of(context)!. promotional_notifications,
                               false,
                               context,
                             ),
@@ -222,7 +243,7 @@ class _ProfState extends State<Prof> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "More",
+                          AppLocalizations.of(context)!.more,
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
@@ -236,7 +257,7 @@ class _ProfState extends State<Prof> {
                               Icon(Icons.help_outline),
                               SizedBox(width: 10.w),
                               Text(
-                                "Help Center",
+                                AppLocalizations.of(context)!.help_center,
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -253,7 +274,7 @@ class _ProfState extends State<Prof> {
                               TextButton(
                                 onPressed: () {},
                                 child: Text(
-                                  "Log Out",
+                                  AppLocalizations.of(context)!.log_out,
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,

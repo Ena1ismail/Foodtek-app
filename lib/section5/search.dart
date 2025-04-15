@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../l10n/app_localizations.dart';
+
 class SearchScreen extends StatefulWidget {
   @override
   _SearchScreenState createState() => _SearchScreenState();
@@ -24,7 +26,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   EdgeInsets.symmetric(horizontal: 16),
                 ),
 
-                hintText: "Find your location",
+                hintText:AppLocalizations.of(context)!.find_your_location,
                 hintStyle: MaterialStateProperty.all(
                   TextStyle(
                     fontSize: 12,

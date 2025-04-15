@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../l10n/app_localizations.dart';
 import 'chat_page.dart';
 
 class Alexander extends StatefulWidget {
@@ -20,8 +21,7 @@ class _AlexanderState extends State<Alexander> {
               'assets/images/photo man.png',
             ),
           ),
-          title: const Text(
-            'Your Delivery Hero',
+          title:  Text(AppLocalizations.of(context)!.your_delivery_hero,
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w500,
@@ -99,7 +99,7 @@ class _AlexanderState extends State<Alexander> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "your location",
+              AppLocalizations.of(context)!.your_location,
               style: TextStyle(
                 fontSize: 12,
                 color: Color(0xff878787),

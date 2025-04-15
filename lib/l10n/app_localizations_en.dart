@@ -84,6 +84,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get new_password => 'New Password';
 
   @override
+  String get password=>'Password';
+
+  @override
   String get confirm_password => 'Confirm New Password';
 
   @override
