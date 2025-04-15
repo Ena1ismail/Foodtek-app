@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import '../app_styles.dart';
+import '../controller/lang_controller.dart';
 import '../l10n/app_localizations.dart';
 import 'chat_widget.dart';
 
@@ -11,9 +14,12 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-
   @override
   Widget build(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -33,7 +39,8 @@ class _ChatPageState extends State<ChatPage> {
                     ),
                     Text(
                       AppLocalizations.of(context)!.chat,
-                      style: TextStyle(
+                      style: AppStyles.getFontStyle(
+                        langController,
                         fontSize: 20.sp,
                         color: Color(0xff391713),
                         fontWeight: FontWeight.w600,
@@ -85,8 +92,12 @@ class _ChatPageState extends State<ChatPage> {
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        hintText: AppLocalizations.of(context)!.write_your_message,
-                        hintStyle: TextStyle(color: Color(0xffA1A1A1)),
+                        hintText:
+                            AppLocalizations.of(context)!.write_your_message,
+                        hintStyle: AppStyles.getFontStyle(
+                          langController,
+                          color: Color(0xffA1A1A1),
+                        ),
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.symmetric(
                           horizontal: 20,

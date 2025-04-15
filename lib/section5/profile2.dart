@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
+import '../app_styles.dart';
+import '../controller/lang_controller.dart';
 import '../l10n/app_localizations.dart';
 
 class Profile extends StatefulWidget {
@@ -15,6 +18,10 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
       body: SingleChildScrollView(
@@ -34,7 +41,11 @@ class _ProfileState extends State<Profile> {
                   ),
                   Text(
                     AppLocalizations.of(context)!.profile,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    style: AppStyles.getFontStyle(
+                      langController,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ],
               ),
@@ -45,10 +56,20 @@ class _ProfileState extends State<Profile> {
               ),
               SizedBox(height: 8.h),
               Text(
-                  AppLocalizations.of(context)!.ahmad_daboor,
-                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+                AppLocalizations.of(context)!.ahmad_daboor,
+                style: AppStyles.getFontStyle(
+                  langController,
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              Text('ahmad1709@gmail.com', style: TextStyle(color: Colors.grey)),
+              Text(
+                'ahmad1709@gmail.com',
+                style: AppStyles.getFontStyle(
+                  langController,
+                  color: Colors.grey,
+                ),
+              ),
               SizedBox(height: 20),
 
               Container(
@@ -73,7 +94,8 @@ class _ProfileState extends State<Profile> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.username,
-                      style: TextStyle(
+                      style: AppStyles.getFontStyle(
+                        langController,
                         color: Color(0xff6C7278),
                         fontWeight: FontWeight.w500,
                         fontSize: 12,
@@ -87,7 +109,8 @@ class _ProfileState extends State<Profile> {
                         decoration: InputDecoration(
                           isDense: true,
                           hintText: "Ahmad Daboor",
-                          hintStyle: TextStyle(
+                          hintStyle: AppStyles.getFontStyle(
+                            langController,
                             fontSize: 14,
                             color: Color(0xff1A1C1E),
                             fontWeight: FontWeight.w500,
@@ -119,7 +142,8 @@ class _ProfileState extends State<Profile> {
                     SizedBox(height: 10.h),
                     Text(
                       AppLocalizations.of(context)!.email,
-                      style: TextStyle(
+                      style: AppStyles.getFontStyle(
+                        langController,
                         color: Color(0xff6C7278),
                         fontWeight: FontWeight.w500,
                         fontSize: 12,
@@ -134,7 +158,8 @@ class _ProfileState extends State<Profile> {
                           isDense: true,
                           constraints: BoxConstraints(minHeight: 30),
                           hintText: "Loisbecket@gmail.com",
-                          hintStyle: TextStyle(
+                          hintStyle: AppStyles.getFontStyle(
+                            langController,
                             fontSize: 14,
                             color: Color(0xff1A1C1E),
                             fontWeight: FontWeight.w500,
@@ -159,7 +184,8 @@ class _ProfileState extends State<Profile> {
                     SizedBox(height: 10.h),
                     Text(
                       AppLocalizations.of(context)!.phone_number,
-                      style: TextStyle(
+                      style: AppStyles.getFontStyle(
+                        langController,
                         color: Color(0xff6C7278),
                         fontWeight: FontWeight.w500,
                         fontSize: 12,
@@ -174,7 +200,8 @@ class _ProfileState extends State<Profile> {
                           isDense: true,
                           constraints: BoxConstraints(minHeight: 30),
                           hintText: "0797653948",
-                          hintStyle: TextStyle(
+                          hintStyle: AppStyles.getFontStyle(
+                            langController,
                             fontSize: 14,
                             color: Color(0xff1A1C1E),
                             fontWeight: FontWeight.w500,
@@ -199,7 +226,8 @@ class _ProfileState extends State<Profile> {
                     SizedBox(height: 10.h),
                     Text(
                       AppLocalizations.of(context)!.password,
-                      style: TextStyle(
+                      style: AppStyles.getFontStyle(
+                        langController,
                         color: Color(0xff6C7278),
                         fontWeight: FontWeight.w500,
                         fontSize: 12,
@@ -214,7 +242,8 @@ class _ProfileState extends State<Profile> {
                           isDense: true,
                           constraints: BoxConstraints(minHeight: 30),
                           hintText: "******************",
-                          hintStyle: TextStyle(
+                          hintStyle: AppStyles.getFontStyle(
+                            langController,
                             fontSize: 14,
                             color: Color(0xff1A1C1E),
                             fontWeight: FontWeight.w500,
@@ -239,7 +268,8 @@ class _ProfileState extends State<Profile> {
                     SizedBox(height: 10.h),
                     Text(
                       AppLocalizations.of(context)!.address,
-                      style: TextStyle(
+                      style: AppStyles.getFontStyle(
+                        langController,
                         color: Color(0xff6C7278),
                         fontWeight: FontWeight.w500,
                         fontSize: 12,
@@ -254,7 +284,8 @@ class _ProfileState extends State<Profile> {
                           isDense: true,
                           constraints: BoxConstraints(minHeight: 30),
                           hintText: "123 Al-Madina Street, Abdali, A",
-                          hintStyle: TextStyle(
+                          hintStyle: AppStyles.getFontStyle(
+                            langController,
                             fontSize: 14,
                             color: Color(0xff1A1C1E),
                             fontWeight: FontWeight.w500,
@@ -300,7 +331,8 @@ class _ProfileState extends State<Profile> {
                       children: [
                         Text(
                           AppLocalizations.of(context)!.update,
-                          style: TextStyle(
+                          style: AppStyles.getFontStyle(
+                            langController,
                             fontSize: 14,
                             color: Colors.white,
                             fontWeight: FontWeight.w500,

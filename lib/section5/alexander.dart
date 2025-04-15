@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import '../app_styles.dart';
+import '../controller/lang_controller.dart';
 import '../l10n/app_localizations.dart';
 import 'chat_page.dart';
 
@@ -13,6 +16,8 @@ class Alexander extends StatefulWidget {
 class _AlexanderState extends State<Alexander> {
   @override
   Widget build(BuildContext context) {
+    LangController langController =
+    Provider.of<LangController>(context, listen: false);
     return Column(
       children: [
         ListTile(
@@ -22,7 +27,7 @@ class _AlexanderState extends State<Alexander> {
             ),
           ),
           title:  Text(AppLocalizations.of(context)!.your_delivery_hero,
-            style: TextStyle(
+            style: AppStyles.getFontStyle( langController,
               fontSize: 12,
               fontWeight: FontWeight.w500,
               color: Color(0xff878787),
@@ -32,7 +37,7 @@ class _AlexanderState extends State<Alexander> {
             children: [
               Text(
                 AppLocalizations.of(context)!.aleksandr_v,
-                style: TextStyle(
+                style: AppStyles.getFontStyle( langController,
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
                   color: Color(0xff2F2E36),
@@ -46,7 +51,7 @@ class _AlexanderState extends State<Alexander> {
                     Icon(Icons.star, color: Color(0xffF2AB58), size: 16),
                     Text(
                       ' 4,9',
-                      style: TextStyle(
+                      style: AppStyles.getFontStyle( langController,
                         color: Color(0xffB8B8B8),
                         fontWeight: FontWeight.w400,
                         fontSize: 13,
@@ -100,7 +105,7 @@ class _AlexanderState extends State<Alexander> {
           children: [
             Text(
               AppLocalizations.of(context)!.your_location,
-              style: TextStyle(
+              style: AppStyles.getFontStyle( langController,
                 fontSize: 12,
                 color: Color(0xff878787),
                 fontWeight: FontWeight.w600,
@@ -112,7 +117,7 @@ class _AlexanderState extends State<Alexander> {
                 Icon(Icons.location_on_outlined, color: Color(0xff4CAF50)),
                 Text(
                   AppLocalizations.of(context)!. loc,
-                  style: TextStyle(
+                  style: AppStyles.getFontStyle( langController,
                     fontSize: 12,
                     color: Color(0xff6C7278),
                     fontWeight: FontWeight.w600,

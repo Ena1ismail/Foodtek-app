@@ -9,6 +9,8 @@ import 'package:foodtek/view/widgets/home_widgets/counter_buttons_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../../app_styles.dart';
+import '../../../controller/lang_controller.dart';
 import '../custom_button_widget.dart';
 
 class CartItemWidget extends StatelessWidget {
@@ -38,6 +40,10 @@ class CartItemWidget extends StatelessWidget {
   }
 
   Widget _buildCartItem(BuildContext context, CartController cartController) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     if (isDismissible) {
       return Slidable(
         key: Key(foodItem.id.toString()),
@@ -54,7 +60,8 @@ class CartItemWidget extends StatelessWidget {
                         content: Text(
                           textAlign: TextAlign.center,
                           AppLocalizations.of(context)!.remove_from_cart,
-                          style: GoogleFonts.inter(
+                          style: AppStyles.getFontStyle(
+                            langController,
                             fontSize: 14.sp,
                             color: Colors.black54,
                             fontWeight: FontWeight.w400,
@@ -93,14 +100,18 @@ class CartItemWidget extends StatelessWidget {
             ),
           ],
         ),
-        child: _buildCartItemContent(),
+        child: _buildCartItemContent(context),
       );
     } else {
-      return _buildCartItemContent();
+      return _buildCartItemContent(context);
     }
   }
 
-  Widget _buildCartItemContent() {
+  Widget _buildCartItemContent(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Container(
       height: 110.h,
       decoration: BoxDecoration(
@@ -138,7 +149,8 @@ class CartItemWidget extends StatelessWidget {
                 children: [
                   Text(
                     foodItem.name ?? "Unknown Product",
-                    style: GoogleFonts.inter(
+                    style: AppStyles.getFontStyle(
+                      langController,
                       fontSize: 15.sp,
                       color: Colors.black,
                       fontWeight: FontWeight.w600,
@@ -146,7 +158,8 @@ class CartItemWidget extends StatelessWidget {
                   ),
                   Text(
                     foodItem.category ?? "Unknown Category",
-                    style: GoogleFonts.inter(
+                    style: AppStyles.getFontStyle(
+                      langController,
                       fontSize: 12.sp,
                       color: const Color(0xFF3B3B3B),
                       fontWeight: FontWeight.w500,
@@ -154,7 +167,8 @@ class CartItemWidget extends StatelessWidget {
                   ),
                   Text(
                     "\$${foodItem.newPrice?.toStringAsFixed(1) ?? "0.0"}",
-                    style: GoogleFonts.inter(
+                    style: AppStyles.getFontStyle(
+                      langController,
                       fontSize: 19.sp,
                       color: AppConstants.buttonColor,
                       fontWeight: FontWeight.w700,
@@ -166,14 +180,16 @@ class CartItemWidget extends StatelessWidget {
           ),
           Flexible(
             flex: 2,
-            child: widget ??
+            child:
+                widget ??
                 Consumer<CartController>(
                   builder: (context, cartController, child) {
                     return CounterButtonsWidget(
                       value: foodItem.quantity ?? 0,
                       color: const Color(0xFFEAF7ED),
                       onIncrement: () => cartController.incrementItem(foodItem),
-                      onDecrement: () => cartController.decrementItem(foodItem, context),
+                      onDecrement:
+                          () => cartController.decrementItem(foodItem, context),
                     );
                   },
                 ),
@@ -181,7 +197,7 @@ class CartItemWidget extends StatelessWidget {
 
           SizedBox(width: 8.w),
         ],
-      )
+      ),
     );
   }
 }

@@ -9,6 +9,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
 import '../../../app_constants.dart';
+import '../../../app_styles.dart';
+import '../../../controller/lang_controller.dart';
 import '../../../controller/login_controller.dart';
 import '../../widgets/onboarding_widgets/app_title_widget.dart';
 import '../../widgets/onboarding_widgets/back_arrow_widget.dart';
@@ -128,17 +130,19 @@ class SignUpScreen extends StatelessWidget {
   }
 
   Widget _buildTitle(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Padding(
-      padding: EdgeInsets.only(top: 24.sp, left: 24.sp),
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Text(
-          AppLocalizations.of(context)!.signup_title,
-          style: GoogleFonts.inter(
-            color: const Color(0xFF111827),
-            fontWeight: FontWeight.w700,
-            fontSize: 32.sp,
-          ),
+      padding: EdgeInsets.only(top: 24.sp, left: 24.sp, right: 24.sp),
+      child: Text(
+        AppLocalizations.of(context)!.signup_title,
+        style: AppStyles.getFontStyle(
+          langController,
+          color: const Color(0xFF111827),
+          fontWeight: FontWeight.w700,
+          fontSize: 32.sp,
         ),
       ),
     );
@@ -148,14 +152,19 @@ class SignUpScreen extends StatelessWidget {
     BuildContext context,
     LoginController loginController,
   ) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(left: 24.sp),
+          padding: EdgeInsets.only(left: 24.sp, right: 24.sp),
           child: Text(
             AppLocalizations.of(context)!.signup_subtitle,
-            style: GoogleFonts.inter(
+            style: AppStyles.getFontStyle(
+              langController,
               color: Color(0xFF6C7278),
               fontSize: 12.sp,
               fontWeight: FontWeight.w700,
@@ -173,7 +182,8 @@ class SignUpScreen extends StatelessWidget {
           },
           child: Text(
             AppLocalizations.of(context)!.login_title,
-            style: GoogleFonts.inter(
+            style: AppStyles.getFontStyle(
+              langController,
               color: AppConstants.buttonColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w600,
@@ -196,7 +206,7 @@ class SignUpScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-            AppLocalizations.of(context)!.full_name,
+              AppLocalizations.of(context)!.full_name,
               style: GoogleFonts.plusJakartaSans(
                 color: Color(0xFF6C7278),
                 fontSize: 12.sp,
@@ -228,6 +238,10 @@ class SignUpScreen extends StatelessWidget {
     BuildContext context,
     LoginController loginController,
   ) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Selector<LoginController, String?>(
       selector: (context, loginController) => loginController.errors['birth'],
       builder: (context, errorText, _) {
@@ -306,7 +320,8 @@ class SignUpScreen extends StatelessWidget {
                                     },
                                     child: Text(
                                       AppLocalizations.of(context)!.cancel,
-                                      style: GoogleFonts.inter(
+                                      style: AppStyles.getFontStyle(
+                                        langController,
                                         color: AppConstants.primaryTextColor,
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -331,7 +346,8 @@ class SignUpScreen extends StatelessWidget {
                                     },
                                     child: Text(
                                       AppLocalizations.of(context)!.select_date,
-                                      style: GoogleFonts.inter(
+                                      style: AppStyles.getFontStyle(
+                                        langController,
                                         color: Colors.white,
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -456,6 +472,10 @@ class SignUpScreen extends StatelessWidget {
     BuildContext context,
     LoginController loginController,
   ) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Padding(
       padding: EdgeInsets.only(top: 24.sp, bottom: 24.sp),
       child: Selector<LoginController, bool>(
@@ -488,7 +508,8 @@ class SignUpScreen extends StatelessWidget {
                         backgroundColor: Colors.white,
                         content: Text(
                           AppLocalizations.of(context)!.error_message,
-                          style: GoogleFonts.inter(
+                          style: AppStyles.getFontStyle(
+                            langController,
                             color: const Color(0xFF170F4C),
                             fontWeight: FontWeight.w500,
                           ),

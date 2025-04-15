@@ -57,6 +57,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get remove_from_favorites_confirmation => 'هل أنت متأكد أنك تريد إزالته من المفضلة؟';
 
   @override
+  String get back_to_login => 'العودة إلى صفحة تسجيل الدخول؟';
+
+  @override
   String get forget_password => 'نسيت كلمة المرور ؟';
 
   @override

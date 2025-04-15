@@ -4,7 +4,9 @@ import 'package:foodtek/app_constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../../app_styles.dart';
 import '../../../controller/home_page_controller.dart';
+import '../../../controller/lang_controller.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../model/notification_item.dart';
 
@@ -13,6 +15,7 @@ class NotificationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final homePageController = Provider.of<HomePageController>(context);
 
     return Container(
@@ -41,6 +44,8 @@ class NotificationWidget extends StatelessWidget {
   }
 
   Widget _buildAppBar(BuildContext context) {
+    LangController langController =
+    Provider.of<LangController>(context, listen: false);
     return AppBar(
       centerTitle: true,
       backgroundColor: Colors.white,
@@ -55,7 +60,7 @@ class NotificationWidget extends StatelessWidget {
       ],
       title: Text(
         AppLocalizations.of(context)!.notifications,
-        style: GoogleFonts.inter(
+        style: AppStyles.getFontStyle( langController,
           fontWeight: FontWeight.w600,
           fontSize: 24.sp,
         ),

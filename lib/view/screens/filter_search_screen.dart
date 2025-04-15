@@ -6,7 +6,9 @@ import 'package:foodtek/view/widgets/input_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
+import '../../app_styles.dart';
 import '../../controller/filter_controller.dart';
+import '../../controller/lang_controller.dart';
 
 class FilterSearchScreen extends StatelessWidget {
   const FilterSearchScreen({super.key});
@@ -15,41 +17,43 @@ class FilterSearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-      ),
+      appBar: AppBar(backgroundColor: Colors.white),
       body: Padding(
         padding: const EdgeInsets.all(22),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildHeader(AppLocalizations.of(context)!.filter),
-              _buildSectionTitle(AppLocalizations.of(context)!.price_range),
-              SizedBox(height: 24.h,),
+              _buildHeader(AppLocalizations.of(context)!.filter, context),
+              _buildSectionTitle(
+                AppLocalizations.of(context)!.price_range,
+                context,
+              ),
+              SizedBox(height: 24.h),
               _buildPriceInputs(context),
               _buildSlider(context, AppLocalizations.of(context)!.price),
-              _buildSectionTitle(AppLocalizations.of(context)!.discount),
-              SizedBox(height: 24.h,),
+              _buildSectionTitle(
+                AppLocalizations.of(context)!.discount,
+                context,
+              ),
+              SizedBox(height: 24.h),
               _buildDiscountInputs(context),
               _buildSlider(context, AppLocalizations.of(context)!.discount),
-              SizedBox(height: 24.h,),
-              _buildSectionTitle(AppLocalizations.of(context)!.category),
-              SizedBox(height: 14.h,),
-              _buildButtonRow([
-                "Fast Food",
-                "Sea Food",
-                "Desert",
-              ], "category"),
-              _buildSectionTitle(AppLocalizations.of(context)!.location),
-              SizedBox(height: 14.h,),
-              _buildButtonRow([
-                "1 KM",
-                "5 KM",
-                "10 KM",
-              ], "location"),
-              _buildSectionTitle(AppLocalizations.of(context)!.dish),
-              SizedBox(height: 14.h,),
+              SizedBox(height: 24.h),
+              _buildSectionTitle(
+                AppLocalizations.of(context)!.category,
+                context,
+              ),
+              SizedBox(height: 14.h),
+              _buildButtonRow(["Fast Food", "Sea Food", "Desert"], "category"),
+              _buildSectionTitle(
+                AppLocalizations.of(context)!.location,
+                context,
+              ),
+              SizedBox(height: 14.h),
+              _buildButtonRow(["1 KM", "5 KM", "10 KM"], "location"),
+              _buildSectionTitle(AppLocalizations.of(context)!.dish, context),
+              SizedBox(height: 14.h),
               _buildButtonWrap([
                 "Tuna Tartare",
                 "Spicy Crab Cakes",
@@ -65,10 +69,15 @@ class FilterSearchScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(String title) {
+  Widget _buildHeader(String title, BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Text(
       title,
-      style: GoogleFonts.inter(
+      style: AppStyles.getFontStyle(
+        langController,
         fontSize: 20.sp,
         fontWeight: FontWeight.w600,
         color: Colors.black,
@@ -76,12 +85,17 @@ class FilterSearchScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionTitle(String title) {
+  Widget _buildSectionTitle(String title, BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Padding(
       padding: EdgeInsets.only(top: 12.h),
       child: Text(
         title,
-        style: GoogleFonts.inter(
+        style: AppStyles.getFontStyle(
+          langController,
           fontSize: 14.sp,
           color: Color(0xFF98A0B4),
           fontWeight: FontWeight.w500,
@@ -157,12 +171,16 @@ class FilterSearchScreen extends StatelessWidget {
   Widget _buildSlider(BuildContext context, String type) {
     return Consumer<FilterController>(
       builder: (context, filterController, child) {
-        final minValue = type == AppLocalizations.of(context)!.price
-            ? int.tryParse(filterController.minPriceController.text) ?? 0
-            : int.tryParse(filterController.minDiscountController.text) ?? 0;
-        final maxValue = type == AppLocalizations.of(context)!.price
-            ? int.tryParse(filterController.maxPriceController.text) ?? 10
-            : int.tryParse(filterController.maxDiscountController.text) ?? 50;
+        final minValue =
+            type == AppLocalizations.of(context)!.price
+                ? int.tryParse(filterController.minPriceController.text) ?? 0
+                : int.tryParse(filterController.minDiscountController.text) ??
+                    0;
+        final maxValue =
+            type == AppLocalizations.of(context)!.price
+                ? int.tryParse(filterController.maxPriceController.text) ?? 10
+                : int.tryParse(filterController.maxDiscountController.text) ??
+                    50;
 
         if (minValue > maxValue) {
           if (type == AppLocalizations.of(context)!.price) {
@@ -175,17 +193,24 @@ class FilterSearchScreen extends StatelessWidget {
         return SfSlider(
           min: minValue.toDouble(),
           max: maxValue.toDouble(),
-          value: type == AppLocalizations.of(context)!.price
-              ? filterController.sliderPriceValue
-              : filterController.sliderDiscountValue,
+          value:
+              type == AppLocalizations.of(context)!.price
+                  ? filterController.sliderPriceValue
+                  : filterController.sliderDiscountValue,
           showLabels: true,
           inactiveColor: Color(0xFFF3F4F6),
           activeColor: AppConstants.buttonColor,
           onChanged: (dynamic newValue) {
             if (type == AppLocalizations.of(context)!.price) {
-              filterController.updateSlider(AppLocalizations.of(context)!.price, newValue);
+              filterController.updateSlider(
+                AppLocalizations.of(context)!.price,
+                newValue,
+              );
             } else {
-              filterController.updateSlider(AppLocalizations.of(context)!.discount, newValue);
+              filterController.updateSlider(
+                AppLocalizations.of(context)!.discount,
+                newValue,
+              );
             }
           },
         );
@@ -198,10 +223,11 @@ class FilterSearchScreen extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 8.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: labels.map((label) {
-          final index = labels.indexOf(label);
-          return _buildButton(label, index, type);
-        }).toList(),
+        children:
+            labels.map((label) {
+              final index = labels.indexOf(label);
+              return _buildButton(label, index, type);
+            }).toList(),
       ),
     );
   }
@@ -211,21 +237,23 @@ class FilterSearchScreen extends StatelessWidget {
     return Wrap(
       spacing: 16.w,
       runSpacing: 8.h,
-      children: labels.map((label) {
-        final index = labels.indexOf(label);
-        return _buildButton(label, index, type);
-      }).toList(),
+      children:
+          labels.map((label) {
+            final index = labels.indexOf(label);
+            return _buildButton(label, index, type);
+          }).toList(),
     );
   }
 
   Widget _buildButton(String label, int index, String type) {
     return Consumer<FilterController>(
       builder: (context, controller, child) {
-        final isSelected = type == AppLocalizations.of(context)!.category
-            ? controller.selectedCategoryIndex == index
-            : type == AppLocalizations.of(context)!.location
-            ? controller.selectedLocationIndex == index
-            : controller.selectedDishIndex == index;
+        final isSelected =
+            type == AppLocalizations.of(context)!.category
+                ? controller.selectedCategoryIndex == index
+                : type == AppLocalizations.of(context)!.location
+                ? controller.selectedLocationIndex == index
+                : controller.selectedDishIndex == index;
 
         return Container(
           margin: EdgeInsets.only(right: 16.0),

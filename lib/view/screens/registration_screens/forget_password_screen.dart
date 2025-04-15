@@ -8,6 +8,8 @@ import 'package:foodtek/view/widgets/registration_widgets/login_button_widget.da
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../../app_styles.dart';
+import '../../../controller/lang_controller.dart';
 import '../../../controller/login_controller.dart';
 import '../../../l10n/app_localizations.dart';
 import 'otp_screen.dart';
@@ -117,6 +119,10 @@ class ForgetPasswordScreen extends StatelessWidget {
     BuildContext context,
     LoginController loginController,
   ) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Padding(
       padding: EdgeInsets.only(left: 12.sp, top: 12.sp),
       child: Align(
@@ -134,24 +140,9 @@ class ForgetPasswordScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.grey),
                 children: [
                   TextSpan(
-                    text: 'Back to ',
-                    style: GoogleFonts.inter(
-                      color: Color(0xFF6C7278),
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14.sp,
-                    ),
-                  ),
-                  TextSpan(
-                    text: 'Login',
-                    style: GoogleFonts.inter(
-                      color: AppConstants.buttonColor,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14.sp,
-                    ),
-                  ),
-                  TextSpan(
-                    text: ' page?',
-                    style: GoogleFonts.inter(
+                    text: AppLocalizations.of(context)!.back_to_login,
+                    style: AppStyles.getFontStyle(
+                      langController,
                       color: Color(0xFF6C7278),
                       fontWeight: FontWeight.w600,
                       fontSize: 14.sp,
@@ -167,12 +158,15 @@ class ForgetPasswordScreen extends StatelessWidget {
   }
 
   Widget _buildTitle(BuildContext context) {
+    LangController langController =
+    Provider.of<LangController>(context, listen: false);
     return Padding(
       padding: EdgeInsets.only(top: 24.sp, left: 60.sp, right: 60.sp),
       child: Text(
         AppLocalizations.of(context)!.reset_password_title,
         textAlign: TextAlign.center,
-        style: GoogleFonts.inter(
+        style: AppStyles.getFontStyle(
+          langController,
           color: const Color(0xFF111827),
           fontWeight: FontWeight.w700,
           fontSize: 32.sp,
@@ -182,12 +176,15 @@ class ForgetPasswordScreen extends StatelessWidget {
   }
 
   Widget _buildSubTitle(BuildContext context) {
+    LangController langController =
+    Provider.of<LangController>(context, listen: false);
     return Padding(
       padding: EdgeInsets.only(top: 12.sp, left: 45.sp, right: 45.sp),
       child: Text(
         AppLocalizations.of(context)!.reset_password_instruction,
         textAlign: TextAlign.center,
-        style: GoogleFonts.inter(
+        style: AppStyles.getFontStyle(
+          langController,
           color: Color(0xFF6C7278),
           fontWeight: FontWeight.w600,
           fontSize: 12.sp,

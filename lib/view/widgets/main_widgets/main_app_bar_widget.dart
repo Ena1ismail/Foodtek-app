@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:foodtek/view/widgets/main_widgets/notification_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import '../../../app_styles.dart';
 import '../../../controller/home_page_controller.dart';
+import '../../../controller/lang_controller.dart';
 import '../../../l10n/app_localizations.dart';
 
 class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -17,7 +19,7 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       title: ListTile(
         leading: _buildLocationButton(),
         title: _buildLocationTitle(context),
-        subtitle: _buildLocationSubtitle(),
+        subtitle: _buildLocationSubtitle(context),
       ),
       bottom: tabBar,
       actions: [NotificationButton()],
@@ -57,11 +59,16 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   }
 
   Widget _buildLocationTitle(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return GestureDetector(
       onTap: () {},
       child: Text(
         AppLocalizations.of(context)!.current_location,
-        style: GoogleFonts.inter(
+        style: AppStyles.getFontStyle(
+          langController,
           fontSize: 12,
           color: Color(0xFF606060),
           fontWeight: FontWeight.w500,
@@ -70,10 +77,15 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Widget _buildLocationSubtitle() {
+  Widget _buildLocationSubtitle(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Text(
       'Jl. Soekarno Hatta 15A...',
-      style: GoogleFonts.inter(
+      style: AppStyles.getFontStyle(
+        langController,
         fontSize: 14,
         fontWeight: FontWeight.bold,
         color: Color(0xFF101010),

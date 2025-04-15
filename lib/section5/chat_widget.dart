@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
+import '../app_styles.dart';
+import '../controller/lang_controller.dart';
 
 class ChatViewWidget extends StatelessWidget {
   final List<String> messages;
@@ -8,6 +12,10 @@ class ChatViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return ListView.builder(
       itemCount: messages.length,
       reverse: true,
@@ -38,7 +46,8 @@ class ChatViewWidget extends StatelessWidget {
 
               child: Text(
                 messages[index],
-                style: TextStyle(
+                style: AppStyles.getFontStyle(
+                  langController,
                   color: index % 2 == 0 ? Colors.white : Color(0xff505050),
                   fontSize: 13.sp,
                   fontWeight:

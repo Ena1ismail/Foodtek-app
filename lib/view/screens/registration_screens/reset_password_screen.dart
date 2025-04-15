@@ -11,6 +11,8 @@ import 'package:foodtek/view/widgets/registration_widgets/login_button_widget.da
 import 'package:foodtek/view/widgets/registration_widgets/password_field_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import '../../../app_styles.dart';
+import '../../../controller/lang_controller.dart';
 import '../../widgets/onboarding_widgets/app_title_widget.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
@@ -18,6 +20,8 @@ class ResetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LangController langController =
+    Provider.of<LangController>(context, listen: false);
     LoginController loginController = Provider.of<LoginController>(
       context,
       listen: false,
@@ -58,7 +62,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 color: Colors.white,
               ),
               child: Padding(
-                padding: EdgeInsets.only(left: 24.sp),
+                padding: EdgeInsets.only(left: 24.sp, right: 24.sp),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +79,7 @@ class ResetPasswordScreen extends StatelessWidget {
                       Text(
                         AppLocalizations.of(context)!.reset_password_title,
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.inter(
+                        style: AppStyles.getFontStyle( langController,
                           color: const Color(0xFF111827),
                           fontWeight: FontWeight.w700,
                           fontSize: 32.sp,
@@ -85,7 +89,7 @@ class ResetPasswordScreen extends StatelessWidget {
                       Text.rich(
                         TextSpan(
                           text: AppLocalizations.of(context)!.current_password,
-                          style: GoogleFonts.inter(
+                          style: AppStyles.getFontStyle( langController,
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w600,
                             color: Color(0xFF6C7278),
@@ -93,7 +97,7 @@ class ResetPasswordScreen extends StatelessWidget {
                           children: [
                             TextSpan(
                               text: AppLocalizations.of(context)!.login_title,
-                              style: GoogleFonts.inter(
+                              style: AppStyles.getFontStyle( langController,
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w700,
                                 color: AppConstants.buttonColor,
@@ -201,7 +205,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                 backgroundColor: const Color(0xFFE7F4FF),
                                 content: Text(
                                   AppLocalizations.of(context)!.error_message,
-                                  style: GoogleFonts.inter(
+                                  style: AppStyles.getFontStyle( langController,
                                     color: const Color(0xFF170F4C),
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -227,7 +231,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                   backgroundColor: const Color(0xFFFFC107),
                                   content: Text(
                                     AppLocalizations.of(context)!.passwords_error,
-                                    style: GoogleFonts.inter(
+                                    style: AppStyles.getFontStyle( langController,
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
                                     ),

@@ -13,6 +13,8 @@ import 'package:foodtek/view/widgets/registration_widgets/password_field_widget.
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../../app_styles.dart';
+import '../../../controller/lang_controller.dart';
 import '../../../controller/secure_storage_controller.dart';
 import '../../../l10n/app_localizations.dart';
 import '../home_screen.dart';
@@ -122,13 +124,18 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildTitle(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Padding(
       padding: EdgeInsets.only(top: 24.sp),
       child: Align(
         alignment: Alignment.center,
         child: Text(
           AppLocalizations.of(context)!.login_title,
-          style: GoogleFonts.inter(
+          style: AppStyles.getFontStyle(
+            langController,
             color: const Color(0xFF111827),
             fontWeight: FontWeight.w700,
             fontSize: 32.sp,
@@ -143,6 +150,10 @@ class _LoginScreenState extends State<LoginScreen> {
     bool isLoginMode,
     LoginController loginController,
   ) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -150,7 +161,8 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: EdgeInsets.only(left: 24.sp),
           child: Text(
             AppLocalizations.of(context)!.login_subtitle,
-            style: GoogleFonts.inter(
+            style: AppStyles.getFontStyle(
+              langController,
               color: Color(0xFF6C7278),
               fontSize: 12.sp,
               fontWeight: FontWeight.w700,
@@ -168,7 +180,8 @@ class _LoginScreenState extends State<LoginScreen> {
           },
           child: Text(
             AppLocalizations.of(context)!.signup_title,
-            style: GoogleFonts.inter(
+            style: AppStyles.getFontStyle(
+              langController,
               color: AppConstants.buttonColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w600,
@@ -183,6 +196,10 @@ class _LoginScreenState extends State<LoginScreen> {
     BuildContext context,
     LoginController loginController,
   ) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Selector<LoginController, bool>(
       selector: (context, loginProvider) => loginProvider.isRememberMeChecked,
       builder: (context, isRememberMeChecked, _) {
@@ -236,7 +253,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: Text(
                   AppLocalizations.of(context)!.remember_me,
-                  style: GoogleFonts.inter(
+                  style: AppStyles.getFontStyle(
+                    langController,
                     color: const Color(0xFF6C7278),
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w700,
@@ -254,6 +272,11 @@ class _LoginScreenState extends State<LoginScreen> {
     BuildContext context,
     LoginController loginController,
   ) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
+
     return Padding(
       padding: EdgeInsets.only(top: 16.sp),
       child: TextButton(
@@ -267,7 +290,8 @@ class _LoginScreenState extends State<LoginScreen> {
         },
         child: Text(
           AppLocalizations.of(context)!.forget_password,
-          style: GoogleFonts.inter(
+          style: AppStyles.getFontStyle(
+            langController,
             color: AppConstants.buttonColor,
             fontSize: 12.sp,
             fontWeight: FontWeight.w600,
@@ -299,6 +323,10 @@ class _LoginScreenState extends State<LoginScreen> {
     bool isLoginMode,
     LoginController loginController,
   ) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Padding(
       padding: EdgeInsets.only(top: 24.sp, bottom: 24.sp),
       child: Selector<LoginController, bool>(
@@ -351,7 +379,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           backgroundColor: const Color(0xFFE7F4FF),
                           content: Text(
                             AppLocalizations.of(context)!.something_went_wrong,
-                            style: GoogleFonts.inter(
+                            style: AppStyles.getFontStyle(
+                              langController,
                               color: const Color(0xFF170F4C),
                               fontWeight: FontWeight.w500,
                             ),
@@ -416,6 +445,10 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildOrDivider() {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Padding(
       padding: EdgeInsets.only(left: 24.sp, right: 24.sp),
       child: Row(
@@ -425,7 +458,8 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
               AppLocalizations.of(context)!.or,
-              style: GoogleFonts.inter(
+              style: AppStyles.getFontStyle(
+                langController,
                 color: Color(0xFF6C7278),
                 fontWeight: FontWeight.w700,
                 fontSize: 12.sp,

@@ -9,6 +9,8 @@ import 'package:foodtek/view/widgets/main_widgets/notification_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../../app_styles.dart';
+import '../../../controller/lang_controller.dart';
 import '../../../l10n/app_localizations.dart';
 
 class AddCardScreen extends StatelessWidget {
@@ -16,6 +18,7 @@ class AddCardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -82,9 +85,11 @@ class AddCardScreen extends StatelessWidget {
   }
 
   Widget _buildTitle(BuildContext context) {
+    LangController langController =
+    Provider.of<LangController>(context, listen: false);
     return Text(
       AppLocalizations.of(context)!.add_card,
-      style: GoogleFonts.inter(
+      style: AppStyles.getFontStyle( langController,
         fontSize: 20.sp,
         fontWeight: FontWeight.w600,
         color: Colors.black,
@@ -183,12 +188,14 @@ class AddCardScreen extends StatelessWidget {
   }
 
   Widget _buildOrderDetailsText(BuildContext context) {
+    LangController langController =
+    Provider.of<LangController>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40.0),
       child: Text(
         AppLocalizations.of(context)!.successful_payment,
         textAlign: TextAlign.center,
-        style: GoogleFonts.inter(
+        style: AppStyles.getFontStyle( langController,
           color: const Color(0xFF929DA9),
           fontSize: 12.sp,
           fontWeight: FontWeight.w400,
@@ -276,6 +283,8 @@ class AddCardScreen extends StatelessWidget {
   }
 
   void _showErrorDialog(BuildContext context, String message) {
+    LangController langController =
+    Provider.of<LangController>(context, listen: false);
     showDialog(
       context: context,
       builder: (context) {
@@ -283,7 +292,7 @@ class AddCardScreen extends StatelessWidget {
           backgroundColor: Colors.white,
           content: Text(
             message,
-            style: GoogleFonts.inter(
+            style: AppStyles.getFontStyle( langController,
               fontSize: 14.sp,
               color: Colors.black54,
               fontWeight: FontWeight.w400,

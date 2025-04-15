@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../../../app_styles.dart';
+import '../../../controller/lang_controller.dart';
 
 class EmptyWidget extends StatelessWidget {
   String title;
@@ -10,6 +14,8 @@ class EmptyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LangController langController =
+    Provider.of<LangController>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: Column(
@@ -21,7 +27,7 @@ class EmptyWidget extends StatelessWidget {
           Center(
             child: Text(
               title,
-              style: GoogleFonts.inter(
+              style: AppStyles.getFontStyle( langController,
                 fontSize: 32.sp,
                 fontWeight: FontWeight.w700,
                 color: Color(0xFF111827),
@@ -32,7 +38,7 @@ class EmptyWidget extends StatelessWidget {
           Text(
             textAlign: TextAlign.center,
             subTitle,
-            style: GoogleFonts.inter(
+            style: AppStyles.getFontStyle( langController,
               fontSize: 16.sp,
               fontWeight: FontWeight.w500,
               color: Colors.grey,

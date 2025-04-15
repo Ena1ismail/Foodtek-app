@@ -7,7 +7,9 @@ import 'package:foodtek/view/widgets/input_widget.dart';
 import 'package:foodtek/view/widgets/main_widgets/notification_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import '../../../app_styles.dart';
 import '../../../controller/check_out_controller.dart';
+import '../../../controller/lang_controller.dart';
 import '../../../l10n/app_localizations.dart';
 
 class CheckOutScreen extends StatefulWidget {
@@ -242,9 +244,11 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     FontWeight fontWeight,
     Color color,
   ) {
+    LangController langController =
+    Provider.of<LangController>(context, listen: false);
     return Text(
       text,
-      style: GoogleFonts.inter(
+      style: AppStyles.getFontStyle( langController,
         fontSize: fontSize.sp,
         fontWeight: fontWeight,
         color: color,

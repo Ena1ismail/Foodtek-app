@@ -10,6 +10,8 @@ import 'package:provider/provider.dart';
 import 'package:foodtek/controller/location_controller.dart';
 import 'package:geocoding/geocoding.dart';
 
+import '../../app_styles.dart';
+import '../../controller/lang_controller.dart';
 import 'cart_screens/check_out_screen.dart';
 
 class LocationWidget extends StatefulWidget {
@@ -55,6 +57,10 @@ class _LocationWidgetState extends State<LocationWidget> {
 
   @override
   Widget build(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     final locationController = Provider.of<LocationController>(context);
 
     return Scaffold(
@@ -62,7 +68,8 @@ class _LocationWidgetState extends State<LocationWidget> {
       appBar: AppBar(
         title: Text(
           AppLocalizations.of(context)!.new_address,
-          style: GoogleFonts.inter(
+          style: AppStyles.getFontStyle(
+            langController,
             fontSize: 20.sp,
             fontWeight: FontWeight.w600,
           ),
@@ -117,7 +124,8 @@ class _LocationWidgetState extends State<LocationWidget> {
                     },
                     child: Text(
                       AppLocalizations.of(context)!.change,
-                      style: GoogleFonts.inter(
+                      style: AppStyles.getFontStyle(
+                        langController,
                         color: AppConstants.buttonColor,
                         fontWeight: FontWeight.w600,
                       ),
@@ -206,7 +214,8 @@ class _LocationWidgetState extends State<LocationWidget> {
                           content: Text(
                             textAlign: TextAlign.center,
                             AppLocalizations.of(context)!.empty_fields,
-                            style: GoogleFonts.inter(
+                            style: AppStyles.getFontStyle(
+                              langController,
                               fontSize: 14.sp,
                               color: Colors.black54,
                               fontWeight: FontWeight.w400,

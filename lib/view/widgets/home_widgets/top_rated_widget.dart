@@ -7,7 +7,9 @@ import 'package:foodtek/view/screens/product_details_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../../app_styles.dart';
 import '../../../controller/cart_controller.dart';
+import '../../../controller/lang_controller.dart';
 
 class TopRatedWidget extends StatelessWidget {
   final FoodItem foodItem;
@@ -34,9 +36,9 @@ class TopRatedWidget extends StatelessWidget {
             SizedBox(height: 8.h),
             _buildImage(context),
             SizedBox(height: 8.h),
-            _buildName(),
+            _buildName(context),
             SizedBox(height: 4.h),
-            _buildDescription(),
+            _buildDescription(context),
             Spacer(),
             _buildPriceAndButton(context),
           ],
@@ -84,17 +86,30 @@ class TopRatedWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildName() {
+  Widget _buildName(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Text(
       foodItem.name!,
-      style: GoogleFonts.inter(fontSize: 18.sp, fontWeight: FontWeight.w600),
+      style: AppStyles.getFontStyle(
+        langController,
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w600,
+      ),
     );
   }
 
-  Widget _buildDescription() {
+  Widget _buildDescription(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Text(
       foodItem.description!,
-      style: GoogleFonts.inter(
+      style: AppStyles.getFontStyle(
+        langController,
         fontSize: 11.sp,
         fontWeight: FontWeight.w400,
         color: Color(0xFF3B3B3B),

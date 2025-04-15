@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../../../app_styles.dart';
+import '../../../controller/lang_controller.dart';
 
 class LoginButtonWidget extends StatelessWidget {
   String buttonName;
@@ -23,6 +27,10 @@ class LoginButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Container(
       height: height ?? 48.h,
       width: width ?? 295.w,
@@ -40,8 +48,9 @@ class LoginButtonWidget extends StatelessWidget {
             SizedBox(width: 10.w),
             Text(
               buttonName,
-              style: GoogleFonts.inter(
-                color: textColor,
+              style: AppStyles.getFontStyle(
+                langController,
+                color: textColor ?? Colors.white,
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w700,
               ),

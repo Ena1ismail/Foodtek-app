@@ -11,6 +11,8 @@ import 'package:foodtek/view/widgets/home_widgets/search_bar_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
+import '../../app_styles.dart';
+import '../../controller/lang_controller.dart';
 import '../widgets/home_widgets/counter_buttons_widget.dart';
 
 class ProductDetailsWidget extends StatefulWidget {
@@ -89,9 +91,14 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
   }
 
   Widget _buildFoodName() {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Text(
       _foodItem.name ?? "name",
-      style: GoogleFonts.inter(
+      style: AppStyles.getFontStyle(
+        langController,
         fontSize: 20.sp,
         fontWeight: FontWeight.w600,
         color: Colors.black,
@@ -100,6 +107,10 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
   }
 
   Widget _buildRatingAndReviews() {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -123,7 +134,8 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
         ),
         Text(
           " ${_foodItem.rating.toString()}",
-          style: GoogleFonts.inter(
+          style: AppStyles.getFontStyle(
+            langController,
             color: Color(0xFF838383),
             fontSize: 12.sp,
             fontWeight: FontWeight.w400,
@@ -131,7 +143,8 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
         ),
         Text(
           " (${_foodItem.reviews.toString()} ${AppLocalizations.of(context)!.reviews})",
-          style: GoogleFonts.inter(
+          style: AppStyles.getFontStyle(
+            langController,
             fontSize: 12.sp,
             fontWeight: FontWeight.w400,
             color: Color(0xFF838383),
@@ -142,12 +155,17 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
   }
 
   Widget _buildPrice() {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           "\$${_foodItem.newPrice.toString()}",
-          style: GoogleFonts.inter(
+          style: AppStyles.getFontStyle(
+            langController,
             color: AppConstants.buttonColor,
             fontSize: 20.sp,
             fontWeight: FontWeight.w600,
@@ -156,7 +174,8 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
         SizedBox(width: 8.w),
         Text(
           "\$${_foodItem.oldPrice.toString()}",
-          style: GoogleFonts.inter(
+          style: AppStyles.getFontStyle(
+            langController,
             color: Color(0xFF838383),
             fontSize: 16.sp,
             fontWeight: FontWeight.w600,
@@ -168,9 +187,17 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
   }
 
   Widget _buildDescription() {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Text(
       "${_foodItem.description ?? "des"} ${_foodItem.description ?? "des"}",
-      style: GoogleFonts.inter(fontSize: 12.sp, color: Color(0xFF838383)),
+      style: AppStyles.getFontStyle(
+        langController,
+        fontSize: 12.sp,
+        color: Color(0xFF838383),
+      ),
     );
   }
 
@@ -185,12 +212,20 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
   }
 
   Widget _buildSpicyLevel(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           AppLocalizations.of(context)!.spicy,
-          style: GoogleFonts.inter(fontSize: 12.sp, color: Color(0xFF838383)),
+          style: AppStyles.getFontStyle(
+            langController,
+            fontSize: 12.sp,
+            color: Color(0xFF838383),
+          ),
         ),
         SizedBox(height: 15.h),
         SizedBox(
@@ -224,12 +259,20 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
   }
 
   Widget _buildQuantitySelector(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           AppLocalizations.of(context)!.quantity,
-          style: GoogleFonts.inter(fontSize: 12.sp, color: Color(0xFF838383)),
+          style: AppStyles.getFontStyle(
+            langController,
+            fontSize: 12.sp,
+            color: Color(0xFF838383),
+          ),
         ),
         SizedBox(height: 15.h),
         SizedBox(

@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app_constants.dart';
+import '../../../app_styles.dart';
+import '../../../controller/lang_controller.dart';
 import '../../../l10n/app_localizations.dart';
 import 'cart_item_widget.dart';
 
@@ -17,6 +19,10 @@ class HistoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Consumer<CartController>(
       builder: (context, cartController, child) {
         return CartItemWidget(
@@ -32,7 +38,8 @@ class HistoryWidget extends StatelessWidget {
                   SizedBox(width: 5.w),
                   Text(
                     "25/3/2025",
-                    style: GoogleFonts.inter(
+                    style: AppStyles.getFontStyle(
+                      langController,
                       fontSize: 14.sp,
                       color: Color(0xFF3B3B3B),
                       fontWeight: FontWeight.w700,
@@ -51,7 +58,8 @@ class HistoryWidget extends StatelessWidget {
                         },
                         child: Text(
                           AppLocalizations.of(context)!.reorder,
-                          style: GoogleFonts.inter(
+                          style: AppStyles.getFontStyle(
+                            langController,
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w700,
                             color: AppConstants.buttonColor,

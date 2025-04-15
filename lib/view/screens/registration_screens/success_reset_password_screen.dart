@@ -11,6 +11,8 @@ import 'package:foodtek/view/widgets/registration_widgets/login_button_widget.da
 import 'package:foodtek/view/widgets/registration_widgets/password_field_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import '../../../app_styles.dart';
+import '../../../controller/lang_controller.dart';
 import '../../widgets/onboarding_widgets/app_title_widget.dart';
 
 class SuccessResetPasswordScreen extends StatefulWidget {
@@ -27,9 +29,10 @@ class _SuccessResetPasswordScreenState
   void initState() {
     super.initState();
     Timer(Duration(seconds: 4), () {
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => LoginScreen()),
+        (route) => false,
       );
     },
     );
@@ -37,6 +40,8 @@ class _SuccessResetPasswordScreenState
 
   @override
   Widget build(BuildContext context) {
+    LangController langController =
+    Provider.of<LangController>(context, listen: false);
     LoginController loginController = Provider.of<LoginController>(
       context,
       listen: false,
@@ -93,7 +98,7 @@ class _SuccessResetPasswordScreenState
                       Text(
                         AppLocalizations.of(context)!.reset_password_title,
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.inter(
+                        style: AppStyles.getFontStyle( langController,
                           color: const Color(0xFF111827),
                           fontWeight: FontWeight.w700,
                           fontSize: 32.sp,
@@ -103,7 +108,7 @@ class _SuccessResetPasswordScreenState
                       Text.rich(
                         TextSpan(
                           text: AppLocalizations.of(context)!.current_password,
-                          style: GoogleFonts.inter(
+                          style: AppStyles.getFontStyle( langController,
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w600,
                             color: Color(0xFF6C7278),
@@ -111,7 +116,7 @@ class _SuccessResetPasswordScreenState
                           children: [
                             TextSpan(
                               text: AppLocalizations.of(context)!.login_title,
-                              style: GoogleFonts.inter(
+                              style: AppStyles.getFontStyle( langController,
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w700,
                                 color: AppConstants.buttonColor,
@@ -175,7 +180,7 @@ class _SuccessResetPasswordScreenState
 
                 Text(
                   AppLocalizations.of(context)!.congratulations,
-                  style: GoogleFonts.inter(
+                  style: AppStyles.getFontStyle( langController,
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                     fontSize: 32.sp,
@@ -183,7 +188,7 @@ class _SuccessResetPasswordScreenState
                 ),
                 Text(
                   AppLocalizations.of(context)!.password_reset_success,
-                  style: GoogleFonts.inter(
+                  style: AppStyles.getFontStyle( langController,
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
                     fontSize: 24.sp,

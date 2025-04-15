@@ -10,6 +10,8 @@ import 'package:foodtek/controller/location_controller.dart';
 import 'package:foodtek/view/screens/add_address_screen.dart';
 import 'package:geocoding/geocoding.dart';
 
+import '../../app_styles.dart';
+import '../../controller/lang_controller.dart';
 import '../../l10n/app_localizations.dart';
 
 class SetLocationScreen extends StatefulWidget {
@@ -41,10 +43,13 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Scaffold(
       body: Stack(
         children: [
-
           GoogleMap(
             myLocationButtonEnabled: true,
             myLocationEnabled: true,
@@ -103,10 +108,15 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 23.0, top: 24, right: 23),
+                      padding: const EdgeInsets.only(
+                        left: 23.0,
+                        top: 24,
+                        right: 23,
+                      ),
                       child: Text(
                         AppLocalizations.of(context)!.your_location,
-                        style: GoogleFonts.inter(
+                        style: AppStyles.getFontStyle(
+                          langController,
                           fontSize: 12.sp,
                           color: Color(0xFF878787),
                           fontWeight: FontWeight.w500,
@@ -120,7 +130,8 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
                       ),
                       title: Text(
                         _locationName,
-                        style: GoogleFonts.inter(
+                        style: AppStyles.getFontStyle(
+                          langController,
                           color: Colors.grey,
                           fontSize: 12.sp,
                         ),
@@ -175,9 +186,12 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
             padding: const EdgeInsets.all(8.0),
             child: Align(
               alignment: Alignment.topLeft,
-              child: IconButton(onPressed: () {
-                Navigator.pop(context);
-              }, icon: Icon(Icons.arrow_back)),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back),
+              ),
             ),
           ),
         ],
@@ -197,21 +211,23 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      return Future.error(AppLocalizations.of(context)!.location_services_are_disabled);
+      return Future.error(
+        AppLocalizations.of(context)!.location_services_are_disabled,
+      );
     }
 
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return Future.error(AppLocalizations.of(context)!.location_permissions_are_denied);
+        return Future.error(
+          AppLocalizations.of(context)!.location_permissions_are_denied,
+        );
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-        AppLocalizations.of(context)!. location_permissions,
-      );
+      return Future.error(AppLocalizations.of(context)!.location_permissions);
     }
 
     return await Geolocator.getCurrentPosition();

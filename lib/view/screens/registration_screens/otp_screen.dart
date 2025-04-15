@@ -6,7 +6,10 @@ import 'package:foodtek/view/screens/registration_screens/reset_password_screen.
 import 'package:foodtek/view/widgets/registration_widgets/login_button_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
+import 'package:provider/provider.dart';
 import '../../../app_constants.dart';
+import '../../../app_styles.dart';
+import '../../../controller/lang_controller.dart';
 import '../../widgets/onboarding_widgets/app_title_widget.dart';
 
 class OTPScreen extends StatelessWidget {
@@ -14,10 +17,15 @@ class OTPScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     final defaultPinTheme = PinTheme(
       width: 56.w,
       height: 56.h,
-      textStyle: GoogleFonts.inter(
+      textStyle: AppStyles.getFontStyle(
+        langController,
         fontSize: 16.sp,
         fontWeight: FontWeight.w500,
       ),
@@ -94,8 +102,11 @@ class OTPScreen extends StatelessWidget {
                       padding: EdgeInsets.only(left: 40.0.sp, right: 40.sp),
                       child: Text(
                         textAlign: TextAlign.center,
-                        AppLocalizations.of(context)!.verification_code_instruction,
-                        style: GoogleFonts.inter(
+                        AppLocalizations.of(
+                          context,
+                        )!.verification_code_instruction,
+                        style: AppStyles.getFontStyle(
+                          langController,
                           color: Color(0xFF6C7278),
                           fontWeight: FontWeight.w600,
                           fontSize: 12.sp,

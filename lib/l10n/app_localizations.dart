@@ -191,6 +191,12 @@ abstract class AppLocalizations {
   /// **'Are you sure you want to remove it from favorites?'**
   String get remove_from_favorites_confirmation;
 
+  /// No description provided for @back_to_login.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Login Page?'**
+  String get back_to_login;
+
   /// No description provided for @forget_password.
   ///
   /// In en, this message translates to:

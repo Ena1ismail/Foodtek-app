@@ -57,6 +57,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get remove_from_favorites_confirmation => 'Are you sure you want to remove it from favorites?';
 
   @override
+  String get back_to_login => 'Back to Login Page?';
+
+  @override
   String get forget_password => 'Forget Password ?';
 
   @override

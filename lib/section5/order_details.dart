@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import '../app_styles.dart';
+import '../controller/lang_controller.dart';
 import '../l10n/app_localizations.dart';
 import 'alexander.dart';
 import 'track.dart';
@@ -23,6 +26,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    LangController langController =
+    Provider.of<LangController>(context, listen: false);
     final List<String> statuses = [
       AppLocalizations.of(context)!.order_received,
       AppLocalizations.of(context)!.cooking_your_order,
@@ -44,7 +49,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             children: [
               Text(
                 AppLocalizations.of(context)!.order_details,
-                style: TextStyle(
+                style: AppStyles.getFontStyle( langController,
                   fontSize: 20.sp,
                   color: Color(0xff391713),
                   fontWeight: FontWeight.w600,
@@ -64,7 +69,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     children: [
                       Text(
                         AppLocalizations.of(context)!.order_id,
-                        style: TextStyle(
+                        style: AppStyles.getFontStyle( langController,
                           fontSize: 15.sp,
                           fontWeight: FontWeight.bold,
                         ),
@@ -111,7 +116,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     ),
                     child: Text(
                       AppLocalizations.of(context)!.live_track,
-                      style: TextStyle(
+                      style: AppStyles.getFontStyle( langController,
                         fontSize: 14,
                         color: Colors.white,
                         fontWeight: FontWeight.w500,

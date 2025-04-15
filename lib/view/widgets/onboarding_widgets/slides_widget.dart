@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../../../app_styles.dart';
+import '../../../controller/lang_controller.dart';
 
 class SlideWidget extends StatelessWidget {
   final String imagePath;
@@ -20,6 +24,8 @@ class SlideWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LangController langController =
+    Provider.of<LangController>(context, listen: false);
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -57,7 +63,7 @@ class SlideWidget extends StatelessWidget {
                   Text(
                     title,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.inter(
+                    style: AppStyles.getFontStyle( langController,
                       color: AppConstants.primaryTextColor,
                       fontWeight: FontWeight.w500,
                       fontSize: 32.sp,
@@ -68,7 +74,7 @@ class SlideWidget extends StatelessWidget {
                   Text(
                     description,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.inter(
+                    style: AppStyles.getFontStyle( langController,
                       color:  AppConstants.primaryTextColor,
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,

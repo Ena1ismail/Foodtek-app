@@ -6,7 +6,10 @@ import 'package:foodtek/view/screens/main_screen.dart';
 import 'package:foodtek/view/widgets/custom_button_widget.dart';
 import 'package:foodtek/view/widgets/main_widgets/notification_button.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
+import '../../../app_styles.dart';
+import '../../../controller/lang_controller.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../widgets/main_widgets/notification_widget.dart';
 
@@ -15,6 +18,8 @@ class CheckOutSuccessfullyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LangController langController =
+    Provider.of<LangController>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -29,7 +34,7 @@ class CheckOutSuccessfullyScreen extends StatelessWidget {
           children: [
             Text(
               AppLocalizations.of(context)!.checkout,
-              style: GoogleFonts.inter(
+              style: AppStyles.getFontStyle( langController,
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
@@ -43,7 +48,7 @@ class CheckOutSuccessfullyScreen extends StatelessWidget {
               child: Text(
                 textAlign: TextAlign.center,
                 AppLocalizations.of(context)!.order_done_successfully,
-                style: GoogleFonts.inter(
+                style: AppStyles.getFontStyle( langController,
                   fontSize: 24.sp,
                   color: Colors.black,
                   fontWeight: FontWeight.w700,
@@ -55,7 +60,7 @@ class CheckOutSuccessfullyScreen extends StatelessWidget {
               child: Text(
                 textAlign: TextAlign.center,
                 AppLocalizations.of(context)!.you_will_get_your_order_within_12min,
-                style: GoogleFonts.inter(
+                style: AppStyles.getFontStyle( langController,
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w500,
                   color: Color(0xFF263238),

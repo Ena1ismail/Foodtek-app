@@ -3,6 +3,9 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/section5/search.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
+import '../app_styles.dart';
+import '../controller/lang_controller.dart';
 import '../l10n/app_localizations.dart';
 import 'order_details.dart';
 import 'profile1.dart';
@@ -117,6 +120,10 @@ class _TrackPageState extends State<TrackPage> {
 
   @override
   Widget build(BuildContext context) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Scaffold(
       body: Stack(
         children: [
@@ -163,7 +170,8 @@ class _TrackPageState extends State<TrackPage> {
                       children: [
                         Text(
                           AppLocalizations.of(context)!.on_the_way,
-                          style: TextStyle(
+                          style: AppStyles.getFontStyle(
+                            langController,
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
                           ),
@@ -183,7 +191,10 @@ class _TrackPageState extends State<TrackPage> {
                           },
                           child: Text(
                             AppLocalizations.of(context)!.all_details,
-                            style: TextStyle(fontSize: 16),
+                            style: AppStyles.getFontStyle(
+                              langController,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ],
@@ -200,7 +211,9 @@ class _TrackPageState extends State<TrackPage> {
                           ),
                         ),
                         Expanded(
-                          child: OrderTrackStatusWidget(title: AppLocalizations.of(context)!.on_the_way),
+                          child: OrderTrackStatusWidget(
+                            title: AppLocalizations.of(context)!.on_the_way,
+                          ),
                         ),
                         Expanded(
                           child: OrderTrackStatusWidget(
