@@ -257,12 +257,12 @@ class AddCardScreen extends StatelessWidget {
   }
 
   bool _isValidCardNumber(String cardNumber) {
-    final regex = RegExp(r'^\d{16}\$');
+    final regex = RegExp(r'^\d{16}$');
     return regex.hasMatch(cardNumber);
   }
 
   bool _isValidExpiryDate(String expiryDate) {
-    final regex = RegExp(r'^(0[1-9]|1[0-2])\/([0-9]{2})\$');
+    final regex = RegExp(r'^(0[1-9]|1[0-2])\/([0-9]{2})$');
     if (!regex.hasMatch(expiryDate)) {
       return false;
     }
@@ -278,7 +278,7 @@ class AddCardScreen extends StatelessWidget {
   }
 
   bool _isValidCvc(String cvc) {
-    final regex = RegExp(r'^\d{3,4}\$');
+    final regex = RegExp(r'^\d{3,4}$');
     return regex.hasMatch(cvc);
   }
 
