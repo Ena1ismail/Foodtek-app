@@ -18,7 +18,7 @@ class MainBottomNavigationBar extends StatelessWidget {
       icons: const [
         Icons.home_outlined,
         Icons.favorite_border,
-        Icons.access_time,
+        Icons.location_on_outlined,
         Icons.person_outline,
       ],
       backgroundColor: Color(0xFFDBF4D1),
