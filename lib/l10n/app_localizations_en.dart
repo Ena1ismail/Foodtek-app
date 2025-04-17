@@ -510,6 +510,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get update => 'Update';
 
   @override
+  String get select_card_type => 'Please select a card type (Visa or MasterCard).';
+
+  @override
   String get enter_name => 'Enter name';
 
   @override

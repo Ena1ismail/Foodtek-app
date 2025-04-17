@@ -8,6 +8,7 @@ import '../../../controller/lang_controller.dart';
 import '../../../controller/location_controller.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../widgets/cart_widgets/check_out_widget.dart';
+import '../../widgets/custom_button_widget.dart';
 import '../../widgets/input_widget.dart';
 import '../../widgets/main_widgets/notification_button.dart';
 
@@ -30,6 +31,13 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   @override
   Widget build(BuildContext context) {
     final checkOutController = Provider.of<CheckOutController>(context);
+
+    if (checkOutController.selectedPaymentMethod == null) {
+      checkOutController.setSelectedPaymentMethod(
+        AppLocalizations.of(context)!.cash,
+      );
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -60,9 +68,9 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 builder: (context, locationController, child) {
                   final savedAddresses = locationController.savedAddresses;
                   final lastTwoAddresses =
-                  savedAddresses.length > 2
-                      ? savedAddresses.sublist(savedAddresses.length - 2)
-                      : savedAddresses;
+                      savedAddresses.length > 2
+                          ? savedAddresses.sublist(savedAddresses.length - 2)
+                          : savedAddresses;
                   return Column(
                     children: [
                       if (lastTwoAddresses.isNotEmpty)
@@ -71,21 +79,21 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                             children: [
                               _buildLocationTileWithConditionalChangeButton(
                                 leadingIcon:
-                                i == 0
-                                    ? "assets/images/maps_a.png"
-                                    : "assets/images/maps_b.png",
+                                    i == 0
+                                        ? "assets/images/maps_a.png"
+                                        : "assets/images/maps_b.png",
                                 title: lastTwoAddresses[i].street,
                                 subtitle:
-                                "${lastTwoAddresses[i].buildingName}, ${lastTwoAddresses[i].apartmentNumber}",
+                                    "${lastTwoAddresses[i].buildingName}, ${lastTwoAddresses[i].apartmentNumber}",
                                 onChangePressed: () {
                                   print(
                                     "Change button pressed for address: ${lastTwoAddresses[i].street}",
                                   );
                                 },
                                 showChangeButton:
-                                lastTwoAddresses.length == 1
-                                    ? i == 0
-                                    : i == 1,
+                                    lastTwoAddresses.length == 1
+                                        ? i == 0
+                                        : i == 1,
                               ),
                               SizedBox(height: 8.h),
                             ],
@@ -162,18 +170,20 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   _buildRadioButton(
                     value: AppLocalizations.of(context)!.card,
                     groupValue: checkOutController.selectedPaymentMethod ?? "",
-                    onChanged: (value) => checkOutController.setSelectedPaymentMethod(
-                      value ?? AppLocalizations.of(context)!.card,
-                    ),
+                    onChanged:
+                        (value) => checkOutController.setSelectedPaymentMethod(
+                          value ?? "",
+                        ),
                     label: AppLocalizations.of(context)!.card,
                   ),
                   SizedBox(width: 20.w),
                   _buildRadioButton(
                     value: AppLocalizations.of(context)!.cash,
                     groupValue: checkOutController.selectedPaymentMethod ?? "",
-                    onChanged: (value) => checkOutController.setSelectedPaymentMethod(
-                      value ?? AppLocalizations.of(context)!.cash,
-                    ),
+                    onChanged:
+                        (value) => checkOutController.setSelectedPaymentMethod(
+                          value ?? "",
+                        ),
                     label: AppLocalizations.of(context)!.cash,
                   ),
                 ],
@@ -190,9 +200,13 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   _buildRadioButton(
                     value: AppLocalizations.of(context)!.visa,
                     groupValue: checkOutController.selectedCardType ?? "",
-                    onChanged: (value) => checkOutController.setSelectedCardType(
-                      value ?? AppLocalizations.of(context)!.visa,
-                    ),
+                    onChanged:
+                        checkOutController.selectedPaymentMethod ==
+                                AppLocalizations.of(context)!.cash
+                            ? null
+                            : (value) => checkOutController.setSelectedCardType(
+                              value ?? "",
+                            ),
                     icon: Image.asset(
                       "assets/images/Visa.png",
                       height: 17.h,
@@ -203,9 +217,13 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   _buildRadioButton(
                     value: AppLocalizations.of(context)!.mastercard,
                     groupValue: checkOutController.selectedCardType ?? "",
-                    onChanged: (value) => checkOutController.setSelectedCardType(
-                      value ?? AppLocalizations.of(context)!.mastercard,
-                    ),
+                    onChanged:
+                        checkOutController.selectedPaymentMethod ==
+                                AppLocalizations.of(context)!.cash
+                            ? null
+                            : (value) => checkOutController.setSelectedCardType(
+                              value ?? "",
+                            ),
                     icon: Image.asset(
                       "assets/images/Mastercard.png",
                       height: 17.h,
@@ -217,6 +235,14 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               SizedBox(height: 10.h),
               CheckOutWidget(
                 onPressed: () {
+                  final checkOutController = Provider.of<CheckOutController>(context, listen: false);
+                  if (checkOutController.selectedPaymentMethod == AppLocalizations.of(context)!.card) {
+                    if (checkOutController.selectedCardType == null ||
+                        checkOutController.selectedCardType!.isEmpty) {
+                      _showCardSelectionErrorDialog(context);
+                      return;
+                    }
+                  }
                   checkOutController.navigateToNextScreen(context);
                 },
               ),
@@ -227,14 +253,50 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     );
   }
 
+  void _showCardSelectionErrorDialog(BuildContext context) {
+    LangController langController = Provider.of<LangController>(context, listen: false);
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          content: Text(
+            AppLocalizations.of(context)!.select_card_type,
+            style: AppStyles.getFontStyle(
+              langController,
+              fontSize: 14.sp,
+              color: Colors.black54,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          actions: [
+            CustomButtonWidget(
+              title: AppLocalizations.of(context)!.ok,
+              colors: [AppConstants.buttonColor, AppConstants.buttonColor],
+              height: 60.h,
+              borderRadius: 12.r,
+              titleColor: Colors.white,
+              width: 300.w,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Widget _buildText(
-      String text,
-      double fontSize,
-      FontWeight fontWeight,
-      Color color,
-      ) {
-    LangController langController =
-    Provider.of<LangController>(context, listen: false);
+    String text,
+    double fontSize,
+    FontWeight fontWeight,
+    Color color,
+  ) {
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Text(
       text,
       style: AppStyles.getFontStyle(
@@ -249,7 +311,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   Widget _buildRadioButton({
     required String value,
     required String groupValue,
-    required ValueChanged<String?> onChanged,
+    required ValueChanged<String?>? onChanged,
     String? label,
     Widget? icon,
   }) {
@@ -286,24 +348,24 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
         const Color(0xFFBBBBBB),
       ),
       trailing:
-      showChangeButton
-          ? TextButton(
-        onPressed: onChangePressed,
-        child: _buildText(
-          AppLocalizations.of(context)!.change,
-          14,
-          FontWeight.w600,
-          AppConstants.buttonColor,
-        ),
-      )
-          : null,
+          showChangeButton
+              ? TextButton(
+                onPressed: onChangePressed,
+                child: _buildText(
+                  AppLocalizations.of(context)!.change,
+                  14,
+                  FontWeight.w600,
+                  AppConstants.buttonColor,
+                ),
+              )
+              : null,
     );
   }
 
   BorderRadius _getBorderRadiusBasedOnLanguage(
-      BuildContext context,
-      bool isButton,
-      ) {
+    BuildContext context,
+    bool isButton,
+  ) {
     final isArabic = Localizations.localeOf(context).languageCode == 'ar';
     final rtlBorderRadius = BorderRadius.only(
       topRight: Radius.circular(10.r),

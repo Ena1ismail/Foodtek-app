@@ -510,6 +510,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get update => 'تحديث';
 
   @override
+  String get select_card_type => 'الرجاء تحديد نوع البطاقة (فيزا أو ماستركارد).';
+
+  @override
   String get enter_name => 'أدخل الاسم';
 
   @override

@@ -1097,6 +1097,12 @@ abstract class AppLocalizations {
   /// **'Update'**
   String get update;
 
+  /// No description provided for @select_card_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a card type (Visa or MasterCard).'**
+  String get select_card_type;
+
   /// No description provided for @enter_name.
   ///
   /// In en, this message translates to:

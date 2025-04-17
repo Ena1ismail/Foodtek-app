@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/l10n/app_localizations.dart';
-import 'package:foodtek/view/widgets/cart_widgets/cart_item_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../app_constants.dart';
 import '../model/food_item.dart';

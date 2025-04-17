@@ -8,6 +8,7 @@ import 'package:foodtek/controller/location_controller.dart';
 import 'package:foodtek/controller/login_controller.dart';
 import 'package:foodtek/controller/secure_storage_controller.dart';
 import 'package:foodtek/theme/theme_provider.dart';
+import 'package:foodtek/view/screens/cart_screens/add_card_screen.dart';
 import 'package:foodtek/view/screens/main_screen.dart';
 import 'package:foodtek/view/screens/onboarding_screens/splash_screen.dart';
 import 'package:provider/provider.dart';

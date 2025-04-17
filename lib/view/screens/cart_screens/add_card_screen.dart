@@ -36,12 +36,23 @@ class AddCardScreen extends StatelessWidget {
               SizedBox(height: 20.h),
               _buildCardImage(),
               SizedBox(height: 8.h),
+              Text(
+                AppLocalizations.of(context)!.name,
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 12.sp,
+                  color: const Color(0xFF6C7278),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               Consumer<CartController>(
                 builder: (context, cartController, child) {
-                  return _buildInputField(
-                    label: AppLocalizations.of(context)!.name,
+                  return InputWidget(
+                    obscureText: false,
                     hintText: AppLocalizations.of(context)!.enter_name,
-                    controller: cartController.nameController,
+                    textEditingController: cartController.nameController,
+                    backgroundColor: Colors.white,
+                    width: double.infinity,
+                    borderColor: const Color(0xFFEDF1F3),
                   );
                 },
               ),
@@ -49,6 +60,7 @@ class AddCardScreen extends StatelessWidget {
               Consumer<CartController>(
                 builder: (context, cartController, child) {
                   return _buildInputField(
+                    context: context,
                     label: AppLocalizations.of(context)!.card_number,
                     hintText: AppLocalizations.of(context)!.enter_card_number,
                     controller: cartController.cardNumberController,
@@ -102,6 +114,7 @@ class AddCardScreen extends StatelessWidget {
   }
 
   Widget _buildInputField({
+    required BuildContext context,
     required String label,
     required String hintText,
     required TextEditingController controller,
@@ -128,8 +141,15 @@ class AddCardScreen extends StatelessWidget {
           hintText: hintText,
           width: double.infinity,
           suffixIcon: suffixIcon,
-          keyboardType: keyboardType,
-          onChanged: (value) {},
+          keyboardType: keyboardType ?? TextInputType.number,
+          onChanged: (value) {
+            if (label == AppLocalizations.of(context)!.card_number && value.length > 16) {
+              controller.value = TextEditingValue(
+                text: value.substring(0, 16),
+                selection: TextSelection.collapsed(offset: 16),
+              );
+            }
+          },
         ),
       ],
     );
@@ -155,7 +175,29 @@ class AddCardScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.r),
           hintText: "MM/YY",
           width: 175.w,
-          keyboardType: TextInputType.text,
+          keyboardType: TextInputType.number,
+          onChanged: (value) {
+            String numericValue = value.replaceAll(RegExp(r'[^0-9]'), '');
+
+            if (numericValue.length > 2) {
+              controller.value = TextEditingValue(
+                text: '${numericValue.substring(0, 2)}/${numericValue.substring(2)}',
+                selection: TextSelection.collapsed(offset: numericValue.length + 1),
+              );
+            } else {
+              controller.value = TextEditingValue(
+                text: numericValue,
+                selection: TextSelection.collapsed(offset: numericValue.length),
+              );
+            }
+
+            if (controller.text.length > 5) {
+              controller.value = TextEditingValue(
+                text: controller.text.substring(0, 5),
+                selection: TextSelection.collapsed(offset: 5),
+              );
+            }
+          },
         ),
       ],
     );
@@ -182,10 +224,19 @@ class AddCardScreen extends StatelessWidget {
           hintText: "000",
           width: 175.w,
           keyboardType: TextInputType.number,
+          onChanged: (value) {
+            if (value.length > 3) {
+              controller.value = TextEditingValue(
+                text: value.substring(0, 3),
+                selection: TextSelection.collapsed(offset: 3),
+              );
+            }
+          },
         ),
       ],
     );
   }
+
 
   Widget _buildOrderDetailsText(BuildContext context) {
     LangController langController =
@@ -262,6 +313,10 @@ class AddCardScreen extends StatelessWidget {
   }
 
   bool _isValidExpiryDate(String expiryDate) {
+    if (expiryDate.length != 5) {
+      return false;
+    }
+
     final regex = RegExp(r'^(0[1-9]|1[0-2])\/([0-9]{2})$');
     if (!regex.hasMatch(expiryDate)) {
       return false;
@@ -276,6 +331,7 @@ class AddCardScreen extends StatelessWidget {
 
     return expiry.isAfter(now);
   }
+
 
   bool _isValidCvc(String cvc) {
     final regex = RegExp(r'^\d{3,4}$');
