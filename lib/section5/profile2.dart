@@ -27,12 +27,21 @@ class _ProfileState extends State<Profile> {
       backgroundColor: Color(0xFFFFFFFF),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: 40),
+          padding: EdgeInsets.only(top: 40,left: 30,right: 30),
           child: Column(
             children: [
               SizedBox(height: 8.h),
               Row(
                 children: [
+<<<<<<< HEAD
+                  //SizedBox(width: 10.w),
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+=======
                   SizedBox(width: 15.w),
                   Consumer<CheckOutController>(builder: (context, checkOutController, child) {
                     return IconButton(
@@ -42,6 +51,7 @@ class _ProfileState extends State<Profile> {
                       },
                     );
                   },),
+>>>>>>> 50fc8217a6fc04c41690d90822e460ee8fff5b13
                   Text(
                     AppLocalizations.of(context)!.profile,
                     style: AppStyles.getFontStyle(
@@ -77,8 +87,7 @@ class _ProfileState extends State<Profile> {
 
               Container(
                 padding: EdgeInsets.all(10),
-                height: 416,
-                width: 380,
+                width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
@@ -106,7 +115,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     SizedBox(height: 5.h),
                     SizedBox(
-                      width: 356.w,
+                      width: double.infinity,
                       height: 46.h,
                       child: TextField(
                         decoration: InputDecoration(

@@ -25,6 +25,26 @@ class _ProfState extends State<Prof> {
       listen: false,
     );
 
+<<<<<<< HEAD
+    return Scaffold(
+      backgroundColor: Color(0xFFFFFFFF),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back),
+                      onPressed: () {
+                        //Navigator.pop(context);
+                      },
+                    ),
+                    Text(
+=======
     return Consumer<CheckOutController>(builder: (context, checkOutController, child) {
       if(checkOutController.isProfile2){
         return Profile();
@@ -40,6 +60,7 @@ class _ProfState extends State<Prof> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: Text(
+>>>>>>> 50fc8217a6fc04c41690d90822e460ee8fff5b13
                       AppLocalizations.of(context)!.profile,
                       style: AppStyles.getFontStyle(
                         langController,
@@ -48,7 +69,11 @@ class _ProfState extends State<Prof> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
+<<<<<<< HEAD
+                  ],
+=======
                   ),
+>>>>>>> 50fc8217a6fc04c41690d90822e460ee8fff5b13
                 ),
 
                 Center(
@@ -73,6 +98,211 @@ class _ProfState extends State<Prof> {
                           langController,
                           color: Colors.grey,
                         ),
+<<<<<<< HEAD
+                        SizedBox(height: 16.h),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Profile(),
+                              ),
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.person_add_alt_1_sharp, size: 20),
+                              SizedBox(width: 10.w),
+                              Text(
+                                AppLocalizations.of(
+                                  context,
+                                )!.personal_information,
+                                style: AppStyles.getFontStyle(
+                                  langController,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10.h),
+
+                        GestureDetector(
+                          onTap: () {
+                            final langController = Provider.of<LangController>(
+                              context,
+                              listen: false,
+                            );
+
+                            final newLang =
+                                langController.currentLangCode == 'ar'
+                                    ? 'en'
+                                    : 'ar';
+                            langController.changeLang(langCode: newLang);
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.language, size: 20),
+                              SizedBox(width: 10.w),
+                              Text(
+                                AppLocalizations.of(context)!.language,
+                                style: AppStyles.getFontStyle(
+                                  langController,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              Spacer(),
+                              Consumer<LangController>(
+                                builder: (context, langController, child) {
+                                  return Text(
+                                    langController.currentLangCode == 'ar'
+                                        ? "عربية"
+                                        : "English",
+                                    style: AppStyles.getFontStyle(
+                                      langController,
+                                      color: Color(0xFF838383),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(height: 11.h),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Row(
+                            children: [
+                              Icon(Icons.privacy_tip, size: 20),
+                              SizedBox(width: 10.w),
+                              Text(
+                                AppLocalizations.of(context)!.privacy_policy,
+                                style: AppStyles.getFontStyle(
+                                  langController,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 11.h),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Row(
+                            children: [
+                              Icon(Icons.settings, size: 20),
+                              SizedBox(width: 10.w),
+                              Text(
+                                AppLocalizations.of(context)!.settings,
+                                style: AppStyles.getFontStyle(
+                                  langController,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Container(
+                    width: 380.w,
+                   // height: 144.h,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 7,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          AppLocalizations.of(context)!.notifications,
+                          style: AppStyles.getFontStyle(
+                            langController,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(height: 5.h),
+
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            buildRow(
+                              AppLocalizations.of(context)!.push_notifications,
+                              true,
+                              context,
+                            ),
+                            buildRow(
+                              AppLocalizations.of(
+                                context,
+                              )!.promotional_notifications,
+                              false,
+                              context,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 15.h),
+                  Container(
+                    width: 380.w,
+                    //height: 140.h,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 7,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          AppLocalizations.of(context)!.more,
+                          style: AppStyles.getFontStyle(
+                            langController,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(height: 5.h),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Row(
+                            children: [
+                              Icon(Icons.help_outline),
+                              SizedBox(width: 10.w),
+                              Text(
+                                AppLocalizations.of(context)!.help_center,
+                                style: AppStyles.getFontStyle(
+                                  langController,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+=======
                       ),
                       SizedBox(height: 10.h),
                       Container(
@@ -100,6 +330,7 @@ class _ProfState extends State<Prof> {
                                 langController,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
+>>>>>>> 50fc8217a6fc04c41690d90822e460ee8fff5b13
                               ),
                             ),
                             SizedBox(height: 16.h),

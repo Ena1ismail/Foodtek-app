@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../app_styles.dart';
 import '../controller/lang_controller.dart';
 import '../l10n/app_localizations.dart';
+import '../view/widgets/main_widgets/main_bottom_navigation_bar.dart';
 import 'chat_widget.dart';
 
 class ChatPage extends StatefulWidget {
@@ -119,6 +120,10 @@ class _ChatPageState extends State<ChatPage> {
           ),
         ],
       ),
+<<<<<<< HEAD
+
+=======
+>>>>>>> 50fc8217a6fc04c41690d90822e460ee8fff5b13
     );
   }
 }
