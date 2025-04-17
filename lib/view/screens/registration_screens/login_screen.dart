@@ -167,24 +167,30 @@ class _LoginScreenState extends State<LoginScreen> {
               fontSize: 12.sp,
               fontWeight: FontWeight.w700,
             ),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
           ),
         ),
-        TextButton(
-          onPressed: () {
-            loginController.clearErrors();
-            _clearFields(loginController);
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SignUpScreen()),
-            );
-          },
-          child: Text(
-            AppLocalizations.of(context)!.signup_title,
-            style: AppStyles.getFontStyle(
-              langController,
-              color: AppConstants.buttonColor,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w600,
+        Flexible(
+          child: TextButton(
+            onPressed: () {
+              loginController.clearErrors();
+              _clearFields(loginController);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SignUpScreen()),
+              );
+            },
+            child: Text(
+              AppLocalizations.of(context)!.signup_title,
+              style: AppStyles.getFontStyle(
+                langController,
+                color: AppConstants.buttonColor,
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w600,
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
           ),
         ),
@@ -288,13 +294,17 @@ class _LoginScreenState extends State<LoginScreen> {
             MaterialPageRoute(builder: (context) => ForgetPasswordScreen()),
           );
         },
-        child: Text(
-          AppLocalizations.of(context)!.forget_password,
-          style: AppStyles.getFontStyle(
-            langController,
-            color: AppConstants.buttonColor,
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w600,
+        child: Flexible(
+          child: Text(
+            AppLocalizations.of(context)!.forget_password,
+            style: AppStyles.getFontStyle(
+              langController,
+              color: AppConstants.buttonColor,
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w600,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ),
@@ -308,12 +318,18 @@ class _LoginScreenState extends State<LoginScreen> {
     );
     return Padding(
       padding: EdgeInsets.only(left: 24.sp, right: 24.sp),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _buildRememberMeButton(context, loginController),
-          _buildForgotPasswordButton(context, loginController),
-        ],
+      child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildRememberMeButton(context, loginController),
+              SizedBox(width: 50.w,),
+              _buildForgotPasswordButton(context, loginController),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -401,7 +417,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildOtherLoginButtons(BuildContext context) {
     return Column(
       children: [
-        // Google Sign-In Button
         LoginButtonWidget(
           buttonName: AppLocalizations.of(context)!.continue_with_google,
           buttonColor: Colors.white,
@@ -428,7 +443,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         SizedBox(height: 15.h),
 
-        // Apple Sign-In Button
         LoginButtonWidget(
           buttonName: AppLocalizations.of(context)!.continue_with_apple,
           buttonColor: Colors.white,

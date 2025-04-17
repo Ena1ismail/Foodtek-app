@@ -32,7 +32,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBarWidget(),
+      appBar: (activeIndex == 2 || activeIndex == 3)
+        ? null
+        : MainAppBarWidget(),
       body: pages[activeIndex],
       bottomNavigationBar: MainBottomNavigationBar(
         activeIndex: activeIndex,

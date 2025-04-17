@@ -10,6 +10,27 @@ class CheckOutController with ChangeNotifier {
 
   String promoCode = "";
 
+  bool isChatScreen = false;
+
+  bool isAllDetailsScreen = false;
+
+  bool isProfile2 = false;
+
+  void toggleChatScreen() {
+    isChatScreen = !isChatScreen;
+    notifyListeners();
+  }
+
+  void toggleAllDetailsScreen() {
+    isAllDetailsScreen = !isAllDetailsScreen;
+    notifyListeners();
+  }
+
+  void toggleProfileScreen() {
+    isProfile2 = !isProfile2;
+    notifyListeners();
+  }
+
   String getSelectedPaymentMethod(BuildContext context) {
     return selectedPaymentMethod ?? AppLocalizations.of(context)!.card;
   }

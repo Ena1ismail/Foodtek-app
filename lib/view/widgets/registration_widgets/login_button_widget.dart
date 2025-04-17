@@ -41,8 +41,7 @@ class LoginButtonWidget extends StatelessWidget {
       ),
       child: TextButton(
         onPressed: onPressed,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Wrap(
           children: [
             widget,
             SizedBox(width: 10.w),

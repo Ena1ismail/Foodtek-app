@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/controller/check_out_controller.dart';
 import 'package:provider/provider.dart';
 
 import '../app_styles.dart';
@@ -32,6 +33,7 @@ class _ProfileState extends State<Profile> {
               SizedBox(height: 8.h),
               Row(
                 children: [
+<<<<<<< HEAD
                   //SizedBox(width: 10.w),
                   IconButton(
                     icon: const Icon(Icons.arrow_back),
@@ -39,6 +41,17 @@ class _ProfileState extends State<Profile> {
                       Navigator.pop(context);
                     },
                   ),
+=======
+                  SizedBox(width: 15.w),
+                  Consumer<CheckOutController>(builder: (context, checkOutController, child) {
+                    return IconButton(
+                      icon: const Icon(Icons.arrow_back),
+                      onPressed: () {
+                        checkOutController.toggleProfileScreen();
+                      },
+                    );
+                  },),
+>>>>>>> 50fc8217a6fc04c41690d90822e460ee8fff5b13
                   Text(
                     AppLocalizations.of(context)!.profile,
                     style: AppStyles.getFontStyle(

@@ -1052,7 +1052,7 @@ abstract class AppLocalizations {
   /// No description provided for @all_details.
   ///
   /// In en, this message translates to:
-  /// **'all details'**
+  /// **'All details'**
   String get all_details;
 
   /// No description provided for @order_placed.
