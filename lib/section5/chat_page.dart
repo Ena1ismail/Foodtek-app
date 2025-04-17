@@ -120,10 +120,6 @@ class _ChatPageState extends State<ChatPage> {
           ),
         ],
       ),
-<<<<<<< HEAD
-
-=======
->>>>>>> 50fc8217a6fc04c41690d90822e460ee8fff5b13
     );
   }
 }
