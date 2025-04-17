@@ -185,26 +185,23 @@ class _TrackPageState extends State<TrackPage> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                TextButton(
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: Color(0xff25AE4B),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => OrderDetailsScreen(),
-                                      ),
-                                    );
-                                  },
-                                  child: Text(
-                                    AppLocalizations.of(context)!.all_details,
-                                    style: AppStyles.getFontStyle(
-                                      langController,
-                                      fontSize: 16,
+                                Consumer<CheckOutController>(builder: (context, checkOutController, child) {
+                                  return TextButton(
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: Color(0xff25AE4B),
                                     ),
-                                  ),
-                                ),
+                                    onPressed: () {
+                                      checkOutController.toggleAllDetailsScreen();
+                                    },
+                                    child: Text(
+                                      AppLocalizations.of(context)!.all_details,
+                                      style: AppStyles.getFontStyle(
+                                        langController,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  );
+                                },)
                               ],
                             ),
                           ),
