@@ -155,85 +155,85 @@ class _TrackPageState extends State<TrackPage> {
           ),
 
           Positioned(
-            bottom: 0,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 21, vertical: 28),
-              height: 300.h,
-              width: 432.w,
-              color: Colors.white,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.on_the_way,
-                          style: AppStyles.getFontStyle(
-                            langController,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+          bottom: 0,
+          left: 0,
+    right: 0,
+    child: Container(
+    padding: EdgeInsets.symmetric(horizontal: 21, vertical: 28),
+    color: Colors.white,
+    child: SingleChildScrollView(
+    child: Column(
+    mainAxisSize: MainAxisSize.min, // هذا مهم لتقليل المساحة
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+    Padding(
+    padding: const EdgeInsets.only(bottom: 10),
+    child: Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+    Text(
+    AppLocalizations.of(context)!.on_the_way,
+    style: AppStyles.getFontStyle(
+    langController,
+    fontSize: 25,
+    fontWeight: FontWeight.bold,
+    ),
+    ),
+    TextButton(
+    style: TextButton.styleFrom(
+    foregroundColor: Color(0xff25AE4B),
+    ),
+    onPressed: () {
+    Navigator.push(
+    context,
+    MaterialPageRoute(
+    builder: (context) => OrderDetailsScreen(),
+    ),
+    );
+    },
+    child: Text(
+    AppLocalizations.of(context)!.all_details,
+    style: AppStyles.getFontStyle(
+    langController,
+    fontSize: 16,
+    ),
+    ),
+    ),
+    ],
+    ),
+    ),
+    Row(
+    children: [
+    Expanded(
+    child: OrderTrackStatusWidget(
+    title: AppLocalizations.of(context)!.order_placed,
+    value: 1,
+    ),
+    ),
+    SizedBox(width: 10.w),
+    Expanded(
+    child: OrderTrackStatusWidget(
+    title: AppLocalizations.of(context)!.on_the_way,
+    ),
+    ),
+    SizedBox(width: 10.w),
+    Expanded(
+    child: OrderTrackStatusWidget(
+    title: AppLocalizations.of(context)!.delivered,
+    value: 0,
+    ),
+    ),
+    ],
+    ),
+    SizedBox(height: 10),
+    Alexander(),
+    ],
+    ),
+    ),
+    ),
+    ),
 
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            foregroundColor: Color(0xff25AE4B),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => OrderDetailsScreen(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            AppLocalizations.of(context)!.all_details,
-                            style: AppStyles.getFontStyle(
-                              langController,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Flexible(
-                    child: Row(
-                      spacing: 10.w,
-                      children: [
-                        Expanded(
-                          child: OrderTrackStatusWidget(
-                            title: AppLocalizations.of(context)!.order_placed,
-                            value: 1,
-                          ),
-                        ),
-                        Expanded(
-                          child: OrderTrackStatusWidget(
-                            title: AppLocalizations.of(context)!.on_the_way,
-                          ),
-                        ),
-                        Expanded(
-                          child: OrderTrackStatusWidget(
-                            title: AppLocalizations.of(context)!.delivered,
-                            value: 0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  Alexander(),
-                  //DeliveryGuyDetailsWidget(),
-                  //YourLocationDetailsWidget(),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+    ]),
     );
   }
 }

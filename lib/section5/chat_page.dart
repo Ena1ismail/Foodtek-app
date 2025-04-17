@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../app_styles.dart';
 import '../controller/lang_controller.dart';
 import '../l10n/app_localizations.dart';
+import '../view/widgets/main_widgets/main_bottom_navigation_bar.dart';
 import 'chat_widget.dart';
 
 class ChatPage extends StatefulWidget {
@@ -116,23 +117,7 @@ class _ChatPageState extends State<ChatPage> {
           ),
         ],
       ),
-      floatingActionButton: Transform.translate(
-        offset: Offset(0, 10),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              width: 65.w,
-              height: 65.h,
-              decoration: BoxDecoration(
-                color: Color(0xffDBF4D1),
-                shape: BoxShape.circle,
-                boxShadow: [],
-              ),
-            ),
-          ],
-        ),
-      ),
+
     );
   }
 }

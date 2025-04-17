@@ -33,14 +33,24 @@ class _ProfState extends State<Prof> {
               alignment: Alignment.topLeft,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Text(
-                  AppLocalizations.of(context)!.profile,
-                  style: AppStyles.getFontStyle(
-                    langController,
-                    fontSize: 20.sp,
-                    color: Color(0xff391713),
-                    fontWeight: FontWeight.w600,
-                  ),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back),
+                      onPressed: () {
+                        //Navigator.pop(context);
+                      },
+                    ),
+                    Text(
+                      AppLocalizations.of(context)!.profile,
+                      style: AppStyles.getFontStyle(
+                        langController,
+                        fontSize: 20.sp,
+                        color: Color(0xff391713),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -210,7 +220,7 @@ class _ProfState extends State<Prof> {
                   SizedBox(height: 15),
                   Container(
                     width: 380.w,
-                    height: 144.h,
+                   // height: 144.h,
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -260,7 +270,7 @@ class _ProfState extends State<Prof> {
                   SizedBox(height: 15.h),
                   Container(
                     width: 380.w,
-                    height: 140.h,
+                    //height: 140.h,
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: Colors.white,
