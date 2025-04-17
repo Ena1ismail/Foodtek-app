@@ -34,14 +34,16 @@ class _ProfileState extends State<Profile> {
               Row(
                 children: [
                   SizedBox(width: 15.w),
-                  Consumer<CheckOutController>(builder: (context, checkOutController, child) {
-                    return IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: () {
-                        checkOutController.toggleProfileScreen();
-                      },
-                    );
-                  },),
+                  Consumer<CheckOutController>(
+                    builder: (context, checkOutController, child) {
+                      return IconButton(
+                        icon: const Icon(Icons.arrow_back),
+                        onPressed: () {
+                          checkOutController.toggleProfileScreen();
+                        },
+                      );
+                    },
+                  ),
                   Text(
                     AppLocalizations.of(context)!.profile,
                     style: AppStyles.getFontStyle(
@@ -316,6 +318,7 @@ class _ProfileState extends State<Profile> {
               ),
 
               SizedBox(height: 30.h),
+
               Center(
                 child: SizedBox(
                   width: 295.w,
