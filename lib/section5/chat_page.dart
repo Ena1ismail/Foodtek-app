@@ -96,7 +96,7 @@ class _ChatPageState extends State<ChatPage> {
                     child: TextField(
                       decoration: InputDecoration(
                         hintText:
-                            AppLocalizations.of(context)!.write_your_message,
+                        AppLocalizations.of(context)!.write_your_message,
                         hintStyle: AppStyles.getFontStyle(
                           langController,
                           color: Color(0xffA1A1A1),

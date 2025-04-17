@@ -28,24 +28,24 @@ class _SearchScreenState extends State<SearchScreen> {
         child: SearchAnchor(
           builder:
               (context, controller) => SearchBar(
-                controller: searchController,
-                padding: MaterialStateProperty.all(
-                  EdgeInsets.symmetric(horizontal: 16),
-                ),
+            controller: searchController,
+            padding: MaterialStateProperty.all(
+              EdgeInsets.symmetric(horizontal: 16),
+            ),
 
-                hintText: AppLocalizations.of(context)!.find_your_location,
-                hintStyle: MaterialStateProperty.all(
-                  AppStyles.getFontStyle(
-                    langController,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xff878787),
-                  ),
-                ),
-                leading: Icon(Icons.search, color: Color(0xff25AE4B)),
-                backgroundColor: MaterialStateProperty.all(Color(0xffFFFFFF)),
-                onChanged: (query) {},
+            hintText: AppLocalizations.of(context)!.find_your_location,
+            hintStyle: MaterialStateProperty.all(
+              AppStyles.getFontStyle(
+                langController,
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                color: Color(0xff878787),
               ),
+            ),
+            leading: Icon(Icons.search, color: Color(0xff25AE4B)),
+            backgroundColor: MaterialStateProperty.all(Color(0xffFFFFFF)),
+            onChanged: (query) {},
+          ),
           suggestionsBuilder: (context, query) {
             return [];
           },

@@ -84,10 +84,10 @@ class _TrackPageState extends State<TrackPage> {
       "assets/images/car.png",
     );
     final BitmapDescriptor resturantIcon =
-        await BitmapDescriptor.fromAssetImage(
-          ImageConfiguration(size: Size(48, 48)),
-          "assets/images/resturantLogo.png",
-        );
+    await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)),
+      "assets/images/resturantLogo.png",
+    );
 
     markers.addAll({
       Marker(
@@ -211,29 +211,28 @@ class _TrackPageState extends State<TrackPage> {
                               Expanded(
                                 child: OrderTrackStatusWidget(
                                   title:
-                                      AppLocalizations.of(
-                                        context,
-                                      )!.order_placed,
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.order_placed,
                                   value: 1,
                                 ),
                               ),
                               Expanded(
                                 child: OrderTrackStatusWidget(
                                   title:
-                                      AppLocalizations.of(context)!.on_the_way,
+                                  AppLocalizations.of(context)!.on_the_way,
                                 ),
                               ),
                               Expanded(
                                 child: OrderTrackStatusWidget(
                                   title:
-                                      AppLocalizations.of(context)!.delivered,
+                                  AppLocalizations.of(context)!.delivered,
                                   value: 0,
                                 ),
                               ),
                             ],
                           ),
                         ),
-
                         Alexander(),
                       ],
                     ),
