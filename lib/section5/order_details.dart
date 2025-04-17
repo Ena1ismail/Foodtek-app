@@ -48,7 +48,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 20.h,),
+              SizedBox(height: 20.h),
               Row(
                 children: [
                   Consumer<CheckOutController>(
@@ -122,25 +122,29 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 child: SizedBox(
                   width: 295.w,
                   height: 48.h,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
+                  child: Consumer<CheckOutController>(
+                    builder: (context, checkOutController, child) {
+                      return ElevatedButton(
+                        onPressed: () {
+                          checkOutController.toggleAllDetailsScreen();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Text(
+                          AppLocalizations.of(context)!.live_track,
+                          style: AppStyles.getFontStyle(
+                            langController,
+                            fontSize: 14,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      );
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Text(
-                      AppLocalizations.of(context)!.live_track,
-                      style: AppStyles.getFontStyle(
-                        langController,
-                        fontSize: 14,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
                   ),
                 ),
               ),
