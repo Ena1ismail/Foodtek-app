@@ -77,7 +77,7 @@ class _ProfState extends State<Prof> {
                       SizedBox(height: 10.h),
                       Container(
                         width: 380.w,
-                        // height: 196.h,
+                        height: 196.h,
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -133,11 +133,57 @@ class _ProfState extends State<Prof> {
                                   listen: false,
                                 );
 
-                                final newLang =
-                                langController.currentLangCode == 'ar'
-                                    ? 'en'
-                                    : 'ar';
-                                langController.changeLang(langCode: newLang);
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.white,
+                                      title: Text(
+                                        AppLocalizations.of(context)!.language,
+                                        style: AppStyles.getFontStyle(
+                                          langController,
+                                          fontSize: 16.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      content: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          ListTile(
+                                            title: Text(
+                                              'عربية',
+                                              style: AppStyles.getFontStyle(
+                                                langController,
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            onTap: () {
+                                              langController.changeLang(langCode: 'ar');
+                                              Navigator.of(context).pop();  // Close the dialog
+                                            },
+                                          ),
+                                          ListTile(
+                                            title: Text(
+                                              'English',
+                                              style: AppStyles.getFontStyle(
+                                                langController,
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            onTap: () {
+                                              langController.changeLang(langCode: 'en');
+                                              Navigator.of(context).pop();  // Close the dialog
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
                               },
                               child: Row(
                                 children: [
@@ -155,9 +201,7 @@ class _ProfState extends State<Prof> {
                                   Consumer<LangController>(
                                     builder: (context, langController, child) {
                                       return Text(
-                                        langController.currentLangCode == 'ar'
-                                            ? "عربية"
-                                            : "English",
+                                        langController.currentLangCode == 'ar' ? "عربية" : "English",
                                         style: AppStyles.getFontStyle(
                                           langController,
                                           color: Color(0xFF838383),
@@ -167,8 +211,8 @@ class _ProfState extends State<Prof> {
                                   ),
                                 ],
                               ),
-                            ),
-
+                            )
+                            ,
                             SizedBox(height: 11.h),
                             GestureDetector(
                               onTap: () {},
@@ -211,7 +255,7 @@ class _ProfState extends State<Prof> {
                       SizedBox(height: 15),
                       Container(
                         width: 380.w,
-                        // height: 144.h,
+                        height: 144.h,
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -261,7 +305,7 @@ class _ProfState extends State<Prof> {
                       SizedBox(height: 15.h),
                       Container(
                         width: 380.w,
-                        // height: 140.h,
+                        height: 140.h,
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,

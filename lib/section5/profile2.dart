@@ -27,7 +27,7 @@ class _ProfileState extends State<Profile> {
       backgroundColor: Color(0xFFFFFFFF),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: 40),
+          padding: EdgeInsets.only(top: 40,left: 30, right: 30),
           child: Column(
             children: [
               SizedBox(height: 8.h),
@@ -79,8 +79,7 @@ class _ProfileState extends State<Profile> {
 
               Container(
                 padding: EdgeInsets.all(10),
-                height: 416,
-                width: 380,
+                width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
@@ -246,7 +245,7 @@ class _ProfileState extends State<Profile> {
                         decoration: InputDecoration(
                           isDense: true,
                           constraints: BoxConstraints(minHeight: 30),
-                          hintText: "******************",
+                          hintText: "******",
                           hintStyle: AppStyles.getFontStyle(
                             langController,
                             fontSize: 14,
