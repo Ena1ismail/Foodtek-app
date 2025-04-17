@@ -77,7 +77,6 @@ class _ProfState extends State<Prof> {
                       SizedBox(height: 10.h),
                       Container(
                         width: 380.w,
-                        height: 196.h,
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -255,7 +254,6 @@ class _ProfState extends State<Prof> {
                       SizedBox(height: 15),
                       Container(
                         width: 380.w,
-                        height: 144.h,
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -305,7 +303,6 @@ class _ProfState extends State<Prof> {
                       SizedBox(height: 15.h),
                       Container(
                         width: 380.w,
-                        height: 140.h,
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
