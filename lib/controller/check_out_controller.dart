@@ -14,6 +14,8 @@ class CheckOutController with ChangeNotifier {
 
   bool isAllDetailsScreen = false;
 
+  bool isProfile2 = false;
+
   void toggleChatScreen() {
     isChatScreen = !isChatScreen;
     notifyListeners();
@@ -21,6 +23,11 @@ class CheckOutController with ChangeNotifier {
 
   void toggleAllDetailsScreen() {
     isAllDetailsScreen = !isAllDetailsScreen;
+    notifyListeners();
+  }
+
+  void toggleProfileScreen() {
+    isProfile2 = !isProfile2;
     notifyListeners();
   }
 
