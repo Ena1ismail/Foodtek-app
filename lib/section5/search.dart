@@ -16,13 +16,15 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    LangController langController =
-    Provider.of<LangController>(context, listen: false);
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Align(
       alignment: Alignment.topCenter,
       child: SizedBox(
         width: 327.w,
-        height: 42.h,
+        height: 60.h,
         child: SearchAnchor(
           builder:
               (context, controller) => SearchBar(
@@ -31,18 +33,17 @@ class _SearchScreenState extends State<SearchScreen> {
                   EdgeInsets.symmetric(horizontal: 16),
                 ),
 
-                hintText:AppLocalizations.of(context)!.find_your_location,
+                hintText: AppLocalizations.of(context)!.find_your_location,
                 hintStyle: MaterialStateProperty.all(
-                  AppStyles.getFontStyle( langController,
+                  AppStyles.getFontStyle(
+                    langController,
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
                     color: Color(0xff878787),
                   ),
                 ),
                 leading: Icon(Icons.search, color: Color(0xff25AE4B)),
-                backgroundColor: MaterialStateProperty.all(
-                  Color(0xffFFFFFF),
-                ),
+                backgroundColor: MaterialStateProperty.all(Color(0xffFFFFFF)),
                 onChanged: (query) {},
               ),
           suggestionsBuilder: (context, query) {

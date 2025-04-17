@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/controller/check_out_controller.dart';
+import 'package:foodtek/section5/chat_page.dart';
 import 'package:foodtek/section5/search.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -124,116 +126,124 @@ class _TrackPageState extends State<TrackPage> {
       context,
       listen: false,
     );
-    return Scaffold(
-      body: Stack(
-        children: [
-          GoogleMap(
-            initialCameraPosition: CameraPosition(
-              target: sourceDes,
-              zoom: 13.5,
-            ),
-            markers: markers,
-            polylines: {
-              Polyline(
-                width: 2,
-                polylineId: PolylineId("route"),
-                points: polyLineCoordinatesFromResturant,
-                color: Color(0xff25AE4B),
-              ),
-              Polyline(
-                width: 2,
-                polylineId: PolylineId("route2"),
-                points: polyLineCoordinatesToHome,
-                color: Colors.black,
-              ),
-            },
-          ),
+    return Consumer<CheckOutController>(
+      builder: (context, checkOutController, child) {
+        if (checkOutController.isChatScreen) {
+          return ChatPage();
+        } else if (checkOutController.isAllDetailsScreen) {
+          return OrderDetailsScreen();
+        } else {
+          return Scaffold(
+            body: Stack(
+              children: [
+                GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: sourceDes,
+                    zoom: 13.5,
+                  ),
+                  markers: markers,
+                  polylines: {
+                    Polyline(
+                      width: 2,
+                      polylineId: PolylineId("route"),
+                      points: polyLineCoordinatesFromResturant,
+                      color: Color(0xff25AE4B),
+                    ),
+                    Polyline(
+                      width: 2,
+                      polylineId: PolylineId("route2"),
+                      points: polyLineCoordinatesToHome,
+                      color: Colors.black,
+                    ),
+                  },
+                ),
 
-          Padding(
-            padding: const EdgeInsets.only(top: 50),
-            child: SearchScreen(),
-          ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: SearchScreen(),
+                ),
 
-          Positioned(
-            bottom: 0,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 21, vertical: 28),
-              height: 300.h,
-              width: 432.w,
-              color: Colors.white,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Positioned(
+                  bottom: 0,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 21, vertical: 28),
+                    height: 300.h,
+                    width: 432.w,
+                    color: Colors.white,
+                    child: Column(
                       children: [
-                        Text(
-                          AppLocalizations.of(context)!.on_the_way,
-                          style: AppStyles.getFontStyle(
-                            langController,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            foregroundColor: Color(0xff25AE4B),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => OrderDetailsScreen(),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                AppLocalizations.of(context)!.on_the_way,
+                                style: AppStyles.getFontStyle(
+                                  langController,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            );
-                          },
-                          child: Text(
-                            AppLocalizations.of(context)!.all_details,
-                            style: AppStyles.getFontStyle(
-                              langController,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Flexible(
-                    child: Row(
-                      spacing: 10.w,
-                      children: [
-                        Expanded(
-                          child: OrderTrackStatusWidget(
-                            title: AppLocalizations.of(context)!.order_placed,
-                            value: 1,
-                          ),
-                        ),
-                        Expanded(
-                          child: OrderTrackStatusWidget(
-                            title: AppLocalizations.of(context)!.on_the_way,
-                          ),
-                        ),
-                        Expanded(
-                          child: OrderTrackStatusWidget(
-                            title: AppLocalizations.of(context)!.delivered,
-                            value: 0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
 
-                  Alexander(),
-                  //DeliveryGuyDetailsWidget(),
-                  //YourLocationDetailsWidget(),
-                ],
-              ),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  foregroundColor: Color(0xff25AE4B),
+                                ),
+                                onPressed: () {
+                                  checkOutController.toggleAllDetailsScreen();
+                                },
+                                child: Text(
+                                  AppLocalizations.of(context)!.all_details,
+                                  style: AppStyles.getFontStyle(
+                                    langController,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Flexible(
+                          child: Row(
+                            spacing: 10.w,
+                            children: [
+                              Expanded(
+                                child: OrderTrackStatusWidget(
+                                  title:
+                                      AppLocalizations.of(
+                                        context,
+                                      )!.order_placed,
+                                  value: 1,
+                                ),
+                              ),
+                              Expanded(
+                                child: OrderTrackStatusWidget(
+                                  title:
+                                      AppLocalizations.of(context)!.on_the_way,
+                                ),
+                              ),
+                              Expanded(
+                                child: OrderTrackStatusWidget(
+                                  title:
+                                      AppLocalizations.of(context)!.delivered,
+                                  value: 0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Alexander(),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
+          );
+        }
+      },
     );
   }
 }

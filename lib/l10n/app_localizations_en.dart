@@ -486,7 +486,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get find_your_location => 'Find your location';
 
   @override
-  String get all_details => 'all details';
+  String get all_details => 'All details';
 
   @override
   String get order_placed => 'Order Placed';

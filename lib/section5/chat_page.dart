@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/controller/check_out_controller.dart';
 import 'package:provider/provider.dart';
 import '../app_styles.dart';
 import '../controller/lang_controller.dart';
@@ -28,15 +29,17 @@ class _ChatPageState extends State<ChatPage> {
             padding: EdgeInsets.only(left: 24, right: 24, top: 25),
             child: Column(
               children: [
-                SizedBox(height: 35.h),
+                SizedBox(height: 30.h),
                 Row(
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
+                    Consumer<CheckOutController>(builder: (context, checkOutController, child) {
+                      return IconButton(
+                        icon: const Icon(Icons.arrow_back),
+                        onPressed: () {
+                          checkOutController.toggleChatScreen();
+                        },
+                      );
+                    },),
                     Text(
                       AppLocalizations.of(context)!.chat,
                       style: AppStyles.getFontStyle(
@@ -115,23 +118,6 @@ class _ChatPageState extends State<ChatPage> {
             ),
           ),
         ],
-      ),
-      floatingActionButton: Transform.translate(
-        offset: Offset(0, 10),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              width: 65.w,
-              height: 65.h,
-              decoration: BoxDecoration(
-                color: Color(0xffDBF4D1),
-                shape: BoxShape.circle,
-                boxShadow: [],
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

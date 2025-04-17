@@ -26,6 +26,7 @@ class _ProfState extends State<Prof> {
 
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
+      appBar: AppBar(backgroundColor: Colors.white, toolbarHeight: 30.h,),
       body: SingleChildScrollView(
         child: Column(
           children: [
