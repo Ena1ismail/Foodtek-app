@@ -29,7 +29,7 @@ class TopRatedSectionWidget extends StatelessWidget {
         ),
         SizedBox(height: 12.h),
         SizedBox(
-          height: 250.h,
+          height: calculateHeight(context),
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -44,5 +44,15 @@ class TopRatedSectionWidget extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  double calculateHeight(BuildContext context) {
+    final double textScaleFactor = MediaQuery.of(context).textScaleFactor;
+
+    if (textScaleFactor <= 1.3) {
+      return MediaQuery.of(context).size.height * 0.27;
+    } else {
+      return MediaQuery.of(context).size.height * 0.47;
+    }
   }
 }

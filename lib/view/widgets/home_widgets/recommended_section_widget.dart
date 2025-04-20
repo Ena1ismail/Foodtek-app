@@ -52,7 +52,7 @@ class RecommendedSectionWidget extends StatelessWidget {
         ),
         SizedBox(height: 5.h),
         SizedBox(
-          height: 110.h,
+          height: calculateHeight(context),
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -67,5 +67,15 @@ class RecommendedSectionWidget extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  double calculateHeight(BuildContext context) {
+    final double textScaleFactor = MediaQuery.of(context).textScaleFactor;
+
+    if (textScaleFactor <= 1.3) {
+      return MediaQuery.of(context).size.height * 0.12;
+    } else {
+      return MediaQuery.of(context).size.height * 0.20;
+    }
   }
 }

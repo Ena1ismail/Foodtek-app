@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/controller/home_page_controller.dart';
 import 'package:foodtek/model/food_item.dart';
@@ -23,8 +22,7 @@ class RecommendItemWidget extends StatelessWidget {
             Image.asset(
               foodItem.imageUrl!,
               fit: BoxFit.fill,
-              height: 108.h,
-              width: 72.w,
+              width: calculateWidth(context),
             ),
             Positioned(
               right: 0,
@@ -50,5 +48,17 @@ class RecommendItemWidget extends StatelessWidget {
         ),
       );
     },);
+  }
+
+
+
+  double calculateWidth(BuildContext context) {
+    final double textScaleFactor = MediaQuery.of(context).textScaleFactor;
+
+    if (textScaleFactor <= 1.3) {
+      return MediaQuery.of(context).size.width * 0.18;
+    } else {
+      return MediaQuery.of(context).size.width * 0.25;
+    }
   }
 }

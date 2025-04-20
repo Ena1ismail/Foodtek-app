@@ -8,13 +8,13 @@ import 'package:foodtek/controller/location_controller.dart';
 import 'package:foodtek/controller/login_controller.dart';
 import 'package:foodtek/controller/secure_storage_controller.dart';
 import 'package:foodtek/theme/theme_provider.dart';
-import 'package:foodtek/view/screens/main_screen.dart';
 import 'package:foodtek/view/screens/onboarding_screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'controller/lang_controller.dart';
 import 'controller/onboarding_controller.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'l10n/app_localizations.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -34,9 +34,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => SlidesController()),
           ChangeNotifierProvider(create: (context) => LoginController()),
           ChangeNotifierProvider(create: (context) => LocationController()),
-          ChangeNotifierProvider(
-            create: (context) => SecureStorageController(),
-          ),
+          ChangeNotifierProvider(create: (context) => SecureStorageController()),
           ChangeNotifierProvider(create: (context) => HomePageController()),
           ChangeNotifierProvider(create: (context) => FilterController()),
           ChangeNotifierProvider(create: (context) => CartController()),
