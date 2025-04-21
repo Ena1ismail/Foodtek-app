@@ -28,7 +28,7 @@ class SlideWidget extends StatelessWidget {
     Provider.of<LangController>(context, listen: false);
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         image: DecorationImage(
           image: backgroundImage ?? AssetImage("assets/images/pattern.png"),
           fit: BoxFit.fill,
@@ -43,7 +43,7 @@ class SlideWidget extends StatelessWidget {
             child: Container(
               height: 681.h,
               width: double.infinity,
-              color: Colors.white,
+              color: Theme.of(context).scaffoldBackgroundColor,
             ),
           ),
           Padding(

@@ -39,9 +39,9 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         actions: [NotificationButton()],
       ),
       body: Padding(
@@ -54,14 +54,14 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 AppLocalizations.of(context)!.checkout,
                 20,
                 FontWeight.w600,
-                Colors.black,
+                Theme.of(context).primaryColor,
               ),
               SizedBox(height: 18.h),
               _buildText(
                 AppLocalizations.of(context)!.location,
                 18,
                 FontWeight.w600,
-                Colors.black,
+                Theme.of(context).primaryColor,
               ),
               SizedBox(height: 12.h),
               Consumer<LocationController>(
@@ -107,7 +107,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 AppLocalizations.of(context)!.promo_code,
                 16,
                 FontWeight.w600,
-                Colors.black,
+                Theme.of(context).primaryColor,
               ),
               SizedBox(height: 16.h),
               Row(
@@ -123,7 +123,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                         context,
                         false,
                       ),
-                      backgroundColor: Colors.white,
+                      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                       borderColor: const Color(0xFFD6D6D6),
                       height: 60.h,
                       borderSide: BorderSide.none,
@@ -151,7 +151,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                           AppLocalizations.of(context)!.add,
                           12,
                           FontWeight.w500,
-                          Colors.white,
+                          Theme.of(context).scaffoldBackgroundColor,
                         ),
                       ),
                     ),
@@ -163,7 +163,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 AppLocalizations.of(context)!.pay_with,
                 18,
                 FontWeight.w600,
-                Colors.black,
+                Theme.of(context).primaryColor,
               ),
               Row(
                 children: [
@@ -193,7 +193,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 AppLocalizations.of(context)!.card_type,
                 18,
                 FontWeight.w600,
-                Colors.black,
+                Theme.of(context).primaryColor,
               ),
               Row(
                 children: [
@@ -259,13 +259,13 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           content: Text(
             AppLocalizations.of(context)!.select_card_type,
             style: AppStyles.getFontStyle(
               langController,
               fontSize: 14.sp,
-              color: Colors.black54,
+              color: Theme.of(context).primaryColor,
               fontWeight: FontWeight.w400,
             ),
           ),
@@ -275,7 +275,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               colors: [AppConstants.buttonColor, AppConstants.buttonColor],
               height: 60.h,
               borderRadius: 12.r,
-              titleColor: Colors.white,
+              titleColor: Theme.of(context).scaffoldBackgroundColor,
               width: 300.w,
               onPressed: () {
                 Navigator.of(context).pop();
@@ -325,7 +325,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           onChanged: onChanged,
         ),
         if (icon != null) ...[icon, SizedBox(width: 8.w)],
-        _buildText(label ?? "", 16, FontWeight.w500, Colors.black),
+        _buildText(label ?? "", 16, FontWeight.w500, Theme.of(context).primaryColor,),
       ],
     );
   }

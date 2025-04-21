@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           return ProductDetailsWidget(foodItem: homePageController.foodItem);
         } else {
           return Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor:Theme.of(context).scaffoldBackgroundColor,
             body: SingleChildScrollView(
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               child: Column(

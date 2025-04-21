@@ -20,9 +20,9 @@ class AddCardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         actions: const [NotificationButton()],
       ),
       body: Padding(
@@ -50,7 +50,7 @@ class AddCardScreen extends StatelessWidget {
                     obscureText: false,
                     hintText: AppLocalizations.of(context)!.enter_name,
                     textEditingController: cartController.nameController,
-                    backgroundColor: Colors.white,
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                     width: double.infinity,
                     borderColor: const Color(0xFFEDF1F3),
                   );
@@ -104,7 +104,7 @@ class AddCardScreen extends StatelessWidget {
       style: AppStyles.getFontStyle( langController,
         fontSize: 20.sp,
         fontWeight: FontWeight.w600,
-        color: Colors.black,
+        color: Theme.of(context).primaryColor,
       ),
     );
   }
@@ -135,7 +135,7 @@ class AddCardScreen extends StatelessWidget {
         InputWidget(
           textEditingController: controller,
           obscureText: false,
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           borderColor: const Color(0xFFEDF1F3),
           borderRadius: BorderRadius.circular(10.r),
           hintText: hintText,
@@ -170,7 +170,7 @@ class AddCardScreen extends StatelessWidget {
         InputWidget(
           textEditingController: controller,
           obscureText: false,
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           borderColor: const Color(0xFFEDF1F3),
           borderRadius: BorderRadius.circular(10.r),
           hintText: "MM/YY",
@@ -218,7 +218,7 @@ class AddCardScreen extends StatelessWidget {
         InputWidget(
           textEditingController: controller,
           obscureText: false,
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           borderColor: const Color(0xFFEDF1F3),
           borderRadius: BorderRadius.circular(10.r),
           hintText: "000",
@@ -345,12 +345,12 @@ class AddCardScreen extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           content: Text(
             message,
             style: AppStyles.getFontStyle( langController,
               fontSize: 14.sp,
-              color: Colors.black54,
+              color: Theme.of(context).primaryColor,
               fontWeight: FontWeight.w400,
             ),
           ),
@@ -363,7 +363,7 @@ class AddCardScreen extends StatelessWidget {
               ],
               height: 60.h,
               borderRadius: 12.r,
-              titleColor: Colors.white,
+              titleColor: Theme.of(context).primaryColor,
               width: 300.w,
               onPressed: () {
                 Navigator.of(context).pop();

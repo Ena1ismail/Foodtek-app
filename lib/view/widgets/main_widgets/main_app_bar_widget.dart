@@ -15,9 +15,9 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       title: ListTile(
-        leading: _buildLocationButton(),
+        leading: _buildLocationButton(context),
         title: _buildLocationTitle(context),
         subtitle: _buildLocationSubtitle(context),
       ),
@@ -26,7 +26,9 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Widget _buildLocationButton() {
+  Widget _buildLocationButton(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return Consumer<HomePageController>(
       builder: (context, homePageController, child) {
         if (homePageController.isProductDetailsSelected) {
@@ -41,7 +43,8 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             height: 40,
             width: 40,
             decoration: BoxDecoration(
-              color: Color(0xFFEDF7EF),
+              color:
+                  isDarkMode ? Theme.of(context).cardColor : Color(0xFFEDF7EF),
               borderRadius: BorderRadius.circular(4),
             ),
             child: IconButton(
@@ -70,7 +73,7 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         style: AppStyles.getFontStyle(
           langController,
           fontSize: 12,
-          color: Color(0xFF606060),
+          color: Theme.of(context).primaryColor,
           fontWeight: FontWeight.w500,
         ),
       ),
@@ -82,13 +85,15 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       context,
       listen: false,
     );
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return Text(
       'Jl. Soekarno Hatta 15A...',
       style: AppStyles.getFontStyle(
         langController,
         fontSize: 14,
         fontWeight: FontWeight.bold,
-        color: Color(0xFF101010),
+        color: isDarkMode? Colors.white38:Color(0xFF101010),
       ),
       overflow: TextOverflow.ellipsis,
     );

@@ -25,6 +25,7 @@ class InputWidget extends StatelessWidget {
   final Color? hintColor;
   final bool? readOnly;
   final BorderSide? borderSide;
+  final Color? labelColor;
 
   const InputWidget({
     super.key,
@@ -46,6 +47,7 @@ class InputWidget extends StatelessWidget {
     this.hintColor,
     this.readOnly = false,
     this.borderSide,
+    this.labelColor,
   });
 
   @override
@@ -87,7 +89,10 @@ class InputWidget extends StatelessWidget {
                 prefixIcon: prefixIcon,
                 suffixIcon: suffixIcon,
                 labelText: label,
-                labelStyle: AppStyles.getFontStyle(langController),
+                labelStyle: AppStyles.getFontStyle(
+                  langController,
+                  color: labelColor ?? Colors.black,
+                ),
                 hintText: hintText,
                 hintStyle: AppStyles.getFontStyle(
                   langController,

@@ -28,6 +28,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     LangController langController = Provider.of<LangController>(
       context,
       listen: false,
@@ -40,7 +42,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     ];
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
 
       body: SingleChildScrollView(
         child: Padding(
@@ -57,7 +59,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         onPressed: () {
                           checkOutController.toggleAllDetailsScreen();
                         },
-                        icon: Icon(Icons.arrow_back),
+                        icon: Icon(Icons.arrow_back, color: Theme.of(context).primaryColor,),
                       );
                     },
                   ),
@@ -66,7 +68,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     style: AppStyles.getFontStyle(
                       langController,
                       fontSize: 20.sp,
-                      color: Color(0xff391713),
+                      color: isDarkMode? Colors.white:Color(0xff391713),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -90,6 +92,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           langController,
                           fontSize: 15.sp,
                           fontWeight: FontWeight.bold,
+                          color: Theme.of(context).primaryColor
                         ),
                       ),
                       Text('#8979-4532'),
@@ -138,9 +141,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           AppLocalizations.of(context)!.live_track,
                           style: AppStyles.getFontStyle(
                             langController,
-                            fontSize: 14,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
+                            fontSize: 14.sp,
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       );

@@ -66,7 +66,7 @@ class ForgetPasswordScreen extends StatelessWidget {
         width: 343.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.r),
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor
         ),
         child: Selector<LoginController, bool>(
           selector: (context, loginController) => loginController.isLoginMode,
@@ -97,14 +97,14 @@ class ForgetPasswordScreen extends StatelessWidget {
                         SnackBar(
                           content: Text(
                             AppLocalizations.of(context)!.error_message,
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(color: Theme.of(context).primaryColor),
                           ),
-                          backgroundColor: Colors.white,
+                          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                         ),
                       );
                     }
                   },
-                  textColor: Colors.white,
+                  textColor: Theme.of(context).primaryColor,
                 ),
                 SizedBox(height: 24.h),
               ],

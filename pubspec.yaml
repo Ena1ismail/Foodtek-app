@@ -52,6 +52,8 @@ dependencies:
   google_maps_flutter: ^2.12.1
   geocoding: ^3.0.0
   flutter_polyline_points: ^2.0.0
+  flutter_bloc: ^9.1.0
+  shared_preferences: ^2.5.3
 
 
 

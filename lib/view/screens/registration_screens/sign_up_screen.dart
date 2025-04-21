@@ -45,10 +45,9 @@ class SignUpScreen extends StatelessWidget {
                 SizedBox(height: 25.h),
                 Container(
                   width: 343.w,
-                  // height: 720.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.r),
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                   ),
                   child: Selector<LoginController, bool>(
                     selector:
@@ -214,7 +213,7 @@ class SignUpScreen extends StatelessWidget {
               ),
             ),
             InputWidget(
-              backgroundColor: Colors.white,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               borderColor: Color(0xFFEFF0F6),
               textEditingController: loginController.nameController,
               obscureText: false,
@@ -258,7 +257,7 @@ class SignUpScreen extends StatelessWidget {
               ),
             ),
             InputWidget(
-              backgroundColor: Colors.white,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               borderColor: Color(0xFFEFF0F6),
               textEditingController: loginController.birthController,
               obscureText: false,
@@ -280,7 +279,7 @@ class SignUpScreen extends StatelessWidget {
                       return Container(
                         height: 330.h,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color:Theme.of(context).scaffoldBackgroundColor,
                           borderRadius: BorderRadius.vertical(
                             top: Radius.circular(16.r),
                           ),
@@ -348,7 +347,7 @@ class SignUpScreen extends StatelessWidget {
                                       AppLocalizations.of(context)!.select_date,
                                       style: AppStyles.getFontStyle(
                                         langController,
-                                        color: Colors.white,
+                                        color: Theme.of(context).scaffoldBackgroundColor,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -486,7 +485,7 @@ class SignUpScreen extends StatelessWidget {
                 child: CircularProgressIndicator(color: Color(0xFF170F4C)),
               )
               : LoginButtonWidget(
-                textColor: Colors.white,
+                textColor: Theme.of(context).scaffoldBackgroundColor,
                 buttonName: AppLocalizations.of(context)!.register_button,
                 onPressed: () async {
                   FocusScope.of(context).unfocus();
@@ -505,7 +504,7 @@ class SignUpScreen extends StatelessWidget {
                     print(loginController.errors);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        backgroundColor: Colors.white,
+                        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                         content: Text(
                           AppLocalizations.of(context)!.error_message,
                           style: AppStyles.getFontStyle(

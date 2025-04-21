@@ -22,7 +22,7 @@ class NotificationWidget extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.8,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(16),
           topLeft: Radius.circular(16),
@@ -48,7 +48,7 @@ class NotificationWidget extends StatelessWidget {
     Provider.of<LangController>(context, listen: false);
     return AppBar(
       centerTitle: true,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       leading: IconButton(
         onPressed: () {
           Navigator.pop(context);
@@ -63,6 +63,7 @@ class NotificationWidget extends StatelessWidget {
         style: AppStyles.getFontStyle( langController,
           fontWeight: FontWeight.w600,
           fontSize: 24.sp,
+          color: Theme.of(context).primaryColor,
         ),
       ),
     );
@@ -136,10 +137,12 @@ class NotificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black12, width: .3),
-        color: Color(0xFFF1F6FC),
+        color: isDarkMode? Colors.grey:Color(0xFFF1F6FC),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),

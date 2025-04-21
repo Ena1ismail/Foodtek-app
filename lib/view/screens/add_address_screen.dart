@@ -61,10 +61,12 @@ class _LocationWidgetState extends State<LocationWidget> {
       context,
       listen: false,
     );
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     final locationController = Provider.of<LocationController>(context);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text(
           AppLocalizations.of(context)!.new_address,
@@ -72,9 +74,10 @@ class _LocationWidgetState extends State<LocationWidget> {
             langController,
             fontSize: 20.sp,
             fontWeight: FontWeight.w600,
+            color: Theme.of(context).primaryColor,
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -111,8 +114,10 @@ class _LocationWidgetState extends State<LocationWidget> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.r),
-                  border: Border.all(color: Colors.black12),
-                  color: Colors.white,
+                  border: Border.all(
+                    color: isDarkMode ? Colors.grey : Colors.black12,
+                  ),
+                  color: Theme.of(context).scaffoldBackgroundColor,
                 ),
                 child: ListTile(
                   leading: Icon(Icons.location_pin, color: Colors.grey),
@@ -137,11 +142,13 @@ class _LocationWidgetState extends State<LocationWidget> {
               InputWidget(
                 textEditingController: locationController.buildingController,
                 obscureText: false,
-                backgroundColor: Colors.white,
-                borderColor: Colors.black12,
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                borderColor: isDarkMode ? Colors.grey : Colors.black12,
                 hintText: AppLocalizations.of(context)!.building_name,
                 label: AppLocalizations.of(context)!.building_name,
                 width: double.infinity,
+                labelColor: Theme.of(context).primaryColor,
+
               ),
               SizedBox(height: 20.h),
               SingleChildScrollView(
@@ -152,23 +159,29 @@ class _LocationWidgetState extends State<LocationWidget> {
                       textEditingController:
                           locationController.apartmentNumController,
                       obscureText: false,
-                      backgroundColor: Colors.white,
-                      borderColor: Colors.black12,
+                      backgroundColor:
+                          Theme.of(context).scaffoldBackgroundColor,
+                      borderColor: isDarkMode ? Colors.grey : Colors.black12,
                       hintText: AppLocalizations.of(context)!.apt_number,
                       label: AppLocalizations.of(context)!.apt_number,
                       width: 180.w,
                       keyboardType: TextInputType.number,
+                      labelColor: Theme.of(context).primaryColor,
+
                     ),
                     SizedBox(width: 20.w),
                     InputWidget(
                       textEditingController: locationController.floorController,
                       obscureText: false,
-                      backgroundColor: Colors.white,
-                      borderColor: Colors.black12,
+                      backgroundColor:
+                          Theme.of(context).scaffoldBackgroundColor,
+                      borderColor: isDarkMode ? Colors.grey : Colors.black12,
                       hintText: AppLocalizations.of(context)!.floor,
                       label: AppLocalizations.of(context)!.floor,
                       width: 180.w,
                       keyboardType: TextInputType.number,
+                      labelColor: Theme.of(context).primaryColor,
+
                     ),
                   ],
                 ),
@@ -177,27 +190,30 @@ class _LocationWidgetState extends State<LocationWidget> {
               InputWidget(
                 textEditingController: locationController.streetController,
                 obscureText: false,
-                backgroundColor: Colors.white,
-                borderColor: Colors.black12,
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                borderColor: isDarkMode ? Colors.grey : Colors.black12,
                 hintText: AppLocalizations.of(context)!.street,
                 label: AppLocalizations.of(context)!.street,
                 width: double.infinity,
+                labelColor: Theme.of(context).primaryColor,
+
               ),
               SizedBox(height: 20.h),
               InputWidget(
                 textEditingController: locationController.additionalController,
                 obscureText: false,
-                backgroundColor: Colors.white,
-                borderColor: Colors.black12,
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                borderColor: isDarkMode ? Colors.grey : Colors.black12,
                 hintText: AppLocalizations.of(context)!.additional_directions,
                 label: AppLocalizations.of(context)!.additional_directions,
                 width: double.infinity,
+                labelColor: Theme.of(context).primaryColor,
               ),
               SizedBox(height: 20.h),
               CustomButtonWidget(
                 title: AppLocalizations.of(context)!.save_address,
                 colors: [AppConstants.buttonColor, AppConstants.buttonColor],
-                titleColor: Colors.white,
+                titleColor: Theme.of(context).primaryColor,
                 width: double.infinity,
                 borderRadius: 12.r,
                 height: 60.h,
@@ -210,14 +226,15 @@ class _LocationWidgetState extends State<LocationWidget> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          backgroundColor: Colors.white,
+                          backgroundColor:
+                              Theme.of(context).scaffoldBackgroundColor,
                           content: Text(
                             textAlign: TextAlign.center,
                             AppLocalizations.of(context)!.empty_fields,
                             style: AppStyles.getFontStyle(
                               langController,
                               fontSize: 14.sp,
-                              color: Colors.black54,
+                              color: Theme.of(context).primaryColor,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -230,7 +247,7 @@ class _LocationWidgetState extends State<LocationWidget> {
                               ],
                               height: 60.h,
                               borderRadius: 12.r,
-                              titleColor: Colors.white,
+                              titleColor: Theme.of(context).primaryColor,
                               width: 300.w,
                               onPressed: () {
                                 Navigator.of(context).pop();

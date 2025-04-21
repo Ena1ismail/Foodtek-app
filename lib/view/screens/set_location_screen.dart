@@ -82,7 +82,7 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
               child: InputWidget(
                 textEditingController: TextEditingController(),
                 obscureText: false,
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(40.r),
                 borderColor: Colors.black12,
                 hintText: AppLocalizations.of(context)!.find_your_location,
@@ -100,7 +100,7 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
                 height: 200.h,
                 width: 345.w,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Column(
@@ -170,7 +170,7 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
                             style: TextStyle(
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: Theme.of(context).cardColor,
                             ),
                           ),
                         ),
@@ -190,7 +190,7 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: Icon(Icons.arrow_back),
+                icon: Icon(Icons.arrow_back, color: Theme.of(context).primaryColor,),
               ),
             ),
           ),

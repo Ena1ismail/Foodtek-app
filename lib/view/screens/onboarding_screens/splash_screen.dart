@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/theme/theme_cubit.dart';
 import 'package:foodtek/view/screens/onboarding_screens/slides_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -28,8 +30,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: const Color(0xFF25AE4B),
+      backgroundColor: isDarkMode? Colors.black : Color(0xFF25AE4B),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -41,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Text(
             'Foodtek',
             style: GoogleFonts.protestRiot(
-              color: Colors.white,
+              color: Theme.of(context).primaryColor,
               fontSize: 80.sp,
               fontWeight: FontWeight.w400,
             ),

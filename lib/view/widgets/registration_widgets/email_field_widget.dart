@@ -14,6 +14,8 @@ class EmailFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return Selector<LoginController, String?>(
       selector: (context, loginController) => loginController.errors['email'],
       builder: (context, errorText, _) {
@@ -30,8 +32,8 @@ class EmailFieldWidget extends StatelessWidget {
               ),
             ),
             InputWidget(
-              backgroundColor: Colors.white,
-              borderColor: Color(0xFFEFF0F6),
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              borderColor: isDarkMode ? Colors.grey : Color(0xFFEFF0F6),
               textEditingController: loginController.emailController,
               obscureText: false,
               keyboardType: TextInputType.emailAddress,

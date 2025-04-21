@@ -30,6 +30,8 @@ class PasswordFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
         return Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,8 +45,8 @@ class PasswordFieldWidget extends StatelessWidget {
               ),
             ),
             InputWidget(
-              backgroundColor: Colors.white,
-              borderColor: Color(0xFFEFF0F6),
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              borderColor: isDarkMode? Colors.grey:Color(0xFFEFF0F6),
               textEditingController: controller,
               obscureText: obscureText,
               suffixIcon: suffixIcon,

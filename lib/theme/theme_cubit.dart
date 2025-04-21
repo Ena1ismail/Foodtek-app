@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/app_constants.dart';
-import 'package:foodtek/theme/shared_prefences_helper.dart';
+import 'package:foodtek/app_styles.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'constant_value.dart';
+import 'shared_prefences_helper.dart';
 
 class ThemeCubit extends Cubit<ThemeData> {
   ThemeCubit() : super(ThemeData());
@@ -10,28 +14,33 @@ class ThemeCubit extends Cubit<ThemeData> {
 
   ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    textTheme: TextTheme(
-      bodyLarge: TextStyle(color: Colors.white, fontSize: 22),
-      bodyMedium: TextStyle(color: Colors.white, fontSize: 20),
-      bodySmall: TextStyle(color: Colors.white, fontSize: 15),
-      labelLarge: TextStyle(color: Colors.white, fontSize: 25),
+    scaffoldBackgroundColor: Color(0xFF1E1E1E),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: Color(0xFF1E1E1E),
     ),
+
+    appBarTheme: AppBarTheme(backgroundColor: Color(0xFF1E1E1E)),
+    iconTheme: IconThemeData(color: Colors.black),
+    primaryColor: Colors.white,
+    cardColor: Color(0xFF3b3b3b),
   );
 
   ThemeData light = ThemeData(
     brightness: Brightness.light,
-    textTheme: TextTheme(
-      bodyLarge: TextStyle(color: Colors.black, fontSize: 22),
-      bodyMedium: TextStyle(color: Colors.black, fontSize: 20),
-      bodySmall: TextStyle(color: Colors.black, fontSize: 15),
-      labelLarge: TextStyle(color: Colors.black, fontSize: 25),
+    scaffoldBackgroundColor: Colors.white,
+    iconTheme: IconThemeData(color: Colors.white),
+    primaryColor: Colors.black,
+    cardColor: Colors.white,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppConstants.buttonColor,
     ),
+    appBarTheme: AppBarTheme(backgroundColor: Colors.white),
   );
 
   changeTheme() {
     isDark = !isDark;
     SharedPreferencesHelper().savePrefBool(
-      key: AppConstants.isDark,
+      key: ConstValue.isDark,
       value: isDark,
     );
     emit(isDark ? dark : light);
@@ -39,7 +48,7 @@ class ThemeCubit extends Cubit<ThemeData> {
 
   getTheme() async {
     bool isDark = await SharedPreferencesHelper().getPrefBool(
-      key: AppConstants.isDark,
+      key: ConstValue.isDark,
       defaultValue: false,
     );
     emit(isDark ? dark : light);

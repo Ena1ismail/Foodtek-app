@@ -17,6 +17,8 @@ class FoodItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return SizedBox(
       height: 300.h,
       width: 177.w,
@@ -29,7 +31,7 @@ class FoodItemWidget extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(color: Color(0xFFDBF4D1), width: 1.5.w),
               borderRadius: BorderRadius.circular(25.r),
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
             ),
             child: SingleChildScrollView(
               child: Column(
@@ -40,7 +42,7 @@ class FoodItemWidget extends StatelessWidget {
                       textAlign: TextAlign.center,
                       foodItem.name!,
                       style: GoogleFonts.sora(
-                        color: Color(0xFF24262F),
+                        color: isDarkMode ? Colors.white54 : Color(0xFF24262F),
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
                       ),
@@ -93,26 +95,29 @@ class FoodItemWidget extends StatelessWidget {
 
           Positioned(
             top: 0,
-            child: Consumer<HomePageController>(builder: (context, homePageController, child) {
-              return GestureDetector(
-                onTap: () {
-                  homePageController.toggleProductDetails();
-                  homePageController.selectedFoodItem(foodItem);
-                },
-                child: SizedBox(
-                  height: 89.h,
-                  width: 89.w,
-                  child: CircleAvatar(
-                    backgroundColor: Color(0xFFE7E7E7),
-                    child: Image.asset(
-                      foodItem.imageUrl!,
-                      height: 75.h,
-                      width: 75.w,
+            child: Consumer<HomePageController>(
+              builder: (context, homePageController, child) {
+                return GestureDetector(
+                  onTap: () {
+                    homePageController.toggleProductDetails();
+                    homePageController.selectedFoodItem(foodItem);
+                  },
+                  child: SizedBox(
+                    height: 89.h,
+                    width: 89.w,
+                    child: CircleAvatar(
+                      backgroundColor:
+                          isDarkMode ? Colors.grey : Color(0xFFE7E7E7),
+                      child: Image.asset(
+                        foodItem.imageUrl!,
+                        height: 75.h,
+                        width: 75.w,
+                      ),
                     ),
                   ),
-                ),
-              );
-            },),
+                );
+              },
+            ),
           ),
 
           Consumer<HomePageController>(
@@ -125,7 +130,7 @@ class FoodItemWidget extends StatelessWidget {
                   width: 36.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(14.r),
-                    color: Color(0xFFDBF4D1),
+                    color: isDarkMode ? Colors.grey : Color(0xFFDBF4D1),
                   ),
                   child: Center(
                     child: IconButton(
@@ -164,7 +169,7 @@ class FoodItemWidget extends StatelessWidget {
                   colors: [AppConstants.buttonColor, AppConstants.buttonColor],
                   borderRadius: 25.r,
                   style: GoogleFonts.sora(
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     fontSize: 10.sp,
                     fontWeight: FontWeight.w500,
                   ),

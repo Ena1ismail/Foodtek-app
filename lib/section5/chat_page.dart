@@ -18,12 +18,14 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     LangController langController = Provider.of<LangController>(
       context,
       listen: false,
     );
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Stack(
         children: [
           Padding(
@@ -35,7 +37,7 @@ class _ChatPageState extends State<ChatPage> {
                   children: [
                     Consumer<CheckOutController>(builder: (context, checkOutController, child) {
                       return IconButton(
-                        icon: const Icon(Icons.arrow_back),
+                        icon:  Icon(Icons.arrow_back, color: Theme.of(context).primaryColor,),
                         onPressed: () {
                           checkOutController.toggleChatScreen();
                         },
@@ -46,7 +48,7 @@ class _ChatPageState extends State<ChatPage> {
                       style: AppStyles.getFontStyle(
                         langController,
                         fontSize: 20.sp,
-                        color: Color(0xff391713),
+                        color: isDarkMode? Colors.white:Color(0xff391713),
                         fontWeight: FontWeight.w600,
                       ),
                     ),

@@ -80,7 +80,7 @@ class _SuccessResetPasswordScreenState
               width: 343.w,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.r),
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
               ),
               child: Padding(
                 padding: EdgeInsets.only(left: 24.sp),
@@ -143,7 +143,7 @@ class _SuccessResetPasswordScreenState
                       ),
                       SizedBox(height: 24.h),
                       LoginButtonWidget(
-                        textColor: Colors.white,
+                        textColor: Theme.of(context).scaffoldBackgroundColor,
                         buttonName: AppLocalizations.of(context)!.register_button,
                         onPressed: () {},
                       ),
@@ -181,7 +181,7 @@ class _SuccessResetPasswordScreenState
                 Text(
                   AppLocalizations.of(context)!.congratulations,
                   style: AppStyles.getFontStyle( langController,
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     fontWeight: FontWeight.w700,
                     fontSize: 32.sp,
                   ),
@@ -189,7 +189,7 @@ class _SuccessResetPasswordScreenState
                 Text(
                   AppLocalizations.of(context)!.password_reset_success,
                   style: AppStyles.getFontStyle( langController,
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     fontWeight: FontWeight.w600,
                     fontSize: 24.sp,
                   ),

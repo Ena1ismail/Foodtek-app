@@ -59,7 +59,7 @@ class ResetPasswordScreen extends StatelessWidget {
               width: 343.w,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.r),
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
               ),
               child: Padding(
                 padding: EdgeInsets.only(left: 24.sp, right: 24.sp),
@@ -186,7 +186,7 @@ class ResetPasswordScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 24.h),
                       LoginButtonWidget(
-                        textColor: Colors.white,
+                        textColor: Theme.of(context).scaffoldBackgroundColor,
                         buttonName: AppLocalizations.of(context)!.update_password_button,
                         onPressed: () async {
                           FocusScope.of(context).unfocus();

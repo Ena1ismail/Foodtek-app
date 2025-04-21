@@ -14,8 +14,12 @@ class EmptyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LangController langController =
-    Provider.of<LangController>(context, listen: false);
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: Column(
@@ -27,10 +31,11 @@ class EmptyWidget extends StatelessWidget {
           Center(
             child: Text(
               title,
-              style: AppStyles.getFontStyle( langController,
+              style: AppStyles.getFontStyle(
+                langController,
                 fontSize: 32.sp,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF111827),
+                color: isDarkMode? Colors.white: Color(0xFF111827),
               ),
             ),
           ),
@@ -38,7 +43,8 @@ class EmptyWidget extends StatelessWidget {
           Text(
             textAlign: TextAlign.center,
             subTitle,
-            style: AppStyles.getFontStyle( langController,
+            style: AppStyles.getFontStyle(
+              langController,
               fontSize: 16.sp,
               fontWeight: FontWeight.w500,
               color: Colors.grey,

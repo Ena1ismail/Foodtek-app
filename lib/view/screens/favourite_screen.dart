@@ -19,7 +19,7 @@ class FavouriteScreen extends StatelessWidget {
       listen: false,
     );
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,6 +33,7 @@ class FavouriteScreen extends StatelessWidget {
                   langController,
                   fontWeight: FontWeight.w600,
                   fontSize: 20.sp,
+                  color: Theme.of(context).primaryColor
                 ),
               ),
             ),

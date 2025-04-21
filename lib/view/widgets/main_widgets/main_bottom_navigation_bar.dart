@@ -14,6 +14,8 @@ class MainBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return AnimatedBottomNavigationBar(
       icons: const [
         Icons.home_outlined,
@@ -21,11 +23,12 @@ class MainBottomNavigationBar extends StatelessWidget {
         Icons.location_on_outlined,
         Icons.person_outline,
       ],
-      backgroundColor: Color(0xFFDBF4D1),
+      backgroundColor:
+          isDarkMode ? AppConstants.buttonColor : Color(0xFFDBF4D1),
       activeIndex: activeIndex,
       gapLocation: GapLocation.center,
-      activeColor: AppConstants.buttonColor,
-      inactiveColor: Colors.black54,
+      activeColor: isDarkMode ? Colors.black : AppConstants.buttonColor,
+      inactiveColor: isDarkMode ? Colors.black38 : Colors.black54,
       notchSmoothness: NotchSmoothness.softEdge,
       shadow: BoxShadow(
         color: Colors.black.withOpacity(0.1),

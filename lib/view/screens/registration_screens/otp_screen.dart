@@ -30,7 +30,7 @@ class OTPScreen extends StatelessWidget {
         fontWeight: FontWeight.w500,
       ),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: Color(0xFFEDF1F3), width: 1.w),
       ),
@@ -84,7 +84,7 @@ class OTPScreen extends StatelessWidget {
               height: 399.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.r),
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
               ),
               child: SingleChildScrollView(
                 child: Column(
@@ -138,17 +138,17 @@ class OTPScreen extends StatelessWidget {
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              backgroundColor: Colors.white,
+                              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                               content: Text(
                                 AppLocalizations.of(context)!.otp_error,
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(color: Theme.of(context).primaryColor,),
                               ),
                               duration: Duration(seconds: 2),
                             ),
                           );
                         }
                       },
-                      textColor: Colors.white,
+                      textColor: Theme.of(context).scaffoldBackgroundColor,
                     ),
                     SizedBox(height: 24.h),
                   ],

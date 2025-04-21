@@ -37,7 +37,7 @@ class CategoryButtonsWidget extends StatelessWidget {
               controller.updateSelectedCategory(label);
             },
             style: TextButton.styleFrom(
-              backgroundColor: isSelected ? Colors.green : Colors.white,
+              backgroundColor: isSelected ? Colors.green : Theme.of(context).scaffoldBackgroundColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
                 side: BorderSide(color: Color(0xFF85DE9E)),
@@ -50,7 +50,7 @@ class CategoryButtonsWidget extends StatelessWidget {
                 Text(
                   label,
                   style: GoogleFonts.poppins(
-                    color: isSelected ? Colors.white : Colors.black,
+                    color: isSelected ? Theme.of(context).scaffoldBackgroundColor : Theme.of(context).primaryColor,
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
                   ),

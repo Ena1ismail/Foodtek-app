@@ -75,7 +75,10 @@ class CheckOutWidget extends StatelessWidget {
                   width: double.infinity,
                   height: 60.h,
                   titleColor: AppConstants.buttonColor,
-                  colors: [Colors.white, Colors.white],
+                  colors: [
+                    Theme.of(context).scaffoldBackgroundColor,
+                    Theme.of(context).scaffoldBackgroundColor,
+                  ],
                   onPressed: onPressed,
                 ),
               ],
@@ -105,7 +108,7 @@ class CheckOutWidget extends StatelessWidget {
           style: AppStyles.getFontStyle(
             langController,
             fontSize: fontSize,
-            color: Colors.white,
+            color: Theme.of(context).scaffoldBackgroundColor,
             fontWeight: fontWeight,
           ),
         ),
@@ -114,7 +117,7 @@ class CheckOutWidget extends StatelessWidget {
           style: AppStyles.getFontStyle(
             langController,
             fontSize: fontSize,
-            color: Colors.white,
+            color: Theme.of(context).scaffoldBackgroundColor,
             fontWeight: fontWeight,
           ),
         ),

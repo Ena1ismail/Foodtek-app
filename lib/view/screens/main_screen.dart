@@ -32,9 +32,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: (activeIndex == 2 || activeIndex == 3)
-        ? null
-        : MainAppBarWidget(),
+      appBar:
+          (activeIndex == 2 || activeIndex == 3) ? null : MainAppBarWidget(),
       body: pages[activeIndex],
       bottomNavigationBar: MainBottomNavigationBar(
         activeIndex: activeIndex,
@@ -63,7 +62,10 @@ class _MainScreenState extends State<MainScreen> {
       child: Stack(
         children: [
           Center(
-            child: Icon(Icons.shopping_cart_outlined, color: Colors.white),
+            child: Icon(
+              Icons.shopping_cart_outlined,
+              color: Theme.of(context).iconTheme.color,
+            ),
           ),
           Align(
             alignment: Alignment.topRight,
@@ -73,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
               child: Consumer<CartController>(
                 builder: (context, cartController, _) {
                   final itemCount = cartController.cartItems.length;
-                  if(cartController.cartItems.isEmpty){
+                  if (cartController.cartItems.isEmpty) {
                     return SizedBox.shrink();
                   } else {
                     return CircleAvatar(

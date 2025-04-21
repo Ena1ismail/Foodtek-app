@@ -23,7 +23,7 @@ class TopRatedSectionWidget extends StatelessWidget {
             style: AppStyles.getFontStyle( langController,
               fontWeight: FontWeight.w600,
               fontSize: 20.sp,
-              color: Colors.black,
+              color: Theme.of(context).primaryColor,
             ),
           ),
         ),

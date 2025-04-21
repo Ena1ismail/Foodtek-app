@@ -34,7 +34,7 @@ class SlidesScreen extends StatelessWidget {
             child: Container(
               height: 90.h,
               width: 321.w,
-              color: Colors.white,
+              color: Theme.of(context).scaffoldBackgroundColor,
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -166,7 +166,7 @@ class _TrackPageState extends State<TrackPage> {
                   right: 0,
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 21, vertical: 28),
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min, // هذا مهم لتقليل المساحة
@@ -183,6 +183,7 @@ class _TrackPageState extends State<TrackPage> {
                                     langController,
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).primaryColor,
                                   ),
                                 ),
                                 Consumer<CheckOutController>(builder: (context, checkOutController, child) {
@@ -198,6 +199,7 @@ class _TrackPageState extends State<TrackPage> {
                                       style: AppStyles.getFontStyle(
                                         langController,
                                         fontSize: 16,
+                                        color: Theme.of(context).primaryColor,
                                       ),
                                     ),
                                   );

@@ -17,6 +17,8 @@ class Alexander extends StatefulWidget {
 class _AlexanderState extends State<Alexander> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     LangController langController = Provider.of<LangController>(
       context,
       listen: false,
@@ -33,7 +35,7 @@ class _AlexanderState extends State<Alexander> {
               langController,
               fontSize: 12,
               fontWeight: FontWeight.w500,
-              color: Color(0xff878787),
+              color: isDarkMode ? Colors.white : Color(0xff878787),
             ),
           ),
           subtitle: Row(
@@ -44,7 +46,7 @@ class _AlexanderState extends State<Alexander> {
                   langController,
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
-                  color: Color(0xff2F2E36),
+                  color: isDarkMode ? Colors.grey : Color(0xff2F2E36),
                 ),
               ),
               SizedBox(width: 10),
@@ -77,7 +79,7 @@ class _AlexanderState extends State<Alexander> {
                 height: 40.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  color: Color(0xffF5F5F5),
+                  color: Theme.of(context).cardColor,
                 ),
                 child: Icon(Icons.phone, color: Colors.green),
               ),
@@ -87,7 +89,10 @@ class _AlexanderState extends State<Alexander> {
                 height: 40.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  color: Color(0xffF5F5F5),
+                  color:
+                      isDarkMode
+                          ? Theme.of(context).cardColor
+                          : Color(0xffF5F5F5),
                 ),
                 child: Consumer<CheckOutController>(
                   builder: (context, checkOutController, child) {

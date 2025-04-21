@@ -36,7 +36,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -281,6 +281,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
             builder: (context, cartController, child) {
               return CounterButtonsWidget(
                 value: _foodItem.quantity ?? 1,
+                color: Theme.of(context).cardColor,
                 onIncrement: () => cartController.incrementItem(_foodItem),
                 onDecrement:
                     () => cartController.decrementItem(_foodItem, context),
@@ -308,7 +309,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                         : AppLocalizations.of(context)!.add_to_cart,
                 colors: [AppConstants.buttonColor, AppConstants.buttonColor],
                 borderRadius: 12.r,
-                titleColor: Colors.white,
+                titleColor: Theme.of(context).scaffoldBackgroundColor,
                 height: 50.h,
                 width: 330.w,
                 onPressed: () {

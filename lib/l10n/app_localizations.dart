@@ -470,7 +470,7 @@ abstract class AppLocalizations {
   /// No description provided for @view_all.
   ///
   /// In en, this message translates to:
-  /// **'View All'**
+  /// **'View All >'**
   String get view_all;
 
   /// No description provided for @order_now.
@@ -512,7 +512,7 @@ abstract class AppLocalizations {
   /// No description provided for @favorites.
   ///
   /// In en, this message translates to:
-  /// **'favorites'**
+  /// **'Favorites'**
   String get favorites;
 
   /// No description provided for @no_favorites.
@@ -944,7 +944,7 @@ abstract class AppLocalizations {
   /// No description provided for @order_details.
   ///
   /// In en, this message translates to:
-  /// **'order Details'**
+  /// **'Order Details'**
   String get order_details;
 
   /// No description provided for @on_the_way.

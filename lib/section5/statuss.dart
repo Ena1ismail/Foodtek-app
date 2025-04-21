@@ -47,7 +47,7 @@ class TimelineTile extends StatelessWidget {
             langController,
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: Color(0xff1C1B1F),
+            color: Theme.of(context).primaryColor,
           ),
         ),
       ],

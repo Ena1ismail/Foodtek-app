@@ -19,25 +19,29 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     LangController langController = Provider.of<LangController>(
       context,
       listen: false,
     );
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: 40,left: 30, right: 30),
+          padding: EdgeInsets.only(top: 40, left: 30, right: 30),
           child: Column(
             children: [
-              SizedBox(height: 8.h),
               Row(
                 children: [
                   SizedBox(width: 15.w),
                   Consumer<CheckOutController>(
                     builder: (context, checkOutController, child) {
                       return IconButton(
-                        icon: const Icon(Icons.arrow_back),
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: Theme.of(context).primaryColor,
+                        ),
                         onPressed: () {
                           checkOutController.toggleProfileScreen();
                         },
@@ -50,6 +54,7 @@ class _ProfileState extends State<Profile> {
                       langController,
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ],
@@ -66,6 +71,7 @@ class _ProfileState extends State<Profile> {
                   langController,
                   fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
               Text(
@@ -81,7 +87,7 @@ class _ProfileState extends State<Profile> {
                 padding: EdgeInsets.all(10),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.2),
@@ -116,7 +122,8 @@ class _ProfileState extends State<Profile> {
                           hintStyle: AppStyles.getFontStyle(
                             langController,
                             fontSize: 14,
-                            color: Color(0xff1A1C1E),
+                            color:
+                                isDarkMode ? Colors.white : Color(0xff1A1C1E),
                             fontWeight: FontWeight.w500,
                           ),
                           border: OutlineInputBorder(
@@ -165,7 +172,8 @@ class _ProfileState extends State<Profile> {
                           hintStyle: AppStyles.getFontStyle(
                             langController,
                             fontSize: 14,
-                            color: Color(0xff1A1C1E),
+                            color:
+                                isDarkMode ? Colors.white : Color(0xff1A1C1E),
                             fontWeight: FontWeight.w500,
                           ),
                           enabledBorder: OutlineInputBorder(
@@ -207,7 +215,7 @@ class _ProfileState extends State<Profile> {
                           hintStyle: AppStyles.getFontStyle(
                             langController,
                             fontSize: 14,
-                            color: Color(0xff1A1C1E),
+                            color: isDarkMode? Colors.white:Color(0xff1A1C1E),
                             fontWeight: FontWeight.w500,
                           ),
                           enabledBorder: OutlineInputBorder(
@@ -249,7 +257,7 @@ class _ProfileState extends State<Profile> {
                           hintStyle: AppStyles.getFontStyle(
                             langController,
                             fontSize: 14,
-                            color: Color(0xff1A1C1E),
+                            color: isDarkMode? Colors.white: Color(0xff1A1C1E),
                             fontWeight: FontWeight.w500,
                           ),
                           enabledBorder: OutlineInputBorder(
@@ -291,7 +299,7 @@ class _ProfileState extends State<Profile> {
                           hintStyle: AppStyles.getFontStyle(
                             langController,
                             fontSize: 14,
-                            color: Color(0xff1A1C1E),
+                            color: isDarkMode? Colors.white:Color(0xff1A1C1E),
                             fontWeight: FontWeight.w500,
                           ),
                           enabledBorder: OutlineInputBorder(

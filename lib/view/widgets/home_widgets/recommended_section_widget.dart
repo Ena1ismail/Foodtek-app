@@ -32,7 +32,7 @@ class RecommendedSectionWidget extends StatelessWidget {
                   langController,
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w600,
-                  color: Colors.black,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
               TextButton(

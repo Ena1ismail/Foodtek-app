@@ -27,7 +27,10 @@ class CounterButtonsWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(14.r),
             color: color ?? Colors.white,
-            border: Border.all(color: color ?? AppConstants.buttonColor, width: 1.5.w),
+            border: Border.all(
+              color: color ?? AppConstants.buttonColor,
+              width: 1.5.w,
+            ),
           ),
           child: IconButton(
             onPressed: onDecrement,
@@ -40,7 +43,11 @@ class CounterButtonsWidget extends StatelessWidget {
 
         Text(
           '$value',
-          style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 18.sp,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).primaryColor,
+          ),
         ),
 
         SizedBox(width: 10.w),
@@ -55,7 +62,7 @@ class CounterButtonsWidget extends StatelessWidget {
           child: IconButton(
             onPressed: onIncrement,
             icon: const Icon(Icons.add),
-            color: Colors.white,
+            color: Theme.of(context).scaffoldBackgroundColor,
           ),
         ),
       ],

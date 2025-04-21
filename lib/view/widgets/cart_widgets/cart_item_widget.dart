@@ -55,14 +55,15 @@ class CartItemWidget extends StatelessWidget {
                   context: context,
                   builder:
                       (context) => AlertDialog(
-                        backgroundColor: Colors.white,
+                        backgroundColor:
+                            Theme.of(context).scaffoldBackgroundColor,
                         content: Text(
                           textAlign: TextAlign.center,
                           AppLocalizations.of(context)!.remove_from_cart,
                           style: AppStyles.getFontStyle(
                             langController,
                             fontSize: 14.sp,
-                            color: Colors.black54,
+                            color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -75,7 +76,8 @@ class CartItemWidget extends StatelessWidget {
                             ],
                             height: 60.h,
                             borderRadius: 12.r,
-                            titleColor: Colors.white,
+                            titleColor:
+                                Theme.of(context).scaffoldBackgroundColor,
                             width: 300.w,
                             onPressed: () {
                               cartController.removeItem(foodItem);
@@ -90,7 +92,7 @@ class CartItemWidget extends StatelessWidget {
                 }
               },
               backgroundColor: Colors.orange,
-              foregroundColor: Colors.white,
+              foregroundColor: Theme.of(context).scaffoldBackgroundColor,
               icon: Icons.delete_outline,
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(7.r),
@@ -107,6 +109,8 @@ class CartItemWidget extends StatelessWidget {
   }
 
   Widget _buildCartItemContent(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     LangController langController = Provider.of<LangController>(
       context,
       listen: false,
@@ -114,9 +118,12 @@ class CartItemWidget extends StatelessWidget {
     return Container(
       // height: 110.h,
       decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xFFDBF4D1), width: 1.w),
+        border: Border.all(
+          color: isDarkMode ? Colors.grey : Color(0xFFDBF4D1),
+          width: 1.w,
+        ),
         borderRadius: BorderRadius.circular(7.r),
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 12.h),
@@ -162,7 +169,7 @@ class CartItemWidget extends StatelessWidget {
                       style: AppStyles.getFontStyle(
                         langController,
                         fontSize: 12.sp,
-                        color: const Color(0xFF3B3B3B),
+                        color: isDarkMode ? Colors.black : Color(0xFF3B3B3B),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -187,15 +194,16 @@ class CartItemWidget extends StatelessWidget {
                     builder: (context, cartController, child) {
                       return CounterButtonsWidget(
                         value: foodItem.quantity ?? 0,
-                        color: const Color(0xFFEAF7ED),
-                        onIncrement: () => cartController.incrementItem(foodItem),
+                        color: isDarkMode ? Colors.black : Color(0xFFEAF7ED),
+                        onIncrement:
+                            () => cartController.incrementItem(foodItem),
                         onDecrement:
-                            () => cartController.decrementItem(foodItem, context),
+                            () =>
+                                cartController.decrementItem(foodItem, context),
                       );
                     },
                   ),
             ),
-
             SizedBox(width: 8.w),
           ],
         ),

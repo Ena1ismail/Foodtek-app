@@ -18,13 +18,18 @@ class TopRatedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return Container(
       height: 240.h,
       width: 175.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
-        border: Border.all(color: Color(0xFFDBF4D1), width: 1.5.w),
-        color: Colors.white,
+        border: Border.all(
+          color: isDarkMode ? Colors.grey : Color(0xFFDBF4D1),
+          width: 1.5.w,
+        ),
+        color: Theme.of(context).scaffoldBackgroundColor,
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -97,11 +102,14 @@ class TopRatedWidget extends StatelessWidget {
         langController,
         fontSize: 18.sp,
         fontWeight: FontWeight.w600,
+        color: Theme.of(context).primaryColor
       ),
     );
   }
 
   Widget _buildDescription(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     LangController langController = Provider.of<LangController>(
       context,
       listen: false,
@@ -112,7 +120,7 @@ class TopRatedWidget extends StatelessWidget {
         langController,
         fontSize: 11.sp,
         fontWeight: FontWeight.w400,
-        color: Color(0xFF3B3B3B),
+        color:isDarkMode? Colors.grey: Color(0xFF3B3B3B),
       ),
     );
   }

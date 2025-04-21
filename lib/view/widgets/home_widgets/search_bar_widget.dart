@@ -13,6 +13,8 @@ class SearchBarWidget extends StatelessWidget {
       context,
       listen: false,
     );
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
@@ -22,13 +24,13 @@ class SearchBarWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(40.r),
             width: 370,
             height: 55,
-            borderColor: Color(0xFFD6D6D6),
+            borderColor: isDarkMode ? Colors.grey : Color(0xFFD6D6D6),
             borderSide: BorderSide(color: Colors.transparent),
             textEditingController:
                 homePageController.searchTextEditingController,
             obscureText: false,
             prefixIcon: Icon(Icons.search, color: Color(0xFF878787)),
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).cardColor,
             hintText: AppLocalizations.of(context)!.search_hint,
             hintColor: Color(0xFF878787),
             suffixIcon: IconButton(

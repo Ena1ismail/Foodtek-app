@@ -195,7 +195,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get recommend => 'Recommend';
 
   @override
-  String get view_all => 'View All';
+  String get view_all => 'View All >';
 
   @override
   String get order_now => 'Order Now';
@@ -216,7 +216,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get read_tab => 'Read';
 
   @override
-  String get favorites => 'favorites';
+  String get favorites => 'Favorites';
 
   @override
   String get no_favorites => 'No favorites yet!';
@@ -432,7 +432,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get your_delivery_hero => 'Your Delivery Hero';
 
   @override
-  String get order_details => 'order Details';
+  String get order_details => 'Order Details';
 
   @override
   String get on_the_way => 'On The Way';

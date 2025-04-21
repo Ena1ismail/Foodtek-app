@@ -18,12 +18,14 @@ class CheckOutSuccessfullyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     LangController langController =
     Provider.of<LangController>(context, listen: false);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         actions: [NotificationButton()],
       ),
       body: Padding(
@@ -37,7 +39,7 @@ class CheckOutSuccessfullyScreen extends StatelessWidget {
               style: AppStyles.getFontStyle( langController,
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w600,
-                color: Colors.black,
+                color: Theme.of(context).primaryColor,
               ),
             ),
             SizedBox(height: 100.h),
@@ -50,7 +52,7 @@ class CheckOutSuccessfullyScreen extends StatelessWidget {
                 AppLocalizations.of(context)!.order_done_successfully,
                 style: AppStyles.getFontStyle( langController,
                   fontSize: 24.sp,
-                  color: Colors.black,
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -63,7 +65,7 @@ class CheckOutSuccessfullyScreen extends StatelessWidget {
                 style: AppStyles.getFontStyle( langController,
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFF263238),
+                  color: isDarkMode? Colors.grey:Color(0xFF263238),
                 ),
               ),
             ),
@@ -72,7 +74,7 @@ class CheckOutSuccessfullyScreen extends StatelessWidget {
               child: CustomButtonWidget(
                 title:  AppLocalizations.of(context)!.track_your_order,
                 colors: [AppConstants.buttonColor, AppConstants.buttonColor],
-                titleColor: Colors.white,
+                titleColor: Theme.of(context).scaffoldBackgroundColor,
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,

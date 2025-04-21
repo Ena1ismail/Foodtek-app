@@ -19,6 +19,8 @@ class HistoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     LangController langController = Provider.of<LangController>(
       context,
       listen: false,
@@ -41,7 +43,7 @@ class HistoryWidget extends StatelessWidget {
                     style: AppStyles.getFontStyle(
                       langController,
                       fontSize: 14.sp,
-                      color: Color(0xFF3B3B3B),
+                      color: isDarkMode? Colors.black: Color(0xFF3B3B3B),
                       fontWeight: FontWeight.w700,
                     ),
                   ),

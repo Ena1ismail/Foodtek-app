@@ -10,7 +10,7 @@ class AppTitleWidget extends StatelessWidget {
       return Text(
         'Foodtek',
         style: GoogleFonts.protestRiot(
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           fontSize: 80.sp,
           fontWeight: FontWeight.w400,
         ),

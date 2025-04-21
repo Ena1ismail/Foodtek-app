@@ -25,10 +25,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: const Color(0xFF25AE4B),
+      backgroundColor: isDarkMode? Colors.black: Color(0xFF25AE4B),
       body: Center(
         child: Container(
           width: double.infinity,
@@ -52,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: 343.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.r),
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                   ),
                   child: Selector<LoginController, bool>(
                     selector: (context, loginController) => loginController.isLoginMode,
@@ -113,6 +116,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildTitle(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     final langController = Provider.of<LangController>(context, listen: false);
     return Padding(
       padding: EdgeInsets.only(top: 24.sp),
@@ -122,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
           AppLocalizations.of(context)!.login_title,
           style: AppStyles.getFontStyle(
             langController,
-            color: const Color(0xFF111827),
+            color: isDarkMode?Colors.black : Color(0xFF111827),
             fontWeight: FontWeight.w700,
             fontSize: 32.sp,
           ),
@@ -279,7 +284,7 @@ class _LoginScreenState extends State<LoginScreen> {
           return isLoading
               ? const Center(child: CircularProgressIndicator(color: Color(0xFF170F4C)))
               : LoginButtonWidget(
-            textColor: Colors.white,
+            textColor: Theme.of(context).primaryColor,
             buttonName: isLoginMode
                 ? AppLocalizations.of(context)!.login_title
                 : AppLocalizations.of(context)!.register_button,
@@ -309,7 +314,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      backgroundColor: const Color(0xFFE7F4FF),
+                      backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
                       content: Text(
                         AppLocalizations.of(context)!.something_went_wrong,
                         style: AppStyles.getFontStyle(
@@ -341,7 +346,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Expanded(
             child: Divider(
               thickness: 1,
-              color: const Color(0xFFEDF1F3),
+              color: Color(0xFFEDF1F3),
             ),
           ),
           Padding(
@@ -372,7 +377,7 @@ class _LoginScreenState extends State<LoginScreen> {
       children: [
         LoginButtonWidget(
           buttonName: AppLocalizations.of(context)!.continue_with_google,
-          buttonColor: Colors.white,
+          buttonColor: Theme.of(context).scaffoldBackgroundColor,
           textColor: const Color(0xFF1A1C1E),
           widget: Image(
             image: AssetImage("assets/images/google.png"),
@@ -384,7 +389,7 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(height: 15.h),
         LoginButtonWidget(
           buttonName: AppLocalizations.of(context)!.continue_with_facebook,
-          buttonColor: Colors.white,
+          buttonColor: Theme.of(context).scaffoldBackgroundColor,
           textColor: const Color(0xFF1A1C1E),
           widget: Image(
             image: AssetImage("assets/images/facebook.png"),
@@ -396,7 +401,7 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(height: 15.h),
         LoginButtonWidget(
           buttonName: AppLocalizations.of(context)!.continue_with_apple,
-          buttonColor: Colors.white,
+          buttonColor: Theme.of(context).scaffoldBackgroundColor,
           textColor: const Color(0xFF1A1C1E),
           widget: Image(
             image: AssetImage("assets/images/apple.png"),
