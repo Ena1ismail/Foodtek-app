@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodtek/app_constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTitleWidget extends StatelessWidget {
@@ -7,10 +8,12 @@ class AppTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
       return Text(
         'Foodtek',
         style: GoogleFonts.protestRiot(
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: isDarkMode? AppConstants.buttonColor: Colors.white,
           fontSize: 80.sp,
           fontWeight: FontWeight.w400,
         ),

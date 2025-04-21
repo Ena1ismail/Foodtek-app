@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
                     supportedLocales: const [Locale('en'), Locale('ar')],
                     debugShowCheckedModeBanner: false,
                     theme: themeData,
-                    home: MainScreen(),
+                    home: SplashScreen(),
                   );
                 },
               );

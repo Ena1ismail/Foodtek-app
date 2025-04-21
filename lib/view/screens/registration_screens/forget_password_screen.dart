@@ -19,13 +19,18 @@ class ForgetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     final LoginController loginController = Provider.of<LoginController>(
       context,
       listen: false,
     );
 
     return Scaffold(
-      backgroundColor: AppConstants.buttonColor,
+      backgroundColor:
+          isDarkMode
+              ? Theme.of(context).scaffoldBackgroundColor
+              : AppConstants.buttonColor,
       body: _buildBody(context, loginController),
     );
   }
@@ -66,7 +71,7 @@ class ForgetPasswordScreen extends StatelessWidget {
         width: 343.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.r),
-          color: Theme.of(context).scaffoldBackgroundColor
+          color: Theme.of(context).scaffoldBackgroundColor,
         ),
         child: Selector<LoginController, bool>(
           selector: (context, loginController) => loginController.isLoginMode,
@@ -97,9 +102,12 @@ class ForgetPasswordScreen extends StatelessWidget {
                         SnackBar(
                           content: Text(
                             AppLocalizations.of(context)!.error_message,
-                            style: TextStyle(color: Theme.of(context).primaryColor),
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                            ),
                           ),
-                          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                          backgroundColor:
+                              Theme.of(context).scaffoldBackgroundColor,
                         ),
                       );
                     }
@@ -158,8 +166,12 @@ class ForgetPasswordScreen extends StatelessWidget {
   }
 
   Widget _buildTitle(BuildContext context) {
-    LangController langController =
-    Provider.of<LangController>(context, listen: false);
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Padding(
       padding: EdgeInsets.only(top: 24.sp, left: 60.sp, right: 60.sp),
       child: Text(
@@ -167,7 +179,7 @@ class ForgetPasswordScreen extends StatelessWidget {
         textAlign: TextAlign.center,
         style: AppStyles.getFontStyle(
           langController,
-          color: const Color(0xFF111827),
+          color: isDarkMode ? Colors.white : Color(0xFF111827),
           fontWeight: FontWeight.w700,
           fontSize: 32.sp,
         ),
@@ -176,8 +188,10 @@ class ForgetPasswordScreen extends StatelessWidget {
   }
 
   Widget _buildSubTitle(BuildContext context) {
-    LangController langController =
-    Provider.of<LangController>(context, listen: false);
+    LangController langController = Provider.of<LangController>(
+      context,
+      listen: false,
+    );
     return Padding(
       padding: EdgeInsets.only(top: 12.sp, left: 45.sp, right: 45.sp),
       child: Text(

@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Text(
             'Foodtek',
             style: GoogleFonts.protestRiot(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).scaffoldBackgroundColor,
               fontSize: 80.sp,
               fontWeight: FontWeight.w400,
             ),

@@ -25,13 +25,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDarkMode = theme.brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: isDarkMode? Colors.black: Color(0xFF25AE4B),
+      backgroundColor: isDarkMode ? Color(0xFF1E1E1E): Color(0xFF25AE4B),
       body: Center(
         child: Container(
           width: double.infinity,
@@ -58,7 +57,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Theme.of(context).scaffoldBackgroundColor,
                   ),
                   child: Selector<LoginController, bool>(
-                    selector: (context, loginController) => loginController.isLoginMode,
+                    selector:
+                        (context, loginController) =>
+                            loginController.isLoginMode,
                     builder: (context, isLoginMode, _) {
                       return SingleChildScrollView(
                         child: _buildLoginForm(context, isLoginMode),
@@ -91,7 +92,12 @@ class _LoginScreenState extends State<LoginScreen> {
           title: AppLocalizations.of(context)!.self_password,
           hintText: AppLocalizations.of(context)!.password_hint,
           controller: loginController.passwordController,
-          onChange: (value) => loginController.validateField(field: 'password', value: value, context: context),
+          onChange:
+              (value) => loginController.validateField(
+                field: 'password',
+                value: value,
+                context: context,
+              ),
           errorText: loginController.errors['password'],
           obscureText: loginController.obscureText,
           suffixIcon: IconButton(
@@ -99,7 +105,9 @@ class _LoginScreenState extends State<LoginScreen> {
               loginController.togglePasswordVisibility();
             },
             icon: Icon(
-              loginController.obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+              loginController.obscureText
+                  ? Icons.visibility_off_outlined
+                  : Icons.visibility_outlined,
               color: Colors.grey,
               size: 20.sp,
             ),
@@ -127,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
           AppLocalizations.of(context)!.login_title,
           style: AppStyles.getFontStyle(
             langController,
-            color: isDarkMode?Colors.black : Color(0xFF111827),
+            color: isDarkMode ? Colors.white : Color(0xFF111827),
             fontWeight: FontWeight.w700,
             fontSize: 32.sp,
           ),
@@ -136,7 +144,11 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildSwitchModeRow(BuildContext context, bool isLoginMode, LoginController loginController) {
+  Widget _buildSwitchModeRow(
+    BuildContext context,
+    bool isLoginMode,
+    LoginController loginController,
+  ) {
     final langController = Provider.of<LangController>(context, listen: false);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -183,7 +195,10 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _rememberMeAndForgetPassword() {
-    final loginController = Provider.of<LoginController>(context, listen: false);
+    final loginController = Provider.of<LoginController>(
+      context,
+      listen: false,
+    );
 
     return Padding(
       padding: EdgeInsets.only(left: 24.sp, right: 24.sp),
@@ -198,7 +213,10 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildRememberMeButton(BuildContext context, LoginController loginController) {
+  Widget _buildRememberMeButton(
+    BuildContext context,
+    LoginController loginController,
+  ) {
     final langController = Provider.of<LangController>(context, listen: false);
 
     return Selector<LoginController, bool>(
@@ -217,7 +235,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   value: isRememberMeChecked,
                   onChanged: (bool? value) async {
                     loginController.setRememberMe(value ?? false);
-                    final secureStorageProvider = Provider.of<SecureStorageController>(context, listen: false);
+                    final secureStorageProvider =
+                        Provider.of<SecureStorageController>(
+                          context,
+                          listen: false,
+                        );
                     if (value == true) {
                       await secureStorageProvider.saveCredentials(
                         loginController.emailController.text,
@@ -251,7 +273,10 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildForgotPasswordButton(BuildContext context, LoginController loginController) {
+  Widget _buildForgotPasswordButton(
+    BuildContext context,
+    LoginController loginController,
+  ) {
     final langController = Provider.of<LangController>(context, listen: false);
 
     return TextButton(
@@ -273,7 +298,11 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildSubmitButton(BuildContext context, bool isLoginMode, LoginController loginController) {
+  Widget _buildSubmitButton(
+    BuildContext context,
+    bool isLoginMode,
+    LoginController loginController,
+  ) {
     final langController = Provider.of<LangController>(context, listen: false);
 
     return Padding(
@@ -282,55 +311,67 @@ class _LoginScreenState extends State<LoginScreen> {
         selector: (context, loginController) => loginController.isLoading,
         builder: (context, isLoading, _) {
           return isLoading
-              ? const Center(child: CircularProgressIndicator(color: Color(0xFF170F4C)))
+              ? const Center(
+                child: CircularProgressIndicator(color: Color(0xFF170F4C)),
+              )
               : LoginButtonWidget(
-            textColor: Theme.of(context).primaryColor,
-            buttonName: isLoginMode
-                ? AppLocalizations.of(context)!.login_title
-                : AppLocalizations.of(context)!.register_button,
-            onPressed: () async {
-              FocusScope.of(context).unfocus();
-              loginController.setLoading(true);
-              try {
-                loginController.validateEmail(loginController.emailController.text);
-                loginController.validatePassword(loginController.passwordController.text);
-                if (loginController.isFormValid()) {
-                  final secureStorageProvider = Provider.of<SecureStorageController>(context, listen: false);
-                  if (loginController.isRememberMeChecked) {
-                    await secureStorageProvider.saveCredentials(
+                textColor: Theme.of(context).scaffoldBackgroundColor,
+                buttonName:
+                    isLoginMode
+                        ? AppLocalizations.of(context)!.login_title
+                        : AppLocalizations.of(context)!.register_button,
+                onPressed: () async {
+                  FocusScope.of(context).unfocus();
+                  loginController.setLoading(true);
+                  try {
+                    loginController.validateEmail(
                       loginController.emailController.text,
+                    );
+                    loginController.validatePassword(
                       loginController.passwordController.text,
                     );
-                  } else {
-                    await secureStorageProvider.clearCredentials();
-                  }
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => MainScreen()),
-                    (route) => false,
-                  );
-                }
-              } catch (e) {
-                if (context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
-                      content: Text(
-                        AppLocalizations.of(context)!.something_went_wrong,
-                        style: AppStyles.getFontStyle(
-                          langController,
-                          color: const Color(0xFF170F4C),
-                          fontWeight: FontWeight.w500,
+                    if (loginController.isFormValid()) {
+                      final secureStorageProvider =
+                          Provider.of<SecureStorageController>(
+                            context,
+                            listen: false,
+                          );
+                      if (loginController.isRememberMeChecked) {
+                        await secureStorageProvider.saveCredentials(
+                          loginController.emailController.text,
+                          loginController.passwordController.text,
+                        );
+                      } else {
+                        await secureStorageProvider.clearCredentials();
+                      }
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => MainScreen()),
+                        (route) => false,
+                      );
+                    }
+                  } catch (e) {
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor:
+                              Theme.of(context).scaffoldBackgroundColor,
+                          content: Text(
+                            AppLocalizations.of(context)!.something_went_wrong,
+                            style: AppStyles.getFontStyle(
+                              langController,
+                              color: const Color(0xFF170F4C),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  );
-                }
-              } finally {
-                loginController.setLoading(false);
-              }
-            },
-          );
+                      );
+                    }
+                  } finally {
+                    loginController.setLoading(false);
+                  }
+                },
+              );
         },
       ),
     );
@@ -343,12 +384,7 @@ class _LoginScreenState extends State<LoginScreen> {
       padding: EdgeInsets.symmetric(vertical: 16.sp),
       child: Row(
         children: [
-          Expanded(
-            child: Divider(
-              thickness: 1,
-              color: Color(0xFFEDF1F3),
-            ),
-          ),
+          Expanded(child: Divider(thickness: 1, color: Color(0xFFEDF1F3))),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.sp),
             child: Text(
@@ -362,10 +398,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           Expanded(
-            child: Divider(
-              thickness: 1,
-              color: const Color(0xFFEDF1F3),
-            ),
+            child: Divider(thickness: 1, color: const Color(0xFFEDF1F3)),
           ),
         ],
       ),
@@ -373,12 +406,14 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildOtherLoginButtons(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return Column(
       children: [
         LoginButtonWidget(
           buttonName: AppLocalizations.of(context)!.continue_with_google,
           buttonColor: Theme.of(context).scaffoldBackgroundColor,
-          textColor: const Color(0xFF1A1C1E),
+          textColor: isDarkMode? Colors.white: Color(0xFF1A1C1E),
           widget: Image(
             image: AssetImage("assets/images/google.png"),
             height: 18.h,
@@ -390,7 +425,7 @@ class _LoginScreenState extends State<LoginScreen> {
         LoginButtonWidget(
           buttonName: AppLocalizations.of(context)!.continue_with_facebook,
           buttonColor: Theme.of(context).scaffoldBackgroundColor,
-          textColor: const Color(0xFF1A1C1E),
+          textColor: isDarkMode? Colors.white: Color(0xFF1A1C1E),
           widget: Image(
             image: AssetImage("assets/images/facebook.png"),
             height: 18.h,
@@ -402,7 +437,7 @@ class _LoginScreenState extends State<LoginScreen> {
         LoginButtonWidget(
           buttonName: AppLocalizations.of(context)!.continue_with_apple,
           buttonColor: Theme.of(context).scaffoldBackgroundColor,
-          textColor: const Color(0xFF1A1C1E),
+          textColor: isDarkMode? Colors.white: Color(0xFF1A1C1E),
           widget: Image(
             image: AssetImage("assets/images/apple.png"),
             height: 18.h,

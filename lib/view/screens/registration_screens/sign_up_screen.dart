@@ -23,8 +23,10 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: const Color(0xFF25AE4B),
+      backgroundColor: isDarkMode? Color(0xFF1E1E1E): Color(0xFF25AE4B),
       body: Center(
         child: Container(
           width: double.infinity,
@@ -129,6 +131,8 @@ class SignUpScreen extends StatelessWidget {
   }
 
   Widget _buildTitle(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     LangController langController = Provider.of<LangController>(
       context,
       listen: false,
@@ -139,7 +143,7 @@ class SignUpScreen extends StatelessWidget {
         AppLocalizations.of(context)!.signup_title,
         style: AppStyles.getFontStyle(
           langController,
-          color: const Color(0xFF111827),
+          color: isDarkMode? Colors.white: Color(0xFF111827),
           fontWeight: FontWeight.w700,
           fontSize: 32.sp,
         ),

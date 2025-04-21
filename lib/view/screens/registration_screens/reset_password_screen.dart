@@ -26,9 +26,11 @@ class ResetPasswordScreen extends StatelessWidget {
       context,
       listen: false,
     );
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: AppConstants.buttonColor,
+      backgroundColor: isDarkMode? Theme.of(context).scaffoldBackgroundColor:AppConstants.buttonColor,
       body: Stack(
         children: [
           Center(
@@ -80,7 +82,7 @@ class ResetPasswordScreen extends StatelessWidget {
                         AppLocalizations.of(context)!.reset_password_title,
                         textAlign: TextAlign.center,
                         style: AppStyles.getFontStyle( langController,
-                          color: const Color(0xFF111827),
+                          color: isDarkMode? Colors.white: Color(0xFF111827),
                           fontWeight: FontWeight.w700,
                           fontSize: 32.sp,
                         ),

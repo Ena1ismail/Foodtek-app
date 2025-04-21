@@ -40,6 +40,8 @@ class _SuccessResetPasswordScreenState
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     LangController langController =
     Provider.of<LangController>(context, listen: false);
     LoginController loginController = Provider.of<LoginController>(
@@ -99,7 +101,7 @@ class _SuccessResetPasswordScreenState
                         AppLocalizations.of(context)!.reset_password_title,
                         textAlign: TextAlign.center,
                         style: AppStyles.getFontStyle( langController,
-                          color: const Color(0xFF111827),
+                          color: isDarkMode? Colors.white: Color(0xFF111827),
                           fontWeight: FontWeight.w700,
                           fontSize: 32.sp,
                         ),
@@ -181,7 +183,7 @@ class _SuccessResetPasswordScreenState
                 Text(
                   AppLocalizations.of(context)!.congratulations,
                   style: AppStyles.getFontStyle( langController,
-                    color: Theme.of(context).scaffoldBackgroundColor,
+                    color: Theme.of(context).primaryColor,
                     fontWeight: FontWeight.w700,
                     fontSize: 32.sp,
                   ),
@@ -189,7 +191,7 @@ class _SuccessResetPasswordScreenState
                 Text(
                   AppLocalizations.of(context)!.password_reset_success,
                   style: AppStyles.getFontStyle( langController,
-                    color: Theme.of(context).scaffoldBackgroundColor,
+                    color: Theme.of(context).primaryColor,
                     fontWeight: FontWeight.w600,
                     fontSize: 24.sp,
                   ),
