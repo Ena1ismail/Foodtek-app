@@ -538,4 +538,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ok => 'Ok';
+
+  @override
+  String get delayed_order_title => 'Delayed Order';
+
+  @override
+  String get delayed_order_message => 'We\'re sorry! Your order is running late. New ETA: 10:30 PM.';
+
+  @override
+  String get promotional_offer_title => 'Promotional Offer';
+
+  @override
+  String get promotional_offer_message => 'Get 20% off on your next order. Code: YUMMY20.';
+
+  @override
+  String get out_for_delivery_title => 'Out for Delivery';
+
+  @override
+  String get out_for_delivery_message => 'Your order is on the way! Estimated arrival: 15 mins.';
+
+  @override
+  String get order_confirmation_title => 'Order Confirmation';
+
+  @override
+  String get order_confirmation_message => 'Your order has been placed! We\'re preparing it now.';
+
+  @override
+  String get delivered_title => 'Delivered';
+
+  @override
+  String get delivered_message => 'Enjoy your meal! Your order has been delivered.';
 }

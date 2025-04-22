@@ -427,44 +427,45 @@ class HomePageController extends ChangeNotifier {
     ),
   ];
 
-  final List<NotificationItem> _notifications = [
+
+
+  final List<NotificationItem> notifications = [
     NotificationItem(
-      title: "Delayed Order",
-      message: "We're sorry! Your order is running late. New ETA: 10:30 PM.",
+      title: 'delayed_order_title',
+      message: 'delayed_order_message',
       date: "Last Wednesday at 9:42 AM",
       isError: true,
       isRead: false,
     ),
     NotificationItem(
-      title: "Promotional Offer",
-      message: "Get 20% off on your next order. Code: YUMMY20.",
+      title: 'promotional_offer_title',
+      message: 'promotional_offer_message',
       date: "Last Wednesday at 9:42 AM",
       isError: false,
       isRead: false,
     ),
     NotificationItem(
-      title: "Out for Delivery",
-      message: "Your order is on the way! Estimated arrival: 15 mins.",
+      title: 'out_for_delivery_title',
+      message: 'out_for_delivery_message',
       date: "Last Wednesday at 9:42 AM",
       isError: false,
       isRead: true,
     ),
     NotificationItem(
-      title: "Order Confirmation",
-      message: "Your order has been placed! We're preparing it now.",
+      title: 'order_confirmation_title',
+      message: 'order_confirmation_message',
       date: "Last Wednesday at 9:42 AM",
       isError: false,
       isRead: true,
     ),
     NotificationItem(
-      title: "Delivered",
-      message: "Enjoy your meal! Your order has been delivered.",
+      title: 'delivered_title',
+      message: 'delivered_message',
       date: "Last Wednesday at 9:42 AM",
       isError: false,
       isRead: true,
     ),
   ];
-
   void updateSelectedToggleIndex(int index) {
     if (selectedToggleIndex != index) {
       selectedToggleIndex = index;
@@ -475,13 +476,13 @@ class HomePageController extends ChangeNotifier {
   List<NotificationItem> getFilteredNotifications() {
     switch (selectedToggleIndex) {
       case 0:
-        return _notifications;
+        return notifications;
       case 1:
-        return _notifications.where((n) => !n.isRead).toList();
+        return notifications.where((n) => !n.isRead).toList();
       case 2:
-        return _notifications.where((n) => n.isRead).toList();
+        return notifications.where((n) => n.isRead).toList();
       default:
-        return _notifications;
+        return notifications;
     }
   }
 

@@ -538,4 +538,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ok => 'حسنا';
+
+  @override
+  String get delayed_order_title => 'طلب متأخر';
+
+  @override
+  String get delayed_order_message => 'نأسف لذلك! طلبك يتأخر. التوقيت المتوقع الجديد: الساعة 10:30 مساءً.';
+
+  @override
+  String get promotional_offer_title => 'عرض ترويجي';
+
+  @override
+  String get promotional_offer_message => 'احصل على خصم 20% على طلبك القادم. الكود: YUMMY20.';
+
+  @override
+  String get out_for_delivery_title => 'في الطريق للتسليم';
+
+  @override
+  String get out_for_delivery_message => 'طلبك في الطريق! الوقت المقدر للوصول: 15 دقيقة.';
+
+  @override
+  String get order_confirmation_title => 'تأكيد الطلب';
+
+  @override
+  String get order_confirmation_message => 'تم تقديم طلبك! نحن نجهزه الآن.';
+
+  @override
+  String get delivered_title => 'تم التسليم';
+
+  @override
+  String get delivered_message => 'استمتع بوجبتك! تم تسليم طلبك.';
 }

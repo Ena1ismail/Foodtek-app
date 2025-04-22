@@ -16,48 +16,97 @@ class SharedPreferencesHelper {
 
   // Remove item from storage
   Future<void> remove({required String key}) async {
-    await _prefs?.remove(key);
+    if (_prefs == null) {
+      throw Exception("SharedPreferences not initialized. Call init() first.");
+    }
+    await _prefs!.remove(key);
   }
 
-  // Save methods for different data types
+  // Save theme preference
+  Future<void> saveTheme(bool isDarkMode) async {
+    if (_prefs == null) {
+      throw Exception("SharedPreferences not initialized. Call init() first.");
+    }
+    await _prefs!.setBool('isDarkMode', isDarkMode);
+  }
+
+  // Get saved theme preference
+  Future<bool> getSavedTheme() async {
+    if (_prefs == null) {
+      throw Exception("SharedPreferences not initialized. Call init() first.");
+    }
+    return _prefs!.getBool('isDarkMode') ?? false; // Default to false if not found
+  }
+
+  // Generic save methods
   Future<void> savePrefString({required String key, required String value}) async {
-    await _prefs?.setString(key, value);
+    if (_prefs == null) {
+      throw Exception("SharedPreferences not initialized. Call init() first.");
+    }
+    await _prefs!.setString(key, value);
   }
 
   Future<void> savePrefInt({required String key, required int value}) async {
-    await _prefs?.setInt(key, value);
+    if (_prefs == null) {
+      throw Exception("SharedPreferences not initialized. Call init() first.");
+    }
+    await _prefs!.setInt(key, value);
   }
 
   Future<void> savePrefBool({required String key, required bool value}) async {
-    await _prefs?.setBool(key, value);
+    if (_prefs == null) {
+      throw Exception("SharedPreferences not initialized. Call init() first.");
+    }
+    await _prefs!.setBool(key, value);
   }
 
   Future<void> savePrefDouble({required String key, required double value}) async {
-    await _prefs?.setDouble(key, value);
+    if (_prefs == null) {
+      throw Exception("SharedPreferences not initialized. Call init() first.");
+    }
+    await _prefs!.setDouble(key, value);
   }
 
   Future<void> savePrefStringList({required String key, required List<String> value}) async {
-    await _prefs?.setStringList(key, value);
+    if (_prefs == null) {
+      throw Exception("SharedPreferences not initialized. Call init() first.");
+    }
+    await _prefs!.setStringList(key, value);
   }
 
-  // Get methods for different data types
+  // Generic get methods
   Future<String> getPrefString({required String key, required String defaultValue}) async {
-    return _prefs?.getString(key) ?? defaultValue;
+    if (_prefs == null) {
+      throw Exception("SharedPreferences not initialized. Call init() first.");
+    }
+    return _prefs!.getString(key) ?? defaultValue;
   }
 
   Future<int> getPrefInt({required String key, required int defaultValue}) async {
-    return _prefs?.getInt(key) ?? defaultValue;
+    if (_prefs == null) {
+      throw Exception("SharedPreferences not initialized. Call init() first.");
+    }
+    return _prefs!.getInt(key) ?? defaultValue;
   }
 
   Future<bool> getPrefBool({required String key, required bool defaultValue}) async {
-    return _prefs?.getBool(key) ?? defaultValue;
+    if (_prefs == null) {
+      throw Exception("SharedPreferences not initialized. Call init() first.");
+    }
+    return _prefs!.getBool(key) ?? defaultValue;
   }
 
   Future<double> getPrefDouble({required String key, required double defaultValue}) async {
-    return _prefs?.getDouble(key) ?? defaultValue;
+    if (_prefs == null) {
+      throw Exception("SharedPreferences not initialized. Call init() first.");
+    }
+    return _prefs!.getDouble(key) ?? defaultValue;
   }
 
   Future<List<String>> getPrefStringList({required String key, required List<String> defaultValue}) async {
-    return _prefs?.getStringList(key) ?? defaultValue;
+    if (_prefs == null) {
+      throw Exception("SharedPreferences not initialized. Call init() first.");
+    }
+    return _prefs!.getStringList(key) ?? defaultValue;
   }
 }

@@ -1156,6 +1156,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ok'**
   String get ok;
+
+  /// No description provided for @delayed_order_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Delayed Order'**
+  String get delayed_order_title;
+
+  /// No description provided for @delayed_order_message.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re sorry! Your order is running late. New ETA: 10:30 PM.'**
+  String get delayed_order_message;
+
+  /// No description provided for @promotional_offer_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Promotional Offer'**
+  String get promotional_offer_title;
+
+  /// No description provided for @promotional_offer_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Get 20% off on your next order. Code: YUMMY20.'**
+  String get promotional_offer_message;
+
+  /// No description provided for @out_for_delivery_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Out for Delivery'**
+  String get out_for_delivery_title;
+
+  /// No description provided for @out_for_delivery_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order is on the way! Estimated arrival: 15 mins.'**
+  String get out_for_delivery_message;
+
+  /// No description provided for @order_confirmation_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Confirmation'**
+  String get order_confirmation_title;
+
+  /// No description provided for @order_confirmation_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order has been placed! We\'re preparing it now.'**
+  String get order_confirmation_message;
+
+  /// No description provided for @delivered_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get delivered_title;
+
+  /// No description provided for @delivered_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Enjoy your meal! Your order has been delivered.'**
+  String get delivered_message;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

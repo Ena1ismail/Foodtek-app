@@ -139,10 +139,14 @@ class NotificationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDarkMode = theme.brightness == Brightness.dark;
+
+    final String localizedTitle = _getLocalizedTitle(context, notification.title);
+    final String localizedMessage = _getLocalizedMessage(context, notification.message);
+
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black12, width: .3),
-        color: isDarkMode? Colors.grey:Color(0xFFF1F6FC),
+        color: isDarkMode ? Colors.grey : const Color(0xFFF1F6FC),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -150,18 +154,15 @@ class NotificationCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              notification.title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
+              localizedTitle,
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
             ),
-            SizedBox(height: 4),
+            SizedBox(height: 4.h),
             Text(
-              notification.message,
+              localizedMessage,
               style: TextStyle(color: Colors.black54),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Text(
               notification.date,
               style: TextStyle(color: Colors.grey),
@@ -170,5 +171,39 @@ class NotificationCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _getLocalizedTitle(BuildContext context, String titleKey) {
+    switch (titleKey) {
+      case 'delayed_order_title':
+        return AppLocalizations.of(context)!.delayed_order_title;
+      case 'promotional_offer_title':
+        return AppLocalizations.of(context)!.promotional_offer_title;
+      case 'out_for_delivery_title':
+        return AppLocalizations.of(context)!.out_for_delivery_title;
+      case 'order_confirmation_title':
+        return AppLocalizations.of(context)!.order_confirmation_title;
+      case 'delivered_title':
+        return AppLocalizations.of(context)!.delivered_title;
+      default:
+        throw Exception('Localization key not found: $titleKey');
+    }
+  }
+
+  String _getLocalizedMessage(BuildContext context, String messageKey) {
+    switch (messageKey) {
+      case 'delayed_order_message':
+        return AppLocalizations.of(context)!.delayed_order_message;
+      case 'promotional_offer_message':
+        return AppLocalizations.of(context)!.promotional_offer_message;
+      case 'out_for_delivery_message':
+        return AppLocalizations.of(context)!.out_for_delivery_message;
+      case 'order_confirmation_message':
+        return AppLocalizations.of(context)!.order_confirmation_message;
+      case 'delivered_message':
+        return AppLocalizations.of(context)!.delivered_message;
+      default:
+        throw Exception('Localization key not found: $messageKey');
+    }
   }
 }

@@ -1,33 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtek/controller/cart_controller.dart';
-import 'package:foodtek/controller/check_out_controller.dart';
-import 'package:foodtek/controller/filter_controller.dart';
-import 'package:foodtek/controller/home_page_controller.dart';
-import 'package:foodtek/controller/location_controller.dart';
-import 'package:foodtek/controller/login_controller.dart';
-import 'package:foodtek/controller/secure_storage_controller.dart';
-import 'package:foodtek/controller/lang_controller.dart';
-import 'package:foodtek/controller/onboarding_controller.dart';
-import 'package:foodtek/theme/theme_cubit.dart';
-import 'package:foodtek/view/screens/home_screen.dart';
-import 'package:foodtek/view/screens/main_screen.dart';
-import 'package:foodtek/view/screens/onboarding_screens/splash_screen.dart';
+import 'package:foodtek/theme/shared_prefences_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+// Controllers
+import 'controller/cart_controller.dart';
+import 'controller/check_out_controller.dart';
+import 'controller/filter_controller.dart';
+import 'controller/home_page_controller.dart';
+import 'controller/location_controller.dart';
+import 'controller/login_controller.dart';
+import 'controller/secure_storage_controller.dart';
+import 'controller/lang_controller.dart';
+import 'controller/onboarding_controller.dart';
+
+// Theme
+import 'theme/theme_cubit.dart';
+
+// Screens
+import 'view/screens/onboarding_screens/splash_screen.dart';
+
+// Localization
 import 'l10n/app_localizations.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool isDark = prefs.getBool('isDark') ?? false;
+  final langController = LangController();
+  await langController.initSharedPreferences();
+  await SharedPreferencesHelper().init();
 
   runApp(
-      const MyApp()
+    ChangeNotifierProvider(
+      create: (_) => langController,
+      child: MyApp(),
+    ),
   );
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -40,19 +51,17 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       child: MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (context) => SlidesController()),
-          ChangeNotifierProvider(create: (context) => LoginController()),
-          ChangeNotifierProvider(create: (context) => LocationController()),
-          ChangeNotifierProvider(
-              create: (context) => SecureStorageController()),
-          ChangeNotifierProvider(create: (context) => HomePageController()),
-          ChangeNotifierProvider(create: (context) => FilterController()),
-          ChangeNotifierProvider(create: (context) => CartController()),
-          ChangeNotifierProvider(create: (context) => CheckOutController()),
-          ChangeNotifierProvider(create: (context) => LangController()),
+          ChangeNotifierProvider(create: (_) => SlidesController()),
+          ChangeNotifierProvider(create: (_) => LoginController()),
+          ChangeNotifierProvider(create: (_) => LocationController()),
+          ChangeNotifierProvider(create: (_) => SecureStorageController()),
+          ChangeNotifierProvider(create: (_) => HomePageController()),
+          ChangeNotifierProvider(create: (_) => FilterController()),
+          ChangeNotifierProvider(create: (_) => CartController()),
+          ChangeNotifierProvider(create: (_) => CheckOutController()),
         ],
         child: BlocProvider(
-          create: (context) => ThemeCubit()..getTheme(),
+          create: (_) => ThemeCubit()..getTheme(),
           child: Builder(
             builder: (context) {
               final langController = Provider.of<LangController>(context);
@@ -66,7 +75,10 @@ class MyApp extends StatelessWidget {
                       GlobalWidgetsLocalizations.delegate,
                       GlobalCupertinoLocalizations.delegate,
                     ],
-                    supportedLocales: const [Locale('en'), Locale('ar')],
+                    supportedLocales: const [
+                      Locale('en'),
+                      Locale('ar'),
+                    ],
                     debugShowCheckedModeBanner: false,
                     theme: themeData,
                     home: SplashScreen(),

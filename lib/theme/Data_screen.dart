@@ -25,12 +25,18 @@ class DataScreen extends StatelessWidget {
                         "Change Theme Color",
                         style: TextStyle(color: Theme.of(context).primaryColor),
                       ),
-                      Switch(
-                        value: context.read<ThemeCubit>().isDark,
-                        onChanged: (value) {
-                          context.read<ThemeCubit>().changeTheme();
+
+                      BlocBuilder<ThemeCubit, ThemeData>(
+                        builder: (context, state) {
+                          final isDark = context.read<ThemeCubit>().isDark;
+                          return Switch(
+                            value: isDark,
+                            onChanged: (value) {
+                              context.read<ThemeCubit>().changeTheme();
+                            },
+                          );
                         },
-                      ), // Switch
+                      ),
                     ],
                   ); // Row
                 },

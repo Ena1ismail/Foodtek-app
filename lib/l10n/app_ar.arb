@@ -15,10 +15,6 @@
   "remove_from_favorites_confirmation": "هل أنت متأكد أنك تريد إزالته من المفضلة؟",
   "back_to_login": "العودة إلى صفحة تسجيل الدخول؟",
   "select_card_type": "الرجاء تحديد نوع البطاقة (فيزا أو ماستركارد).",
-
-
-
-
   "forget_password": "نسيت كلمة المرور ؟",
   "signup_title": "إنشاء حساب",
   "login_title": "تسجيل الدخول",
@@ -41,7 +37,7 @@
   "otp_error": "الرجاء إدخال رمز OTP الكامل.",
   "new_password": "كلمة المرور الجديدة",
   "confirm_password": "تأكيد كلمة المرور الجديدة",
-  "confirm_password_hint" : "تأكيد كلمة المرور الجديدة",
+  "confirm_password_hint": "تأكيد كلمة المرور الجديدة",
   "update_password_button": "تحديث كلمة المرور",
   "congratulations": "تهانينا!",
   "password_reset_success": "تمت إعادة تعيين كلمة المرور بنجاح",
@@ -57,10 +53,6 @@
   "passwords_error": "كلمات المرور غير متطابقة.",
   "update_cart": "تحديث السلة",
   "remove_from_cart": "هل أنت متأكد أنك تريد إزالته من السلة؟",
-
-
-
-
   "current_location": "الموقع الحالي",
   "search_hint": "ابحث في القائمة أو المطعم أو غير ذلك",
   "no_notification": "لا توجد إشعارات لعرضها.",
@@ -95,10 +87,7 @@
   "hot": "ساخن",
   "quantity": "الكمية",
   "reviews": "التقييمات",
-  "filter":"فلتر",
-
-
-
+  "filter": "فلتر",
   "cart": "السلة",
   "history": "التاريخ",
   "subtotal": "المجموع الجزئي",
@@ -111,11 +100,10 @@
   "history_empty_prompt": "لم تطلب أي طعام من قبل.",
   "load_more": "تحميل المزيد..",
   "reorder": "أعد الطلب",
-
   "Change": "تغيير",
   "add": "اضافه",
   "aleksandr_v": "الكسندر في",
-"loc": "\"123 شارع المدينة، العبدلي، عمان، الأردن\"",
+  "loc": "\"123 شارع المدينة، العبدلي، عمان، الأردن\"",
   "enter_your_promo": "أدخل كود الخصم الخاص بك",
   "your_location": "موقعك",
   "set_location": "تعيين الموقع",
@@ -138,22 +126,17 @@
   "you_will_get_your_order_within_12min": "ستتلقى طلبك خلال 12 دقيقة",
   "thanks_for_using_our_services": "شكراً لاستخدام خدماتنا",
   "track_your_order": "تتبع طلبك",
-"ahmad_daboor": "احمد الدبور",
+  "ahmad_daboor": "احمد الدبور",
   "no_points_found_in_polyline_result": "لم يتم العثور على نقاط في نتيجة الخطوط المتعددة",
   "location_services_are_disabled": " تم تعطيل خدمات الموقع.",
   "location_permissions_are_denied": "تم رفض أذونات الموقع",
- " location_permissions": "تم رفض أذونات الموقع بشكل دائم، ولا يمكننا طلب الأذونات.",
+  " location_permissions": "تم رفض أذونات الموقع بشكل دائم، ولا يمكننا طلب الأذونات.",
   "successful_payment": "سوف نرسل لك تفاصيل الطلب إلى بريدك الإلكتروني بعد الدفع الناجح",
   "empty_fields": "الرجاء ملء جميع الحقول",
   "invalid_card_number": "رقم البطاقة غير صحيح",
   "invalid_date": "تاريخ انتهاء الصلاحية غير صحيح",
   "invalid_cvc": "رمز التحقق من البطاقة (CVC) غير صحيح",
   "new_address": "عنوان جديد",
-
-
-
-
-
   "order_id": "رقم الطلب",
   "chat": "الدردشة",
   "write_your_message": "اكتب رسالتك",
@@ -184,21 +167,23 @@
   "email": "البريد الإلكتروني",
   "address": "العنوان",
   "update": "تحديث",
-
-
-
   "enter_name": "أدخل الاسم",
   "area": "المنطقة",
   "building_name": "اسم المبنى",
   "apt_number": "رقم الشقة",
   "floor": "الطابق",
-  "street":"الشارع",
+  "street": "الشارع",
   "additional_directions": "الاتجاهات الإضافية (اختياري)",
   "save_address": "حفظ العنوان",
-  "ok": "حسنا"
-
-
-
-
-
+  "ok": "حسنا",
+  "delayed_order_title": "طلب متأخر",
+  "delayed_order_message": "نأسف لذلك! طلبك يتأخر. التوقيت المتوقع الجديد: الساعة 10:30 مساءً.",
+  "promotional_offer_title": "عرض ترويجي",
+  "promotional_offer_message": "احصل على خصم 20% على طلبك القادم. الكود: YUMMY20.",
+  "out_for_delivery_title": "في الطريق للتسليم",
+  "out_for_delivery_message": "طلبك في الطريق! الوقت المقدر للوصول: 15 دقيقة.",
+  "order_confirmation_title": "تأكيد الطلب",
+  "order_confirmation_message": "تم تقديم طلبك! نحن نجهزه الآن.",
+  "delivered_title": "تم التسليم",
+  "delivered_message": "استمتع بوجبتك! تم تسليم طلبك."
 }

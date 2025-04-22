@@ -16,10 +16,6 @@
   "continue_with_apple": "Continue with Apple",
   "remove_from_favorites_confirmation": "Are you sure you want to remove it from favorites?",
   "back_to_login": "Back to Login Page?",
-
-
-
-
   "forget_password": "Forget Password ?",
   "signup_title": "Sign up",
   "login_title": "Login",
@@ -42,7 +38,7 @@
   "otp_error": "Please enter the full OTP code.",
   "new_password": "New Password",
   "confirm_password": "Confirm New Password",
-  "confirm_password_hint" : "Confirm your new password",
+  "confirm_password_hint": "Confirm your new password",
   "update_password_button": "Update Password",
   "congratulations": "Congratulations!",
   "password_reset_success": "password reset successfully",
@@ -55,11 +51,6 @@
   "passwords_error": "Passwords do not match.",
   "update_cart": "Update Cart",
   "remove_from_cart": "Are you sure you want to remove it from Carts?",
-
-
-
-
-
   "current_location": "Current location",
   "search_hint": "Search menu, restaurant or etc",
   "no_notification": "No notifications to display.",
@@ -95,10 +86,6 @@
   "quantity": "Quantity",
   "reviews": "reviews",
   "filter": "Filter",
-
-
-
-
   "cart": "Cart",
   "history": "History",
   "subtotal": "Sub-Total",
@@ -119,7 +106,7 @@
   "set_location": "Set Location",
   "checkout": "Checkout",
   "pay_with": "Pay With:",
-  "pay_for_order":"Pay for the order",
+  "pay_for_order": "Pay for the order",
   "promo_code": "Promo Code?",
   "add_card": "Add Card",
   "card": "Card",
@@ -137,12 +124,12 @@
   "thanks_for_using_our_services": "thanks for using our services",
   "track_your_order": "track Your Order",
   "password": "Password",
-  "loc":"123 Al-Madina Street, Abdali, Amman, Jordan",
-  "order_id":" Order ID",
-  "ahmad_daboor":"Ahmad Daboor",
+  "loc": "123 Al-Madina Street, Abdali, Amman, Jordan",
+  "order_id": " Order ID",
+  "ahmad_daboor": "Ahmad Daboor",
   "no_points_found_in_polyline_result": "No points found in polyline result",
-  "location_services_are_disabled":"Location services are disabled.",
-  "location_permissions_are_denied":"Location permissions are denied",
+  "location_services_are_disabled": "Location services are disabled.",
+  "location_permissions_are_denied": "Location permissions are denied",
   "location_permissions": "Location permissions are permanently denied, we cannot request permissions.",
   "successful_payment": "We will send you an order details to your email after the successful payment",
   "empty_fields": "Please fill in all the fields",
@@ -150,10 +137,7 @@
   "invalid_date": "Invalid expiry date",
   "invalid_cvc": "Invalid CVC",
   "new_address": "New Address",
-
-
-
-  "chat":"Chat",
+  "chat": "Chat",
   "write_your_message": "Write your message",
   "your_delivery_hero": "Your Delivery Hero",
   "order_details": "Order Details",
@@ -183,18 +167,23 @@
   "address": "Address",
   "update": "Update",
   "select_card_type": "Please select a card type (Visa or MasterCard).",
-
-
-
   "enter_name": "Enter name",
   "area": "Area",
   "building_name": "Building name",
   "apt_number": "Apt. number",
   "floor": "Floor",
-  "street":"Street",
+  "street": "Street",
   "additional_directions": "Additional directions (optional)",
   "save_address": "Save Address",
-  "ok": "Ok"
-
-
+  "ok": "Ok",
+  "delayed_order_title": "Delayed Order",
+  "delayed_order_message": "We're sorry! Your order is running late. New ETA: 10:30 PM.",
+  "promotional_offer_title": "Promotional Offer",
+  "promotional_offer_message": "Get 20% off on your next order. Code: YUMMY20.",
+  "out_for_delivery_title": "Out for Delivery",
+  "out_for_delivery_message": "Your order is on the way! Estimated arrival: 15 mins.",
+  "order_confirmation_title": "Order Confirmation",
+  "order_confirmation_message": "Your order has been placed! We're preparing it now.",
+  "delivered_title": "Delivered",
+  "delivered_message": "Enjoy your meal! Your order has been delivered."
 }

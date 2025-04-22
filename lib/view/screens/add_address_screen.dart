@@ -247,7 +247,7 @@ class _LocationWidgetState extends State<LocationWidget> {
                               ],
                               height: 60.h,
                               borderRadius: 12.r,
-                              titleColor: Theme.of(context).primaryColor,
+                              titleColor: Theme.of(context).scaffoldBackgroundColor,
                               width: 300.w,
                               onPressed: () {
                                 Navigator.of(context).pop();
