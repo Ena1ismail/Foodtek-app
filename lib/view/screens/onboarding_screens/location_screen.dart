@@ -21,8 +21,7 @@ class LocationScreen extends StatelessWidget {
         backgroundImage: AssetImage("assets/images/maps.png"),
         imagePath: "assets/images/slide2.png",
         title: AppLocalizations.of(context)!.onboarding_title4,
-        description:
-        AppLocalizations.of(context)!.onboarding_subtitle4,
+        description: AppLocalizations.of(context)!.onboarding_subtitle4,
         widget: Column(
           children: [
             CustomButtonWidget(
@@ -31,8 +30,6 @@ class LocationScreen extends StatelessWidget {
                 print("Button pressed");
                 await locationController.requestLocationPermission(context);
               },
-
-
             ),
 
             SizedBox(height: 8.h),
@@ -53,4 +50,3 @@ class LocationScreen extends StatelessWidget {
     );
   }
 }
-

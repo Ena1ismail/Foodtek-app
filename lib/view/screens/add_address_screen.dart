@@ -213,7 +213,7 @@ class _LocationWidgetState extends State<LocationWidget> {
               CustomButtonWidget(
                 title: AppLocalizations.of(context)!.save_address,
                 colors: [AppConstants.buttonColor, AppConstants.buttonColor],
-                titleColor: Theme.of(context).primaryColor,
+                titleColor: Theme.of(context).scaffoldBackgroundColor,
                 width: double.infinity,
                 borderRadius: 12.r,
                 height: 60.h,

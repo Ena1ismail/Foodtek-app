@@ -4,10 +4,8 @@ import 'package:foodtek/app_constants.dart';
 import 'package:foodtek/controller/home_page_controller.dart';
 import 'package:foodtek/model/food_item.dart';
 import 'package:foodtek/view/widgets/custom_button_widget.dart';
-import 'package:foodtek/view/screens/product_details_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
 import '../../../l10n/app_localizations.dart';
 
 class FoodItemWidget extends StatelessWidget {

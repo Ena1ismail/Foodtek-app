@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtek/theme/shared_prefences_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-// Controllers
 import 'controller/cart_controller.dart';
 import 'controller/check_out_controller.dart';
 import 'controller/filter_controller.dart';
@@ -15,14 +13,8 @@ import 'controller/login_controller.dart';
 import 'controller/secure_storage_controller.dart';
 import 'controller/lang_controller.dart';
 import 'controller/onboarding_controller.dart';
-
-// Theme
 import 'theme/theme_cubit.dart';
-
-// Screens
 import 'view/screens/onboarding_screens/splash_screen.dart';
-
-// Localization
 import 'l10n/app_localizations.dart';
 
 void main() async {

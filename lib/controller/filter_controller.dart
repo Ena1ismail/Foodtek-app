@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
+import '../l10n/app_localizations.dart';
+
 class FilterController extends ChangeNotifier {
   final TextEditingController minPriceController = TextEditingController();
   final TextEditingController maxPriceController = TextEditingController();
@@ -18,14 +20,14 @@ class FilterController extends ChangeNotifier {
 
 
 
-  void updateSelected(String type, String value, int index) {
-    if (type == "category" && selectedCategory != value) {
+  void updateSelected(String type, String value, int index, BuildContext context) {
+    if (type == AppLocalizations.of(context)!.category && selectedCategory != value) {
       selectedCategory = value;
       selectedCategoryIndex = index;
-    } else if (type == "location" && selectedLocation != value) {
+    } else if (type == AppLocalizations.of(context)!.location && selectedLocation != value) {
       selectedLocation = value;
       selectedLocationIndex = index;
-    } else if (type == "dish" && selectedDish != value) {
+    } else if (type == AppLocalizations.of(context)!.dish && selectedDish != value) {
       selectedDish = value;
       selectedDishIndex = index;
     } else {
@@ -34,10 +36,10 @@ class FilterController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateSlider(String type, double newValue) {
-    if (type == "price" && sliderPriceValue != newValue) {
+  void updateSlider(String type, double newValue, BuildContext context) {
+    if (type == AppLocalizations.of(context)!.price && sliderPriceValue != newValue) {
       sliderPriceValue = newValue;
-    } else if (type == "discount" && sliderDiscountValue != newValue) {
+    } else if (type == AppLocalizations.of(context)!.discount && sliderDiscountValue != newValue) {
       sliderDiscountValue = newValue;
     } else {
       return;

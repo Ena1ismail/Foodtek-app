@@ -47,13 +47,13 @@ class FilterSearchScreen extends StatelessWidget {
                 context,
               ),
               SizedBox(height: 14.h),
-              _buildButtonRow(["Fast Food", "Sea Food", "Desert"], "category"),
+              _buildButtonRow(["Fast Food", "Sea Food", "Desert"], AppLocalizations.of(context)!.category),
               _buildSectionTitle(
                 AppLocalizations.of(context)!.location,
                 context,
               ),
               SizedBox(height: 14.h),
-              _buildButtonRow(["1 KM", "5 KM", "10 KM"], "location"),
+              _buildButtonRow(["1 KM", "5 KM", "10 KM"], AppLocalizations.of(context)!.location),
               _buildSectionTitle(AppLocalizations.of(context)!.dish, context),
               SizedBox(height: 14.h),
               _buildButtonWrap([
@@ -63,7 +63,7 @@ class FilterSearchScreen extends StatelessWidget {
                 "Clam Chowder",
                 "Miso-Glazed Cod",
                 "Lobster Thermidor",
-              ], "dish"),
+              ], AppLocalizations.of(context)!.dish),
             ],
           ),
         ),
@@ -207,11 +207,13 @@ class FilterSearchScreen extends StatelessWidget {
               filterController.updateSlider(
                 AppLocalizations.of(context)!.price,
                 newValue,
+                context
               );
             } else {
               filterController.updateSlider(
                 AppLocalizations.of(context)!.discount,
                 newValue,
+                context
               );
             }
           },
@@ -234,7 +236,6 @@ class FilterSearchScreen extends StatelessWidget {
     );
   }
 
-  // Button Wrap Widget
   Widget _buildButtonWrap(List<String> labels, String type) {
     return Wrap(
       spacing: 16.w,
@@ -251,17 +252,17 @@ class FilterSearchScreen extends StatelessWidget {
     return Consumer<FilterController>(
       builder: (context, controller, child) {
         final isSelected =
-            type == AppLocalizations.of(context)!.category
-                ? controller.selectedCategoryIndex == index
-                : type == AppLocalizations.of(context)!.location
-                ? controller.selectedLocationIndex == index
-                : controller.selectedDishIndex == index;
+        type == AppLocalizations.of(context)!.category
+            ? controller.selectedCategoryIndex == index
+            : type == AppLocalizations.of(context)!.location
+            ? controller.selectedLocationIndex == index
+            : controller.selectedDishIndex == index;
 
         return Container(
           margin: EdgeInsets.only(right: 16.0),
           child: TextButton(
             onPressed: () {
-              controller.updateSelected(type, label, index);
+              controller.updateSelected(type, label, index, context);
             },
             style: TextButton.styleFrom(
               backgroundColor: isSelected ? Colors.green : Color(0xFFF2F4F7),

@@ -6,23 +6,19 @@ import '../model/address.dart';
 import '../view/screens/registration_screens/login_screen.dart';
 
 class LocationController extends ChangeNotifier {
-  // Location Permission Status
   bool _isLocationGranted = false;
   bool get isLocationGranted => _isLocationGranted;
 
-  // TextEditingControllers for Address Fields
   final TextEditingController buildingController = TextEditingController();
   final TextEditingController apartmentNumController = TextEditingController();
   final TextEditingController floorController = TextEditingController();
   final TextEditingController streetController = TextEditingController();
   final TextEditingController additionalController = TextEditingController();
 
-  // Check if Location Services are Enabled
   Future<bool> isLocationServiceEnabled() async {
     return await Geolocator.isLocationServiceEnabled();
   }
 
-  // Request Location Permission and Enable Location Services
   Future<void> requestLocationPermission(BuildContext context) async {
     LocationPermission permission = await Geolocator.checkPermission();
 
@@ -52,7 +48,6 @@ class LocationController extends ChangeNotifier {
     }
   }
 
-  // Continuously Check if Location is Enabled, Then Navigate
   void _waitForLocationEnabled(BuildContext context) async {
     while (!(await Geolocator.isLocationServiceEnabled())) {
       await Future.delayed(const Duration(seconds: 1)); // Check every second
@@ -60,7 +55,6 @@ class LocationController extends ChangeNotifier {
     _navigateToLogin(context);
   }
 
-  // Show Dialog When Location Permission is Denied Forever
   void _showPermissionDeniedDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -78,7 +72,6 @@ class LocationController extends ChangeNotifier {
     );
   }
 
-  // Navigate to LoginScreen
   void _navigateToLogin(BuildContext context) {
     Navigator.pushReplacement(
       context,
@@ -86,7 +79,6 @@ class LocationController extends ChangeNotifier {
     );
   }
 
-  // Selected Location on Map
   LatLng? _selectedLocation;
 
   LatLng? get selectedLocation => _selectedLocation;
